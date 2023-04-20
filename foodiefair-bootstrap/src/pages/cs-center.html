@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FoodieFair</title>
+  <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
+  <link href="@@webRoot/node_modules/nouislider/dist/nouislider.min.css" rel="stylesheet">
+  <link href="@@webRoot/src/assets/css/cs-center.css" rel="stylesheet">
+  @@include("../partials/head.html")
+</head>
+
+<body>
+
+@@include("../partials/navbar.html")
+
+<div class="csContainer">
+  <div id="csTitle">자주 찾는 질문 Q&A</div>
+  <div class="qnaButtonContainer">
+    <button class="tab-button" data-target="qnaAll">전체</button>
+    <button class="tab-button" data-target="qnaProduct">상품</button>
+    <button class="tab-button" data-target="qnaUser">로그인/회원정보</button>
+    <button class="tab-button" data-target="qnaService">서비스 이용</button>
+    <button class="tab-button" data-target="qnaReport">신고</button>
+    <button class="tab-button" data-target="qnaEtc">기타/등급제도</button>
+  </div>
+</div>
+
+<section class="tabAll">
+  <div id="qnaAll" class="tab-content active">
+    <div id="Accordion_wrap">
+      <div class="que">
+        <span>전체 질문 첫 번째.</span>
+        <div class="arrow-wrap">
+          <span class="arrow-top">↑</span>
+          <span class="arrow-bottom">↓</span>
+        </div>
+
+      </div>
+      <div class="anw">
+        <span>첫 번쨰 질문 대답.</span>
+      </div>
+      <div class="que">
+        <span>전체 질문 두 번째.</span>
+      </div>
+      <div class="anw">
+        <span>두 번쨰 질문 대답.</span>
+      </div>
+      <div class="que">
+        <span>전체 질문 세 번째.</span>
+      </div>
+      <div class="anw">
+        <span>세 번쨰 질문 대답.</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="qnaProduct" class="tab-content">
+    <div class="que">
+      <span>상품 질문 첫 번째.</span>
+      <div class="arrow-wrap">
+        <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+      </div>
+
+    </div>
+    <div class="anw">
+      <span>첫 번쨰 질문 대답.</span>
+    </div>
+    <div class="que">
+      <span>상품 질문 두 번째.</span>
+    </div>
+    <div class="anw">
+      <span>두 번쨰 질문 대답.</span>
+    </div>
+    <div class="que">
+      <span>상품 질문 세 번째.</span>
+    </div>
+    <div class="anw">
+      <span>세 번쨰 질문 대답.</span>
+    </div>
+  </div>
+
+  <div id="qnaUser" class="tab-content">
+    <div class="que">
+      <span>로그인/회원정보 질문 첫 번째.</span>
+      <div class="arrow-wrap">
+        <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+      </div>
+
+    </div>
+    <div class="anw">
+      <span>첫 번쨰 질문 대답.</span>
+    </div>
+    <div class="que">
+      <span>로그인/회원정보 질문 두 번째.</span>
+    </div>
+    <div class="anw">
+      <span>두 번쨰 질문 대답.</span>
+    </div>
+    <div class="que">
+      <span>로그인/회원정보 질문 세 번째.</span>
+    </div>
+    <div class="anw">
+      <span>세 번쨰 질문 대답.</span>
+    </div>
+  </div>
+
+  <div id="qnaService" class="tab-content">
+    <div class="que">
+      <span>서비스 이용 질문 첫 번째.</span>
+      <div class="arrow-wrap">
+        <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+      </div>
+
+    </div>
+    <div class="anw">
+      <span>첫 번쨰 질문 대답.</span>
+    </div>
+    <div class="que">
+      <span>서비스 이용 질문 두 번째.</span>
+    </div>
+    <div class="anw">
+      <span>두 번쨰 질문 대답.</span>
+    </div>
+    <div class="que">
+      <span>서비스 이용 질문 세 번째.</span>
+    </div>
+    <div class="anw">
+      <span>세 번쨰 질문 대답.</span>
+    </div>
+  </div>
+
+  <div id="qnaReport" class="tab-content">
+    <div class="que">
+      <span>신고 질문 첫 번째.</span>
+      <div class="arrow-wrap">
+        <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+      </div>
+
+    </div>
+    <div class="anw">
+      <span>첫 번쨰 질문 대답.</span>
+    </div>
+    <div class="que">
+      <span>신고 질문 두 번째.</span>
+    </div>
+    <div class="anw">
+      <span>두 번쨰 질문 대답.</span>
+    </div>
+    <div class="que">
+      <span>신고 질문 세 번째.</span>
+    </div>
+    <div class="anw">
+      <span>세 번쨰 질문 대답.</span>
+    </div>
+  </div>
+
+  <div id="qnaEtc" class="tab-content">
+    <div class="que">
+      <span>기타/등급제도 질문 첫 번째.</span>
+      <div class="arrow-wrap">
+        <span class="arrow-top">↑</span>
+        <span class="arrow-bottom">↓</span>
+      </div>
+
+    </div>
+    <div class="anw">
+      <span>첫 번쨰 질문 대답.</span>
+    </div>
+    <div class="que">
+      <span>기타/등급제도 질문 두 번째.</span>
+    </div>
+    <div class="anw">
+      <span>두 번쨰 질문 대답.</span>
+    </div>
+    <div class="que">
+      <span>기타/등급제도 질문 세 번째.</span>
+    </div>
+    <div class="anw">
+      <span>세 번쨰 질문 대답.</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- modal -->
+@@include("../partials/modal-product.html")
+
+<!-- Footer -->
+@@include("../partials/footer.html")
+<!-- Javascript-->
+<script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
+<script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
+@@include("../partials/scripts.html")
+<script src="@@webRoot/node_modules/tiny-slider/dist/min/tiny-slider.js"></script>
+<script src="@@webRoot/assets/js/vendors/tns-slider.js"></script>
+<script src="@@webRoot/assets/js/vendors/zoom.js"></script>
+<script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
+<script src="@@webRoot/src/assets/js/cs-center.js"></script>
+
+
+</body>
+
+</html>

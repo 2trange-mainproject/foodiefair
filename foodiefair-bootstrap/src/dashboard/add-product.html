@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  @@include("../partials/head.html")
+  <link href="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <!-- main wrapper -->
+
+  @@include("../partials/top-navbar.html")
+  <div class="main-wrapper">
+    <!-- navbar vertical -->
+    @@include('../partials/navbar-vertical.html', {
+
+    "page": "products"
+
+    })
+    <!-- main -->
+    <main class="main-content-wrapper">
+      <!-- container -->
+      <div class="container">
+        <!-- row -->
+        <div class="row mb-8">
+          <div class="col-md-12">
+            <div class="d-md-flex justify-content-between align-items-center">
+              <!-- page header -->
+              <div>
+                <h2>상품 추가</h2>
+                  <!-- breacrumb -->
+                  <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#" class="text-inherit">관리자 페이지</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="text-inherit">상품 관리</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">상품 추가하기</li>
+                  </ol>
+                </nav>
+              </div>
+              <!-- button -->
+              <div>
+                <a href="products.html" class="btn btn-light">상품 관리로 돌아가기</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+
+          <div class="col-12">
+            <!-- card -->
+            <div class="card mb-6 card-lg">
+              <!-- card body -->
+              <div class="card-body p-6 ">
+                <div class="row">
+                  <!-- input -->
+                  <div class="mb-3 col-lg-6">
+                    <label class="form-label">상품 ID</label>
+                    <input type="text" class="form-control" placeholder="형식에 맞는 상품 ID를 입력하세요." required>
+                  </div>
+                  <!-- input -->
+                  <div class="mb-3 col-lg-6">
+                    <label class="form-label">상품명</label>
+                    <input type="text" class="form-control" placeholder="상품명을 입력하세요." required>
+                  </div>
+                  <!-- input -->
+                  <div class="mb-3 col-lg-6">
+                    <label class="form-label">상품 가격</label>
+                    <input type="text" class="form-control" placeholder="상품 가격을 입력하세요." required>
+                  </div>
+                  <!-- input -->
+                  <div class="mb-3 col-lg-6">
+                    <label class="form-label">행사 정보</label>
+                    <select class="form-select">
+                      <option value="0" selected>정보 선택</option>
+                      <option value="1">신상품</option>
+                      <option value="2">1 + 1</option>
+                      <option value="3">2 + 1</option>
+                    </select>
+                  </div>
+                  <!-- input -->
+                  <div class="mb-3">
+                    <label class="form-label">상품 태그</label>
+                    <input type="text" class="form-control" placeholder="상품 태그(JSON)를 입력하세요." required>
+                  </div>
+                  <div>
+                    <div class="mb-3 ">
+                      <!-- heading -->
+                      <label class="form-label">상품 사진</label>
+
+                      <!-- input -->
+                      <form action="#" class="d-block dropzone border-dashed rounded-2 ">
+                        <div class="fallback">
+                          <input name="file" type="file" multiple>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end" style="padding-top: 10px">
+                  <a href="products.html" class="btn btn-soft-pink btn-sm" style="font-size: 16px;">
+                    상품 추가 완료
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+
+  @@include("../partials/scripts.html")
+  <script src="@@webRoot/node_modules/quill/dist/quill.min.js"></script>
+  <script src="@@webRoot/assets/js/vendors/editor.js"></script>
+  <script src="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.js"></script>
+
+</body>
+
+</html>

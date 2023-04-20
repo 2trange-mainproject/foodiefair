@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  @@include("../partials/head.html")
+  <link href="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <!-- main wrapper -->
+
+  @@include("../partials/top-navbar.html")
+  <div class="main-wrapper">
+    <!-- navbar vertical -->
+    @@include('../partials/navbar-vertical.html', {
+
+    "page": "customers"
+
+    })
+    <!-- main -->
+    <main class="main-content-wrapper">
+      <!-- container -->
+      <div class="container">
+        <!-- row -->
+        <div class="row mb-8">
+          <div class="col-md-12">
+            <div class="d-md-flex justify-content-between align-items-center">
+              <!-- page header -->
+              <div>
+                <h2>회원 정보 수정</h2>
+                  <!-- breacrumb -->
+                  <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#" class="text-inherit">관리자 페이지</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="text-inherit">회원 관리</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">회원 정보 수정</li>
+                  </ol>
+                </nav>
+              </div>
+              <!-- button -->
+              <div>
+                <a href="customers.html" class="btn btn-light">회원 관리로 돌아가기</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+
+          <div class="col-lg-8 col-12">
+            <!-- card -->
+            <div class="card mb-6 card-lg">
+              <!-- card body -->
+              <div class="card-body p-6 ">
+                <div class="row">
+                  <!-- input -->
+                  <div class="mb-3 col-lg-6">
+                    <label class="form-label">회원 ID</label>
+                    <input type="text" class="form-control" value="1" readonly>
+                  </div>
+                  <!-- input -->
+                  <div class="mb-3 col-lg-6">
+                    <label class="form-label">비밀번호</label>
+                    <input type="text" class="form-control" value="1234" readonly>
+                  </div>
+                  <!-- input -->
+                  <div class="mb-3 col-lg-6">
+                    <label class="form-label">이메일</label>
+                    <input type="text" class="form-control" value="soo@naver.com" readonly>
+                  </div>
+                  <!-- input -->
+                  <div class="mb-3 col-lg-6">
+                    <label class="form-label">닉네임</label>
+                    <input type="text" class="form-control" value="초코러버" readonly>
+                  </div>
+                  <!-- input -->
+                  <div class="mb-3 col-lg-6">
+                    <label class="form-label">자기소개</label>
+                    <textarea style="height: auto; max-height: 500px;" class="form-control" readonly>달콤하고 쓴거 좋아해요! 맵고 느끼한거 별로 안 좋아합니다.. INFJ입니당~</textarea>
+                  </div>
+                  <div class="mb-3 col-lg-6">
+                    <label class="form-label">마이태그</label>
+                    <textarea style="height: auto; max-height: 500px;" class="form-control" readonly>#초코 좋아, #라면 좋아, #INFJ, #20대</textarea>
+                  </div>
+                  <label class="form-label">프로필 사진</label>
+                  <div class="mb-3 col-lg-6">
+                    <!-- input -->
+                    <img src="../assets/images/products/love-1.jpg" class="mb-3 img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-4 col-12">
+            <!-- card -->
+            <div class="card mb-6 card-lg">
+              <!-- card body -->
+              <div class="card-body p-6">
+                <!-- input -->
+                <div class="form-check form-switch mb-4">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchStock" checked>
+                  <label class="form-check-label" for="flexSwitchStock"> Locked</label>
+                </div>
+                <!-- input -->
+                <div>
+                  <div class="mb-3">
+                    <label class="form-label">신고횟수</label>
+                    <input type="text" class="form-control" value="1" required>
+                  </div>
+                  <!-- input -->
+                  <!--<div class="mb-3">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio1"
+                        value="option1" checked>
+                      <label class="form-check-label" for="inlineRadio1">관리자 권한</label>
+                    </div>
+                    &lt;!&ndash; input &ndash;&gt;
+
+                  </div>-->
+
+                </div>
+              </div>
+            </div>
+            <!-- button -->
+            <div class="d-grid">
+              <a href="customers.html" class="btn btn-pink">
+                회원정보 수정 완료
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+
+  @@include("../partials/scripts.html")
+  <script src="@@webRoot/node_modules/quill/dist/quill.min.js"></script>
+  <script src="@@webRoot/assets/js/vendors/editor.js"></script>
+  <script src="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.js"></script>
+
+</body>
+
+</html>

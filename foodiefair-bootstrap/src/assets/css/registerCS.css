@@ -1,0 +1,45 @@
+
+.registerTitle {
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 61px;
+  color: #000000;
+  margin: 30px auto;
+}
+
+input[type="radio"]:checked + label {
+  color: #d63384;
+}
+input[type="radio"]:checked {
+  background-color: #d63384;
+}
+
+.radioSection{
+  width: 500px;
+  height: 170px;
+  margin: 30px auto;
+}
+
+span{
+  color: #828282;
+  font-size: 13px;
+}
+textarea{
+  margin-top: 20px;
+}
+
+button {
+  margin-top: 30px;
+}
+
+.registerCS {
+  width: 700px; height: 720px; margin: 50px auto 80px; padding: 30px 40px 50px;
+  border-radius: 30px; background-color: #ffffff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+.registerCS h1 {text-align: center;}
+.registerCS p {text-align: left;}
+.registerCS .box {width: 100px; height: 40px;  padding: 8px; margin: 0 3px;}
