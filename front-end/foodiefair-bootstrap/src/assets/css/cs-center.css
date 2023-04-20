@@ -1,0 +1,212 @@
+/* test */
+*{
+  box-sizing: border-box;
+}
+
+.que:first-child{
+  border-top: 1px solid black;
+}
+
+.que{
+  position: relative;
+  padding: 17px 0;
+  cursor: pointer;
+  font-size: 14px;
+  border-bottom: 1px solid #dddddd;
+
+}
+
+.que::before{
+  display: inline-block;
+  content: 'Q';
+  font-size: 14px;
+  color: #d43384;
+  margin: 0 5px;
+}
+
+.que.on>span{
+  font-weight: bold;
+  color: #d43384;
+}
+
+.anw {
+  display: none;
+  overflow: hidden;
+  font-size: 14px;
+  background-color: #f7e9ea;
+  padding: 27px 0;
+}
+
+.anw::before {
+  display: inline-block;
+  content: 'A';
+  font-size: 14px;
+  font-weight: bold;
+  color: #666;
+  margin: 0 5px;
+}
+
+.arrow-wrap {
+  position: absolute;
+  top:50%; right: 10px;
+  transform: translate(0, -50%);
+}
+
+.que .arrow-top {
+  display: none;
+}
+.que .arrow-bottom {
+  display: block;
+}
+.que.on .arrow-bottom {
+  display: none;
+}
+.que.on .arrow-top {
+  display: block;
+}
+/* test End */
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.csContainer {
+  position: relative;
+
+  /* 상하좌우 정중앙 정렬하기 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#csTitle {
+  position: absolute;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 61px;
+  color: #000000;
+}
+
+.qnaButtonContainer {
+  margin-top: 60px;
+}
+
+/*#qnaAll {
+  width: 80px;
+}
+
+#qnaProduct {
+  width: 100px;
+}
+
+#qnaUser {
+  width: 120px;
+}
+
+#qnaService {
+  width: 90px;
+}
+
+#qnaReport {
+  width: 70px;
+}
+
+#qnaEtc {
+  width: 110px;
+}*/
+
+.qnaButtonContainer button {
+  box-sizing: border-box;
+  height: 30px;
+  margin: 0 7px;
+  margin-top: 100px;
+
+  text-align: center;
+  background-color: #F9EBEB;
+  color: black;
+  border: 1px solid #B8B8B8;
+  border-radius: 92px;
+
+  cursor: pointer;
+}
+
+
+.tabAll{
+  position: relative;
+
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 180px;
+
+  width: 40%;     /* 가로 길이 제한 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+.accordion {
+  display: flex;
+  justify-content: center;
+  width: 750px;
+  flex-direction: column;
+  align-content: stretch;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  border-bottom: #F9EBEB 3px solid;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.accordion-button {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.accordion-button::before {
+  content: "<";
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  transform: rotate(270deg);
+}
+
+.accordion-button.active::before {
+  transform: rotate(90deg);
+}
+
+.accordion-content {
+  padding: 1rem;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.accordion-content.active {
+  max-height: 1000px;
+  background-color: #f0f0f0;
+}
+
+.cs-center {
+  width: 700px; height: auto; margin: 50px auto 80px; padding: 30px 40px 50px;
+  border-radius: 30px; background-color: #ffffff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}

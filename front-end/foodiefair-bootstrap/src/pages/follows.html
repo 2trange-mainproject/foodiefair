@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>FoodieFair</title>
+    @@include("../partials/head.html")
+</head>
+
+<body>
+<main>
+    <section class="mt-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills nav-lb-tab justify-content-center" id="myTab" role="tablist">
+                        <!-- nav item -->
+                        <li class="nav-item" role="presentation">
+                            <!-- btn -->
+                            <button class="nav-link active fs-3" id="followers-tab" data-bs-toggle="tab" data-bs-target="#followers-tab-pane" type="button" role="tab" aria-controls="followers-tab-pane" aria-selected="true" style="margin-right: 300px;">팔로워 500명
+                            </button>
+                        </li>
+                        <!-- nav item -->
+                        <li class="nav-item" role="presentation">
+                            <!-- btn -->
+                            <button class="nav-link fs-3" id="followings-tab" data-bs-toggle="tab" data-bs-target="#followings-tab-pane" type="button" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉 500명
+                            </button>
+                        </li>
+                    </ul>
+                    <!-- tab content -->
+                    <div class="tab-content" id="myTabContent">
+                        <!-- tab pane -->
+                        <div class="tab-pane fade show active" id="followers-tab-pane" role="tabpanel" aria-labelledby="followers-tab" tabindex="0">
+                            <!-- section -->
+                            <div class="mt-8 mb-lg-14 mb-8">
+                                <!-- container -->
+                                <div class="container">
+                                    <div class="row gx-10 justify-content-center">
+                                        <!-- col -->
+                                        <aside class="col-lg-0"></aside>
+                                        <section class="col-lg-9 col-md-12">
+                                            <!-- row -->
+                                            <div class="row g-4  row-cols-1 mt-2">
+                                                <div class="col">
+                                                    <!-- card -->
+                                                    <div class="card card-followers">
+                                                        <!-- card body -->
+                                                        <div class="card-body">
+                                                            <div class=" row align-items-center">
+                                                                <!-- col -->
+                                                                <div class="col-md-4 col-12">
+
+                                                                    <div class="text-center position-relative">
+                                                                        <a href="shop-single.html" class="d-flex">
+                                                                            <!-- img -->
+                                                                            <div class="flex-grow-1">
+                                                                                <img src="../assets/images/profile/soo.png" alt="Grocery Ecommerce template" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-12 flex-grow-1">
+                                                                    <!-- heading -->
+                                                                    <h2 class="fs-2"><a href="shop-single.html" class="text-inherit text-decoration-none">초코
+                                                                        러버</a>
+                                                                    </h2>
+                                                                    <div>
+
+                                                                        <!-- 칭호 -->
+                                                                        <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                                                        <span class="text-muted small">껌/초콜릿/캔디 다이아몬드</span>
+                                                                    </div>
+                                                                    <div class=" mt-6">
+                                                                        <!-- btn -->
+                                                                        <div class="mt-2">
+                                                                            <button class="btn btn-pink" id="follow-btn">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                                                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                                                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                                                                </svg>
+                                                                                팔로우
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col">
+                                                    <!-- card -->
+                                                    <div class="card card-followers">
+                                                        <div class="card-body">
+                                                            <div class=" row align-items-center">
+                                                                <div class="col-md-4 col-12">
+
+                                                                    <div class="text-center position-relative">
+                                                                        <a href="shop-single.html" class="d-flex">
+                                                                            <!-- img -->
+                                                                            <div class="flex-grow-1">
+                                                                                <img src="../assets/images/profile/seung.png" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-12 flex-grow-1">
+                                                                    <h2 class="fs-2"><a href="shop-single.html" class="text-inherit text-decoration-none">잠자는
+                                                                        숲속의 공주</a>
+                                                                    </h2>
+                                                                    <div>
+
+                                                                        <!-- 칭호 -->
+                                                                        <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                                                        <span class="text-muted small">아이스크림 다이아몬드</span>
+                                                                    </div>
+                                                                    <div class=" mt-6">
+                                                                        <!-- btn -->
+                                                                        <div class="mt-2">
+                                                                            <a href="" class="btn btn-pink">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                                                                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                                                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                                                                </svg>
+                                                                                팔로우
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col">
+                                                    <!-- card -->
+                                                    <div class="card card-followers">
+                                                        <div class="card-body">
+                                                            <div class=" row align-items-center">
+                                                                <div class="col-md-4 col-12">
+
+                                                                    <div class="text-center position-relative">
+                                                                        <a href="shop-single.html" class="d-flex">
+                                                                            <!-- img -->
+                                                                            <div class="flex-grow-1">
+                                                                                <img src="../assets/images/profile/joon.png" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-12 flex-grow-1">
+                                                                    <h2 class="fs-2"><a href="shop-single.html" class="text-inherit text-decoration-none">오이장수</a>
+                                                                    </h2>
+                                                                    <div>
+
+                                                                        <!-- 칭호 -->
+                                                                        <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                                                        <span class="text-muted small">안주류 플래티넘</span>
+                                                                    </div>
+                                                                    <div class=" mt-6">
+                                                                        <!-- btn -->
+                                                                        <div class="mt-2">
+                                                                            <a href="" class="btn btn-pink">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                                                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                                                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                                                                </svg>
+                                                                                팔로우
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col">
+                                                    <!-- card -->
+                                                    <div class="card card-followers">
+                                                        <div class="card-body">
+                                                            <div class=" row align-items-center">
+                                                                <div class="col-md-4 col-12">
+
+                                                                    <div class="text-center position-relative">
+                                                                        <a href="shop-single.html" class="d-flex">
+                                                                            <!-- img -->
+                                                                            <div class="flex-grow-1">
+                                                                                <img src="../assets/images/profile/chang.png" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-12 flex-grow-1">
+                                                                    <h2 class="fs-2"><a href="shop-single.html" class="text-inherit text-decoration-none">꼬쟁이</a>
+                                                                    </h2>
+                                                                    <div>
+
+                                                                        <!-- 칭호 -->
+                                                                        <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                                                        <span class="text-muted small">라면 플래티넘</span>
+                                                                    </div>
+                                                                    <div class=" mt-6">
+                                                                        <!-- btn -->
+                                                                        <div class="mt-2">
+                                                                            <a href="" class="btn btn-pink">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                                                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                                                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                                                                </svg>
+                                                                                팔로우
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col">
+                                                    <!-- card -->
+                                                    <div class="card card-followers">
+                                                        <div class="card-body">
+                                                            <div class=" row align-items-center">
+                                                                <div class="col-md-4 col-12">
+
+                                                                    <div class="text-center position-relative">
+                                                                        <a href="shop-single.html" class="d-flex">
+                                                                            <!-- img -->
+                                                                            <div class="flex-grow-1">
+                                                                                <img src="../assets/images/profile/sehou.png" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-12 flex-grow-1">
+                                                                    <h2 class="fs-2"><a href="shop-single.html" class="text-inherit text-decoration-none">최강효자손</a>
+                                                                    </h2>
+                                                                    <div>
+
+                                                                        <!-- 칭호 -->
+                                                                        <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                                                        <span class="text-muted small">샌드위치 골드</span>
+                                                                    </div>
+                                                                    <div class=" mt-6">
+                                                                        <!-- btn -->
+                                                                        <div class="mt-2">
+                                                                            <a href="" class="btn btn-pink">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                                                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                                                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                                                                </svg>
+                                                                                팔로우
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- tab pane : 뱃지 리뷰어-->
+                        <div class="tab-pane fade" id="followings-tab-pane" role="tabpanel" aria-labelledby="followings-tab" tabindex="0">
+                            <!-- section -->
+                            <div class="mt-8 mb-lg-14 mb-8">
+                                <!-- container -->
+                                <div class="container">
+                                    <div class="row gx-10 justify-content-center">
+                                        <!-- col -->
+                                        <aside class="col-lg-0"></aside>
+                                        <section class="col-lg-9 col-md-12">
+                                            <!-- row -->
+                                            <div class="row g-4  row-cols-1 mt-2">
+                                                <div class="col">
+                                                    <!-- card -->
+                                                    <div class="card card-followers">
+                                                        <!-- card body -->
+                                                        <div class="card-body">
+                                                            <div class=" row align-items-center">
+                                                                <!-- col -->
+                                                                <div class="col-md-4 col-12">
+
+                                                                    <div class="text-center position-relative">
+                                                                        <a href="shop-single.html" class="d-flex">
+                                                                            <!-- img -->
+                                                                            <div class="flex-grow-1">
+                                                                                <img src="../assets/images/profile/soo.png" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-12 flex-grow-1">
+                                                                    <!-- heading -->
+                                                                    <h2 class="fs-2"><a href="shop-single.html" class="text-inherit text-decoration-none">초코
+                                                                        러버</a>
+                                                                    </h2>
+                                                                    <div>
+
+                                                                        <!-- 칭호 -->
+                                                                        <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                                                        <span class="text-muted small">껌/초콜릿/캔디 다이아몬드</span>
+                                                                    </div>
+                                                                    <div class=" mt-6">
+                                                                        <!-- btn -->
+                                                                        <div class="mt-2">
+                                                                            <a href="" class="btn btn-pink ">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                                                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                                                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                                                                </svg>
+                                                                                팔로우
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col">
+                                                    <!-- card -->
+                                                    <div class="card card-followers">
+                                                        <div class="card-body">
+                                                            <div class=" row align-items-center">
+                                                                <div class="col-md-4 col-12">
+
+                                                                    <div class="text-center position-relative">
+                                                                        <a href="shop-single.html" class="d-flex">
+                                                                            <!-- img -->
+                                                                            <div class="flex-grow-1">
+                                                                                <img src="../assets/images/profile/seung.png" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-12 flex-grow-1">
+                                                                    <h2 class="fs-2"><a href="shop-single.html" class="text-inherit text-decoration-none">잠자는
+                                                                        숲속의 공주</a>
+                                                                    </h2>
+                                                                    <div>
+
+                                                                        <!-- 칭호 -->
+                                                                        <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                                                        <span class="text-muted small">아이스크림 다이아몬드</span>
+                                                                    </div>
+                                                                    <div class=" mt-6">
+                                                                        <!-- btn -->
+                                                                        <div class="mt-2">
+                                                                            <a href="" class="btn btn-pink">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                                                                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                                                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                                                                </svg>
+                                                                                팔로우
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col">
+                                                    <!-- card -->
+                                                    <div class="card card-followers">
+                                                        <div class="card-body">
+                                                            <div class=" row align-items-center">
+                                                                <div class="col-md-4 col-12">
+
+                                                                    <div class="text-center position-relative">
+                                                                        <a href="shop-single.html" class="d-flex">
+                                                                            <!-- img -->
+                                                                            <div class="flex-grow-1">
+                                                                                <img src="../assets/images/profile/joon.png" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-12 flex-grow-1">
+                                                                    <h2 class="fs-2"><a href="shop-single.html" class="text-inherit text-decoration-none">오이장수</a>
+                                                                    </h2>
+                                                                    <div>
+
+                                                                        <!-- 칭호 -->
+                                                                        <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                                                        <span class="text-muted small">안주류 플래티넘</span>
+                                                                    </div>
+                                                                    <div class=" mt-6">
+                                                                        <!-- btn -->
+                                                                        <div class="mt-2">
+                                                                            <a href="" class="btn btn-pink">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                                                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                                                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                                                                </svg>
+                                                                                팔로우
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col">
+                                                    <!-- card -->
+                                                    <div class="card card-followers">
+                                                        <div class="card-body">
+                                                            <div class=" row align-items-center">
+                                                                <div class="col-md-4 col-12">
+
+                                                                    <div class="text-center position-relative">
+                                                                        <a href="shop-single.html" class="d-flex">
+                                                                            <!-- img -->
+                                                                            <div class="flex-grow-1">
+                                                                                <img src="../assets/images/profile/chang.png" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-12 flex-grow-1">
+                                                                    <h2 class="fs-2"><a href="shop-single.html" class="text-inherit text-decoration-none">꼬쟁이</a>
+                                                                    </h2>
+                                                                    <div>
+
+                                                                        <!-- 칭호 -->
+                                                                        <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                                                        <span class="text-muted small">라면 플래티넘</span>
+                                                                    </div>
+                                                                    <div class=" mt-6">
+                                                                        <!-- btn -->
+                                                                        <div class="mt-2">
+                                                                            <a href="" class="btn btn-pink">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                                                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                                                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                                                                </svg>
+                                                                                팔로우
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col">
+                                                    <!-- card -->
+                                                    <div class="card card-followers">
+                                                        <div class="card-body">
+                                                            <div class=" row align-items-center">
+                                                                <div class="col-md-4 col-12">
+
+                                                                    <div class="text-center position-relative">
+                                                                        <a href="shop-single.html" class="d-flex">
+                                                                            <!-- img -->
+                                                                            <div class="flex-grow-1">
+                                                                                <img src="../assets/images/profile/sehou.png" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 col-12 flex-grow-1">
+                                                                    <h2 class="fs-2"><a href="shop-single.html" class="text-inherit text-decoration-none">최강효자손</a>
+                                                                    </h2>
+                                                                    <div>
+
+                                                                        <!-- 칭호 -->
+                                                                        <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                                                        <span class="text-muted small">샌드위치 골드</span>
+                                                                    </div>
+                                                                    <div class=" mt-6">
+                                                                        <!-- btn -->
+                                                                        <div class="mt-2">
+                                                                            <a href="" class="btn btn-pink">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                                                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                                                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                                                                </svg>
+                                                                                팔로우
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- tab pane -->
+                        <div class="tab-pane fade" id="sellerInfo-tab-pane" role="tabpanel" aria-labelledby="sellerInfo-tab" tabindex="0">...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- modal -->
+
+<!-- Javascript-->
+@@include("../partials/scripts.html")
+<script src="@@webRoot/assets/js/buttons/follow-button.js"></script>
+</body>
+</html>
