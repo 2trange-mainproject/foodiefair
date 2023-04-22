@@ -60,22 +60,22 @@
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">상품 ID</label>
-                    <input type="text" class="form-control" placeholder="형식에 맞는 상품 ID를 입력하세요." required>
+                    <input type="text" class="form-control" id="product-id" placeholder="형식에 맞는 상품 ID를 입력하세요." required>
                   </div>
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">상품명</label>
-                    <input type="text" class="form-control" placeholder="상품명을 입력하세요." required>
+                    <input type="text" class="form-control" id="product-name" placeholder="상품명을 입력하세요." required>
                   </div>
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">상품 가격</label>
-                    <input type="text" class="form-control" placeholder="상품 가격을 입력하세요." required>
+                    <input type="text" class="form-control" id="product-price" placeholder="상품 가격을 입력하세요." required>
                   </div>
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">행사 정보</label>
-                    <select class="form-select">
+                    <select class="form-select" id="product-festival">
                       <option value="0" selected>정보 선택</option>
                       <option value="1">신상품</option>
                       <option value="2">1 + 1</option>
@@ -85,7 +85,7 @@
                   <!-- input -->
                   <div class="mb-3">
                     <label class="form-label">상품 태그</label>
-                    <input type="text" class="form-control" placeholder="상품 태그(JSON)를 입력하세요." required>
+                    <input type="text" class="form-control" id="product-tag" placeholder="상품 태그(JSON)를 입력하세요." required>
                   </div>
                   <div>
                     <div class="mb-3 ">
@@ -95,14 +95,14 @@
                       <!-- input -->
                       <form action="#" class="d-block dropzone border-dashed rounded-2 ">
                         <div class="fallback">
-                          <input name="file" type="file" multiple>
+                          <input name="file" type="file" id="product-img" multiple>
                         </div>
                       </form>
                     </div>
                   </div>
                 </div>
                 <div class="d-flex justify-content-end" style="padding-top: 10px">
-                  <a href="products.html" class="btn btn-soft-pink btn-sm" style="font-size: 16px;">
+                  <a href="products.html" class="btn btn-soft-pink btn-sm" style="font-size: 16px;" id="add-product">
                     상품 추가 완료
                   </a>
                 </div>
@@ -115,11 +115,45 @@
 
   </div>
 
-
   @@include("../partials/scripts.html")
   <script src="@@webRoot/node_modules/quill/dist/quill.min.js"></script>
   <script src="@@webRoot/assets/js/vendors/editor.js"></script>
   <script src="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $("#add-product").click(function() {
+        // 입력된 정보 가져오기
+        var productId = $("#product-id").val();
+        var productName = $("#product-name").val();
+        var productPrice = $("#product-price").val();
+        var productFestival = $("#product-festival").val();
+        var productTag = $("#product-tag").val();
+        var productImg = $("#product-img").val();
+
+        // Ajax를 이용해 서버로 정보 전송
+        $.ajax({
+          type: "POST",
+          url: "http://localhost:8081/api/add-product",
+          contentType: "application/json", // 데이터 형식을 JSON으로 지정
+          data: JSON.stringify({ // 데이터를 JSON 형식으로 변환
+            productId: productId,
+            productName: productName,
+            productPrice: productPrice,
+            productFestival: productFestival,
+            productTag: productTag,
+            productImg: productImg
+          }),
+          success: function(response) {
+            console.log(response);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 

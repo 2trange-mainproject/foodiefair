@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>FoodieFair</title>
-  <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
-  <link href="@@webRoot/node_modules/nouislider/dist/nouislider.min.css" rel="stylesheet">
-  <link href="@@webRoot/src/assets/css/cs-center.css" rel="stylesheet">
-  @@include("../partials/head.html")
+    <title>FoodieFair</title>
+    <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
+    <link href="@@webRoot/node_modules/nouislider/dist/nouislider.min.css" rel="stylesheet">
+    <link href="@@webRoot/src/assets/css/cs-center.css" rel="stylesheet">
+    @@include("../partials/head.html")
 </head>
 
 <body>
@@ -13,175 +13,504 @@
 @@include("../partials/navbar.html")
 
 <div class="csContainer">
-  <div id="csTitle">자주 찾는 질문 Q&A</div>
-  <div class="qnaButtonContainer">
-    <button class="tab-button" data-target="qnaAll">전체</button>
-    <button class="tab-button" data-target="qnaProduct">상품</button>
-    <button class="tab-button" data-target="qnaUser">로그인/회원정보</button>
-    <button class="tab-button" data-target="qnaService">서비스 이용</button>
-    <button class="tab-button" data-target="qnaReport">신고</button>
-    <button class="tab-button" data-target="qnaEtc">기타/등급제도</button>
-  </div>
+    <div id="csTitle">자주 찾는 질문 Q&A</div>
+    <div class="qnaButtonContainer">
+        <button class="tab-button" data-target="qnaAll">전체</button>
+        <button class="tab-button" data-target="qnaProduct">상품</button>
+        <button class="tab-button" data-target="qnaUser">로그인/회원정보</button>
+        <button class="tab-button" data-target="qnaService">서비스 이용</button>
+        <button class="tab-button" data-target="qnaReport">신고</button>
+        <button class="tab-button" data-target="qnaEtc">기타/등급제도</button>
+    </div>
 </div>
 
 <section class="tabAll">
-  <div id="qnaAll" class="tab-content active">
-    <div id="Accordion_wrap">
-      <div class="que">
-        <span>전체 질문 첫 번째.</span>
-        <div class="arrow-wrap">
-          <span class="arrow-top">↑</span>
-          <span class="arrow-bottom">↓</span>
+    <form action="registerCS.html">
+        <div id="qnaAll" class="tab-content active">
+            <div id="Accordion_wrap">
+                <div class="que">
+                    <span>상품에 대한 정보가 잘못된 것 같아요. 수정을 어디로 요청하면 될까요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+
+                </div>
+                <div class="anw">
+      <span>문의하기를 통해 상품수정을 요청하시면 됩니다.</br></br>
+          ○ 수정 요청 방법: 문의하기 → [선택] DB관련 문의 → 내용 작성 → 등록하기</br>
+          상품에 대한 url을 같이 등록해주시면 더 빠른 수정이 가능합니다.
+      </span>
+                </div>
+                <div class="que">
+                    <span>상품이 아직 등록 안된 것 같아요. 등록을 어디로 요청하면 될까요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>문의하기를 통해 상품요청을 요청하시면 됩니다.</br></br>
+                ○ 등록 요청 방법: 문의하기 → [선택] DB관련 문의 → 내용 작성 → 등록하기</br>
+                상품에 대한 자세한 정보를 같이 적어주시면 더 빠른 등록이 가능합니다.
+            </span>
+                </div>
+                <div class="que">
+                    <span>단종된 상품 같아요. 삭제를 어디로 요청하면 될까요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>문의하기를 통해 상품삭제를 요청하시면 됩니다.</br></br>
+                ○ 삭제 요청 방법: 문의하기 → [선택] DB관련 문의 → 내용 작성 → 등록하기</br>
+                상품에 대한 url을 같이 등록해주시면 더 빠른 삭제가 가능합니다.
+            </span>
+                </div>
+                <div class="que">
+                    <span>회원가입은 어떻게 하나요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+
+                </div>
+                <div class="anw">
+            <span>푸디페어 회원유형은 이메일, 소셜로그인 2가지가 있습니다.</br></br>
+                ○ 이메일 로그인 : 약관동의 → 가입정보 입력 → 이메일 인증 → (필수)닉네임 및 (선택)사항 입력</br>
+                ○ 소셜 로그인 : 약관동의 → 소셜 로그인 → (필수)닉네임 및 (선택)사항 입력</br>
+            </span>
+                </div>
+                <div class="que">
+                    <span>회원 정보 변경은 어떻게 하나요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>회원 로그인 후 아래의 경로에서 회원 정보 변경을 할 수 있습니다.</br></br>
+                ○ 경로 : Foodiefair → Mypage → 수정하기 → 회원정보 변경</br>
+                변경할 수 있는 회원 정보는 회원 유형별로 아래와 같습니다.</br>
+                ○ 닉네임, MBTI, 선호 음식, 마이태그, 자기 소개
+            </span>
+                </div>
+                <div class="que">
+                    <span>비밀번호가 기억나지 않아요. 어떻게 해야하나요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>로그인 이메일을 알고 있지만 비밀번호가 기억나지 않는 경우 비밀번호 찾기에서 이메일 인증 후 비밀번호를 재설정 할 수 있습니다.</br>
+                ○ 비밀번호 찾기 방법 : Foodiefair → 로그인 → 비밀번호 찾기 → 이메일 입력 → 계정찾기
+            </span>
+                </div>
+                <div class="que">
+                    <span>인증번호가 도착하지 않아요. 어떤 경우인가요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>이메일 인증은 입력하신 이메일 주소로 발송됩니다.</br></br>
+                인증 시도 시 입력한 정보와 일치한 지 다시 확인해 주세요.</br>
+                이메일이 발송되었다는 안내 후에도 수신을 하지 못한 경우 다음 사항에 해당하는 지 확인해 주세요.</br></br>
+                [이메일을 수신하지 못한 경우]</br>
+                ○ foodieadm@foodiefair.com 이메일주소로 발송된 메일 차단 여부를 확인해 주세요.</br>
+                ○ 자동 스팸 메일 분류함에서 수신 메일 목록을 확인해 주세요.</br>
+            </span>
+                </div>
+                <div class="que">
+                    <span>광고로 의심되는 리뷰를 발견했어요. 어디로 신고하면 되나요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>문의하기를 통해 신고해주시면 됩니다.</br></br>
+                ○ 신고 방법: 문의하기 → [선택] 신고하기 → 내용 작성 → 등록하기</br>
+                신고할 유저의 닉네임, 리뷰url을 같이 작성해주시면 빠른 조치가 가능합니다.
+            </span>
+                </div>
+                <div class="que">
+                    <span>부적절한 언어를 사용한 유저를 발견했어요. 어디로 신고하면 될까요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>문의하기를 통해 신고해주시면 됩니다.</br></br>
+                ○ 신고 방법: 문의하기 → [선택] 신고하기 → 내용 작성 → 등록하기</br>
+                신고할 유저의 닉네임, 해당 언어가 작성된 url을 같이 작성해주시면 빠른 조치가 가능합니다.
+            </span>
+                </div>
+                <div class="que">
+                    <span>"찜"을 누른 상품들은 어디서 볼 수 있나요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+                    <span>마이페이지에서 확인하실 수 있습니다.</span>
+                </div>
+                <div class="que">
+                    <span>제가 쓴 리뷰가 블라인드 처리되었어요. 처리 기준은 무엇인가요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>푸디페어는 상품을 직접 먹어본 유저들의 진실된 리뷰를 올리고 이를 서로 활용하는 문화를 만들어가고자 합니다.</br>
+                푸디페어를 이용해주시는 모두에게 유용하고 진실된 리뷰가 공유될 수 있도록, 다음의 금지행위에 해당되는 리뷰는 유저에게 통보 없이 삭제될 수 있습니다.</br>
+                관련 문의사항은 [문의하기-기타]로 문의주시기 바랍니다.</br></br>
+                [리뷰 작성 시 금지행위]</br>
+                1. 특정업체 또는 개인의 영리적 목적을 위한 리뷰 게시</br>
+                - 판매자 또는 판매자의 이해관계인(가족 또는 직원 등)이 판매자의 상품에 대한 리뷰 게시</br>
+                - 판매자 또는 판매자의 이해관계인이 경쟁사의 상품에 대한 부정적인 내용 등 비방 목적으로 인정될 수 있는 리뷰 게시</br>
+                - 특정업체의 제품에 대하여 특정 내용의 리뷰 작성 조건으로 대가(예: 금전적 보상, 상품 할인, 무료 제품 제공 등)를 제공받고 이를 밝히지 않는 등 표시광고법령을 위반하는 내용의 리뷰 게시</br>
+                - 동일 상품에 대해 반복적 리뷰 게시</br>
+                2. 상품에 대한 부적합한 정보 게시</br>
+                - 허위 또는 과장된 내용 게시</br>
+                - 직접 작성하지 않았거나 구매한 상품과 관련 없는 내용, 사진 게시 (예: 상품 페이지 캡쳐, 타/유사상품 리뷰)</br>
+                3. 타인의 권리 등을 침해할 수 있는 내용 게시</br>
+                - 타인의 개인정보나 사생활을 공개하는 내용 게시(예: 타인의 전화번호, 이메일 주소, 우편 주소 등)</br>
+                - 정당한 권한 없이 타인의 지식재산권, 기타 소유권, 명예, 신용 등을 침해하는 내용 게시</br>
+                4. 불쾌함 등을 유발하거나 반사회적인 내용 게시</br>
+                - 욕설, 폭언, 비방 등 타인에게 불쾌하거나 위협이 되는 내용 게시</br>
+                - 불법물, 음란물 또는 청소년 유해 매체물 게시</br>
+                - 범죄행위나 불법적인 행동을 전시 또는 조장하는 내용 게시 (예: 폭력, 불법 약물 사용, 미성년자 음주, 아동 또는 동물 학대 포함</br>
+                5. 기타 부적절한 내용 게시</br>
+                - 정보통신기기의 오작동을 일으킬 수 있는 악성코드나 데이터를 포함한 내용 게시(예: 피싱, 멀웨어 사이트 링크 등)</br>
+                - 사기성 상품, 서비스, 사업 계획 등을 판촉하는 내용 게시</br>
+                6. 기타 관련법령 및 이용약관, 운영정책에 위배되는 경우</br></br>
+                *여러번의 삭제와 신고가 들어올 시, 유저는 통보 없이 계정이 삭제될 수 있습니다.*
+            </span>
+                </div>
+                <div class="que">
+                    <span>제가 신고를 받았는지 어디서 확인할 수 있나요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+
+                </div>
+                <div class="anw">
+            <span>일정횟수를 넘어 신고되실 경우 이메일로 통보드립니다.</br>
+                이전까지는 신고횟수를 아실 수 없으며, 신고의 기준 또한 알려드리지 않습니다.
+            </span>
+                </div>
+                <div class="que">
+                    <span>유저를 신고하고 싶어요. 어디로 신고하면 되나요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>문의하기를 통해 신고해주시면 됩니다.</br></br>
+                ○ 신고 방법: 문의하기 → [선택] 신고하기 → 내용 작성 → 등록하기</br>
+                신고할 유저의 닉네임과 신고하시는 이유를 적어주시면 해당 내용은 검토 후에 답변드리겠습니다.
+            </span>
+                </div>
+                <div class="que">
+                    <span>신고하기는 어떤 방법으로 처리해주시나요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>명확한 신고기준에 대해서는 내부 규정인 점 양해부탁드립니다.</br>
+                그러나, 신고하신 내용을 바탕으로 검토 후에 1회 신고에 한해서도 해당 유저의 계정정지 또는 계정삭제가 될 수 있습니다.
+            </span>
+                </div>
+                <div class="que">
+                    <span>리뷰어 랭킹의 기준 및 혜택은 어떻게 되나요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+            <span>총합 리뷰어와 뱃지 리뷰어의 랭킹 기준은 아래와 같습니다.</br></br>
+                ○ 총합 리뷰어 : 한달기준으로 작성한 리뷰를 기준 좋아요(70%) + 리뷰작성수(30%)로 산출됩니다.</br>
+                ○ 뱃지 리뷰어 : 한달기준으로 카테고리별 작성한 리뷰를 기준 좋아요(70%) + 카테고리별 리뷰작성수(30%)로 산출됩니다.</br></br>
+                뱃지 리뷰어 하나의 카테고리를 기준으로 산출됩니다.</br>
+                총합 리뷰어와 뱃지 리뷰어는 중복될 수 있습니다.</br></br>
+                *혜택은 미정입니다. 추후에 공지드리겠습니다.*
+            </span>
+                </div>
+                <div class="que">
+                    <span>다음 달에도 리뷰어 랭킹에 또 들어갈 수 있나요?</span>
+                    <div class="arrow-wrap">
+                        <span class="arrow-top">↑</span>
+                        <span class="arrow-bottom">↓</span>
+                    </div>
+                </div>
+                <div class="anw">
+                    <span>네, 가능합니다. 한달 기준으로 산출되기때문에 연속으로 랭킹에 들어가실 수 있습니다.</span>
+                </div>
+            </div>
         </div>
 
-      </div>
-      <div class="anw">
-        <span>첫 번쨰 질문 대답.</span>
-      </div>
-      <div class="que">
-        <span>전체 질문 두 번째.</span>
-      </div>
-      <div class="anw">
-        <span>두 번쨰 질문 대답.</span>
-      </div>
-      <div class="que">
-        <span>전체 질문 세 번째.</span>
-      </div>
-      <div class="anw">
-        <span>세 번쨰 질문 대답.</span>
-      </div>
-    </div>
-  </div>
+        <div id="qnaProduct" class="tab-content">
+            <div class="que">
+                <span>상품에 대한 정보가 잘못된 것 같아요. 수정을 어디로 요청하면 될까요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
 
-  <div id="qnaProduct" class="tab-content">
-    <div class="que">
-      <span>상품 질문 첫 번째.</span>
-      <div class="arrow-wrap">
-        <span class="arrow-top">↑</span>
-        <span class="arrow-bottom">↓</span>
-      </div>
+            </div>
+            <div class="anw">
+      <span>문의하기를 통해 상품수정을 요청하시면 됩니다.</br></br>
+          ○ 수정 요청 방법: 문의하기 → [선택] DB관련 문의 → 내용 작성 → 등록하기</br>
+          상품에 대한 url을 같이 등록해주시면 더 빠른 수정이 가능합니다.
+      </span>
+            </div>
+            <div class="que">
+                <span>상품이 아직 등록 안된 것 같아요. 등록을 어디로 요청하면 될까요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>문의하기를 통해 상품요청을 요청하시면 됩니다.</br></br>
+                ○ 등록 요청 방법: 문의하기 → [선택] DB관련 문의 → 내용 작성 → 등록하기</br>
+                상품에 대한 자세한 정보를 같이 적어주시면 더 빠른 등록이 가능합니다.
+            </span>
+            </div>
+            <div class="que">
+                <span>단종된 상품 같아요. 삭제를 어디로 요청하면 될까요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>문의하기를 통해 상품삭제를 요청하시면 됩니다.</br></br>
+                ○ 삭제 요청 방법: 문의하기 → [선택] DB관련 문의 → 내용 작성 → 등록하기</br>
+                상품에 대한 url을 같이 등록해주시면 더 빠른 삭제가 가능합니다.
+            </span>
+            </div>
+        </div>
 
-    </div>
-    <div class="anw">
-      <span>첫 번쨰 질문 대답.</span>
-    </div>
-    <div class="que">
-      <span>상품 질문 두 번째.</span>
-    </div>
-    <div class="anw">
-      <span>두 번쨰 질문 대답.</span>
-    </div>
-    <div class="que">
-      <span>상품 질문 세 번째.</span>
-    </div>
-    <div class="anw">
-      <span>세 번쨰 질문 대답.</span>
-    </div>
-  </div>
+        <div id="qnaUser" class="tab-content">
+            <div class="que">
+                <span>회원가입은 어떻게 하나요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
 
-  <div id="qnaUser" class="tab-content">
-    <div class="que">
-      <span>로그인/회원정보 질문 첫 번째.</span>
-      <div class="arrow-wrap">
-        <span class="arrow-top">↑</span>
-        <span class="arrow-bottom">↓</span>
-      </div>
+            </div>
+            <div class="anw">
+            <span>푸디페어 회원유형은 이메일, 소셜로그인 2가지가 있습니다.</br></br>
+                ○ 이메일 로그인 : 약관동의 → 가입정보 입력 → 이메일 인증 → (필수)닉네임 및 (선택)사항 입력</br>
+                ○ 소셜 로그인 : 약관동의 → 소셜 로그인 → (필수)닉네임 및 (선택)사항 입력</br>
+            </span>
+            </div>
+            <div class="que">
+                <span>회원 정보 변경은 어떻게 하나요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>회원 로그인 후 아래의 경로에서 회원 정보 변경을 할 수 있습니다.</br></br>
+                ○ 경로 : Foodiefair → Mypage → 수정하기 → 회원정보 변경</br>
+                변경할 수 있는 회원 정보는 회원 유형별로 아래와 같습니다.</br>
+                ○ 닉네임, MBTI, 선호 음식, 마이태그, 자기 소개
+            </span>
+            </div>
+            <div class="que">
+                <span>비밀번호가 기억나지 않아요. 어떻게 해야하나요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>로그인 이메일을 알고 있지만 비밀번호가 기억나지 않는 경우 비밀번호 찾기에서 이메일 인증 후 비밀번호를 재설정 할 수 있습니다.</br>
+                ○ 비밀번호 찾기 방법 : Foodiefair → 로그인 → 비밀번호 찾기 → 이메일 입력 → 계정찾기
+            </span>
+            </div>
+            <div class="que">
+                <span>인증번호가 도착하지 않아요. 어떤 경우인가요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>이메일 인증은 입력하신 이메일 주소로 발송됩니다.</br></br>
+                인증 시도 시 입력한 정보와 일치한 지 다시 확인해 주세요.</br>
+                이메일이 발송되었다는 안내 후에도 수신을 하지 못한 경우 다음 사항에 해당하는 지 확인해 주세요.</br></br>
+                [이메일을 수신하지 못한 경우]</br>
+                ○ foodieadm@foodiefair.com 이메일주소로 발송된 메일 차단 여부를 확인해 주세요.</br>
+                ○ 자동 스팸 메일 분류함에서 수신 메일 목록을 확인해 주세요.</br>
+            </span>
+            </div>
+        </div>
 
-    </div>
-    <div class="anw">
-      <span>첫 번쨰 질문 대답.</span>
-    </div>
-    <div class="que">
-      <span>로그인/회원정보 질문 두 번째.</span>
-    </div>
-    <div class="anw">
-      <span>두 번쨰 질문 대답.</span>
-    </div>
-    <div class="que">
-      <span>로그인/회원정보 질문 세 번째.</span>
-    </div>
-    <div class="anw">
-      <span>세 번쨰 질문 대답.</span>
-    </div>
-  </div>
+        <div id="qnaService" class="tab-content">
+            <div class="que">
+                <span>광고로 의심되는 리뷰를 발견했어요. 어디로 신고하면 되나요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>문의하기를 통해 신고해주시면 됩니다.</br></br>
+                ○ 신고 방법: 문의하기 → [선택] 신고하기 → 내용 작성 → 등록하기</br>
+                신고할 유저의 닉네임, 리뷰url을 같이 작성해주시면 빠른 조치가 가능합니다.
+            </span>
+            </div>
+            <div class="que">
+                <span>부적절한 언어를 사용한 유저를 발견했어요. 어디로 신고하면 될까요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>문의하기를 통해 신고해주시면 됩니다.</br></br>
+                ○ 신고 방법: 문의하기 → [선택] 신고하기 → 내용 작성 → 등록하기</br>
+                신고할 유저의 닉네임, 해당 언어가 작성된 url을 같이 작성해주시면 빠른 조치가 가능합니다.
+            </span>
+            </div>
+            <div class="que">
+                <span>"찜"을 누른 상품들은 어디서 볼 수 있나요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+                <span>마이페이지에서 확인하실 수 있습니다.</span>
+            </div>
+            <div class="que">
+                <span>제가 쓴 리뷰가 블라인드 처리되었어요. 처리 기준은 무엇인가요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>푸디페어는 상품을 직접 먹어본 유저들의 진실된 리뷰를 올리고 이를 서로 활용하는 문화를 만들어가고자 합니다.</br>
+                푸디페어를 이용해주시는 모두에게 유용하고 진실된 리뷰가 공유될 수 있도록, 다음의 금지행위에 해당되는 리뷰는 유저에게 통보 없이 삭제될 수 있습니다.</br>
+                관련 문의사항은 [문의하기-기타]로 문의주시기 바랍니다.</br></br>
+                [리뷰 작성 시 금지행위]</br>
+                1. 특정업체 또는 개인의 영리적 목적을 위한 리뷰 게시</br>
+                - 판매자 또는 판매자의 이해관계인(가족 또는 직원 등)이 판매자의 상품에 대한 리뷰 게시</br>
+                - 판매자 또는 판매자의 이해관계인이 경쟁사의 상품에 대한 부정적인 내용 등 비방 목적으로 인정될 수 있는 리뷰 게시</br>
+                - 특정업체의 제품에 대하여 특정 내용의 리뷰 작성 조건으로 대가(예: 금전적 보상, 상품 할인, 무료 제품 제공 등)를 제공받고 이를 밝히지 않는 등 표시광고법령을 위반하는 내용의 리뷰 게시</br>
+                - 동일 상품에 대해 반복적 리뷰 게시</br>
+                2. 상품에 대한 부적합한 정보 게시</br>
+                - 허위 또는 과장된 내용 게시</br>
+                - 직접 작성하지 않았거나 구매한 상품과 관련 없는 내용, 사진 게시 (예: 상품 페이지 캡쳐, 타/유사상품 리뷰)</br>
+                3. 타인의 권리 등을 침해할 수 있는 내용 게시</br>
+                - 타인의 개인정보나 사생활을 공개하는 내용 게시(예: 타인의 전화번호, 이메일 주소, 우편 주소 등)</br>
+                - 정당한 권한 없이 타인의 지식재산권, 기타 소유권, 명예, 신용 등을 침해하는 내용 게시</br>
+                4. 불쾌함 등을 유발하거나 반사회적인 내용 게시</br>
+                - 욕설, 폭언, 비방 등 타인에게 불쾌하거나 위협이 되는 내용 게시</br>
+                - 불법물, 음란물 또는 청소년 유해 매체물 게시</br>
+                - 범죄행위나 불법적인 행동을 전시 또는 조장하는 내용 게시 (예: 폭력, 불법 약물 사용, 미성년자 음주, 아동 또는 동물 학대 포함</br>
+                5. 기타 부적절한 내용 게시</br>
+                - 정보통신기기의 오작동을 일으킬 수 있는 악성코드나 데이터를 포함한 내용 게시(예: 피싱, 멀웨어 사이트 링크 등)</br>
+                - 사기성 상품, 서비스, 사업 계획 등을 판촉하는 내용 게시</br>
+                6. 기타 관련법령 및 이용약관, 운영정책에 위배되는 경우</br></br>
+                *여러번의 삭제와 신고가 들어올 시, 유저는 통보 없이 계정이 삭제될 수 있습니다.*
+            </span>
+            </div>
+        </div>
 
-  <div id="qnaService" class="tab-content">
-    <div class="que">
-      <span>서비스 이용 질문 첫 번째.</span>
-      <div class="arrow-wrap">
-        <span class="arrow-top">↑</span>
-        <span class="arrow-bottom">↓</span>
-      </div>
+        <div id="qnaReport" class="tab-content">
+            <div class="que">
+                <span>제가 신고를 받았는지 어디서 확인할 수 있나요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
 
-    </div>
-    <div class="anw">
-      <span>첫 번쨰 질문 대답.</span>
-    </div>
-    <div class="que">
-      <span>서비스 이용 질문 두 번째.</span>
-    </div>
-    <div class="anw">
-      <span>두 번쨰 질문 대답.</span>
-    </div>
-    <div class="que">
-      <span>서비스 이용 질문 세 번째.</span>
-    </div>
-    <div class="anw">
-      <span>세 번쨰 질문 대답.</span>
-    </div>
-  </div>
+            </div>
+            <div class="anw">
+            <span>일정횟수를 넘어 신고되실 경우 이메일로 통보드립니다.</br>
+                이전까지는 신고횟수를 아실 수 없으며, 신고의 기준 또한 알려드리지 않습니다.
+            </span>
+            </div>
+            <div class="que">
+                <span>유저를 신고하고 싶어요. 어디로 신고하면 되나요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>문의하기를 통해 신고해주시면 됩니다.</br></br>
+                ○ 신고 방법: 문의하기 → [선택] 신고하기 → 내용 작성 → 등록하기</br>
+                신고할 유저의 닉네임과 신고하시는 이유를 적어주시면 해당 내용은 검토 후에 답변드리겠습니다.
+            </span>
+            </div>
+            <div class="que">
+                <span>신고하기는 어떤 방법으로 처리해주시나요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>명확한 신고기준에 대해서는 내부 규정인 점 양해부탁드립니다.</br>
+                그러나, 신고하신 내용을 바탕으로 검토 후에 1회 신고에 한해서도 해당 유저의 계정정지 또는 계정삭제가 될 수 있습니다.
+            </span>
+            </div>
+        </div>
 
-  <div id="qnaReport" class="tab-content">
-    <div class="que">
-      <span>신고 질문 첫 번째.</span>
-      <div class="arrow-wrap">
-        <span class="arrow-top">↑</span>
-        <span class="arrow-bottom">↓</span>
-      </div>
+        <div id="qnaEtc" class="tab-content">
+            <div class="que">
+                <span>리뷰어 랭킹의 기준 및 혜택은 어떻게 되나요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+            <span>총합 리뷰어와 뱃지 리뷰어의 랭킹 기준은 아래와 같습니다.</br></br>
+                ○ 총합 리뷰어 : 한달기준으로 작성한 리뷰를 기준 좋아요(70%) + 리뷰작성수(30%)로 산출됩니다.</br>
+                ○ 뱃지 리뷰어 : 한달기준으로 카테고리별 작성한 리뷰를 기준 좋아요(70%) + 카테고리별 리뷰작성수(30%)로 산출됩니다.</br></br>
+                뱃지 리뷰어 하나의 카테고리를 기준으로 산출됩니다.</br>
+                총합 리뷰어와 뱃지 리뷰어는 중복될 수 있습니다.</br></br>
+                *혜택은 미정입니다. 추후에 공지드리겠습니다.*
+            </span>
+            </div>
+            <div class="que">
+                <span>다음 달에도 리뷰어 랭킹에 또 들어갈 수 있나요?</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+                <span>네, 가능합니다. 한달 기준으로 산출되기때문에 연속으로 랭킹에 들어가실 수 있습니다.</span>
+            </div>
+        </div>
 
-    </div>
-    <div class="anw">
-      <span>첫 번쨰 질문 대답.</span>
-    </div>
-    <div class="que">
-      <span>신고 질문 두 번째.</span>
-    </div>
-    <div class="anw">
-      <span>두 번쨰 질문 대답.</span>
-    </div>
-    <div class="que">
-      <span>신고 질문 세 번째.</span>
-    </div>
-    <div class="anw">
-      <span>세 번쨰 질문 대답.</span>
-    </div>
-  </div>
-
-  <div id="qnaEtc" class="tab-content">
-    <div class="que">
-      <span>기타/등급제도 질문 첫 번째.</span>
-      <div class="arrow-wrap">
-        <span class="arrow-top">↑</span>
-        <span class="arrow-bottom">↓</span>
-      </div>
-
-    </div>
-    <div class="anw">
-      <span>첫 번쨰 질문 대답.</span>
-    </div>
-    <div class="que">
-      <span>기타/등급제도 질문 두 번째.</span>
-    </div>
-    <div class="anw">
-      <span>두 번쨰 질문 대답.</span>
-    </div>
-    <div class="que">
-      <span>기타/등급제도 질문 세 번째.</span>
-    </div>
-    <div class="anw">
-      <span>세 번쨰 질문 대답.</span>
-    </div>
-  </div>
+        <div style="text-align: center;">
+            <button type="submit" class="btn btn-primary" style="border-radius: 50px; border-color: transparent;
+        width: 120px; margin: 30px 0 100px 0;">문의하기</button>
+        </div>
+    </form>
 </section>
 
 
