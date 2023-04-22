@@ -3,16 +3,28 @@
 
 <head>
 
-  <title>FreshCart - eCommerce HTML Template</title>
-  <link href="@@webRoot/node_modules/slick-carousel/slick/slick.css" rel="stylesheet" />
-<link href="@@webRoot/node_modules/slick-carousel/slick/slick-theme.css" rel="stylesheet" />
+  <title>FoodieFair</title>
+  <link href="@@webRoot/node_modules/slick-carousel/slick/slick.css" rel="stylesheet"/>
+  <link href="@@webRoot/node_modules/slick-carousel/slick/slick-theme.css" rel="stylesheet"/>
+  <link href="@@webRoot/node_modules/slick-carousel/slick/slick-theme.css" rel="stylesheet"/>
   @@include("../partials/head.html")
 </head>
 
 <body>
+<main>
+<div class="wrap">
+  <div class="intro_bg">
+    <div class="header" id="link_header">
+      <div class="searchArea">
+        <a href="@@webRoot/index.html">
+          <img src="@@webRoot/assets/images/logo/FoodieFair Logo.png" alt="eCommerce HTML Template"
+               style="max-width: 100%;max-height: 100%;width: auto;height: 80px;">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
-  @@include("../partials/navbar.html")
-  <main>
   <!-- section -->
   <section class="mt-lg-14 mt-8">
     <!-- container -->
@@ -20,22 +32,20 @@
       <!-- row -->
       <div class="row">
         <!-- col -->
-        <div class="offset-lg-1 col-lg-10 col-12">
+        <div class="offset-lg-1 col-lg-15 col-12">
           <div class="row align-items-center mb-14">
-            <div class="col-md-6">
+            <div class="col-md-5">
               <!-- text -->
               <div class="ms-xxl-14 me-xxl-15 mb-8 mb-md-0 text-center text-md-start">
-                <h1 class="mb-6">The Future of Grocery Delivery:</h1>
-                <p class="mb-0 lead">By powering the future of grocery with our retail partners, we give everyone access
-                  to
-                  the food they love and more time to enjoy it together.</p>
+                <h1 class="mb-6">공정한 리뷰,</br> 음식 좋아하는 사람들 :</h1>
+                <p class="mb-0 lead">"정직하고 올바른 리뷰를 제공하겠습니다."</p>
               </div>
             </div>
             <!-- col -->
-            <div class="col-md-6">
+            <div class="col-md-5">
               <div class=" me-6">
                 <!-- img -->
-                <img src="../assets/images/about/about-img.jpg" alt="" class="img-fluid rounded">
+                <img src="../assets/images/logo/FoodieFair-logo-intro.png" alt="" class="FoodieFair-logo-intro" style="width: 160%; height: auto;">
               </div>
             </div>
 
@@ -45,7 +55,7 @@
             <div class="col-12">
               <div class="mb-8">
                 <!-- heading -->
-                <h2>Ready to get started?</h2>
+                <h2>푸디페어에서 할 수 있어요!</h2>
               </div>
             </div>
             <div class="col-md-4">
@@ -55,13 +65,13 @@
                 <div class="card-body p-8">
                   <div class="mb-4">
                     <!-- img -->
-                    <img src="../assets/images/about/about-icons-1.svg" alt="">
+                    <img src="../assets/images/about/receipt.png" alt="receipt" style="width: 30%; height: auto;">
                   </div>
-                  <h4>Grow my business with Freshcart</h4>
-                  <p>Duis placerat, urna ut dictum lobortis, erat libero feugiat nulla, ullamcorper fermentum lectus
-                    dolor ut tortor. </p>
+                  <h4>영수증 리뷰 & 일반 리뷰</h4>
+                  <p>영수증을 올려 실제 먹었던 음식을 인증함으로써 리뷰의 신뢰성을 보장해요.</br>
+                  일반 리뷰도 볼 수 있고, 댓글을 남길 수 있어요!</p>
                   <!-- btn -->
-                  <a href="#" class="btn btn-dark mt-2">FreshCart Platform</a>
+                  <a href="#" class="btn btn-dark mt-2">영수증 리뷰</a>
                 </div>
 
               </div>
@@ -73,13 +83,14 @@
                 <div class="card-body p-8">
                   <div class="mb-4">
                     <!-- img -->
-                    <img src="../assets/images/about/about-icons-2.svg" alt="">
+                    <img src="../assets/images/about/ranking.png" alt="ranking" style="width: 30%; height: auto;">
                   </div>
-                  <h4>Advertise my brand on Freshcart</h4>
-                  <p>Duis placerat, urna ut dictum lobortis, erat libero feugiat nulla, ullamcorper fermentum lectus
-                    dolor ut tortor. </p>
+                  <h4>유저간의 소통</h4>
+                  <p>카테고리별로 뱃지리뷰어를 팔로워하세요!</br>
+                    찜한 음식을 서로 공유해요!</br>
+                    다른 유저의 마이페이지에 가서 방명록을 남길 수 있어요.</p>
                   <!-- btn -->
-                  <a href="#" class="btn btn-dark mt-2">FreshCart ads</a>
+                  <a href="#" class="btn btn-dark mt-2">리뷰어 랭킹</a>
                 </div>
 
               </div>
@@ -91,19 +102,21 @@
                 <div class="card-body p-8">
                   <div class="mb-4">
                     <!-- img -->
-                    <img src="../assets/images/about/about-icons-3.svg" alt="">
+                    <img src="../assets/images/about/map.png" alt="map" style="width: 30%; height: auto;">
                   </div>
-                  <h4>Learn more about Freshcart</h4>
-                  <p>Vivamus non risus id sapien egestas tempus id sed lla mus justo metus, suscipit non hendrerit. </p>
+                  <h4>내 주변 편의점 찾기</h4>
+                  <p>현재 내 위치 기반으로 주변 편의점을 찾아보세요!</br>
+                  주변 편의점의 목록을 통해 편히 볼 수 있어요!</br>
+                  편의점 : CU, GS25, 7ELVEN, emart24 </p>
                   <!-- btn -->
-                  <a href="#" class="btn btn-dark mt-2">Learn More</a>
+                  <a href="#" class="btn btn-dark mt-2">내 주변 편의점</a>
                 </div>
 
               </div>
             </div>
             <div class="col">
               <!-- text -->
-              <p>For assistance using Freshcart services, please visit our <a href="#">Help Center</a></p>
+              <p>더 자세한 사항은 <a href="cs-center.html">고객 센터</a> 또는 <a href="registerCS.html">문의사항</a>을 통해 문의해주세요.</p>
             </div>
 
           </div>
@@ -124,7 +137,7 @@
               <div class="text-white me-8 mb-12">
                 <!-- text -->
                 <h2 class="text-white mb-4 ">Trusted by retailers. Loved by customers.</h2>
-                <p>We give everyone access to the food they love and more time to enjoy it together.</p>
+                <p>영수증 인증으로 신뢰성 있는 리뷰와 .....</p>
               </div>
 
             </div>
@@ -164,129 +177,147 @@
         <!-- col -->
         <div class="offset-md-1 col-md-10">
           <div class="mb-11">
-             <!-- heading -->
+            <!-- heading -->
             <h2>Our Leadership</h2>
           </div>
         </div>
       </div>
     </div>
   </section>
-   <!-- section -->
+  <!-- section -->
   <section class="mb-14">
-     <!-- slider -->
+    <!-- slider -->
     <div class="team-slider">
-       <!-- item -->
+      <!-- item -->
       <div class="item mx-2">
-        <div class="bg-light rounded ">
-           <!-- text -->
+        <div class="bg-light rounded">
+          <!-- text -->
           <div class="p-6">
-            <h5 class="h6 mb-0">Chris Rogers</h5>
-            <small>Vice President, Retail</small>
+            <h5 class="h6 mb-0">Choi soohyeon</h5>
+            <small>@pinklover</small>
           </div>
-           <!-- img -->
-          <img src="../assets/images/about/team-1.png" alt="" class="img-fluid">
+          <!-- img -->
+          <img src="/src/assets/images/strangers/soo-icon.png" alt="" class="img-fluid">
         </div>
       </div>
-       <!-- item -->
+      <!-- item -->
+      <div class="item mx-2">
+        <div class="bg-light rounded">
+          <!-- text -->
+          <div class="p-6">
+            <h5 class="h6 mb-0">Ryu Seungyeon</h5>
+            <small>@ryuttung</small>
+          </div>
+          <!-- img -->
+          <img src="/src/assets/images/strangers/seung-icon.png" alt="" class="img-fluid">
+        </div>
+      </div>
+      <!-- item -->
+      <div class="item mx-2">
+        <div class="bg-light rounded ">
+          <!-- text -->
+          <div class="p-6">
+            <h5 class="h6 mb-0">Park Seho</h5>
+            <small>@say-ho</small>
+          </div>
+          <!-- img -->
+          <img src="/src/assets/images/strangers/ho-icon.png" alt="" class="img-fluid">
+        </div>
+      </div>
+      <!-- item -->
+      <div class="item mx-2">
+        <div class="bg-light rounded ">
+          <!-- text -->
+          <div class="p-6">
+            <h5 class="h6 mb-0">Lim Junwoo</h5>
+            <small>@ramenclub</small>
+          </div>
+          <!-- img -->
+          <img src="/src/assets/images/strangers/woo-icon.png" alt="" class="img-fluid">
+        </div>
+      </div>
+      <!-- item -->
+      <div class="item mx-2">
+        <div class="bg-light rounded ">
+          <!-- text -->
+          <div class="p-6">
+            <h5 class="h6 mb-0">Choe Changhwan</h5>
+            <small>@manito</small>
+          </div>
+          <!-- img -->
+          <img src="/src/assets/images/strangers/chang-icon.png" alt="" class="img-fluid">
+        </div>
+      </div>
+      <!-- item -->
+      <div class="item mx-2">
+        <div class="bg-light rounded">
+          <!-- text -->
+          <div class="p-6">
+            <h5 class="h6 mb-0">Choi soohyeon</h5>
+            <small>@pinklover</small>
+          </div>
+          <!-- img -->
+          <img src="/src/assets/images/strangers/soo-icon.png" alt="" class="img-fluid">
+        </div>
+      </div>
+      <!-- item -->
       <div class="item mx-2">
 
-      <div class="bg-light rounded">
-           <!-- text -->
+        <div class="bg-light rounded">
+          <!-- text -->
           <div class="p-6">
-            <h5 class="h6 mb-0">Donna J. Shelton</h5>
-            <small>Chief Financial Officer</small>
+            <h5 class="h6 mb-0">Ryu Seungyeon</h5>
+            <small>@ryuttung</small>
           </div>
-           <!-- img -->
-          <img src="../assets/images/about/team-2.png" alt="" class="img-fluid">
+          <!-- img -->
+          <img src="/src/assets/images/strangers/seung-icon.png" alt="" class="img-fluid">
         </div>
       </div>
-       <!-- item -->
+      <!-- item -->
       <div class="item mx-2">
         <div class="bg-light rounded ">
-           <!-- text -->
+          <!-- text -->
           <div class="p-6">
-            <h5 class="h6 mb-0">Daniel Leedom</h5>
-            <small>Chief Communications Officer</small>
+            <h5 class="h6 mb-0">Park Seho</h5>
+            <small>@say-ho</small>
           </div>
-           <!-- img -->
-          <img src="../assets/images/about/team-3.png" alt="" class="img-fluid">
+          <!-- img -->
+          <img src="/src/assets/images/strangers/ho-icon.png" alt="" class="img-fluid">
         </div>
       </div>
-       <!-- item -->
+      <!-- item -->
       <div class="item mx-2">
         <div class="bg-light rounded ">
-           <!-- text -->
+          <!-- text -->
           <div class="p-6">
-            <h5 class="h6 mb-0">Martha White</h5>
-            <small>Chief Technology Officer</small>
+            <h5 class="h6 mb-0">Lim Junwoo</h5>
+            <small>@ramenclub</small>
           </div>
-           <!-- img -->
-          <img src="../assets/images/about/team-4.png" alt="" class="img-fluid">
+          <!-- img -->
+          <img src="/src/assets/images/strangers/woo-icon.png" alt="" class="img-fluid">
         </div>
       </div>
-       <!-- item -->
+      <!-- item -->
       <div class="item mx-2">
         <div class="bg-light rounded ">
-           <!-- text -->
+          <!-- text -->
           <div class="p-6">
-            <h5 class="h6 mb-0">Victor Pugliese</h5>
-            <small>Chief Human Resources Officer</small>
+            <h5 class="h6 mb-0">Choe Changhwan</h5>
+            <small>@manito</small>
           </div>
-           <!-- img -->
-          <img src="../assets/images/about/team-5.png" alt="" class="img-fluid">
+          <!-- img -->
+          <img src="/src/assets/images/strangers/chang-icon.png" alt="" class="img-fluid">
         </div>
       </div>
-       <!-- item -->
-      <div class="item mx-2">
-        <div class="bg-light rounded ">
-           <!-- text -->
-          <div class="p-6">
-            <h5 class="h6 mb-0">Donna J. Shelton</h5>
-            <small>Chief Financial Officer</small>
-          </div>
-           <!-- img -->
-          <img src="../assets/images/about/team-2.png" alt="" class="img-fluid">
-        </div>
-      </div>
-       <!-- item -->
-      <div class="item mx-2">
-        <div class="bg-light rounded ">
-          <div class="p-6">
-             <!-- text -->
-            <h5 class="h6 mb-0">Daniel Leedom</h5>
-            <small>Chief Communications Officer</small>
-          </div>
-           <!-- img -->
-          <img src="../assets/images/about/team-3.png" alt="" class="img-fluid">
-        </div>
-      </div>
-       <!-- item -->
-      <div class="item mx-2">
-        <div class="bg-light rounded ">
-           <!-- text -->
-          <div class="p-6">
-            <h5 class="h6 mb-0">Martha White</h5>
-            <small>Chief Technology Officer</small>
-          </div>
-           <!-- img -->
-          <img src="../assets/images/about/team-4.png" alt="" class="img-fluid">
-        </div>
-      </div>
-
-
-
-
     </div>
   </section>
 </main>
-   <!-- Footer -->
-  @@include("../partials/footer.html")
-  <!-- Javascript-->
-  @@include("../partials/scripts.html")
-  <script src="@@webRoot/node_modules/slick-carousel/slick/slick.min.js"></script>
-  <script src="@@webRoot/assets/js/vendors/slick-slider.js"></script>
-
-
+<!-- Footer -->
+@@include("../partials/footer.html")
+<!-- Javascript-->
+@@include("../partials/scripts.html")
+<script src="@@webRoot/node_modules/slick-carousel/slick/slick.min.js"></script>
+<script src="@@webRoot/assets/js/vendors/slick-slider.js"></script>
 
 
 </body>
