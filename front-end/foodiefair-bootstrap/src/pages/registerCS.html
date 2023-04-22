@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <title>FoodieFair</title>
-  <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
-  <link href="@@webRoot/node_modules/nouislider/dist/nouislider.min.css" rel="stylesheet">
   <link rel="stylesheet" href="@@webRoot/src/assets/css/registerCS.css">
   @@include("../partials/head.html")
 </head>
@@ -16,118 +14,55 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
 
-<form class="registerCS">
+<form class="registerCS"  id="registerCSForm">
   <div style="margin-bottom: 10px">
     <div class="registerTitle"> 문의하기 </div>
+
     <div class="radioSection">
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1" style="font-size: 15px">
+        <input class="form-check-input" type="radio" name="radioRegister" id="csDB">
+        <label class="form-check-label" for="csDB">
           DB관련 문의
         </label>
         </br>
         <span>상품 수정이 필요하거나 없는 상품에 대해 알려주세요.</span>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px">
+        <input class="form-check-input" type="radio" name="radioRegister" id="csService" checked>
+        <label class="form-check-label" for="csService">
           서비스 이용 문의
         </label>
         </br>
         <span>서비스 이용 중 문제나, 개선이 필요한 점을 문의해주세요.</span>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px">
+        <input class="form-check-input" type="radio" name="radioRegister" id="csReport" checked>
+        <label class="form-check-label" for="csReport">
           신고하기
         </label>
         </br>
         <span>부적절한 내용의 리뷰나 비매너 회원을 신고해주세요.</span>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px">
+        <input class="form-check-input" type="radio" name="radioRegister" id="csEtc" checked>
+        <label class="form-check-label" for="csEtc">
           기타 문의
         </label>
       </div>
     </div>
 
     <div style="text-align: center;">
-  <textarea class="register-content" placeholder="문의 및 제안 주신 내용은 검토후에 이메일로 답변드리겠습니다."
-            style="width: 500px; height: 230px;"></textarea>
-    </div>
-    <div style="text-align: center;">
-      <button type="submit" style="background-color: #dc5b9d; border-radius: 50px;
-        border-color: transparent; width: 120px; margin: 30px 0 100px 0; color: white">등록하기
-      </button>
+      <textarea class="register-content" placeholder="문의 및 제안 주신 내용은 검토후에 이메일로 답변드리겠습니다."></textarea>
+      <button type="submit" id="register-cs">등록하기</button>
     </div>
   </div>
 </form>
-
-<!--
-<form>
-  <div class="radioSection">
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-      <label class="form-check-label" for="flexRadioDefault1">
-        DB관련 문의
-      </label>
-      </br>
-      <span>상품 수정이 필요하거나 없는 상품에 대해 알려주세요.</span>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-      <label class="form-check-label" for="flexRadioDefault2">
-        서비스 이용 문의
-      </label>
-      </br>
-      <span>서비스 이용 중 문제나, 개선이 필요한 점을 문의해주세요.</span>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-      <label class="form-check-label" for="flexRadioDefault2">
-        신고하기
-      </label>
-      </br>
-      <span>부적절한 내용의 리뷰나 비매너 회원을 신고해주세요.</span>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-      <label class="form-check-label" for="flexRadioDefault2">
-        기타 문의
-      </label>
-    </div>
-  </div>
-
-  <div style="text-align: center;">
-  <textarea class="register-content" placeholder="문의 및 제안 주신 내용은 검토후에 이메일로 답변드리겠습니다."
-            style="width: 500px; height: 230px;"></textarea>
-  </div>
-  <div style="text-align: center;">
-    <button type="submit"
-            style="background-color: #F9EBEB; border-radius: 50px; border-color: transparent; width: 120px; margin: 30px 0 100px 0;">등록하기
-    </button>
-  </div>
-
-</form>
--->
-
-<!-- modal -->
-@@include("../partials/modal-product.html")
 
 <!-- Footer -->
 @@include("../partials/footer.html")
 <!-- Javascript-->
-<script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
-<script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
-@@include("../partials/scripts.html")
-<script src="@@webRoot/node_modules/tiny-slider/dist/min/tiny-slider.js"></script>
-<script src="@@webRoot/assets/js/vendors/tns-slider.js"></script>
-<script src="@@webRoot/assets/js/vendors/zoom.js"></script>
-<script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
-<script src="@@webRoot/src/assets/js/registerCS.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="@@webRoot/src/assets/js/ajax/registerCS.js"></script>
 
 </body>
-
 </html>
