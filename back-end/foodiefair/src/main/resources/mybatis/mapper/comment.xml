@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.ICommentDAO">
+    <insert id="commentInsert">
+        INSERT INTO Comment (userId, reviewId, commentContent) VALUES (22, 22, 'commentContent 22');
+    </insert>
+
+    <delete id="commentDelete">
+        DELETE FROM Commet WHERE commentId=21;
+    </delete>
+</mapper>

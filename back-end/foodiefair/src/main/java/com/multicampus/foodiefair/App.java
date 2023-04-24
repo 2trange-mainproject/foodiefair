@@ -1,3 +1,5 @@
+package com.multicampus.foodiefair;
+
 import java.sql.*;
 
 public class App {

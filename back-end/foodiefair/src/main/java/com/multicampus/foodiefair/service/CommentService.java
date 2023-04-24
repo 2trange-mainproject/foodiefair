@@ -1,23 +1,29 @@
 package com.multicampus.foodiefair.service;
 
-import com.multicampus.foodiefair.dao.CommentDAO;
+import com.multicampus.foodiefair.dao.ICommentDAO;
 import com.multicampus.foodiefair.dto.CommentDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Service;
 
 @Log4j2
 @RequiredArgsConstructor
-public class CommentServiceImpl implements CommentService {
-    private final CommentDAO commentDAO;
+@Service
+public class CommentService implements ICommentService {
+    private final ICommentDAO icommentDAO;
 
     @Override
-    public void commentInsert(CommentDTO commentDTO) {
+    public int commentInsert(CommentDTO commentDTO) {
         log.info("CommentServiceInsert");
-
+        log.info(commentDTO.getCommentId());
+        log.info(commentDTO.getWriterId());
+        log.info(commentDTO.getReviewerId());
+        log.info(commentDTO.getComment());
+        return icommentDAO.commentInsert(commentDTO);
     }
 
     @Override
-    public void commentDelete(int CommentId) {
-
+    public int commentDelete(int CommentId) {
+        return icommentDAO.commentDelete(CommentId);
     }
 }
