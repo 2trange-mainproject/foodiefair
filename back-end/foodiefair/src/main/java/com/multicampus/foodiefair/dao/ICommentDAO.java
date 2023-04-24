@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ICommentDAO {
-    public int commentInsert(CommentDTO commentDTO);
-    public int commentDelete(int CommentId);
+    int commentInsert(CommentDTO commentDTO);
+    int commentDelete(int CommentId);
 }

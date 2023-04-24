@@ -24,6 +24,8 @@ public class CommentService implements ICommentService {
 
     @Override
     public int commentDelete(int CommentId) {
+        log.info("CommentServiceDelete");
+        log.info(CommentId);
         return icommentDAO.commentDelete(CommentId);
     }
 }

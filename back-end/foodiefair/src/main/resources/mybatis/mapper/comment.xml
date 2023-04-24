@@ -7,6 +7,6 @@
     </insert>
 
     <delete id="commentDelete">
-        DELETE FROM Commet WHERE commentId=21;
+        DELETE FROM Comment WHERE commentId=21;
     </delete>
 </mapper>

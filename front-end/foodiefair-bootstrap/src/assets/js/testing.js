@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $("#comment-enroll").click(enroll);
 
+    $('.btn-comment-delete').click(commentDelete);
+
     $('.btn-like').click(function (e) {
         e.preventDefault();
         $(this).toggleClass('active');
@@ -45,6 +47,22 @@ function enroll() {
     });
 };
 
+function commentDelete(e) {
+    e.preventDefault();
+    var data = 22;
+    $.ajax({
+        url:'http://localhost:8081/products/commentDelete/'+data,
+        type:'delete',
+        contentType:'application/json',
+        success: function (data) {
+            console.log(data);
+        },
+        error: function(data) {
+            console.log(data)
+        }
+    });
+};
+
 function save() {
     var data = {
         userId:'userid',
@@ -62,7 +80,7 @@ function save() {
             console.log(data)
         }
     });
-}
+};
 
 function savedToDelete() {
     var data = {
@@ -81,4 +99,4 @@ function savedToDelete() {
             console.log(data)
         }
     });
-}
+};
