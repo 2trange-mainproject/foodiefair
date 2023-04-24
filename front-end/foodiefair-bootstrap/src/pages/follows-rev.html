@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>FoodieFair</title>
+    @@include("../partials/head.html")
+
+</head>
+
+<body>
+<main>
+    <section class="mt-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills nav-lb-tab justify-content-center" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active fs-3" id="followers-tab" data-bs-toggle="tab" data-bs-target="#followers-tab-pane" type="button" role="tab" aria-controls="followers-tab-pane" aria-selected="true" style="margin-right: 300px;">팔로워
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link fs-3" id="followings-tab" data-bs-toggle="tab" data-bs-target="#followings-tab-pane" type="button" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉
+                            </button>
+                        </li>
+                    </ul>
+                    <!-- tab content -->
+                    <div class="tab-content" id="myTabContent">
+                        <!-- tab pane -->
+                        <div class="tab-pane fade show active" id="followers-tab-pane" role="tabpanel" aria-labelledby="followers-tab" tabindex="0">
+                            <!-- section -->
+                            <div class="mt-8 mb-lg-14 mb-8">
+                                <!-- container -->
+                                <div class="container">
+                                    <div class="row gx-10 justify-content-center">
+                                        <!-- col -->
+                                        <aside class="col-lg-0"></aside>
+                                        <section class="col-lg-9 col-md-12">
+                                            <!-- row -->
+                                            <div class="row g-4  row-cols-1 mt-2">
+                                                <div id="followers-container" class="row g-4 row-cols-1 mt-2">
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="followers-page-nav" style="display:none;"><a href=""></a></div>
+                        </div>
+
+                        <!-- tab pane : 뱃지 리뷰어-->
+                        <div class="tab-pane fade" id="followings-tab-pane" role="tabpanel" aria-labelledby="followings-tab" tabindex="0">
+                            <!-- section -->
+                            <div class="mt-8 mb-lg-14 mb-8">
+                                <!-- container -->
+                                <div class="container">
+                                    <div class="row gx-10 justify-content-center">
+                                        <!-- col -->
+                                        <aside class="col-lg-0"></aside>
+                                        <section class="col-lg-9 col-md-12">
+                                            <!-- row -->
+                                            <div class="row g-4  row-cols-1 mt-2">
+                                                <div id="followings-container" class="row g-4 row-cols-1 mt-2">
+
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="followings-page-nav" style="display:none;"><a href=""></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- modal -->
+
+<!-- Javascript-->
+@@include("../partials/scripts.html")
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
+<!--<script src="@@webRoot/assets/js/buttons/follow-button.js"></script>-->
+<script src="@@webRoot/assets/js/ajax/follows.js"></script>
+
+</body>
+</html>
+

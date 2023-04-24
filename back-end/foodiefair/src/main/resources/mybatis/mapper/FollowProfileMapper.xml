@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.FollowProfileDAO">
+    <select id="selectFollowerProfiles" resultType="java.util.HashMap" parameterType="map">
+        SELECT u.userId, u.userName, u.userImg
+        FROM User u
+                 JOIN Follow f ON u.userId = f.followingId
+        WHERE f.followedId = #{followedId}
+        ORDER BY f.followId
+    </select>
+
+    <select id="selectFollowingProfiles" resultType="java.util.HashMap" parameterType="map">
+        SELECT u.userId, u.userName, u.userImg
+        FROM User u
+                 JOIN Follow f ON u.userId = f.followedId
+        WHERE f.followingId = #{followingId}
+        ORDER BY f.followId
+    </select>
+</mapper>

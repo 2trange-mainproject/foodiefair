@@ -48,6 +48,7 @@
     "feather-webfont": "^4.22.3",
     "flatpickr": "^4.6.13",
     "glightbox": "^3.2.0",
+    "infinite-scroll": "^4.0.1",
     "inputmask": "^5.0.7",
     "jquery": "^3.6.2",
     "jquery-countdown": "^2.2.0",
