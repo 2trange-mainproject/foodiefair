@@ -10,150 +10,163 @@
 </head>
 
 <body>
-  <!-- main wrapper -->
+<!-- main wrapper -->
 
-  @@include("../partials/top-navbar.html")
-  <div class="main-wrapper">
-    <!-- navbar vertical -->
-    @@include('../partials/navbar-vertical.html', {
+@@include("../partials/top-navbar.html")
+<div class="main-wrapper">
+  <!-- navbar vertical -->
+  @@include('../partials/navbar-vertical.html', {
 
-    "page": "products"
+  "page": "products"
 
-    })
-    <!-- main -->
-    <main class="main-content-wrapper">
-      <!-- container -->
-      <div class="container">
-        <!-- row -->
-        <div class="row mb-8">
-          <div class="col-md-12">
-            <div class="d-md-flex justify-content-between align-items-center">
-              <!-- page header -->
-              <div>
-                <h2>상품 추가</h2>
-                  <!-- breacrumb -->
-                  <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#" class="text-inherit">관리자 페이지</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="text-inherit">상품 관리</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">상품 추가하기</li>
-                  </ol>
-                </nav>
-              </div>
-              <!-- button -->
-              <div>
-                <a href="products.html" class="btn btn-light">상품 관리로 돌아가기</a>
-              </div>
+  })
+  <!-- main -->
+  <main class="main-content-wrapper">
+    <!-- container -->
+    <div class="container">
+      <!-- row -->
+      <div class="row mb-8">
+        <div class="col-md-12">
+          <div class="d-md-flex justify-content-between align-items-center">
+            <!-- page header -->
+            <div>
+              <h2>상품 추가</h2>
+              <!-- breacrumb -->
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                  <li class="breadcrumb-item"><a href="#" class="text-inherit">관리자 페이지</a></li>
+                  <li class="breadcrumb-item"><a href="#" class="text-inherit">상품 관리</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">상품 추가하기</li>
+                </ol>
+              </nav>
             </div>
-
+            <!-- button -->
+            <div>
+              <a href="products.html" class="btn btn-light">상품 관리로 돌아가기</a>
+            </div>
           </div>
+
         </div>
-        <!-- row -->
-        <div class="row">
+      </div>
+      <!-- row -->
+      <div class="row">
 
-          <div class="col-12">
-            <!-- card -->
-            <div class="card mb-6 card-lg">
-              <!-- card body -->
-              <div class="card-body p-6 ">
-                <div class="row">
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">상품 ID</label>
-                    <input type="text" class="form-control" id="product-id" placeholder="형식에 맞는 상품 ID를 입력하세요." required>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">상품명</label>
-                    <input type="text" class="form-control" id="product-name" placeholder="상품명을 입력하세요." required>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">상품 가격</label>
-                    <input type="text" class="form-control" id="product-price" placeholder="상품 가격을 입력하세요." required>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">행사 정보</label>
-                    <select class="form-select" id="product-festival">
-                      <option value="0" selected>정보 선택</option>
-                      <option value="1">신상품</option>
-                      <option value="2">1 + 1</option>
-                      <option value="3">2 + 1</option>
-                    </select>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3">
-                    <label class="form-label">상품 태그</label>
-                    <input type="text" class="form-control" id="product-tag" placeholder="상품 태그(JSON)를 입력하세요." required>
-                  </div>
-                  <div>
-                    <div class="mb-3 ">
-                      <!-- heading -->
-                      <label class="form-label">상품 사진</label>
+        <div class="col-12">
+          <!-- card -->
+          <div class="card mb-6 card-lg">
+            <!-- card body -->
+            <div class="card-body p-6 ">
+              <div class="row">
+                <!-- input -->
+                <div class="mb-3 col-lg-6">
+                  <label class="form-label">상품 ID</label>
+                  <input type="text" class="form-control" id="product-id" placeholder="형식에 맞는 상품 ID를 입력하세요." required>
+                </div>
+                <!-- input -->
+                <div class="mb-3 col-lg-6">
+                  <label class="form-label">상품명</label>
+                  <input type="text" class="form-control" id="product-name" placeholder="상품명을 입력하세요." required>
+                </div>
+                <!-- input -->
+                <div class="mb-3 col-lg-6">
+                  <label class="form-label">상품 가격</label>
+                  <input type="text" class="form-control" id="product-price" placeholder="상품 가격을 입력하세요." required>
+                </div>
+                <!-- input -->
+                <div class="mb-3 col-lg-6">
+                  <label class="form-label">행사 정보</label>
+                  <select class="form-select" id="product-festival">
+                    <option value="0" selected>정보 선택</option>
+                    <option value="1">신상품</option>
+                    <option value="2">1 + 1</option>
+                    <option value="3">2 + 1</option>
+                  </select>
+                </div>
+                <!-- input -->
+                <div class="mb-3">
+                  <label class="form-label">상품 태그</label>
+                  <input type="text" class="form-control" id="product-tag" placeholder="상품 태그(JSON)를 입력하세요." required>
+                </div>
+                <div>
+                  <div class="mb-3 ">
+                    <!-- heading -->
+                    <label class="form-label">상품 사진</label>
 
-                      <!-- input -->
-                      <form action="#" class="d-block dropzone border-dashed rounded-2 ">
-                        <div class="fallback">
-                          <input name="file" type="file" id="product-img" multiple>
-                        </div>
-                      </form>
-                    </div>
+                    <!-- input -->
+                    <form action="#" class="d-block dropzone border-dashed rounded-2 ">
+                      <div class="fallback">
+                        <input name="product-img" type="file" multiple>
+                      </div>
+                    </form>
                   </div>
                 </div>
-                <div class="d-flex justify-content-end" style="padding-top: 10px">
-                  <a href="products.html" class="btn btn-soft-pink btn-sm" style="font-size: 16px;" id="add-product">
-                    상품 추가 완료
-                  </a>
-                </div>
+              </div>
+              <div class="d-flex justify-content-end" style="padding-top: 10px">
+                <a href="products.html" class="btn btn-soft-pink btn-sm" style="font-size: 16px;" id="add-product">
+                  상품 추가 완료
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-  </div>
+</div>
 
-  @@include("../partials/scripts.html")
-  <script src="@@webRoot/node_modules/quill/dist/quill.min.js"></script>
-  <script src="@@webRoot/assets/js/vendors/editor.js"></script>
-  <script src="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.js"></script>
+@@include("../partials/scripts.html")
+<script src="@@webRoot/node_modules/quill/dist/quill.min.js"></script>
+<script src="@@webRoot/assets/js/vendors/editor.js"></script>
+<script src="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.js"></script>
 
-  <script>
-    $(document).ready(function() {
-      $("#add-product").click(function() {
-        // 입력된 정보 가져오기
-        var productId = $("#product-id").val();
-        var productName = $("#product-name").val();
-        var productPrice = $("#product-price").val();
-        var productFestival = $("#product-festival").val();
-        var productTag = $("#product-tag").val();
-        var productImg = $("#product-img").val();
+<script>
+  $(document).ready(function() {
+    var productImgUrl;  //이미지 url 저장용
 
-        // Ajax를 이용해 서버로 정보 전송
-        $.ajax({
-          type: "POST",
-          url: "http://localhost:8081/api/add-product",
-          contentType: "application/json", // 데이터 형식을 JSON으로 지정
-          data: JSON.stringify({ // 데이터를 JSON 형식으로 변환
-            productId: productId,
-            productName: productName,
-            productPrice: productPrice,
-            productFestival: productFestival,
-            productTag: productTag,
-            productImg: productImg
-          }),
-          success: function(response) {
-            console.log(response);
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-          }
-        });
+    // 이미지를 /api/upload-image API로 보내도록 Dropzone을 구성
+    Dropzone.options.myDropzone = {
+      url: "http://localhost:8081/api/upload-image",
+      paramName: "product-img",
+      maxFilesize: 5, // MB
+      acceptedFiles: "image/*",
+      success: function (file, response) {
+        productImgUrl = response.url; // 백엔드에서 받은 이미지 URL 저장
+      },
+    };
+
+    $("#add-product").on('click', function(e) {
+      // 입력된 정보 가져오기
+      var productId = $("#product-id").val();
+      var productName = $("#product-name").val();
+      var productPrice = $("#product-price").val();
+      var productFestival = $("#product-festival").val();
+      var productTag = $("#product-tag").val();
+
+      // Ajax를 이용해 서버로 정보 전송
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:8081/api/add-product",
+        contentType: "application/json", // 데이터 형식을 JSON으로 지정
+        data: JSON.stringify({
+          // 데이터를 JSON 형식으로 변환
+          productId: productId,
+          productName: productName,
+          productPrice: productPrice,
+          productFestival: productFestival,
+          productTag: productTag,
+          productImg: productImgUrl, // 저장된 이미지 url 사용
+        }),
+        success: function(response) {
+          console.log(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        },
       });
     });
-  </script>
+  });
+</script>
 
 </body>
 

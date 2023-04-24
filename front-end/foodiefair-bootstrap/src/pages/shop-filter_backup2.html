@@ -227,6 +227,15 @@
             </div>
             <!-- list -->
             <div class="d-flex justify-content-between align-items-center">
+              <div class="me-2">
+                <!-- select -->
+                <select class="form-select">
+                  <option selected>Show: 50</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                </select></div>
+              <!-- select -->
               <div><select class="form-select">
                   <option value="popularity" selected>인기순</option>
                   <option value="view">조회순</option>
@@ -242,51 +251,35 @@
           <!-- row -->
           <div id="productContainer"></div>
           <script>
-            function loadProducts(page) {
+            $(document).ready(function() {
               $.ajax({
                 url: "http://localhost:8081/api/food-list",
                 type: "GET",
-                data: { page: page, size: 15 },
                 dataType: "json",
-                success: function (response) {
-                  var data = response.dtoList;
-                  var total = response.total;
-                  var currentPage = response.page;
+                success: function(data) {
+                  var $productContainer = $('#productContainer');
+                  $productContainer.empty();
+                  var productHtml = '';
+                  $.each(data, function(index, product) {
+                    var festivalText, festivalColor;
 
-                  renderProducts(data);
-                  renderPagination(currentPage, total);
-                },
-                error: function (error) {
-                  console.log(error);
-                },
-              });
-            }
+                    if (product.productFestival === 1) {
+                      festivalText = '신상품';
+                      festivalColor = 'pink';
+                    } else if (product.productFestival === 2) {
+                      festivalText = '1+1';
+                      festivalColor = 'purple';
+                    } else if (product.productFestival === 3) {
+                      festivalText = '2+1';
+                      festivalColor = 'orange';
+                    } else {
+                      festivalText = '';
+                      festivalColor = '';
+                    }
 
-            function renderProducts(data) {
-              var $productContainer = $('#productContainer');
-              $productContainer.empty();
-              var productHtml = '';
+                    var fixedTag = JSON.parse(product.fixedTag).smallCate;
 
-              $.each(data, function(index, product) {
-                var festivalText, festivalColor;
-
-                if (product.productFestival === 1) {
-                  festivalText = '신상품';
-                  festivalColor = 'pink';
-                } else if (product.productFestival === 2) {
-                  festivalText = '1+1';
-                  festivalColor = 'purple';
-                } else if (product.productFestival === 3) {
-                  festivalText = '2+1';
-                  festivalColor = 'orange';
-                } else {
-                  festivalText = '';
-                  festivalColor = '';
-                }
-
-                var fixedTag = JSON.parse(product.fixedTag).smallCate;
-
-                productHtml += `
+                    productHtml += `
             <div class="col">
               <div class="card card-product">
                 <div class="card-body">
@@ -319,67 +312,41 @@
               </div>
             </div>
           `;
-              });
-
-              var productListHtml = `
-      <div class="row g-4 row-cols-xl-5 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
-        ${productHtml}
-      </div>
-    `;
-
-              $productContainer.append(productListHtml);
-            }
-
-            function renderPagination(currentPage, totalItems) {
-              var totalPages = Math.ceil(totalItems / 10);
-              var pagination = $(".pagination");
-              pagination.empty();
-
-              // Add the previous page link
-              var prevDisabled = currentPage === 1 ? "disabled" : "";
-              pagination.append(`<li class="page-item ${prevDisabled}">
-                          <a class="page-link mx-1" href="#" aria-label="Previous" data-page="${currentPage - 1}">
-                            <i class="feather-icon icon-chevron-left"></i>
-                          </a>
-                        </li>`);
-
-              // Add the page number links
-              for (var i = 1; i <= totalPages; i++) {
-                var activeClass = i === currentPage ? "active" : "";
-                pagination.append(`<li class="page-item ${activeClass}">
-                            <a class="page-link mx-1" href="#" data-page="${i}">${i}</a>
-                        </li>`);
-              }
-
-              // Add the next page link
-              var nextDisabled = currentPage === totalPages ? "disabled" : "";
-              pagination.append(`<li class="page-item ${nextDisabled}">
-                          <a class="page-link mx-1" href="#" aria-label="Next" data-page="${currentPage + 1}">
-                            <i class="feather-icon icon-chevron-right"></i>
-                          </a>
-                        </li>`);
-
-              // Add a click event listener for the pagination links
-              $(".pagination .page-link").on("click", function (event) {
-                event.preventDefault();
-                var pageNumber = parseInt($(this).data("page"));
-                if (!isNaN(pageNumber)) {
-                  loadProducts(pageNumber);
+                  });
+                  var productListHtml = `
+          <div class="row g-4 row-cols-xl-5 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
+            ${productHtml}
+          </div>
+        `;
+                  $productContainer.append(productListHtml);
+                },
+                error: function(error) {
+                  console.log(error);
                 }
               });
-            }
-
-            $(document).ready(function () {
-              loadProducts(1);
             });
           </script>
 
           <div class="row mt-8">
             <div class="col">
-              <!-- nav pagination -->
+                 <!-- nav pagination -->
               <nav>
                 <ul class="pagination">
-                  <!-- Pagination links will be added dynamically by renderPagination function -->
+                  <li class="page-item disabled">
+                    <a class="page-link  mx-1 " href="#" aria-label="Previous">
+                      <i class="feather-icon icon-chevron-left"></i>
+                    </a>
+                  </li>
+                  <li class="page-item "><a class="page-link bg-pink mx-1 active" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link mx-1 text-body" href="#">2</a></li>
+
+                  <li class="page-item"><a class="page-link mx-1 text-body" href="#">...</a></li>
+                  <li class="page-item"><a class="page-link mx-1 text-body" href="#">12</a></li>
+                  <li class="page-item">
+                    <a class="page-link mx-1 text-body" href="#" aria-label="Next">
+                      <i class="feather-icon icon-chevron-right"></i>
+                    </a>
+                  </li>
                 </ul>
               </nav>
             </div>

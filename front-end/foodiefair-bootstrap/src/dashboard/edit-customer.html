@@ -60,37 +60,37 @@
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">회원 ID</label>
-                    <input type="text" class="form-control" id="user-id" value="${user.id}" readonly>
+                    <input type="text" class="form-control" id="user-id" disabled>
                   </div>
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">비밀번호</label>
-                    <input type="text" class="form-control" value="1234" readonly>
+                    <input type="password" class="form-control" value="1234" disabled>
                   </div>
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">이메일</label>
-                    <input type="text" class="form-control" id="user-email" readonly>
+                    <input type="text" class="form-control" id="user-email" disabled>
                   </div>
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">닉네임</label>
-                    <input type="text" class="form-control" id="user-nickname" readonly>
+                    <input type="text" class="form-control" id="user-nickname" disabled>
                   </div>
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">자기소개</label>
-                    <textarea style="height: auto; max-height: 500px;" class="form-control" id="user-intro" readonly></textarea>
+                    <textarea style="height: auto; max-height: 500px;" class="form-control" id="user-intro" disabled></textarea>
                   </div>
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">마이태그</label>
-                    <textarea style="height: auto; max-height: 500px;" class="form-control" id="user-tags" readonly>#초코 좋아, #라면 좋아, #INFJ, #20대</textarea>
+                    <textarea style="height: auto; max-height: 500px;" class="form-control" id="user-tags" disabled>#초코 좋아, #라면 좋아, #INFJ, #20대</textarea>
                   </div>
                   <label class="form-label">프로필 사진</label>
                   <div class="mb-3 col-lg-6">
                     <!-- input -->
-                    <img src="../assets/images/products/love-1.jpg" class="mb-3 img-fluid">
-                    <!--<img src="@@webRoot${data.profile}" class="mb-3 img-fluid" id="user-profile">-->
+                    <!--<img src="../assets/images/products/love-1.jpg" class="mb-3 img-fluid">-->
+                    <img id="user-profile" class="mb-3 img-fluid">
                   </div>
                 </div>
               </div>
@@ -152,9 +152,10 @@
     $(document).ready(function() {
       var user_id = "1";
       http://localhost:8081/api/add-product
-      var apiUrl = "http://localhost:8081/api/edit-customer/{user_id}";
+      /*var apiUrl = "http://localhost:8081/api/edit-customer/{user_id}";
 
-      apiUrl = apiUrl.replace("{user_id}", user_id);
+      apiUrl = apiUrl.replace("{user_id}", user_id);*/
+      var apiUrl = `http://localhost:8081/api/edit-customer/${user_id}`;
 
       $.ajax({
         url: apiUrl,
@@ -167,7 +168,7 @@
           $("#user-nickname").val(data.nickname);
           $("#user-intro").val(data.intro);
           $("#user-tags").val(data.tags);
-          $("#user-profile").attr("src", data.profile);
+          $("#user-profile").attr("src", data.profileUrl);
         },
         error: function(xhr, status, error) {
           alert(`[Error] ${error}`);

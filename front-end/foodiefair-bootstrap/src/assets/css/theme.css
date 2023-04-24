@@ -12326,9 +12326,9 @@ div.zoom img {
   --fc-info-text: #014095;
   --fc-warning-text: #997404;
   --fc-danger-text: #af2626;
-  --fc-light-text: #5c6c75;
-  --fc-dark-text: #3d4f58;
-  --fc-primary-bg-subtle: #ceefce;
+  --fc-light-text: #7f1f4f;
+  --fc-dark-text: #7f1f4f;
+  --fc-primary-bg-subtle: #edaccd;
   --fc-secondary-bg-subtle: #f0f3f2;
   --fc-success-bg-subtle: #d1e7dd;
   --fc-info-bg-subtle: #cce1fe;
@@ -12424,8 +12424,8 @@ div.zoom img {
   --fc-info-text: #67a6fb;
   --fc-warning-text: #ffda6a;
   --fc-danger-text: #e98383;
-  --fc-light-text: #f0f3f2;
-  --fc-dark-text: #dfe2e1;
+  --fc-light-text: #f5d4e5;
+  --fc-dark-text: #f5d4e5;
   --fc-primary-bg-subtle: #022302;
   --fc-secondary-bg-subtle: #001e2b;
   --fc-success-bg-subtle: #051b11;
@@ -24253,47 +24253,47 @@ textarea.form-control-lg {
 
 .bg-primary-100 {
   --fc-bg-opacity: 1;
-  background-color: #ceefce !important;
+  background-color: #f5d4e5 !important;
 }
 
 .bg-primary-200 {
   --fc-bg-opacity: 1;
-  background-color: #9dde9d !important;
+  background-color: #edaccd !important;
 }
 
 .bg-primary-300 {
   --fc-bg-opacity: 1;
-  background-color: #6cce6c !important;
+  background-color: #e484b5 !important;
 }
 
 .bg-primary-400 {
   --fc-bg-opacity: 1;
-  background-color: #3bbd3b !important;
+  background-color: #dc5b9d !important;
 }
 
 .bg-primary-500 {
   --fc-bg-opacity: 1;
-  background-color: #0aad0a !important;
+  background-color: #d43384 !important;
 }
 
 .bg-primary-600 {
   --fc-bg-opacity: 1;
-  background-color: #088a08 !important;
+  background-color: #aa296a !important;
 }
 
 .bg-primary-700 {
   --fc-bg-opacity: 1;
-  background-color: #066806 !important;
+  background-color: #7f1f4f !important;
 }
 
 .bg-primary-800 {
   --fc-bg-opacity: 1;
-  background-color: #044504 !important;
+  background-color: #551436 !important;
 }
 
 .bg-primary-900 {
   --fc-bg-opacity: 1;
-  background-color: #022302 !important;
+  background-color: #2b0a1b !important;
 }
 
 .bg-indigo-100 {
