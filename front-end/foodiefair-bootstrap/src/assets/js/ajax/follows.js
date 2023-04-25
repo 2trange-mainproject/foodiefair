@@ -1,6 +1,9 @@
+
+// 이 부분은 실제로 참조하는 사용자의 ID를 받아와야 합니다. != 로그인한 유저
+const userId = 1;
+
 // 초기 페이지 로드 시 팔로워와 팔로잉 데이터를 가져오고, 무한 스크롤을 적용합니다.
 $(document).ready(function () {
-    const userId = 1; // 이 부분은 실제로는 로그인한 사용자의 ID를 받아와야 합니다.
 
     // 팔로워 수를 가져와서 화면에 표시
     fetchFollowCount(userId, 'followers')
@@ -17,31 +20,30 @@ $(document).ready(function () {
         });
 
     // 팔로워 데이터를 가져와서 무한 스크롤 적용
-    fetchFollowData(userId, 'followers', 1, 10)
-        .then(function (data) {
-            displayFollowDataWithInfiniteScroll('#followers-tab-pane .row-cols-1', data);
-        })
-        .catch(function (error) {
-            console.error('Error fetching followers data:', error);
-        });
+    loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers');
 
     // 팔로잉 데이터를 가져와서 무한 스크롤 적용
-    fetchFollowData(userId, 'followings', 1, 10)
-        .then(function (data) {
-            displayFollowDataWithInfiniteScroll('#followings-tab-pane .row-cols-1', data);
-        })
-        .catch(function (error) {
-            console.error('Error fetching followings data:', error);
-        });
+    loadMoreFollowData('#followings-tab-pane .row-cols-1', userId, 'followings');
 });
 
-function fetchFollowData(userId, type, page, perPage) {
+// 스크롤 이벤트를 추가하여 사용자가 페이지 하단에 도달하면 추가 팔로워 데이터를 로드합니다.
+$(window).on('scroll', function () {
+    if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) { // 필요한 경우 100px 오프셋을 조정하세요
+        if ($('#followers-tab').hasClass('active')) {
+            loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers');
+        } else if ($('#followings-tab').hasClass('active')) {
+            loadMoreFollowData('#followings-tab-pane .row-cols-1', userId, 'followings');
+        }
+    }
+});
+
+function fetchFollowData(userId, type, lastFollowId, perPage) {
     return $.ajax({
         url: `http://localhost:8081/mypage/${userId}/${type}`,
         method: 'GET',
         dataType: 'json',
         data: {
-            page: page,
+            lastFollowId: lastFollowId,
             perPage: perPage,
         },
     });
@@ -101,31 +103,22 @@ function createProfileCard(user) {
     </div>`;
 }
 
-function displayFollowDataWithInfiniteScroll(containerSelector, initialData) {
-    // 초기 데이터로 HTML을 생성하여 화면에 표시
-    const html = initialData.map(createProfileCard).join('');
-    $(containerSelector).html(html);
+function loadMoreFollowData(containerSelector, userId, type) {
+    let lastItem = $(containerSelector).children().last();
+    let lastFollowId = lastItem.length ? lastItem.data('follow-id') : 1;
 
-    // 무한 스크롤 적용을 위한 Infinite Scroll 설정
-    const options = {
-        navSelector: '.page-nav',
-        nextSelector: '.page-nav a',
-        itemSelector: '.row-cols-1 > div',
-        dataType: 'json',
-        debug: true,
-        path: function (page) {
-            const url = new URL(`http://localhost:8081/mypage/${userId}/${type}`);
-            url.searchParams.append('page', page);
-            url.searchParams.append('perPage', 10);
-            return url.toString();
-        },
-        appendCallback: false,
-    };
+    fetchFollowData(userId, type, lastFollowId, 10)
+        .then(function (data) {
+            console.log("Fetched data:", data);
+            const html = data.map(createProfileCard).join('');
+            $(containerSelector).append(html);
 
-    $(containerSelector).infinitescroll(options, function (data) {
-        // 새로운 데이터로 HTML을 생성하여 화면에 추가
-        const html = data.map(createProfileCard).join('');
-        $(containerSelector).append(html);
-    });
+            if (data.length === 10) { // assuming you're fetching 10 items per page
+                loadMoreFollowData(containerSelector, userId, type);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Error fetching ${type} data:`, error);
+        });
 }
 

@@ -17,9 +17,6 @@ public class FollowServiceImpl implements FollowService {
     private final FollowDAO followDAO;
     private final FollowProfileDAO followProfileDAO;
 
-
-
-
     @Override
     public void removeFollowed(Long followingId, Long followedId) {
         followDAO.deleteFollowed(followingId, followedId);
@@ -57,14 +54,14 @@ public class FollowServiceImpl implements FollowService {
 
     // 팔로워 프로필 목록 조회 (무한 스크롤 적용)
     @Override
-    public List<Map<String, Object>> getFollowerProfiles(Long followedId) {
-        return followProfileDAO.selectFollowerProfiles(followedId);
+    public List<Map<String, Object>> getFollowerProfiles(Long followedId, Long lastFollowId, int perPage) {
+        return followProfileDAO.selectFollowerProfiles(followedId, lastFollowId, perPage);
     }
 
     // 팔로잉 프로필 목록 조회 (무한 스크롤 적용)
     @Override
-    public List<Map<String, Object>> getFollowingProfiles(Long followingId) {
-        return followProfileDAO.selectFollowingProfiles(followingId);
+    public List<Map<String, Object>> getFollowingProfiles(Long followingId, Long lastFollowId, int perPage) {
+        return followProfileDAO.selectFollowingProfiles(followingId, lastFollowId, perPage);
     }
 
 }

@@ -6,15 +6,17 @@
         SELECT u.userId, u.userName, u.userImg
         FROM User u
                  JOIN Follow f ON u.userId = f.followingId
-        WHERE f.followedId = #{followedId}
-        ORDER BY f.followId
+        WHERE f.followedId = #{followedId} AND (#{lastFollowId} IS NULL OR f.followId > #{lastFollowId})
+        ORDER BY f.followId DESC
+        LIMIT #{perPage}
     </select>
 
     <select id="selectFollowingProfiles" resultType="java.util.HashMap" parameterType="map">
         SELECT u.userId, u.userName, u.userImg
         FROM User u
                  JOIN Follow f ON u.userId = f.followedId
-        WHERE f.followingId = #{followingId}
+        WHERE f.followingId = #{followingId} AND (#{lastFollowId} IS NULL OR f.followId > #{lastFollowId})
         ORDER BY f.followId
+        LIMIT #{perPage}
     </select>
 </mapper>

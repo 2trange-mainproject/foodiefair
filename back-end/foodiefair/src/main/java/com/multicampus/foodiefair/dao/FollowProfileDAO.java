@@ -12,8 +12,14 @@ import java.util.Map;
 @Mapper
 public interface FollowProfileDAO {
     // 무한스크롤 기능 적용. No offset
-    List<Map<String, Object>> selectFollowerProfiles(@Param("followedId") Long followedId);
+    List<Map<String, Object>> selectFollowerProfiles(
+            @Param("followedId") Long followedId,
+            @Param("lastFollowId") Long lastFollowId,
+            @Param("perPage") int perPage);
 
-    List<Map<String, Object>> selectFollowingProfiles(@Param("followingId") Long followingId);
+    List<Map<String, Object>> selectFollowingProfiles(
+            @Param("followingId") Long followingId,
+            @Param("lastFollowId") Long lastFollowId,
+            @Param("perPage") int perPage);
 
 }

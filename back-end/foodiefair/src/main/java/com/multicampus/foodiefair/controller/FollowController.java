@@ -22,16 +22,20 @@ public class FollowController {
     // 팔로워 프로필 목록 가져오기 (무한 스크롤 적용)
     @GetMapping("/followers")
     public ResponseEntity<List<Map<String, Object>>> getFollowerProfiles(
-            @PathVariable Long userId) {
-        List<Map<String, Object>> profiles = followService.getFollowerProfiles(userId);
+            @PathVariable Long userId,
+            @RequestParam(required = false) Long lastFollowId,
+            @RequestParam(defaultValue = "10") int perPage) {
+        List<Map<String, Object>> profiles = followService.getFollowerProfiles(userId, lastFollowId, perPage);
         return new ResponseEntity<>(profiles, HttpStatus.OK);
     }
 
     // 팔로잉 프로필 목록 가져오기 (무한 스크롤 적용)
     @GetMapping("/followings")
     public ResponseEntity<List<Map<String, Object>>> getFollowingProfiles(
-            @PathVariable Long userId) {
-        List<Map<String, Object>> profiles = followService.getFollowingProfiles(userId);
+            @PathVariable Long userId,
+            @RequestParam(required = false) Long lastFollowId,
+            @RequestParam(defaultValue = "10") int perPage) {
+        List<Map<String, Object>> profiles = followService.getFollowingProfiles(userId, lastFollowId, perPage);
         return new ResponseEntity<>(profiles, HttpStatus.OK);
     }
 
@@ -51,15 +55,19 @@ public class FollowController {
 
     // 유저 팔로우
     @PostMapping("/follow")
-    public ResponseEntity<Void> followUser(@PathVariable Long userId, @RequestBody FollowDTO followDTO) {
+    public ResponseEntity<Void> followUser(
+            @PathVariable Long userId,
+            @RequestBody FollowDTO followDTO) {
         followService.followUser(followDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     // 유저 언팔로우
     @DeleteMapping("/unfollow")
-    public ResponseEntity<Void> unfollowUser(@PathVariable Long userId, @RequestParam Long followedId) {
-        followService.unfollowUser(userId, followedId);
+    public ResponseEntity<Void> unfollowUser(
+            @RequestHeader("X-UserId") Long loggedInUserId,
+            @RequestParam Long followedId) {
+        followService.unfollowUser(loggedInUserId, followedId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -72,8 +80,10 @@ public class FollowController {
 
     // 팔로잉 여부 확인
     @GetMapping("/following-check")
-    public ResponseEntity<Boolean> checkFollowStatus(@PathVariable Long userId, @RequestParam Long followedId) {
-        boolean isFollowing = followService.checkFollowStatus(userId, followedId);
+    public ResponseEntity<Boolean> checkFollowStatus(
+            @RequestHeader("X-UserId") Long loggedInUserId,
+            @RequestParam Long followedId) {
+        boolean isFollowing = followService.checkFollowStatus(loggedInUserId, followedId);
         return new ResponseEntity<>(isFollowing, HttpStatus.OK);
     }
 }
