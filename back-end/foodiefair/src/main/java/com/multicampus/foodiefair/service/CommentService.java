@@ -1,31 +1,41 @@
 package com.multicampus.foodiefair.service;
 
 import com.multicampus.foodiefair.dao.ICommentDAO;
+import com.multicampus.foodiefair.dao.IProductDAO;
+import com.multicampus.foodiefair.dao.IReviewDAO;
 import com.multicampus.foodiefair.dto.CommentDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Log4j2
 @RequiredArgsConstructor
 @Service
 public class CommentService implements ICommentService {
-    private final ICommentDAO icommentDAO;
+    private final ICommentDAO iCommentDAO;
+    private final IProductDAO iProductDAO;
+    private final IReviewDAO iReviewDAO;
 
     @Override
     public int commentInsert(CommentDTO commentDTO) {
         log.info("CommentServiceInsert");
-        log.info(commentDTO.getCommentId());
-        log.info(commentDTO.getWriterId());
-        log.info(commentDTO.getReviewerId());
-        log.info(commentDTO.getComment());
-        return icommentDAO.commentInsert(commentDTO);
+        return iCommentDAO.commentInsert(commentDTO);
     }
 
     @Override
     public int commentDelete(int CommentId) {
         log.info("CommentServiceDelete");
-        log.info(CommentId);
-        return icommentDAO.commentDelete(CommentId);
+        return iCommentDAO.commentDelete(CommentId);
+    }
+
+    @Override
+    public List<CommentDTO> commentRead(String productName, int userId) {
+        log.info("commentRead");
+        String productId = iProductDAO.findProductId(productName);
+        int reviewId = iReviewDAO.findReviewId(productId, userId);
+
+        return iCommentDAO.commentRead(reviewId);
     }
 }

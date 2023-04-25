@@ -9,4 +9,8 @@
     <delete id="commentDelete">
         DELETE FROM Comment WHERE commentId=21;
     </delete>
+
+    <select id="commentRead" resultType="com.multicampus.foodiefair.dto.CommentDTO">
+        SELECT reviewId, userId, commentContent FROM Comment WHERE reviewId=#{reviewId} order by commentDate asc;
+    </select>
 </mapper>
