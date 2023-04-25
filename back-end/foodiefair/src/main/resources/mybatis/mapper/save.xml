@@ -3,14 +3,14 @@
 
 <mapper namespace="com.multicampus.foodiefair.dao.ISaveDAO">
     <insert id="save">
-        INSERT INTO Saved (userId, productId) VALUES (22, "CA0010");
+        INSERT INTO Saved (userId, productId) VALUES (#{userId}, #{productId});
     </insert>
 
     <delete id="saveToDelete">
-        DELETE FROM Saved WHERE userId=22 and productId="CA0010";
+        DELETE FROM Saved WHERE userId=#{userId} and productId=#{productId};
     </delete>
 
     <select id="savedCount" resultType="int">
-        SELECT count(*) FROM Saved WHERE productId;
+        SELECT count(*) FROM Saved WHERE productId=#{productId};
     </select>
 </mapper>

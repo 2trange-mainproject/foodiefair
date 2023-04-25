@@ -1,9 +1,39 @@
 $(document).ready(function() {
-    $("#comment-enroll").click(commentEnroll); // 댓글 등록
+    $('#comment-enroll').click(commentEnroll); // 댓글 등록
     $('.btn-comment-delete').click(commentDelete); // 댓글 삭제
     $('.btn-dib').click(saveTrueFalse); // 찜 토글
     $('.btn-like').click(commentLike); // 댓글 좋아요 토글
+    $('#review-enroll').click(reviewEnroll); // 리뷰 등록
 });
+
+function reviewEnroll(e) {
+    e.preventDefault();
+    var data = {
+        userId:1,
+        productId:'AA0001',
+        reviewLikes:4,
+        receiptImg:1,
+        reviewImg:'아직 몰라요',
+        reviewTitle:$('#review-title').val(), //실제로 얘만 있어야 함
+        goodReviews:$('#good-review').val(), //실제로 얘만 있어야 함
+        badReviews:$('#bad-review').val() //실제로 얘만 있어야 함
+    }
+    $.ajax({
+        url:'http://localhost:8081/products/review',
+        type:'post',
+        contentType:'application/json',
+        data:JSON.stringify(data),
+        success: function (data) {
+            console.log(data);
+            $('#review-title').val('');
+            $('#good-review').val('');
+            $('#bad-review').val('');
+        },
+        error: function(data) {
+            console.log(data)
+        }
+    });
+};
 
 function commentEnroll() { // 댓글 등록
     var data = {

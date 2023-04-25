@@ -261,21 +261,21 @@
                   </div>
                 </div>
               </div>
-              <h3 class="mb-5">Create Review</h3>
+              <h3 class="mb-5">리뷰 작성</h3>
               <!-- form control -->
               <div class="border-bottom py-4 mb-4">
-                <h5>Add a headline</h5>
-                <input type="text" id="reviewtitle" class="form-control" placeholder="What’s most important to know">
+                <h5>제목</h5>
+                <input type="text" id="review-title" class="form-control" placeholder="제목을 입력해주세요.">
               </div>
               <div class="border-bottom py-4 mb-4">
                 <div class="row">
                   <div class="col-6">
-                    <h5>Add a photo or video</h5>
-                    <p>Shoppers find images and videos more helpful than text alone.</p>
+                    <h5>사진 또는 비디오</h5>
+                    <p>사진이나 비디오를 업로드 해주세요.</p>
                   </div>
                   <div class="col-6">
                     <h5>영수증 인증</h5>
-                    <p>영수증 사진을 업로드 해주세요</p>
+                    <p>영수증 사진을 업로드 해주세요.</p>
                   </div>
                 </div>
                 <!-- form -->
@@ -300,22 +300,22 @@
                 <!-- heading -->
                 <div class="row">
                   <div class="col-6">
-                    <h5>Add a written good review</h5>
-                    <textarea class="form-control" rows="3"
-                              placeholder="What did you like or dislike? What did you use this product for?"></textarea>
+                    <h5>좋았던 점</h5>
+                    <textarea id="good-review" class="form-control" rows="3"
+                              placeholder="어떤 점이 좋았나요?"></textarea>
                   </div>
 
                   <div class="col-6">
-                    <h5>Add a written bad review</h5>
-                    <textarea class="form-control" rows="3"
-                              placeholder="What did you like or dislike? What did you use this product for?"></textarea>
+                    <h5>아쉬운 점</h5>
+                    <textarea id="bad-review" class="form-control" rows="3"
+                              placeholder="어떤 점이 아쉬웠나요?"></textarea>
                   </div>
                 </div>
               </div>
               <!-- button -->
               <div class="d-flex justify-content-end" style="margin-bottom: 30px">
-                <div class="mx-3"><a href="#" class="btn btn-secondary">Reset</a></div>
-                <div><a href="#" class="btn btn-primary">Submit Review</a></div>
+                <div class="mx-3"><a href="#" id="review-reset" class="btn btn-secondary">취소</a></div>
+                <div><a href="#" id="review-enroll" class="btn btn-primary">등록</a></div>
               </div>
             </div>
 <!--          </div>-->

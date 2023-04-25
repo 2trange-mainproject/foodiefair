@@ -5,4 +5,12 @@
     <select id="findReviewId" resultType="int">
         SELECT reviewId FROM review WHERE productId=#{productId} and userId=#{userId};
     </select>
+
+    <insert id="reviewInsert">
+        INSERT INTO review (userId, productId, reviewLikes, reviewTitle, goodReviews, badReviews, receiptImg, reviewImg) VALUES (#{userId}, #{productId}, #{reviewLikes}, #{reviewTitle}, #{goodReviews}, #{badReviews}, #{receiptImg}, #{reviewImg});
+    </insert>
+
+    <delete id="reviewDelete">
+        DELETE FROM review WHERE reviewId=#{reviewId};
+    </delete>
 </mapper>
