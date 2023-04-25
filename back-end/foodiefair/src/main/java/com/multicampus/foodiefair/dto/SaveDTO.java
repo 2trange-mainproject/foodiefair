@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class SaveDTO {
     private int saveId;
     @NotNull
-    private String userId;
+    private int userId;
     @NotNull
     private String productId;
     private LocalDate saveDate;

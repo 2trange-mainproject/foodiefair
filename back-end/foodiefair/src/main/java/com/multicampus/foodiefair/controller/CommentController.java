@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@org.springframework.web.bind.annotation.RestController
+@RestController
 @CrossOrigin("*")
 @RequestMapping("/products")
 @Log4j2
 @RequiredArgsConstructor //final사용하기 위해 생성자 주입
-public class EnrollController {
+public class CommentController {
     private final ICommentService commentService;
 
     @PostMapping("/comment") //댓글
     public ResponseEntity<String> comment(@Valid @RequestBody CommentDTO commentDTO, BindingResult bindingResult) {
-        log.info("EnrollController");
+        log.info("CommentController");
         if(bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body("올바른 입력이 아닙니다.");
         }
@@ -34,28 +34,4 @@ public class EnrollController {
         commentService.commentDelete(commentId);
         return ResponseEntity.ok("comment delete");
     }
-
-//    @PostMapping("/save") // 찜 하기
-//    public ResponseEntity<String> save (@Valid @RequestBody SaveDTO saveDTO, BindingResult bindingResult) {
-//        log.info(saveDTO.getSaveId());
-//        log.info(saveDTO.getUserId());
-//        log.info(saveDTO.getProductId());
-//        log.info(saveDTO.getSaveDate());
-//        if(bindingResult.hasErrors()) {
-//            return ResponseEntity.badRequest().body("올바른 입력이 아닙니다.");
-//        }
-//        return ResponseEntity.ok("save success");
-//    }
-//
-//    @PostMapping("/savedToDelete") // 찜 삭제
-//        public ResponseEntity<String> savedToDelete (@Valid @RequestBody SaveDTO saveDTO, BindingResult bindingResult) {
-//        log.info(saveDTO.getSaveId());
-//        log.info(saveDTO.getUserId());
-//        log.info(saveDTO.getProductId());
-//        log.info(saveDTO.getSaveDate());
-//        if(bindingResult.hasErrors()) {
-//            return ResponseEntity.badRequest().body("올바른 입력이 아닙니다.");
-//        }
-//        return ResponseEntity.ok("Delete success");
-//    }
 }

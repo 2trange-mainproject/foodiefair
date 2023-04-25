@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.ISaveDAO">
+    <insert id="save">
+        INSERT INTO Saved (userId, productId) VALUES (22, "CA0010");
+    </insert>
+
+    <delete id="saveToDelete">
+        DELETE FROM Saved WHERE userId=22 and productId="CA0010";
+    </delete>
+
+    <select id="savedCount" resultType="int">
+        SELECT count(*) FROM Saved WHERE productId;
+    </select>
+</mapper>
