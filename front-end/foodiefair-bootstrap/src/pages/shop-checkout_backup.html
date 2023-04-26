@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>FoodieFair</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
+  <link href="@@webRoot/node_modules/nouislider/dist/nouislider.min.css" rel="stylesheet">
+  @@include("../partials/head.html")
+</head>
+
+<body>
+
+@@include("../partials/navbar.html")
+<main>
+  <!-- section -->
+  <section class="mt-8 mb-lg-14 mb-8">
+    <div class="container">
+      <h3>신상품/행사</h3>
+      <!-- row -->
+      <div class="row gx-10">
+        <div class="col-12">
+
+          <div class="collapse mt-6 show" id="collapseFilter">
+            <div class="row row-cols-md-2">
+              <div class="card mb-4 mb-lg-0 w-100">
+                <div class="card-body p-6 w-auto">
+                  <div class="d-flex flex-wrap">
+                    <div class="form-check mb-2 flex-grow-1">
+                      <h5 class="mb-3 mr-2" style="display:inline-block; width:60px;">편의점</h5>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <input class="form-check-input" type="checkbox" value="" id="CU" checked>
+                      <label class="form-check-label" for="CU" style="display:inline-block; width:70px;">
+                        CU
+                      </label>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <input class="form-check-input" type="checkbox" value="" id="GS25">
+                      <label class="form-check-label" for="GS25" style="display:inline-block; width:70px;">
+                        GS25
+                      </label>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <input class="form-check-input" type="checkbox" value="" id="Emart24">
+                      <label class="form-check-label" for="Emart24" style="display:inline-block; width:70px;">
+                        이마트24
+                      </label>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <input class="form-check-input" type="checkbox" value="" id="sevenEleven">
+                      <label class="form-check-label" for="sevenEleven" style="display:inline-block; width:100px;">
+                        세븐일레븐
+                      </label>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <label style="display:inline-block; width:100px;"></label>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <label style="display:inline-block; width:100px;"></label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-wrap">
+                    <div class="form-check mb-2 flex-grow-1">
+                      <h5 class="mb-3 mr-2" style="display:inline-block; width:60px;">행사</h5>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <input class="form-check-input" type="checkbox" value="" id="event-01" checked>
+                      <label class="form-check-label" for="event-01" style="display:inline-block; width:70px;">
+                        신상품
+                      </label>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <input class="form-check-input" type="checkbox" value="" id="event-02">
+                      <label class="form-check-label" for="event-02" style="display:inline-block; width:70px;">
+                        1+1
+                      </label>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <input class="form-check-input" type="checkbox" value="" id="event-03">
+                      <label class="form-check-label" for="event-03" style="display:inline-block; width:70px;">
+                        2+1
+                      </label>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <label style="display:inline-block; width:100px;"></label>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <label style="display:inline-block; width:100px;"></label>
+                    </div>
+                    <div class="form-check mb-2 flex-grow-1">
+                      <label style="display:inline-block; width:100px;"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-10">
+          <!-- content -->
+          <div class="d-md-flex justify-content-between align-items-center">
+            <div>
+              <p class="mb-3 mb-md-0"> <span class="text-dark">24 </span> Products found </p>
+            </div>
+            <!-- list -->
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- select -->
+              <div><select class="form-select">
+                <option value="popularity">인기순</option>
+                <option value="view">조회순</option>
+                <option value="likes"> 좋아요순</option>
+                <option value="manyViews"> 리뷰 많은순</option>
+                <option value="releaseDate" selected> 등록일순</option>
+                <option value="lowPrice"> 낮은 가격순</option>
+                <option value="highPrice"> 높은 가격순</option>
+              </select>
+              </div>
+            </div>
+          </div>
+          <!-- row -->
+          <div id="productContainer"></div>
+          <script>
+            function getSelectedFilters() {
+              var stores = [];
+              var events = [];
+
+              if ($("#CU").is(":checked")) {
+                stores.push("CU");
+              }
+              if ($("#GS25").is(":checked")) {
+                stores.push("GS25");
+              }
+              if ($("#Emart24").is(":checked")) {
+                stores.push("이마트24");
+              }
+              if ($("#sevenEleven").is(":checked")) {
+                stores.push("세븐일레븐");
+              }
+
+              if ($("#event-01").is(":checked")) {
+                events.push(1);
+              }
+              if ($("#event-02").is(":checked")) {
+                events.push(2);
+              }
+              if ($("#event-03").is(":checked")) {
+                events.push(3);
+              }
+
+              return { stores: stores, events: events};
+            }
+
+            $("input[type='checkbox']").on("change", function () {
+              loadProducts(1); // 체크박스가 변경되면 항상 첫 번째 페이지를 불러옵니다.
+            });
+
+            function loadProducts(page) {
+              var filters = getSelectedFilters();
+              const festivalInput = document.querySelector('input[name=festival]:checked');
+              const festivalFilter = festivalInput ? festivalInput.value : '';
+
+              $.ajax({
+                url: "http://localhost:8081/api/event-list",
+                type: "GET",
+                data: {
+                  page: page,
+                  size: 15,
+                  stores: JSON.stringify(filters.stores),
+                  events: JSON.stringify(filters.events),
+                  festival: festivalFilter
+                },
+                dataType: "json",
+                success: function (response) {
+                  var data = response.dtoList;
+                  var total = response.total;
+                  var currentPage = response.page;
+
+                  // Filter the products based on the selected filters.
+                  var filteredData = data.filter(function(product) {
+                    var storeMatched = filters.stores.some(function(store) {
+                      return JSON.parse(product.fixedTag).store.includes(store);
+                    });
+
+                    return storeMatched && filters.productEvent.includes(product.productEvent);
+                  });
+
+                  renderProducts(filteredData);
+                  renderPagination(currentPage, total); // Pass total instead of filteredData.length
+                },
+                error: function (error) {
+                  console.log(error);
+                },
+              });
+            }
+
+            function renderProducts(data) {
+              var $productContainer = $('#productContainer');
+              $productContainer.empty();
+              var productHtml = '';
+
+              var filters = getSelectedFilters();
+              var filteredProductCount = 0;
+
+              $.each(data, function(index, product) {
+                var festivalText, festivalColor;
+
+                var storeMatched = filters.stores.some(function(store) {
+                  return JSON.parse(product.fixedTag).store.includes(store);
+                });
+
+                if (!storeMatched || !filters.productEvent.includes(product.productEvent)) {
+                  return;
+                }
+
+                filteredProductCount++;
+
+                if (product.productEvent === 1) {
+                  festivalText = '신상품';
+                  festivalColor = 'pink';
+                } else if (product.productEvent === 2) {
+                  festivalText = '1+1';
+                  festivalColor = 'purple';
+                } else if (product.productEvent === 3) {
+                  festivalText = '2+1';
+                  festivalColor = 'orange';
+                } else {
+                  festivalText = '';
+                  festivalColor = '';
+                }
+
+                var fixedTag = JSON.parse(product.fixedTag).smallCate;
+
+                productHtml += `
+            <div class="col">
+              <div class="card card-product">
+                <div class="card-body">
+                  <div class="text-center position-relative">
+                    <div class=" position-absolute top-0 start-0">
+                      <span class="badge bg-${festivalColor}">${festivalText}</span>
+                    </div>
+                    <a href="shop-single.html">
+                      <img class="mb-3 img-fluid" style="max-width: 220px; max-height: 220px;" src="${product.productImg}">
+                    </a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
+                  <h2 class="fs-6"><a href="shop-single.html" class="text-inherit text-decoration-none">${product.productName}</a></h2>
+                  <div>
+                    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
+                    <span class="text-muted small">조회(<span>${product.productViews}</span>)</span>
+                    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
+                    <span class="text-muted small">리뷰(<span>${product.productReviews}</span>)</span>
+                    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
+                    <span class="text-muted small">찜(<span>${product.productSaved}</span>)</span>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div></div>
+                    <div>
+                      <span class="text-dark">${product.productPrice}원</span>
+                      <a href="#" class="ms-2 btn-action" style="color: deeppink"><i class="bi bi-bookmark"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+              });
+
+              var productListHtml = `
+      <div class="row g-4 row-cols-xl-5 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
+        ${productHtml}
+      </div>
+    `;
+
+              $productContainer.append(productListHtml);
+
+              $(".mb-3.mb-md-0 .text-dark").text(filteredProductCount);
+            }
+
+            function renderPagination(currentPage, totalItems) {
+              var totalPages = Math.ceil(totalItems / 15);
+
+              var pagination = $(".pagination");
+              pagination.empty();
+
+              // 이전 페이지 링크 추가
+              var prevDisabled = currentPage === 1 ? "disabled" : "";
+              pagination.append(`<li class="page-item ${prevDisabled}">
+                          <a class="page-link mx-1" href="#" aria-label="Previous" data-page="${currentPage - 1}">
+                            <i class="feather-icon icon-chevron-left"></i>
+                          </a>
+                        </li>`);
+
+              // 페이지 번호 링크 추가
+              for (var i = 1; i <= totalPages; i++) {
+                var activeClass = i === currentPage ? "active" : "";
+                pagination.append(`<li class="page-item ${activeClass}">
+                            <a class="page-link mx-1" href="#" data-page="${i}">${i}</a>
+                        </li>`);
+              }
+
+              // 다음 페이지 링크 추가
+              var nextDisabled = currentPage === totalPages ? "disabled" : "";
+              pagination.append(`<li class="page-item ${nextDisabled}">
+                          <a class="page-link mx-1" href="#" aria-label="Next" data-page="${currentPage + 1}">
+                            <i class="feather-icon icon-chevron-right"></i>
+                          </a>
+                        </li>`);
+
+              // 페이지 링크에 대한 클릭 이벤트 리스너 추가
+              $(".pagination .page-link").on("click", function (event) {
+                event.preventDefault();
+                var pageNumber = parseInt($(this).data("page"));
+                if (!isNaN(pageNumber)) {
+                  loadProducts(pageNumber);
+                }
+              });
+            }
+
+            $(document).ready(function () {
+              loadProducts(1);
+            });
+          </script>
+
+          <div class="row mt-8">
+            <div class="col">
+              <!-- nav pagination -->
+              <nav>
+                <ul class="pagination">
+                  <!-- Pagination links will be added dynamically by renderPagination function -->
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- modal -->
+@@include("../partials/modal-product.html")
+
+<!-- Footer -->
+@@include("../partials/footer.html")
+<!-- Javascript-->
+<script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
+<script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
+@@include("../partials/scripts.html")
+<script src="@@webRoot/node_modules/tiny-slider/dist/min/tiny-slider.js"></script>
+<script src="@@webRoot/assets/js/vendors/tns-slider.js"></script>
+<script src="@@webRoot/assets/js/vendors/zoom.js"></script>
+<script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
+
+</body>
+
+</html>

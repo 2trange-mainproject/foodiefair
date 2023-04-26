@@ -67,7 +67,7 @@
                       <h5 class="mb-3 mr-2" style="display:inline-block; width:60px;">행사</h5>
                     </div>
                     <div class="form-check mb-2 flex-grow-1">
-                      <input class="form-check-input" type="checkbox" value="" id="event-01">
+                      <input class="form-check-input" type="checkbox" value="" id="event-01" checked>
                       <label class="form-check-label" for="event-01" style="display:inline-block; width:70px;">
                         신상품
                       </label>
@@ -103,218 +103,33 @@
           <!-- content -->
           <div class="d-md-flex justify-content-between align-items-center">
             <div>
-              <p class="mb-3 mb-md-0"> <span class="text-dark">24 </span> Products found </p>
+              <p class="mb-3 mb-md-0"> <span class="text-dark"> </span> Products found </p>   <!-- filteredProductCount -->
             </div>
             <!-- list -->
             <div class="d-flex justify-content-between align-items-center">
               <!-- select -->
-              <div><select class="form-select">
-                <option value="popularity">인기순</option>
-                <option value="view">조회순</option>
-                <option value="likes"> 좋아요순</option>
-                <option value="manyViews"> 리뷰 많은순</option>
-                <option value="releaseDate" selected> 등록일순</option>
-                <option value="lowPrice"> 낮은 가격순</option>
-                <option value="highPrice"> 높은 가격순</option>
-              </select>
+              <div>
+                <select class="form-select">
+                  <option value="popularity">인기순</option>
+                  <option value="view">조회순</option>
+                  <option value="saves">찜순</option>
+                  <option value="reviews">리뷰 많은순</option>
+                  <option value="releaseDate" selected>등록일순</option>
+                  <option value="lowPrice">낮은 가격순</option>
+                  <option value="highPrice">높은 가격순</option>
+                </select>
               </div>
             </div>
           </div>
           <!-- row -->
           <div id="productContainer"></div>
-          <script>
-            function getSelectedFilters() {
-              var stores = [];
-              var events = [];
-
-              if ($("#CU").is(":checked")) {
-                stores.push("CU");
-              }
-              if ($("#GS25").is(":checked")) {
-                stores.push("GS25");
-              }
-              if ($("#Emart24").is(":checked")) {
-                stores.push("이마트24");
-              }
-              if ($("#sevenEleven").is(":checked")) {
-                stores.push("세븐일레븐");
-              }
-
-              if ($("#event-01").is(":checked")) {
-                events.push(1);
-              }
-              if ($("#event-02").is(":checked")) {
-                events.push(2);
-              }
-              if ($("#event-03").is(":checked")) {
-                events.push(3);
-              }
-
-              return { stores: stores, events: events, productFestival: events };
-            }
-
-            $("input[type='checkbox']").on("change", function () {
-              loadProducts(1);
-            });
-
-            function loadProducts(page) {
-              var filters = getSelectedFilters();
-              const festivalInput = document.querySelector('input[name=festival]:checked');
-              const festivalFilter = festivalInput ? festivalInput.value : '';
-
-              $.ajax({
-                url: "http://localhost:8081/api/event-list",
-                type: "GET",
-                data: {
-                  page: page,
-                  size: 15,
-                  stores: JSON.stringify(filters.stores),
-                  events: JSON.stringify(filters.events),
-                  festival: festivalFilter
-                },
-                dataType: "json",
-                success: function (response) {
-                  var data = response.dtoList;
-                  var total = response.total;
-                  var currentPage = response.page;
-
-                  renderProducts(data);
-                  renderPagination(currentPage, total);
-                },
-                error: function (error) {
-                  console.log(error);
-                },
-              });
-            }
-
-            function renderProducts(data) {
-              var $productContainer = $('#productContainer');
-              $productContainer.empty();
-              var productHtml = '';
-
-              var filters = getSelectedFilters(); // 추가된 부분
-
-              $.each(data, function(index, product) {
-                var festivalText, festivalColor;
-
-                var storeMatched = filters.stores.some(function(store) {
-                  return JSON.parse(product.fixedTag).store.includes(store);
-                });
-
-                if (!storeMatched || !filters.productFestival.includes(product.productFestival)) {
-                  return;
-                }
-
-                if (product.productFestival === 1) {
-                  festivalText = '신상품';
-                  festivalColor = 'pink';
-                } else if (product.productFestival === 2) {
-                  festivalText = '1+1';
-                  festivalColor = 'purple';
-                } else if (product.productFestival === 3) {
-                  festivalText = '2+1';
-                  festivalColor = 'orange';
-                } else {
-                  festivalText = '';
-                  festivalColor = '';
-                }
-
-                var fixedTag = JSON.parse(product.fixedTag).smallCate;
-
-                productHtml += `
-            <div class="col">
-              <div class="card card-product">
-                <div class="card-body">
-                  <div class="text-center position-relative">
-                    <div class=" position-absolute top-0 start-0">
-                      <span class="badge bg-${festivalColor}">${festivalText}</span>
-                    </div>
-                    <a href="shop-single.html">
-                      <img class="mb-3 img-fluid" style="max-width: 220px; max-height: 220px;" src="${product.productImg}">
-                    </a>
-                  </div>
-                  <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
-                  <h2 class="fs-6"><a href="shop-single.html" class="text-inherit text-decoration-none">${product.productName}</a></h2>
-                  <div>
-                    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-                    <span class="text-muted small">조회(<span>${product.productViews}</span>)</span>
-                    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-                    <span class="text-muted small">리뷰(<span>${product.productReviews}</span>)</span>
-                    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-                    <span class="text-muted small">찜(<span>${product.productSaved}</span>)</span>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div></div>
-                    <div>
-                      <span class="text-dark">${product.productPrice}원</span>
-                      <a href="#" class="ms-2 btn-action" style="color: deeppink"><i class="bi bi-bookmark"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `;
-              });
-
-              var productListHtml = `
-      <div class="row g-4 row-cols-xl-5 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
-        ${productHtml}
-      </div>
-    `;
-
-              $productContainer.append(productListHtml);
-            }
-
-            function renderPagination(currentPage, totalItems) {
-              var totalPages = Math.ceil(totalItems / 15);
-              var pagination = $(".pagination");
-              pagination.empty();
-
-              // Add the previous page link
-              var prevDisabled = currentPage === 1 ? "disabled" : "";
-              pagination.append(`<li class="page-item ${prevDisabled}">
-                          <a class="page-link mx-1" href="#" aria-label="Previous" data-page="${currentPage - 1}">
-                            <i class="feather-icon icon-chevron-left"></i>
-                          </a>
-                        </li>`);
-
-              // Add the page number links
-              for (var i = 1; i <= totalPages; i++) {
-                var activeClass = i === currentPage ? "active" : "";
-                pagination.append(`<li class="page-item ${activeClass}">
-                            <a class="page-link mx-1" href="#" data-page="${i}">${i}</a>
-                        </li>`);
-              }
-
-              // Add the next page link
-              var nextDisabled = currentPage === totalPages ? "disabled" : "";
-              pagination.append(`<li class="page-item ${nextDisabled}">
-                          <a class="page-link mx-1" href="#" aria-label="Next" data-page="${currentPage + 1}">
-                            <i class="feather-icon icon-chevron-right"></i>
-                          </a>
-                        </li>`);
-
-              // Add a click event listener for the pagination links
-              $(".pagination .page-link").on("click", function (event) {
-                event.preventDefault();
-                var pageNumber = parseInt($(this).data("page"));
-                if (!isNaN(pageNumber)) {
-                  loadProducts(pageNumber);
-                }
-              });
-            }
-
-            $(document).ready(function () {
-              loadProducts(1);
-            });
-          </script>
+          <!-- 전체 화면 스크립트 -->
+          <script src="@@webRoot/assets/js/eventPage.js"></script>
 
           <div class="row mt-8">
             <div class="col">
-              <!-- nav pagination -->
               <nav>
                 <ul class="pagination">
-                  <!-- Pagination links will be added dynamically by renderPagination function -->
                 </ul>
               </nav>
             </div>
