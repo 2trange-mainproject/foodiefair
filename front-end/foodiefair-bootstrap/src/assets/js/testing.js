@@ -1,3 +1,21 @@
+function reviewPageCount() { // 리뷰 더보기를 저장해두기 위함 클로저 일반 리뷰와 인증 리뷰 두개를 사용
+    let receipt=0;
+    let common=0;
+
+    return {
+        receipt: function() {
+            if(common!=0) common=0;
+            ++receipt;
+            return receipt;
+        },
+        common: function() {
+            if(receipt!=0) receipt=0;
+            ++common;
+            return common;
+        }
+    }
+}
+
 $(document).ready(function() {
     $('#comment-enroll').click(commentEnroll); // 댓글 등록
     $('.btn-comment-delete').click(commentDelete); // 댓글 삭제
@@ -9,10 +27,10 @@ $(document).ready(function() {
 function reviewEnroll(e) {
     e.preventDefault();
     var data = {
-        userId:1,
+        userId:9,
         productId:'AA0001',
-        reviewLikes:4,
-        receiptImg:1,
+        reviewLikes:8,
+        receiptImg:0,
         reviewImg:'아직 몰라요',
         reviewTitle:$('#review-title').val(), //실제로 얘만 있어야 함
         goodReviews:$('#good-review').val(), //실제로 얘만 있어야 함
