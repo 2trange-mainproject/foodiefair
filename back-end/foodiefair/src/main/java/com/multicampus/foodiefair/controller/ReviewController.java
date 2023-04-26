@@ -1,6 +1,6 @@
 package com.multicampus.foodiefair.controller;
 
-import com.multicampus.foodiefair.dao.IReviewDAO;
+import com.multicampus.foodiefair.dto.ProductDTO;
 import com.multicampus.foodiefair.dto.ReviewDTO;
 import com.multicampus.foodiefair.service.IReviewService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +18,12 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class ReviewController {
     private final IReviewService iReviewService;
+
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductDTO> productInfo(@PathVariable String productId) {
+        log.info("productInfo");
+        return ResponseEntity.ok(iReviewService.productInfo(productId));
+    }
 
     @PostMapping("/review")
     public ResponseEntity<String> reviewInsert(@Valid @RequestBody ReviewDTO reviewDTO, BindingResult bindingResult) {

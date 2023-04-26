@@ -12,13 +12,13 @@ import javax.validation.Valid;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/products/{productId}")
+@RequestMapping("/products/comment")
 @Log4j2
 @RequiredArgsConstructor //final사용하기 위해 생성자 주입
 public class CommentController {
     private final ICommentService commentService;
 
-    @PostMapping("/comment") //댓글
+    @PostMapping("/") //댓글
     public ResponseEntity<String> commentInsert(@Valid @RequestBody CommentDTO commentDTO, BindingResult bindingResult) {
         log.info("CommentController");
         if(bindingResult.hasErrors()) {
@@ -28,7 +28,7 @@ public class CommentController {
         return ResponseEntity.ok("comment success");
     }
 
-    @DeleteMapping("/commentDelete/{commentId}")
+    @DeleteMapping()
     public ResponseEntity<String> commentDelete(@PathVariable int commentId) {
         log.info(commentId);
         commentService.commentDelete(commentId);

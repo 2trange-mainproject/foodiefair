@@ -5,4 +5,8 @@
     <select id="findProductId" resultType="String">
         SELECT productId FROM product WHERE productName=#{productName};
     </select>
+
+    <select id="productInfo" resultType="com.multicampus.foodiefair.dto.ProductDTO">
+        SELECT productId, productName, fixedTag, productImg, productPrice, productReviews, productSaved, productFestival FROM product WHERE productId=#{productId};
+    </select>
 </mapper>

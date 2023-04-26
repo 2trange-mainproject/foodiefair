@@ -72,14 +72,14 @@
           <div class="ps-lg-10 mt-6 mt-md-0">
             <!-- content -->
             <!-- heading -->
-            <h1 class="mb-1">Napolitanke Ljesnjak<a href="#" class="ms-2 btn-dib" style="color: deeppink"><i class="bi bi-bookmark"></i></a> </h1>
+            <h1 class="mb-1" id="product-name"><a href="#" class="ms-2 btn-dib" style="color: deeppink"><i class="bi bi-bookmark"></i></a></h1>
             <div class="mb-4">
               <!-- rating -->
-              <a href="#" class="ms-2" style="color: deeppink">(30 reviews)</a>
-              <a href="#" class="ms-2" style="color: deeppink">(10 call dibs)</a>
+              <a href="#" class="ms-2" style="color: deeppink" id="product-review"></a>
+              <a href="#" class="ms-2" style="color: deeppink" id="product-saved"></a>
             </div>
             <div class="fs-4">
-              <!-- price --><span class="fw-bold text-dark">$32</span>
+              <!-- price --><span class="fw-bold text-dark" id="product-price"></span>
             </div>
 
             <hr class="my-6">
@@ -89,16 +89,16 @@
 
                 <tbody>
                   <tr>
-                    <td>convenience store:</td>
-                    <td>#GS25</td>
+                    <td>편의점:</td>
+                    <td id="product-store"></td>
                   </tr>
                   <tr>
-                    <td>category:</td>
-                    <td>#Food</td>
+                    <td>카테고리:</td>
+                    <td id="product-category">#Food</td>
                   </tr>
                   <tr>
-                    <td>event:</td>
-                    <td>#1+1</td>
+                    <td>이벤트:</td>
+                    <td id="product-event">#1+1</td>
                   </tr>
                 </tbody>
               </table>
@@ -189,26 +189,28 @@
                     <!-- img -->
                     <!-- img -->
                     <a href="#" target="_self" class="rounded-circle avatar-lg">
-                      <img src="../assets/images/avatar/avatar-10.jpg" alt="" class="rounded-circle avatar-lg">
+                      <img id="review-profile" src="../assets/images/avatar/avatar-10.jpg" alt="" class="rounded-circle avatar-lg">
                     </a>
                     <div class="ms-5">
-                      <h6 class="mb-1" >
+                      <h6 class="mb-1" id="review-name">
                         Shankar Subbaraman
                         <a href="#" class="text-muted ms-3"><i class="bi bi-trash me-1"></i>삭제하기</a>
                         <a href="#" class="text-muted ms-3"><i class="bi bi-pencil me-1"></i>수정하기</a>
                       </h6>
                       <!-- select option -->
                       <!-- content -->
-                      <p class="small"> <span class="text-muted">30 December 2022</span>
+                      <p class="small"> <span class="text-muted" id="review-date">30 December 2022</span>
                         <span class="text-primary ms-3 fw-bold">Verified Purchase</span></p>
                       <!-- rating -->
                       <div class=" mb-2">
-                        <span class="text-dark fw-bold">Need to recheck the weight at delivery point</span>
+                        <span class="text-dark fw-bold" id="review-summary">Need to recheck the weight at delivery point</span>
                       </div>
                       <!-- text-->
-                      <p>Product quality is good. But, weight seemed less than 1kg. Since it is being sent in open
+                      <p id="review-good">Product quality is good. But, weight seemed less than 1kg. Since it is being sent in open
                         package, there is a possibility of pilferage in between. FreshCart sends the veggies and
                         fruits through sealed plastic covers and Barcode on the weight etc. .</p>
+                      <p id="review-bad"></p>
+                      <!-- 제품 이미지 넣어야 되는 곳-->
                       <div>
                         <div class="border icon-shape icon-lg border-2 ">
                           <!-- img --><img src="../assets/images/products/product-img-1.jpg" alt=""
@@ -228,13 +230,13 @@
                         <a href="#" class="text-muted"><i class="bi bi-chat-left-text me-1"></i>더보기</a>
                         <div class="mx-4">
                           <a href="#" class="text-muted" data-bs-toggle="collapse" data-bs-target="#comment-collapse"><i class="bi bi-chat-dots me-1"></i>댓글
-                            <span class="translate-middle-y badge rounded-pill bg-pink-300">99+</span>
+                            <span class="translate-middle-y badge rounded-pill bg-pink-300" id="review-comment-count">99+</span>
                           </a>
                         </div>
                         <a href="#" class="text-muted btn-like"><i class="bi bi-suit-heart me-1"></i>Like</a>
                       </div>
                       <div class="collapse" id="comment-collapse">
-                        <div class="border-bottom py-4 mb-4">
+                        <div class="border-bottom py-4 mb-4" id="comment-data">
                           <h6>
                             Shankar Subbaraman<a href="#" class="text-muted ms-3 btn-comment-delete"><i class="bi bi-trash me-1"></i>삭제하기</a>
                           </h6>
@@ -462,9 +464,7 @@
   <script src="@@webRoot/assets/js/vendors/tns-slider.js"></script>
   <script src="@@webRoot/assets/js/vendors/zoom.js"></script>
   <script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
-
   <script src="@@webRoot/assets/js/testing.js"></script>
-
 
 
 </body>

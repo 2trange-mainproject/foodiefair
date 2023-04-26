@@ -17,12 +17,46 @@ function reviewPageCount() { // 리뷰 더보기를 저장해두기 위함 클�
 }
 
 $(document).ready(function() {
+    productInfo();
     $('#comment-enroll').click(commentEnroll); // 댓글 등록
     $('.btn-comment-delete').click(commentDelete); // 댓글 삭제
     $('.btn-dib').click(saveTrueFalse); // 찜 토글
     $('.btn-like').click(commentLike); // 댓글 좋아요 토글
     $('#review-enroll').click(reviewEnroll); // 리뷰 등록
 });
+
+function productInfo() {
+    let productId='AA0001';
+    $.ajax({
+        url:'http://localhost:8081/products/'+productId,
+        type:'GET',
+        success: function (data) {
+            console.log(data);
+            var text=data.productName+'<a href="#" class="ms-2 btn-dib" style="color: deeppink">'+'<i class="bi bi-bookmark"></i></a>';
+            $('#product-name').html(text);
+            text='(리뷰 개수 '+data.productReviews+')';
+            $('#product-review').text(text);
+            text='(찜 개수 '+data.productSaved+')';
+            $('#product-saved').text(text);
+            text=data.productPrice.toLocaleString('ko-KR')+'원';
+            $('#product-price').text(text);
+            text=JSON.parse(data.fixedTag);
+            $('#product-store').text(text.store);
+            $('#product-category').text(text.bigCate+' '+text.smallCate);
+            text=data.productFestival;
+            if(text==1)
+                $('#product-event').text('X');
+            else if(text==2)
+                $('#product-event').text('#1+1');
+            else if(text==3)
+                $('#product-event').text('#2+1');
+            //리뷰 띄우는 함수 실행 할 것.
+        },
+        error: function(data) {
+            console.log(data)
+        }
+    });
+}
 
 function reviewEnroll(e) {
     e.preventDefault();
