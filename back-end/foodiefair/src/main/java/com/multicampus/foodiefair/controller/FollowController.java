@@ -1,14 +1,13 @@
 package com.multicampus.foodiefair.controller;
 
-        import com.multicampus.foodiefair.dto.FollowDTO;
-        import com.multicampus.foodiefair.service.FollowService;
-        import lombok.RequiredArgsConstructor;
-        import org.springframework.http.HttpStatus;
-        import org.springframework.http.ResponseEntity;
-        import org.springframework.web.bind.annotation.*;
-
-        import java.util.List;
-        import java.util.Map;
+import com.multicampus.foodiefair.dto.FollowDTO;
+import com.multicampus.foodiefair.service.FollowService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/mypage/{userId}")
