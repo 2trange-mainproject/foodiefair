@@ -35403,11 +35403,11 @@ body {
 }
 
 a {
-  color: #0aad0a;
+  color: #d43384;
   text-decoration: none;
 }
 a:hover {
-  color: #088a08;
+  color: #aa296a;
   text-decoration: none;
 }
 
@@ -40400,4 +40400,28 @@ span.flatpickr-weekday {
   65% {transform: scale(0.95, 1.05);}
   75% {transform: scale(1.05, 0.95);}
   to {transform: scale(1, 1);}
+}
+
+/* rankPage_one.js의 별, 마이태그 크기 조절 */
+.star-icon {
+  font-size: 15px; /* 별의 크기를 조절합니다. 원하는 크기로 변경할 수 있습니다. */
+}
+
+.tag-text {
+  font-size: 15px; /* 글씨 크기를 조절합니다. 원하는 크기로 변경할 수 있습니다. */
+}
+
+/* rankPage_one.js의 팔로우 버튼, 글씨 크기 조절 */
+.follow-btn {
+  font-size: 15px;
+  padding: 8px 16px;
+}
+
+.follow-icon {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.follow-text {
+  vertical-align: middle;
 }

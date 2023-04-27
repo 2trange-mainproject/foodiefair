@@ -1,19 +1,5 @@
 function getSelectedFilters() {
-    var stores = [];
     var categories = [];
-
-    if ($("#CU").is(":checked")) {
-        stores.push("CU");
-    }
-    if ($("#GS25").is(":checked")) {
-        stores.push("GS25");
-    }
-    if ($("#Emart24").is(":checked")) {
-        stores.push("이마트24");
-    }
-    if ($("#sevenEleven").is(":checked")) {
-        stores.push("세븐일레븐");
-    }
 
     if ($("#simple-01").is(":checked")) {
         categories.push("도시락");
@@ -64,33 +50,34 @@ function getSelectedFilters() {
         categories.push("유제품");
     }
 
-    return { stores: stores, categories: categories};
+    var selectedBadge = $("#badgeReviewer .nav-link.active").attr("id").split("-")[0];
+
+    return { categories: categories, selectedBadge: selectedBadge};
 }
 
 $("input[type='checkbox']").on("change", function () {
-    loadProducts(1, $(".form-select").val());
+    loadProducts(1);
 });
 
-$(".form-select").on("change", function() {
-    loadProducts(1, $(this).val());
+$("#badgeReviewer .nav-link").on("click", function () {
+    // 다른 탭의 active 클래스 제거
+    $("#badgeReviewer .nav-link").removeClass("active");
+    // 클릭된 탭에 active 클래스 추가
+    $(this).addClass("active");
+    // 상품 목록 다시 불러오기
+    loadProducts(1);
 });
 
-function loadProducts(page, sortOrder) {
+function loadProducts(page) {
     var filters = getSelectedFilters();
 
     var queryString = `?page=${page}&size=15`;
-
-    if (filters.stores.length > 0) {
-        queryString += `&stores=${encodeURIComponent(JSON.stringify(filters.stores))}`;
-    }
 
     if (filters.categories.length > 0) {
         queryString += `&categories=${encodeURIComponent(JSON.stringify(filters.categories))}`;
     }
 
-    if (sortOrder) {
-        queryString += `&sortOrder=${sortOrder}`;
-    }
+    queryString += `&selectedBadge=${filters.selectedBadge}`;
 
     $.ajax({
         url: `http://localhost:8081/api/food-list${queryString}`,
@@ -119,67 +106,29 @@ function renderProducts(data) {
     var filters = getSelectedFilters();
     var filteredProductCount = 0;
 
-    $.each(data, function(index, product) {
-        var festivalText, festivalColor;
-
-        var storeMatched = filters.stores.some(function(store) {
-            return JSON.parse(product.fixedTag).store.includes(store);
-        });
-
+    $.each(data, function(index, user) {
         var categoryMatched = filters.categories.some(function(category) {
             return JSON.parse(product.fixedTag).smallCategory.includes(category);
         });
 
-        if (!storeMatched || !categoryMatched) {
+        if (!categoryMatched) {
             return;
         }
 
         filteredProductCount++;
-
-        if (product.productEvent === 1) {
-            festivalText = '신상품';
-            festivalColor = 'pink';
-        } else if (product.productEvent === 2) {
-            festivalText = '1+1';
-            festivalColor = 'purple';
-        } else if (product.productEvent === 3) {
-            festivalText = '2+1';
-            festivalColor = 'orange';
-        } else {
-            festivalText = '';
-            festivalColor = '';
-        }
-
-        var fixedTag = JSON.parse(product.fixedTag).smallCategory;
 
         productHtml += `
             <div class="col">
               <div class="card card-product">
                 <div class="card-body">
                   <div class="text-center position-relative">
-                    <div class=" position-absolute top-0 start-0">
-                      <span class="badge bg-${festivalColor}">${festivalText}</span>
-                    </div>
-                    <a href="shop-single.html?productId=${product.productId}">
-                        <img class="mb-3 img-fluid" style="max-width: 220px; max-height: 220px;" src="${product.productImg}">
+                    <a href="mypage.html?userName=${user.userName}">
+                        <img class="mb-3 img-fluid" style="max-width: 250px; max-height: 250px;" src="${user.userImg}">
                     </a>
                   </div>
-                  <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
-                  <h2 class="fs-6"><a href="shop-single.html?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
-                  <div>
-                    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-                    <span class="text-muted small">조회(<span>${product.productViews}</span>)</span>
-                    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-                    <span class="text-muted small">리뷰(<span>${product.productReviews}</span>)</span>
-                    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-                    <span class="text-muted small">찜(<span>${product.productSaved}</span>)</span>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div></div>
-                    <div>
-                      <span class="text-dark">${product.productPrice}원</span>
-                      <a href="#" class="ms-2 btn-action" style="color: deeppink"><i class="bi bi-bookmark"></i></a>
-                    </div>
+                  <div class="text-center">
+                    <h2 class="fs-3"><a href="mypage.html.html?userName=${user.userName}" class="text-inherit text-decoration-none">${user.userName}</a></h2>
+                    <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
                   </div>
                 </div>
               </div>

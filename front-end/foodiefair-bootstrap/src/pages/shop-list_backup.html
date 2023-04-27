@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>FoodieFair</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
+  <link href="@@webRoot/node_modules/nouislider/dist/nouislider.min.css" rel="stylesheet">
+  @@include("../partials/head.html")
+</head>
+
+<body>
+
+  @@include("../partials/navbar.html")
+  <main>
+    <section class="mt-8">
+      <div class="container">
+          <div class="col-md-12">
+            <ul class="nav nav-pills nav-lb-tab justify-content-center" id="reviewer" role="tablist">
+              <!-- nav item -->
+              <li class="nav-item" role="presentation">
+                <!-- btn --> <button class="nav-link active fs-3" id="rank-tab" data-bs-toggle="tab"
+                                     data-bs-target="#rank-tab-pane" type="button" role="tab" aria-controls="rank-tab-pane"
+                                     aria-selected="true" style="margin-right: 300px;">리뷰어 랭킹</button>
+              </li>
+              <!-- nav item -->
+              <li class="nav-item" role="presentation">
+                <!-- btn --> <button class="nav-link fs-3" id="badge-tab" data-bs-toggle="tab"
+                                     data-bs-target="#badge-tab-pane" type="button" role="tab" aria-controls="badge-tab-pane"
+                                     aria-selected="false">뱃지 리뷰어</button>
+              </li>
+            </ul>
+            <!-- tab content -->
+            <div class="tab-content" id="reviewerContent">
+              <!-- tab pane -->
+              <div class="tab-pane fade show active" id="rank-tab-pane" role="tabpanel" aria-labelledby="rank-tab"
+                   tabindex="0">
+                <!-- section -->
+                <div class="mt-8 mb-lg-14 mb-8">
+                  <!-- container -->
+                  <div class="container">
+                    <div class="row gx-10 justify-content-center">
+                      <!-- col -->
+                      <aside class="col-lg-0"></aside>
+                      <section class="col-lg-9 col-md-12">
+                        <p class="mb-3" id="dateRange" style="font-size: 1rem; font-family: 'Noto Sans KR', sans-serif; margin-top: 0rem;"></p>
+
+                        <!--순위-->
+                        <div class="d-flex justify-content-end mt-2 mt-lg-0">
+                          <div>
+                            <!-- select option -->
+                            <select class="form-select">
+                              <option value="top10" selected>1~10위</option>
+                              <option value="top20">11~20위</option>
+                              <option value="top30"> 21~30위</option>
+                              <option value="top40"> 31~40위</option>
+                              <option value="top50"> 41~50위</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <!-- row -->
+                        <div class="row g-4  row-cols-1 mt-2">
+                          <div class="col">
+                            <!-- card -->
+                            <div class="card card-product">
+                              <!-- card body -->
+                              <div class="card-body">
+                                <div class=" row align-items-center">
+                                  <!-- col -->
+                                  <div class="col-md-4 col-12">
+
+                                    <div class="text-center position-relative">
+                                      <a href="mypage.html" class="d-flex">
+                                        <!-- img -->
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/one.jpg" alt="Grocery Ecommerce Template" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/soo.jpg" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 col-12 flex-grow-1">
+                                    <!-- heading -->
+                                    <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">초코 러버</a>
+                                    </h2>
+                                    <div>
+
+                                      <!-- 칭호 -->
+                                      <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                      <span class="text-muted small">껌/초콜릿/캔디 다이아몬드</span>
+                                    </div>
+                                    <div class=" mt-6">
+                                      <!-- btn -->
+                                      <div class="mt-2">
+                                        <a href="#!" class="btn btn-pink ">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          </svg> 팔로우
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- col -->
+                          <div class="col">
+                            <!-- card -->
+                            <div class="card card-product">
+                              <div class="card-body">
+                                <div class=" row align-items-center">
+                                  <div class="col-md-4 col-12">
+
+                                    <div class="text-center position-relative">
+                                      <a href="mypage.html" class="d-flex">
+                                        <!-- img -->
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/two.jpg" alt="Grocery Ecommerce Template" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/seung.jpg" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 col-12 flex-grow-1">
+                                    <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">잠자는 숲속의 공주</a>
+                                    </h2>
+                                    <div>
+
+                                      <!-- 칭호 -->
+                                      <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                      <span class="text-muted small">아이스크림 다이아몬드</span>
+                                    </div>
+                                    <div class=" mt-6">
+                                      <!-- btn -->
+                                      <div class="mt-2">
+                                        <a href="#!" class="btn btn-pink">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          </svg> 팔로우
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- col -->
+                          <div class="col">
+                            <!-- card -->
+                            <div class="card card-product">
+                              <div class="card-body">
+                                <div class=" row align-items-center">
+                                  <div class="col-md-4 col-12">
+
+                                    <div class="text-center position-relative">
+                                      <a href="mypage.html" class="d-flex">
+                                        <!-- img -->
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/three.jpg" alt="Grocery Ecommerce Template" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/jun.jpg" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 col-12 flex-grow-1">
+                                    <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">오이장수</a>
+                                    </h2>
+                                    <div>
+
+                                      <!-- 칭호 -->
+                                      <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                      <span class="text-muted small">안주류 플래티넘</span>
+                                    </div>
+                                    <div class=" mt-6">
+                                      <!-- btn -->
+                                      <div class="mt-2">
+                                        <a href="#!" class="btn btn-pink">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          </svg> 팔로우
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- col -->
+                          <div class="col">
+                            <!-- card -->
+                            <div class="card card-product">
+                              <div class="card-body">
+                                <div class=" row align-items-center">
+                                  <div class="col-md-4 col-12">
+
+                                    <div class="text-center position-relative">
+                                      <a href="mypage.html" class="d-flex">
+                                        <!-- img -->
+                                        <h2 style="font-size:40px;margin-top:50px;margin-left:30px;margin-bottom:0;">4위</h2>
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/chang.jpg" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 col-12 flex-grow-1">
+                                    <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">꼬쟁이</a>
+                                    </h2>
+                                    <div>
+
+                                      <!-- 칭호 -->
+                                      <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                      <span class="text-muted small">라면 플래티넘</span>
+                                    </div>
+                                    <div class=" mt-6">
+                                      <!-- btn -->
+                                      <div class="mt-2">
+                                        <a href="#!" class="btn btn-pink">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          </svg> 팔로우
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- col -->
+                          <div class="col">
+                            <!-- card -->
+                            <div class="card card-product">
+                              <div class="card-body">
+                                <div class=" row align-items-center">
+                                  <div class="col-md-4 col-12">
+
+                                    <div class="text-center position-relative">
+                                      <a href="mypage.html" class="d-flex">
+                                        <!-- img -->
+                                        <h2 style="font-size:40px;margin-top:50px;margin-left:30px;margin-bottom:0;">5위</h2>
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/say.jpg" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 col-12 flex-grow-1">
+                                    <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">최강효자손</a>
+                                    </h2>
+                                    <div>
+
+                                      <!-- 칭호 -->
+                                      <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                      <span class="text-muted small">샌드위치 골드</span>
+                                    </div>
+                                    <div class=" mt-6">
+                                      <!-- btn -->
+                                      <div class="mt-2">
+                                        <a href="#!" class="btn btn-pink">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          </svg> 팔로우
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- col -->
+                          <div class="col">
+                            <!-- card -->
+                            <div class="card card-product">
+                              <div class="card-body">
+                                <div class=" row align-items-center">
+                                  <div class="col-md-4 col-12">
+
+                                    <div class="text-center position-relative">
+                                      <a href="mypage.html" class="d-flex">
+                                        <!-- img -->
+                                        <h2 style="font-size:40px;margin-top:50px;margin-left:30px;margin-bottom:0;">6위</h2>
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/none.jpg" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 col-12 flex-grow-1">
+                                    <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">유저</a>
+                                    </h2>
+                                    <div>
+
+                                      <!-- 칭호 -->
+                                      <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                      <span class="text-muted small">아이스크림 골드</span>
+                                    </div>
+                                    <div class=" mt-6">
+                                      <!-- btn -->
+                                      <div class="mt-2">
+                                        <a href="#!" class="btn btn-pink">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          </svg> 팔로우
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- col -->
+                          <div class="col">
+                            <!-- card -->
+                            <div class="card card-product">
+                              <div class="card-body">
+                                <div class=" row align-items-center">
+                                  <div class="col-md-4 col-12">
+
+                                    <div class="text-center position-relative">
+                                      <a href="mypage.html" class="d-flex">
+                                        <!-- img -->
+                                        <h2 style="font-size:40px;margin-top:50px;margin-left:30px;margin-bottom:0;">7위</h2>
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/none.jpg" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 col-12 flex-grow-1">
+                                    <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">유저</a>
+                                    </h2>
+                                    <div>
+
+                                      <!-- 칭호 -->
+                                      <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                      <span class="text-muted small">유제품 골드</span>
+                                    </div>
+                                    <div class=" mt-6">
+                                      <!-- btn -->
+                                      <div class="mt-2">
+                                        <a href="#!" class="btn btn-pink">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          </svg> 팔로우
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- col -->
+                          <div class="col">
+                            <!-- card -->
+                            <div class="card card-product">
+                              <div class="card-body">
+                                <div class=" row align-items-center">
+                                  <div class="col-md-4 col-12">
+
+                                    <div class="text-center position-relative">
+                                      <a href="mypage.html" class="d-flex">
+                                        <!-- img -->
+                                        <h2 style="font-size:40px;margin-top:50px;margin-left:30px;margin-bottom:0;">8위</h2>
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/none.jpg" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 col-12 flex-grow-1">
+                                    <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">유저</a>
+                                    </h2>
+                                    <div>
+
+                                      <!-- 칭호 -->
+                                      <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                      <span class="text-muted small">샌드위치 골드</span>
+                                    </div>
+                                    <div class=" mt-6">
+                                      <!-- btn -->
+                                      <div class="mt-2">
+                                        <a href="#!" class="btn btn-pink">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          </svg> 팔로우
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- col -->
+                          <div class="col">
+                            <!-- card -->
+                            <div class="card card-product">
+                              <div class="card-body">
+                                <div class=" row align-items-center">
+                                  <div class="col-md-4 col-12">
+
+                                    <div class="text-center position-relative">
+                                      <a href="mypage.html" class="d-flex">
+                                        <!-- img -->
+                                        <h2 style="font-size:40px;margin-top:50px;margin-left:30px;margin-bottom:0;">9위</h2>
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/none.jpg" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 col-12 flex-grow-1">
+                                    <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">유저</a>
+                                    </h2>
+                                    <div>
+
+                                      <!-- 칭호 -->
+                                      <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                      <span class="text-muted small">샌드위치 골드</span>
+                                    </div>
+                                    <div class=" mt-6">
+                                      <!-- btn -->
+                                      <div class="mt-2">
+                                        <a href="#!" class="btn btn-pink">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          </svg> 팔로우
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- col -->
+                          <div class="col">
+                            <!-- card -->
+                            <div class="card card-product">
+                              <div class="card-body">
+                                <div class=" row align-items-center">
+                                  <div class="col-md-4 col-12">
+
+                                    <div class="text-center position-relative">
+                                      <a href="mypage.html" class="d-flex">
+                                        <!-- img -->
+                                        <h2 style="font-size:40px;margin-top:50px;margin-left:30px;margin-bottom:0;">10위</h2>
+                                        <div class="flex-grow-1">
+                                          <img src="../assets/images/profile/none.jpg" alt="Grocery Ecommerce emplate" class="mb-3 img-fluid d-inline" width="150" height="150">
+                                        </div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 col-12 flex-grow-1">
+                                    <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">유저</a>
+                                    </h2>
+                                    <div>
+
+                                      <!-- 칭호 -->
+                                      <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
+                                      <span class="text-muted small">샌드위치 실버</span>
+                                    </div>
+                                    <div class=" mt-6">
+                                      <!-- btn -->
+                                      <div class="mt-2">
+                                        <a href="#!" class="btn btn-pink">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                          </svg> 팔로우
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <!-- col -->
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- tab pane : 뱃지 리뷰어-->
+              <div class="tab-pane fade" id="badge-tab-pane" role="tabpanel" aria-labelledby="badge-tab" tabindex="0">
+                <div class="my-8">
+                  <div class="row">
+                    <div class="col-12">
+                      <!-- filter btn -->
+                      <a class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse" href="#collapseFilter" role="button"
+                         aria-expanded="true" aria-controls="collapseFilter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="feather feather-filter me-2">
+                          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                        </svg> Categories
+                      </a>
+
+                      <div class="collapse mt-6 show" id="collapseFilter">
+                        <div class="row">
+                          <div class="card mb-4 mb-lg-0 w-100">
+                            <div class="card-body p-4 w-auto">
+                              <div class="d-flex flex-wrap">
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <h5 class="mb-3 mr-2" style="display:inline-block; width:70px;">간편식사</h5>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-01" checked>
+                                  <label class="form-check-label" for="simple-01" style="display:inline-block; width:100px;">
+                                    도시락
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-02">
+                                  <label class="form-check-label" for="simple-02" style="display:inline-block; width:100px;">
+                                    샌드위치
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-03">
+                                  <label class="form-check-label" for="simple-03" style="display:inline-block; width:100px;">
+                                    햄버거
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-04">
+                                  <label class="form-check-label" for="simple-04" style="display:inline-block; width:100px;">
+                                    주먹밥/김밥
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-05">
+                                  <label class="form-check-label" for="simple-05" style="display:inline-block; width:100px;">
+                                    가공식품
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-06">
+                                  <label class="form-check-label" for="simple-06" style="display:inline-block; width:100px;">
+                                    안주류
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex flex-wrap">
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <h5 class="mb-3 mr-2" style="display:inline-block; width:70px;">즉석조리</h5>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="instant-01">
+                                  <label class="form-check-label" for="instant-01" style="display:inline-block; width:100px;">
+                                    튀김류
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="instant-02">
+                                  <label class="form-check-label" for="instant-02" style="display:inline-block; width:100px;">
+                                    베이커리
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="instant-03">
+                                  <label class="form-check-label" for="instant-03" style="display:inline-block; width:100px;">
+                                    즉석커피
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:100px;"></label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:100px;"></label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:100px;"></label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex flex-wrap">
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <h5 class="mb-3 mr-2" style="display:inline-block; width:70px;">과자류</h5>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="cookie-01">
+                                  <label class="form-check-label" for="cookie-01" style="display:inline-block; width:100px;">
+                                    스낵/비스켓
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="cookie-02">
+                                  <label class="form-check-label" for="cookie-02" style="display:inline-block; width:100px;">
+                                    빵/디저트
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="cookie-03">
+                                  <label class="form-check-label" for="cookie-03" style="display:inline-block; width:100px;">
+                                    아이스크림
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="cookie-04">
+                                  <label class="form-check-label" for="cookie-04" style="display:inline-block; width:100px;">
+                                    껌/초콜릿/캔디
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:100px;"></label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:100px;"></label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex flex-wrap">
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <h5 class="mb-3 mr-2" style="display:inline-block; width:70px;">음료</h5>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="drink-01">
+                                  <label class="form-check-label" for="drink-01" style="display:inline-block; width:100px;">
+                                    음료
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="drink-02">
+                                  <label class="form-check-label" for="drink-02" style="display:inline-block; width:100px;">
+                                    아이스드링크
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="drink-03">
+                                  <label class="form-check-label" for="drink-03" style="display:inline-block; width:100px;">
+                                    유제품
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:100px;"></label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:100px;"></label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:100px;"></label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--뱃지 보유자들-->
+                    <section class="mt-8 ">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <ul class="nav nav-pills nav-lb-tab justify-content-center" id="badgeReviewer" role="tablist">
+                              <!-- nav item -->
+                              <li class="nav-item" role="presentation">
+                                <!-- btn --> <button class="nav-link active fs-3" id="diamond-tab" data-bs-toggle="tab"
+                                                     data-bs-target="#diamond-tab-pane" type="button" role="tab" aria-controls="diamond-tab-pane"
+                                                     aria-selected="true" style="margin-right: 100px;">다이아몬드</button>
+                              </li>
+                              <!-- nav item -->
+                              <li class="nav-item" role="presentation">
+                                <!-- btn --> <button class="nav-link fs-3" id="platinum-tab" data-bs-toggle="tab"
+                                                     data-bs-target="#platinum-tab-pane" type="button" role="tab" aria-controls="platinum-tab-pane"
+                                                     aria-selected="false" style="margin-right: 100px;">플래티넘</button>
+                              </li>
+                              <!-- nav item -->
+                              <li class="nav-item" role="presentation">
+                                <!-- btn --> <button class="nav-link fs-3" id="gold-tab" data-bs-toggle="tab"
+                                                     data-bs-target="#gold-tab-pane" type="button" role="tab" aria-controls="gold-tab-pane"
+                                                     aria-selected="false" style="margin-right: 100px;">골드</button>
+                              </li>
+                              <!-- nav item -->
+                              <li class="nav-item" role="presentation">
+                                <!-- btn --> <button class="nav-link fs-3" id="silver-tab" data-bs-toggle="tab"
+                                                     data-bs-target="#silver-tab-pane" type="button" role="tab" aria-controls="silver-tab-pane"
+                                                     aria-selected="false" style="margin-right: 100px;">실버</button>
+                              </li>
+                              <!-- nav item -->
+                              <li class="nav-item" role="presentation">
+                                <!-- btn --> <button class="nav-link fs-3" id="bronze-tab" data-bs-toggle="tab"
+                                                     data-bs-target="#bronze-tab-pane" type="button" role="tab" aria-controls="bronze-tab-pane"
+                                                     aria-selected="false">브론즈</button>
+                              </li>
+                            </ul>
+                            <!-- tab content -->
+                            <div class="tab-content" id="badgeReviewerContent">
+                              <!-- tab pane -->
+                              <div class="tab-pane fade show active" id="diamond-tab-pane" role="tabpanel" aria-labelledby="diamond-tab"
+                                   tabindex="0">
+                                <!--grid-->
+                                <!-- row -->
+                                <div class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
+
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mt-8">
+                                  <div class="col">
+                                    <!-- nav -->
+                                    <nav>
+                                      <ul class="pagination">
+                                        <li class="page-item disabled">
+                                          <a class="page-link  mx-1 " href="#" aria-label="Previous">
+                                            <i class="feather-icon icon-chevron-left"></i>
+                                          </a>
+                                        </li>
+                                        <li class="page-item "><a class="page-link  mx-1 active" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">2</a></li>
+
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">...</a></li>
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">12</a></li>
+                                        <li class="page-item">
+                                          <a class="page-link mx-1 text-body" href="#" aria-label="Next">
+                                            <i class="feather-icon icon-chevron-right"></i>
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </nav>
+                                  </div>
+                                </div>
+                                <!--grid fin-->
+                              </div>
+                              <!-- tab pane -->
+                              <div class="tab-pane fade" id="platinum-tab-pane" role="tabpanel" aria-labelledby="platinum-tab" tabindex="0">
+                                <!--grid-->
+                                <!-- row -->
+                                <div class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
+
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mt-8">
+                                  <div class="col">
+                                    <!-- nav -->
+                                    <nav>
+                                      <ul class="pagination">
+                                        <li class="page-item disabled">
+                                          <a class="page-link  mx-1 " href="#" aria-label="Previous">
+                                            <i class="feather-icon icon-chevron-left"></i>
+                                          </a>
+                                        </li>
+                                        <li class="page-item "><a class="page-link  mx-1 active" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">2</a></li>
+
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">...</a></li>
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">12</a></li>
+                                        <li class="page-item">
+                                          <a class="page-link mx-1 text-body" href="#" aria-label="Next">
+                                            <i class="feather-icon icon-chevron-right"></i>
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </nav>
+                                  </div>
+                                </div>
+                                <!--grid fin-->
+                              </div>
+                              <!-- tab pane -->
+                              <div class="tab-pane fade" id="gold-tab-pane" role="tabpanel" aria-labelledby="gold-tab" tabindex="0">
+                                <!--grid-->
+                                <!-- row -->
+                                <div class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
+
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mt-8">
+                                  <div class="col">
+                                    <!-- nav -->
+                                    <nav>
+                                      <ul class="pagination">
+                                        <li class="page-item disabled">
+                                          <a class="page-link  mx-1 " href="#" aria-label="Previous">
+                                            <i class="feather-icon icon-chevron-left"></i>
+                                          </a>
+                                        </li>
+                                        <li class="page-item "><a class="page-link  mx-1 active" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">2</a></li>
+
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">...</a></li>
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">12</a></li>
+                                        <li class="page-item">
+                                          <a class="page-link mx-1 text-body" href="#" aria-label="Next">
+                                            <i class="feather-icon icon-chevron-right"></i>
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </nav>
+                                  </div>
+                                </div>
+                                <!--grid fin-->
+                              </div>
+                              <!-- tab pane -->
+                              <div class="tab-pane fade" id="silver-tab-pane" role="tabpanel" aria-labelledby="silver-tab" tabindex="0">
+                                <!--grid-->
+                                <!-- row -->
+                                <div class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
+
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mt-8">
+                                  <div class="col">
+                                    <!-- nav -->
+                                    <nav>
+                                      <ul class="pagination">
+                                        <li class="page-item disabled">
+                                          <a class="page-link  mx-1 " href="#" aria-label="Previous">
+                                            <i class="feather-icon icon-chevron-left"></i>
+                                          </a>
+                                        </li>
+                                        <li class="page-item "><a class="page-link  mx-1 active" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">2</a></li>
+
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">...</a></li>
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">12</a></li>
+                                        <li class="page-item">
+                                          <a class="page-link mx-1 text-body" href="#" aria-label="Next">
+                                            <i class="feather-icon icon-chevron-right"></i>
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </nav>
+                                  </div>
+                                </div>
+                                <!--grid fin-->
+                              </div>
+                              <!-- tab pane -->
+                              <div class="tab-pane fade" id="bronze-tab-pane" role="tabpanel" aria-labelledby="bronze-tab" tabindex="0">
+                                <!--grid-->
+                                <!-- row -->
+                                <div class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
+
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- col -->
+                                  <div class="col">
+                                    <!-- card -->
+                                    <div class="card card-product">
+                                      <div class="card-body">
+
+                                        <!-- badge -->
+                                        <div class="text-center position-relative ">
+                                          <a href="mypage.html">
+                                            <!-- img -->
+                                            <img src="../assets/images/profile/none.jpg"
+                                                 alt="Grocery Ecommerce Template" class="mb-3 img-fluid" width="250" height="250"></a>
+                                        </div>
+                                        <!-- heading -->
+                                        <div class="text-center">
+                                          <h2 class="fs-3"><a href="mypage.html" class="text-inherit text-decoration-none">유저씨</a></h2>
+                                          <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">1500개 이용후기</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mt-8">
+                                  <div class="col">
+                                    <!-- nav -->
+                                    <nav>
+                                      <ul class="pagination">
+                                        <li class="page-item disabled">
+                                          <a class="page-link  mx-1 " href="#" aria-label="Previous">
+                                            <i class="feather-icon icon-chevron-left"></i>
+                                          </a>
+                                        </li>
+                                        <li class="page-item "><a class="page-link  mx-1 active" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">2</a></li>
+
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">...</a></li>
+                                        <li class="page-item"><a class="page-link mx-1 text-body" href="#">12</a></li>
+                                        <li class="page-item">
+                                          <a class="page-link mx-1 text-body" href="#" aria-label="Next">
+                                            <i class="feather-icon icon-chevron-right"></i>
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </nav>
+                                  </div>
+                                </div>
+                                <!--grid fin-->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</main>
+  <!-- modal -->
+  @@include("../partials/modal-product.html")
+
+  <!-- Footer -->
+  @@include("../partials/footer.html")
+   <!-- Javascript-->
+   <script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
+   <script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
+  @@include("../partials/scripts.html")
+  <script src="@@webRoot/node_modules/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="@@webRoot/assets/js/vendors/tns-slider.js"></script>
+  <script src="@@webRoot/assets/js/vendors/zoom.js"></script>
+  <script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
+  <script src="@@webRoot/assets/js/rankDate.js"></script> <!-- 집계 기간이 언제부터 언제까지 인지 보여주는 JS -->
+
+
+
+</body>
+
+</html>
