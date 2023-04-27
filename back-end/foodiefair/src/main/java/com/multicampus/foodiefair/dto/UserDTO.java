@@ -13,7 +13,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
-    private Integer userId;
+    private Long userId;
     private String userPwd;
     private String userName;
     private String userEmail;

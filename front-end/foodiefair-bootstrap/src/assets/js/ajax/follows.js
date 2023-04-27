@@ -1,29 +1,30 @@
-
-// 이 부분은 실제로 참조하는 사용자의 ID를 받아와야 합니다. != 로그인한 유저
 const userId = 1;
 
-// 초기 페이지 로드 시 팔로워와 팔로잉 데이터를 가져오고, 무한 스크롤을 적용합니다.
-$(document).ready(function () {
+$(document).ready(async function () {
+    try {
+        const followerCount = await fetchFollowCount(userId, 'followers');
+        $('#follower-count').text(followerCount);
+        $('#followers-tab').text(`팔로워 ${followerCount}명`);
 
-    // 팔로워 수를 가져와서 화면에 표시
-    fetchFollowCount(userId, 'followers')
-        .then(function(count) {
-            $('#follower-count').text(count);
-            $('#followers-tab').text(`팔로워 ${count}명`);
-        });
+        const followingCount = await fetchFollowCount(userId, 'followings');
+        $('#following-count').text(followingCount);
+        $('#followings-tab').text(`팔로잉 ${followingCount}명`);
 
-    // 팔로잉 수를 가져와서 화면에 표시
-    fetchFollowCount(userId, 'followings')
-        .then(function(count) {
-            $('#following-count').text(count);
-            $('#followings-tab').text(`팔로잉 ${count}명`);
-        });
+        await loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers');
+        await loadMoreFollowData('#followings-tab-pane .row-cols-1', userId, 'followings');
+    } catch (error) {
+        console.error('Error initializing the page:', error);
+    }
 
-    // 팔로워 데이터를 가져와서 무한 스크롤 적용
-    loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers');
-
-    // 팔로잉 데이터를 가져와서 무한 스크롤 적용
-    loadMoreFollowData('#followings-tab-pane .row-cols-1', userId, 'followings');
+    $(window).on('scroll', debounce(async function () {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+            if ($('#followers-tab').hasClass('active')) {
+                await loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers');
+            } else if ($('#followings-tab').hasClass('active')) {
+                await loadMoreFollowData('#followings-tab-pane .row-cols-1', userId, 'followings');
+            }
+        }
+    }, 250));
 });
 
 // 스크롤 이벤트를 추가하여 사용자가 페이지 하단에 도달하면 추가 팔로워 데이터를 로드합니다.
@@ -98,33 +99,32 @@ function createProfileCard(user) {
     </div>`;
 }
 
-function loadMoreFollowData(containerSelector, userId, type) {
+async function loadMoreFollowData(containerSelector, userId, type, loadMoreUrl) {
     let lastItem = $(containerSelector).children().last();
     let lastFollowId = lastItem.length ? lastItem.data('follow-id') : null;
 
-    fetchFollowData(userId, type, lastFollowId, 10)
-        .then(function (data) {
-            console.log("Fetched data:", data);
-            const html = data.map(createProfileCard).join('');
-            $(containerSelector).append(html);
+    try {
+        const data = await fetchFollowData(userId, type, lastFollowId, 10);
+        console.log("Fetched data:", data);
+        const html = data.map(createProfileCard).join('');
+        $(containerSelector).append(html);
 
-            if (data.length === 10) { // assuming you're fetching 10 items per page
-                let nextLastFollowId = data[data.length - 1].followId;
-                let loadMoreUrl = `http://localhost:8081/mypage/${userId}/${type}?lastFollowId=${nextLastFollowId}`;
-                $(window).off('scroll').on('scroll', function () {
-                    if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) { // 필요한 경우 100px 오프셋을 조정하세요
-                        if ($('#followers-tab').hasClass('active')) {
-                            loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers', loadMoreUrl);
-                        } else if ($('#followings-tab').hasClass('active')) {
-                            loadMoreFollowData('#followings-tab-pane .row-cols-1', userId, 'followings', loadMoreUrl);
-                        }
+        if (data.length === 10) {
+            let nextLastFollowId = data[data.length - 1].followId;
+            let loadMoreUrl = `http://localhost:8081/mypage/${userId}/${type}?lastFollowId=${nextLastFollowId}`;
+            $(window).off('scroll').on('scroll', async function () {
+                if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+                    if ($('#followers-tab').hasClass('active')) {
+                        await loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers', loadMoreUrl);
+                    } else if ($('#followings-tab').hasClass('active')) {
+                        await loadMoreFollowData('#followings-tab-pane .row-cols-1', userId, 'followings', loadMoreUrl);
                     }
-                });
-            }
-        })
-        .catch(function (error) {
-            console.error(`Error fetching ${type} data:`, error);
-        });
+                }
+            });
+        }
+    } catch (error) {
+        console.error(`Error fetching ${type} data:`, error);
+    }
 }
 
 function debounce(func, wait) {
@@ -140,15 +140,3 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-const debouncedLoadMoreFollowData = debounce(function () {
-    if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-        if ($('#followers-tab').hasClass('active')) {
-            loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers');
-        } else if ($('#followings-tab').hasClass('active')) {
-            loadMoreFollowData('#followings-tab-pane .row-cols-1', userId, 'followings');
-        }
-    }
-}, 250); // Adjust the debounce delay as needed
-
-

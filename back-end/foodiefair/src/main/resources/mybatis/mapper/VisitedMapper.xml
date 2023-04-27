@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.VisitedDAO">
+    <select id="selectVisitedList" parameterType="map" resultType="hashmap">
+        SELECT v.visitedId, v.writerId, v.ownerId, v.visitedDate, v.visitedContent, u.userName
+        FROM visited v
+                 JOIN user u ON v.writerId = u.userId
+        WHERE v.ownerId = #{ownerId}
+        ORDER BY v.visitedId DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="countVisitedList" resultType="int">
+        SELECT COUNT(*) FROM Visited
+        WHERE ownerId = #{ownerId}
+    </select>
+
+    <insert id="insertVisited" parameterType="com.multicampus.foodiefair.dto.VisitedDTO">
+        INSERT INTO Visited (writerId, ownerId, visitedDate, visitedContent)
+        VALUES (#{writerId}, #{ownerId}, #{visitedDate}, #{visitedContent})
+    </insert>
+
+    <delete id="deleteVisited" parameterType="java.lang.Long">
+        DELETE FROM Visited
+        WHERE visitedId = #{visitedId}
+    </delete>
+</mapper>
