@@ -13,4 +13,21 @@
     <delete id="reviewDelete">
         DELETE FROM review WHERE reviewId=#{reviewId};
     </delete>
+
+    <resultMap id="reviewReader" type="java.util.Map">
+        <result column="userName" property="userName"/>
+        <result column="userImg" property="userImg"/>
+        <result column="reviewDate" property="reviewDate"/>
+        <result column="reviewTitle" property="reviewTitle"/>
+        <result column="goodReviews" property="goodReviews"/>
+        <result column="badReviews" property="badReviews"/>
+        <result column="reviewImg" property="reviewImg"/>
+        <result column="reviewLikes" property="reviewLikes"/>
+    </resultMap>
+    <select id="DateReviewRead" resultMap="reviewReader">
+        SELECT user.userName, user.userImg, review.reviewDate, review.reviewTitle, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes FROM user INNER JOIN (SELECT * FROM review WHERE productId=#{productId}) review ON user.userId = review.userId WHERE review.receiptImg = #{receiptImg} order by review.reviewDate desc;
+    </select>
+    <select id="LikeReviewRead" resultMap="reviewReader">
+        SELECT user.userName, user.userImg, review.reviewDate, review.reviewTitle, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes FROM user INNER JOIN (SELECT * FROM review WHERE productId=#{productId}) review ON user.userId = review.userId WHERE review.receiptImg = #{receiptImg} order by review.reviewLikes desc;
+    </select>
 </mapper>

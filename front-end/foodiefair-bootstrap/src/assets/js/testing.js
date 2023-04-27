@@ -1,4 +1,4 @@
-function reviewPageCount() { // 리뷰 더보기를 저장해두기 위함 클로저 일반 리뷰와 인증 리뷰 두개를 사용
+function reviewPageCount() { // 리뷰 더보기 offset 저장해두기 위한 클로저. 일반 리뷰와 인증 리뷰 두개를 사용
     let receipt=0;
     let common=0;
 
@@ -12,6 +12,10 @@ function reviewPageCount() { // 리뷰 더보기를 저장해두기 위함 클�
             if(receipt!=0) receipt=0;
             ++common;
             return common;
+        },
+        init: function() {
+            receipt=0;
+            common=0;
         }
     }
 }
@@ -25,7 +29,7 @@ $(document).ready(function() {
     $('#review-enroll').click(reviewEnroll); // 리뷰 등록
 });
 
-function productInfo() {
+function productInfo() { // 페이지 들어오면 실행, 실제로는 변경 될 듯? 다른 페이지에서 productId를 GET으로 보내줄 거임
     let productId='AA0001';
     $.ajax({
         url:'http://localhost:8081/products/'+productId,
@@ -51,6 +55,7 @@ function productInfo() {
             else if(text==3)
                 $('#product-event').text('#2+1');
             //리뷰 띄우는 함수 실행 할 것.
+            receiptReviewRead();
         },
         error: function(data) {
             console.log(data)
@@ -58,7 +63,33 @@ function productInfo() {
     });
 }
 
-function reviewEnroll(e) {
+function receiptReviewRead() {
+    var data = {
+        productId:'AA0001',
+        offset:reviewPageCount().receipt(),
+        receiptImg:1,
+        sort:$('#review-type').val()
+    }
+    var query = $.param(data);
+    $.ajax({
+        url:'http://localhost:8081/products/review?'+query,
+        type:'GET',
+        success: function (data) {
+            console.log(data);
+            // $.each(data, function(index, item) {
+            //     var text = '<h6 class="mb-1">'+item.userName+
+            //         '<a href="#" class="text-muted ms-3" id="review-delete"><i class="bi bi-trash me-1"></i>삭제하기</a>'+
+            //         '<a href="#" class="text-muted ms-3" id="review-modify"><i class="bi bi-pencil me-1"></i>수정하기</a>';
+            //     $('#review-name').append(text);
+            // });
+        },
+        error: function (error) {
+            console.log(error)
+        }
+    });
+}
+
+function reviewEnroll(e) { // 리뷰 등록
     e.preventDefault();
     var data = {
         userId:9,

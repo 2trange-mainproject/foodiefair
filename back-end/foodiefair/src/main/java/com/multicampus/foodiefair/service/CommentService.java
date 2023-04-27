@@ -31,7 +31,7 @@ public class CommentService implements ICommentService {
     }
 
     @Override
-    public List<CommentDTO> commentRead(String productName, int userId) {
+    public List<CommentDTO> commentRead(String productName, int userId) { // 리펙토링 테이블 조인해서 resultMap 사용하기.
         log.info("commentRead");
         String productId = iProductDAO.findProductId(productName);
         int reviewId = iReviewDAO.findReviewId(productId, userId);

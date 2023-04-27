@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 @Log4j2
@@ -37,7 +40,10 @@ public class ReviewService implements IReviewService{
     }
 
     @Override
-    public int reviewRead() {
-        return 0;
+    public List<Map<String, Object>> reviewRead(String productId, int offset, int receiptImg, int sort) {
+        if(sort==0)
+            return iReviewDAO.DateReviewRead(productId, offset, receiptImg);
+        else
+            return iReviewDAO.LikeReviewRead(productId, offset, receiptImg);
     }
 }
