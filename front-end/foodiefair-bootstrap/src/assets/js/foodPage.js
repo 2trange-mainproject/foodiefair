@@ -76,6 +76,10 @@ $(".form-select").on("change", function() {
 });
 
 function loadProducts(page, sortOrder) {
+    // shop-filter.html 페이지의 JavaScript 코드
+    const searchKeyword = localStorage.getItem('searchKeyword');
+    console.log('검색 키워드:', searchKeyword);
+
     var filters = getSelectedFilters();
 
     var queryString = `?page=${page}&size=15`;
@@ -90,6 +94,10 @@ function loadProducts(page, sortOrder) {
 
     if (sortOrder) {
         queryString += `&sortOrder=${sortOrder}`;
+    }
+
+    if (searchKeyword) {
+        queryString += `&searchKeyword=${encodeURIComponent(searchKeyword)}`;
     }
 
     $.ajax({
