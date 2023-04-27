@@ -1,52 +1,58 @@
-$(".form-select").on("change", function() {
-    loadUsers(1, $(this).val());
+document.addEventListener("DOMContentLoaded", function () {
+    loadRankPageOne();
 });
 
-function loadUsers(page, topRank) {
-    var queryString = ``;
-
-    if (topRank) {
-        queryString += `?topRank=${topRank}`;
-    }
-
-    $.ajax({
-        url: `http://localhost:8081/api/reviewer-rank${queryString}`,
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-            var data = response.dtoList;
-
-            renderUsers(data);
-        },
-        error: function (error) {
-            console.log(error);
-        },
+// 이벤트를 처리하는 함수를 분리하여 다른 탭에서 이벤트를 추가할 수 있도록 합니다.
+function loadRankPageOne() {
+    $(".form-select").on("change", function() {
+        loadUsers(1, $(this).val());
     });
-}
 
-function renderUsers(data) {
-    var $productContainer = $('#productContainer');
-    $productContainer.empty();
-    var productHtml = '';
+    function loadUsers(page, topRank) {
+        var queryString = ``;
 
-    $.each(data, function(index, user) {
-        var myTag = JSON.parse(user.userTag).tag1;
-
-        var rankElement;
-
-        if (user.user_rank == 1) {
-            rankElement = `<img src="../assets/images/profile/one.jpg" class="mb-3 img-fluid d-inline" style="max-width: 150px;">`;
-        } else if (user.user_rank == 2) {
-            rankElement = `<img src="../assets/images/profile/two.jpg" class="mb-3 img-fluid d-inline" style="max-width: 150px;">`;
-        } else if (user.user_rank == 3) {
-            rankElement = `<img src="../assets/images/profile/three.jpg" class="mb-3 img-fluid d-inline" style="max-width: 150px;">`;
-        } else if (user.user_rank < 10) {
-            rankElement = `<div style="display:inline-block; font-size:48px; font-family: 'Single Day', cursive; color: #181818; padding-top:30px;padding-left:50px;margin-bottom:0; padding-right: 35px; white-space: nowrap;">${user.user_rank}위</div>`;
-        } else {
-            rankElement = `<div style="display:inline-block; font-size:48px; font-family: 'Single Day', cursive; color: #181818; padding-top:30px;padding-left:50px;margin-bottom:0; padding-right: 20px; white-space: nowrap;">${user.user_rank}위</div>`;
+        if (topRank) {
+            queryString += `?topRank=${topRank}`;
         }
 
-        productHtml += `
+        $.ajax({
+            url: `http://localhost:8081/api/reviewer-rank${queryString}`,
+            type: "GET",
+            dataType: "json",
+            success: function (response) {
+                var data = response.dtoList;
+
+                renderUsers(data);
+            },
+            error: function (error) {
+                console.log(error);
+            },
+        });
+    }
+
+    function renderUsers(data) {
+        var $productContainer = $('#productContainer');
+        $productContainer.empty();
+        var productHtml = '';
+
+        $.each(data, function(index, user) {
+            var myTag = JSON.parse(user.userTag).tag1;
+
+            var rankElement;
+
+            if (user.user_rank == 1) {
+                rankElement = `<img src="../assets/images/profile/one.jpg" class="mb-3 img-fluid d-inline" style="max-width: 150px;">`;
+            } else if (user.user_rank == 2) {
+                rankElement = `<img src="../assets/images/profile/two.jpg" class="mb-3 img-fluid d-inline" style="max-width: 150px;">`;
+            } else if (user.user_rank == 3) {
+                rankElement = `<img src="../assets/images/profile/three.jpg" class="mb-3 img-fluid d-inline" style="max-width: 150px;">`;
+            } else if (user.user_rank < 10) {
+                rankElement = `<div style="display:inline-block; font-size:48px; font-family: 'Single Day', cursive; color: #181818; padding-top:30px;padding-left:50px;margin-bottom:0; padding-right: 35px; white-space: nowrap;">${user.user_rank}위</div>`;
+            } else {
+                rankElement = `<div style="display:inline-block; font-size:48px; font-family: 'Single Day', cursive; color: #181818; padding-top:30px;padding-left:50px;margin-bottom:0; padding-right: 20px; white-space: nowrap;">${user.user_rank}위</div>`;
+            }
+
+            productHtml += `
             <div class="col">
                 <!-- card -->
                 <div class="card card-product" style="padding-top: 11px;">
@@ -96,17 +102,18 @@ function renderUsers(data) {
                 </div>
             </div>
           `;
-    });
+        });
 
-    var productListHtml = `
+        var productListHtml = `
       <div class="row g-4 row-cols-1 mt-2">
         ${productHtml}
       </div>
     `;
 
-    $productContainer.append(productListHtml);
-}
+        $productContainer.append(productListHtml);
+    }
 
-$(document).ready(function () {
-    loadUsers(1);
-});
+    $(document).ready(function () {
+        loadUsers(1);
+    });
+}
