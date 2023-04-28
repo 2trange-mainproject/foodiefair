@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/mypage/{userId}")
-@CrossOrigin(origins = "*")
+@CrossOrigin("http://localhost:3000")
 @RequiredArgsConstructor
 public class VisitedController {
 
@@ -45,8 +45,9 @@ public class VisitedController {
         }
     }
 
-    @DeleteMapping("/visited")
-    public ResponseEntity<String> removeVisited(@RequestParam Long visitedId) {
+    // RequestParam에 대한 key 설정을 제대로 해서 visitedId 받을 수 있게 해야한다.
+    @DeleteMapping("/visited/{visitedId}")
+    public ResponseEntity<String> removeVisited(@PathVariable("visitedId") Long visitedId) {
         int result = visitedService.removeVisited(visitedId);
         if (result == 1) {
             return ResponseEntity.ok("Visited removed successfully");

@@ -40,6 +40,14 @@ public class VisitedServiceImpl implements VisitedService{
 
     @Override
     public int removeVisited(Long visitedId) {
-        return visitedDAO.deleteVisited(visitedId);
+        int result = visitedDAO.deleteVisited(visitedId);
+        if (result == 1) {
+            System.out.println("Visited removed successfully with ID: " + visitedId);
+        } else if (result == 0){
+            System.out.println("Error removing visited with ID: " + visitedId);
+        } else {
+            System.out.println("result : "+result+"visitedId : " + visitedId);
+        }
+        return result;
     }
 }
