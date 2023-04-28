@@ -130,6 +130,7 @@ function renderProducts(data) {
     $.each(data, function(index, product) {
         var festivalText, festivalColor;
 
+        /* 체크 안되어있을 땐 모두 출력하기 위함
         var storeMatched = filters.stores.some(function(store) {
             return JSON.parse(product.fixedTag).store.includes(store);
         });
@@ -141,7 +142,8 @@ function renderProducts(data) {
         if (!storeMatched || !categoryMatched) {
             return;
         }
-
+        */
+        
         filteredProductCount++;
 
         if (product.productEvent === 1) {
