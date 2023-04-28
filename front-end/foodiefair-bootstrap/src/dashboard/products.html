@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-  @@include("../partials/head.html")
   <title>관리자 페이지</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  @@include("../partials/head.html")
 </head>
 
 <body>
@@ -42,7 +43,7 @@
           </div>
         </div>
         <!-- row -->
-        <div class="row ">
+        <div class="row" style="width: 105%">
           <div class="col-xl-12 col-12 mb-5">
             <!-- card -->
             <div class="card h-100 card-lg">
@@ -54,15 +55,16 @@
                       <input class="form-control" type="search" placeholder="검색할 상품을 입력하세요." aria-label="Search">
                     </form>
                   </div>
-                  <!-- select option -->
-                  <!--<div class="col-lg-2 col-md-4 col-12">
+                  <div class="col-lg-2 col-md-4 col-12">
+                    <!-- main -->
                     <select class="form-select">
-                      <option selected>Status</option>
-                      <option value="1">Active</option>
-                      <option value="2">Deactive</option>
-                      <option value="3">Draft</option>
+                      <option value="dateDESC" selected>최신 등록순</option>
+                      <option value="productIdASC">상품 ID 오름차순</option>
+                      <option value="productIdDESC">상품 ID 내림차순</option>
+                      <option value="priceASC">가격 오름차순</option>
+                      <option value="priceDESC">가격 내림차순</option>
                     </select>
-                  </div>-->
+                  </div>
                 </div>
               </div>
               <!-- card body -->
@@ -90,359 +92,22 @@
                         <th></th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="productOne">
-                            <label class="form-check-label" for="productOne">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-1.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">샌)뉴대만식연유</a></td>
-                        <td>#CU, #GS25, #간편식사, #샌드위치</td>
-                        <td>2,600원</td>
-                        <td>2023/04/13</td>
-                        <td>신상품</td>
-                        <td>AB0112</td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="productTwo">
-                            <label class="form-check-label" for="productTwo">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-2.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">샌)뉴대만식연유</a></td>
-                        <td>#CU, #GS25, #간편식사, #샌드위치</td>
-                        <td>2,600원</td>
-                        <td>2023/04/13</td>
-                        <td>신상품</td>
-                        <td>AB0112</td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="productThree">
-                            <label class="form-check-label" for="productThree">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-3.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">김)상디의 볼케이노 김밥</a></td>
-                        <td>#CU, #김밥, #간편식사</td>
-
-                        <td>3,200원</td>
-                        <td>2023/04/01</td>
-                        <td>신상품</td>
-                        <td>AD1231</td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="productFour">
-                            <label class="form-check-label" for="productFour">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-4.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">샌)뉴대만식연유</a></td>
-                        <td>#CU, #GS25, #간편식사, #샌드위치</td>
-                        <td>2,600원</td>
-                        <td>2023/04/13</td>
-                        <td>신상품</td>
-                        <td>AB0112</td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="productFive">
-                            <label class="form-check-label" for="productFive">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-5.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">샌)뉴대만식연유</a></td>
-                        <td>#CU, #GS25, #간편식사, #샌드위치</td>
-                        <td>2,600원</td>
-                        <td>2023/04/13</td>
-                        <td>신상품</td>
-                        <td>AB0112</td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="productSix">
-                            <label class="form-check-label" for="productSix">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-6.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">샌)뉴대만식연유</a></td>
-                        <td>#CU, #GS25, #간편식사, #샌드위치</td>
-                        <td>2,600원</td>
-                        <td>2023/04/13</td>
-                        <td>신상품</td>
-                        <td>AB0112</td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="productSeven">
-                            <label class="form-check-label" for="productSeven">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-7.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">샌)뉴대만식연유</a></td>
-                        <td>#CU, #GS25, #간편식사, #샌드위치</td>
-                        <td>2,600원</td>
-                        <td>2023/04/13</td>
-                        <td>신상품</td>
-                        <td>AB0112</td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="productEight">
-                            <label class="form-check-label" for="productEight">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-8.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">샌)뉴대만식연유</a></td>
-                        <td>#CU, #GS25, #간편식사, #샌드위치</td>
-                        <td>2,600원</td>
-                        <td>2023/04/13</td>
-                        <td>신상품</td>
-                        <td>AB0112</td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="productNine">
-                            <label class="form-check-label" for="productNine">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-9.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">샌)뉴대만식연유</a></td>
-                        <td>#CU, #GS25, #간편식사, #샌드위치</td>
-                        <td>2,600원</td>
-                        <td>2023/04/13</td>
-                        <td>신상품</td>
-                        <td>AB0112</td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="productTen">
-                            <label class="form-check-label" for="productTen">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <a href="#!"> <img src="../assets/images/products/product-img-10.jpg" alt=""
-                              class="icon-shape icon-md"></a>
-                        </td>
-                        <td><a href="#" class="text-reset">샌)뉴대만식연유</a></td>
-                        <td>#CU, #GS25, #간편식사, #샌드위치</td>
-                        <td>2,600원</td>
-                        <td>2023/04/13</td>
-                        <td>신상품</td>
-                        <td>AB0112</td>
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
+                    <tbody id="productContainer">
+                    <script src="@@webRoot/assets/js/dashboards/productManage.js"></script>
                     </tbody>
                   </table>
 
                 </div>
               </div>
               <div class=" border-top d-md-flex justify-content-between align-items-center px-6 py-6">
-                <span>Showing 1 to 8 of 12 entries</span>
-                <nav class="mt-2 mt-md-0">
-                  <ul class="pagination mb-0 ">
-                    <li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>
-                    <li class="page-item"><a class="page-link active" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Next</a></li>
+                <span></span>
+                <nav>
+                  <ul class="pagination">
                   </ul>
                 </nav>
               </div>
             </div>
-
           </div>
-
         </div>
       </div>
     </main>

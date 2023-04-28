@@ -88,16 +88,9 @@
                   <input type="text" class="form-control" id="product-tag" placeholder="상품 태그(JSON)를 입력하세요." required>
                 </div>
                 <div>
-                  <div class="mb-3 ">
-                    <!-- heading -->
+                  <div class="mb-3">
                     <label class="form-label">상품 사진</label>
-
-                    <!-- input -->
-                    <form action="#" class="d-block dropzone border-dashed rounded-2 ">
-                      <div class="fallback">
-                        <input name="product-img" type="file" multiple>
-                      </div>
-                    </form>
+                    <input type="file" class="form-control" id="product-img" accept="image/*">
                   </div>
                 </div>
               </div>
@@ -124,17 +117,6 @@
   $(document).ready(function() {
     var productImgUrl;  //이미지 url 저장용
 
-    // 이미지를 /api/upload-image API로 보내도록 Dropzone을 구성
-    Dropzone.options.myDropzone = {
-      url: "http://localhost:8081/api/upload-image",
-      paramName: "product-img",
-      maxFilesize: 5, // MB
-      acceptedFiles: "image/*",
-      success: function (file, response) {
-        productImgUrl = response.url; // 백엔드에서 받은 이미지 URL 저장
-      },
-    };
-
     $("#add-product").on('click', function(e) {
       // 입력된 정보 가져오기
       var productId = $("#product-id").val();
@@ -142,21 +124,24 @@
       var productPrice = $("#product-price").val();
       var productFestival = $("#product-festival").val();
       var productTag = $("#product-tag").val();
+      var productImg = $("#product-img")[0].files[0];
+
+      // FormData 객체 생성
+      var formData = new FormData();
+      formData.append("productId", productId);
+      formData.append("productName", productName);
+      formData.append("productPrice", productPrice);
+      formData.append("productFestival", productFestival);
+      formData.append("productTag", productTag);
+      formData.append("productImg", productImg); // 이미지 파일 추가
 
       // Ajax를 이용해 서버로 정보 전송
       $.ajax({
         type: "POST",
-        url: "http://localhost:8081/api/add-product",
-        contentType: "application/json", // 데이터 형식을 JSON으로 지정
-        data: JSON.stringify({
-          // 데이터를 JSON 형식으로 변환
-          productId: productId,
-          productName: productName,
-          productPrice: productPrice,
-          productFestival: productFestival,
-          productTag: productTag,
-          productImg: productImgUrl, // 저장된 이미지 url 사용
-        }),
+        url: "http://localhost:8081/dashboard/product-add",
+        processData: false, // 필수: FormData 사용 시 false로 설정
+        contentType: false, // 필수: FormData 사용 시 false로 설정
+        data: formData,
         success: function(response) {
           console.log(response);
         },

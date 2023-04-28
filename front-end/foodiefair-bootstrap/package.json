@@ -60,5 +60,6 @@
     "slick-carousel": "^1.8.1",
     "tiny-slider": "^2.9.4",
     "wnumb": "^1.2.0"
-  }
+  },
+  "proxy": "http://localhost:8081"
 }
