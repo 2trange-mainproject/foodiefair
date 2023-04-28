@@ -1,6 +1,6 @@
 function renderUsers(data) {
     let $rankingContainer = $('#rankingContainer');
-    $rankingContainer.empty();
+    $rankingContainer.addClass("d-flex gap-4");
 
     $.each(data, function (index, user) {
         if (user.user_rank === 1 || user.user_rank === 2 || user.user_rank === 3) {
@@ -8,7 +8,7 @@ function renderUsers(data) {
 
             let indexRankHtml = `
            <div class="col">
-            <div class="card card-product">
+            <div class="card card-product" style="min-width: 310px">
               <div class="card-body">
                 <div class="text-center  position-relative "> <a href="./pages/mypage.html">
                 <img src="${user.userImg}" style="max-width: 220px" alt="rank${user.user_rank}" class="mb-3 img-fluid"></a>
@@ -35,16 +35,20 @@ function renderUsers(data) {
           </div>
             `;
 
-            $rankingContainer.append(indexRankHtml);
-/*
+            let indexRankingListHtml = `
+            ${indexRankHtml}
+    `;
+            $rankingContainer.append(indexRankingListHtml);
+
             // 타이머 관련 코드 추가
-            $('.deals-countdown').each(function () {
+            $("[data-countdown]").each(function () {
                 var $this = $(this),
-                    finalDate = $(this).data('countdown');
+                    finalDate = $(this).data("countdown");
                 $this.countdown(finalDate, function (event) {
-                    $this.html(event.strftime('%D days %H:%M:%S'));
+                    $(this).html(event.strftime("" + '<span class="countdown-section"><span class="countdown-amount hover-up">%D</span><span class="countdown-period"> days </span></span>' + '<span class="countdown-section"><span class="countdown-amount hover-up">%H</span><span class="countdown-period"> hours </span></span>' + '<span class="countdown-section"><span class="countdown-amount hover-up">%M</span><span class="countdown-period"> mins </span></span>' + '<span class="countdown-section"><span class="countdown-amount hover-up">%S</span><span class="countdown-period"> sec </span></span>'));
                 });
-            });*/
+            });
+
         }
     });
 }
