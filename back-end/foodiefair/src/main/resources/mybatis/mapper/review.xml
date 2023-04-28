@@ -15,6 +15,8 @@
     </delete>
 
     <resultMap id="reviewReader" type="java.util.Map">
+        <result column="reviewId" property="reviewId"/>
+        <result column="commentNum" property="commentNum"/>
         <result column="userName" property="userName"/>
         <result column="userImg" property="userImg"/>
         <result column="reviewDate" property="reviewDate"/>
@@ -24,10 +26,14 @@
         <result column="reviewImg" property="reviewImg"/>
         <result column="reviewLikes" property="reviewLikes"/>
     </resultMap>
-    <select id="DateReviewRead" resultMap="reviewReader">
-        SELECT user.userName, user.userImg, review.reviewDate, review.reviewTitle, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes FROM user INNER JOIN (SELECT * FROM review WHERE productId=#{productId}) review ON user.userId = review.userId WHERE review.receiptImg = #{receiptImg} order by review.reviewDate desc;
+    <select id="dateReviewRead" resultMap="reviewReader">
+        SELECT review.reviewId, IFNULL(comment.commentNum, 0) as commentNum, user.userName, user.userImg, review.reviewDate, review.reviewTitle, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes FROM user INNER JOIN (SELECT * FROM review WHERE productId=#{productId}) review ON user.userId = review.userId LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = review.reviewId WHERE review.receiptImg = #{receiptImg} order by review.reviewId desc;
     </select>
-    <select id="LikeReviewRead" resultMap="reviewReader">
-        SELECT user.userName, user.userImg, review.reviewDate, review.reviewTitle, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes FROM user INNER JOIN (SELECT * FROM review WHERE productId=#{productId}) review ON user.userId = review.userId WHERE review.receiptImg = #{receiptImg} order by review.reviewLikes desc;
+    <select id="likeReviewRead" resultMap="reviewReader">
+        SELECT review.reviewId, IFNULL(comment.commentNum, 0) as commentNum, user.userName, user.userImg, review.reviewDate, review.reviewTitle, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes FROM user INNER JOIN (SELECT * FROM review WHERE productId=#{productId}) review ON user.userId = review.userId LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = review.reviewId WHERE review.receiptImg = #{receiptImg} order by review.reviewLikes desc;
+    </select>
+
+    <select id="reviewCount" resultType="int">
+        SELECT COUNT(*) reviewCount FROM review WHERE productId=${productId};
     </select>
 </mapper>

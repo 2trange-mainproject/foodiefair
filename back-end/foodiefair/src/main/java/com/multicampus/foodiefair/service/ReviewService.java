@@ -24,6 +24,11 @@ public class ReviewService implements IReviewService{
     }
 
     @Override
+    public int reviewCount(String productId) {
+        return iReviewDAO.reviewCount(productId);
+    }
+
+    @Override
     public int reviewInsert(ReviewDTO reviewDTO) {
         log.info("reviewInsertService");
         return iReviewDAO.reviewInsert(reviewDTO);
@@ -41,9 +46,12 @@ public class ReviewService implements IReviewService{
 
     @Override
     public List<Map<String, Object>> reviewRead(String productId, int offset, int receiptImg, int sort) {
-        if(sort==0)
-            return iReviewDAO.DateReviewRead(productId, offset, receiptImg);
-        else
-            return iReviewDAO.LikeReviewRead(productId, offset, receiptImg);
+        if(sort==0) {
+            log.info(iReviewDAO.dateReviewRead(productId, offset, receiptImg));
+            return iReviewDAO.dateReviewRead(productId, offset, receiptImg);
+        } else {
+            log.info(iReviewDAO.dateReviewRead(productId, offset, receiptImg));
+            return iReviewDAO.likeReviewRead(productId, offset, receiptImg);
+        }
     }
 }

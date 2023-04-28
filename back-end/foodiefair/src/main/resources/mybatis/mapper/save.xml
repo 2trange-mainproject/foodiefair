@@ -11,6 +11,6 @@
     </delete>
 
     <select id="savedCount" resultType="int">
-        SELECT count(*) FROM Saved WHERE productId=#{productId};
+        SELECT count(*) saved FROM Saved WHERE productId=#{productId};
     </select>
 </mapper>
