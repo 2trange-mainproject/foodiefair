@@ -40425,3 +40425,11 @@ span.flatpickr-weekday {
 .follow-text {
   vertical-align: middle;
 }
+
+/* 검색어 버튼 */
+#reset-search {
+  border: 1px solid #e2e5e4;
+  border-radius: 10px;
+  box-shadow : none;
+  padding: 9px 25px;  /* 위아래 여백 9px, 좌우 여백 25px */
+}

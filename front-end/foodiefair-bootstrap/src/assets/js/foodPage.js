@@ -1,3 +1,16 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // LocalStorage에서 저장된 검색 키워드 값을 가져옵니다.
+    const searchKeyword = localStorage.getItem('searchKeyword');
+
+    // 검색 키워드 값을 검색창에 설정합니다.
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.value = searchKeyword;
+    }
+
+    toggleResetSearchButton();
+});
+
 function getSelectedFilters() {
     var stores = [];
     var categories = [];
@@ -74,6 +87,57 @@ $("input[type='checkbox']").on("change", function () {
 $(".form-select").on("change", function() {
     loadProducts(1, $(this).val());
 });
+
+//페이지 새로고침 시 검색어 초기화
+window.addEventListener('beforeunload', function () {
+    localStorage.removeItem('searchKeyword');
+});
+
+//'검색어 초기화' 버튼 눌렀을 때
+document.getElementById('reset-search').addEventListener('click', function () {
+    // LocalStorage에서 검색어를 삭제
+    localStorage.removeItem('searchKeyword');
+
+   // 입력 필드의 값을 초기화
+    const searchInput = document.getElementById('search-input');
+    searchInput.value = '';
+
+    //검색어 없을 때 버튼 없애기
+    toggleResetSearchButton();
+
+    // 페이지를 새로고침하거나 데이터를 다시 불러오기
+    loadProducts(1);
+});
+
+function toggleResetSearchButton() {
+    const searchKeyword = localStorage.getItem('searchKeyword');
+    const resetSearchButton = document.getElementById('reset-search');
+
+    if (searchKeyword && searchKeyword.length > 0) {
+        resetSearchButton.style.display = 'block';
+    } else {
+        resetSearchButton.style.display = 'none';
+    }
+}
+
+//shop-filter.html에서도 검색어 사용할 수 있게 만드는 기능
+document.getElementById('search-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    updateSearchKeyword();
+});
+
+document.getElementById('search-button').addEventListener('click', function () {
+    updateSearchKeyword();
+});
+
+function updateSearchKeyword() {
+    const searchInput = document.getElementById('search-input');
+    const keyword = searchInput.value;
+
+    // LocalStorage를 사용하여 키워드 값을 저장합니다.
+    localStorage.setItem('searchKeyword', keyword);
+}
+
 
 function loadProducts(page, sortOrder) {
     // shop-filter.html 페이지의 JavaScript 코드
