@@ -26,7 +26,7 @@ $(document).ready(async function () {
         }
     }, 250));
 
-    setActiveTab();
+    getActiveTab();
 });
 
 async function fetchFollowData(userId, type, lastFollowId, perPage) {
@@ -139,7 +139,7 @@ function debounce(func, wait) {
     };
 }
 
-function setActiveTab() {
+function getActiveTab() {
     const activeTabId = localStorage.getItem('activeTab');
     if (activeTabId) {
         // Remove the 'active' class from all tabs
