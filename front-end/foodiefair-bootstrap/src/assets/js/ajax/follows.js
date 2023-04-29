@@ -1,4 +1,4 @@
-const userId = 1;
+let userId = 1;
 
 $(document).ready(async function () {
     try {
@@ -25,11 +25,9 @@ $(document).ready(async function () {
             }
         }
     }, 250));
+
+    setActiveTab();
 });
-
-// 스크롤 이벤트를 추가하여 사용자가 페이지 하단에 도달하면 추가 팔로워 데이터를 로드합니다.
-$(window).on('scroll', debouncedLoadMoreFollowData);
-
 
 async function fetchFollowData(userId, type, lastFollowId, perPage) {
     try {
@@ -139,4 +137,17 @@ function debounce(func, wait) {
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
+}
+
+function setActiveTab() {
+    const activeTabId = localStorage.getItem('activeTab');
+    if (activeTabId) {
+        // Remove the 'active' class from all tabs
+        $('.nav-link').removeClass('active');
+        $('.tab-pane').removeClass('show active');
+
+        // Add the 'active' class to the selected tab and its pane
+        $(`#${activeTabId}`).addClass('active');
+        $(`#${activeTabId}-pane`).addClass('show active');
+    }
 }

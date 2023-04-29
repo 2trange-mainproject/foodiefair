@@ -1,9 +1,5 @@
-const userId = 1;
-const loggedUserId = 13;
-const API_BASE_URL = "http://localhost:8081"; // Change this to your server's base URL
 let currentPage = 1;
 const pageSize = 5;
-
 
 // 방문 기록 리스트의 DOM 요소
 const visitedListElement = document.getElementById("visited-list");
@@ -177,14 +173,14 @@ async function displayVisitedList(userId, page, pageSize) {
 }
 
 async function fetchVisitedList(userId, page = 1, size = 5) {
-    const response = await fetch(`${API_BASE_URL}/mypage/${userId}/visited?page=${page}&size=${size}`);
+    const response = await fetch(`http://localhost:8081/mypage/${userId}/visited?page=${page}&size=${size}`);
     return await response.json();
 }
 
 async function registerVisited(ownerId, visitedContent) {
     try {
         const visitedDate = new Date().toISOString().split("T")[0];
-        const response = await fetch(`${API_BASE_URL}/mypage/${ownerId}/visited`, {
+        const response = await fetch(`http://localhost:8081/mypage/${ownerId}/visited`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -206,7 +202,7 @@ async function registerVisited(ownerId, visitedContent) {
 
 async function deleteVisited(visitedId, currentPage, pageSize) {
     try {
-        const response = await fetch(`${API_BASE_URL}/mypage/${userId}/visited/${visitedId}`, {
+        const response = await fetch(`http://localhost:8081/mypage/${userId}/visited/${visitedId}`, {
             method: "DELETE",
         });
 

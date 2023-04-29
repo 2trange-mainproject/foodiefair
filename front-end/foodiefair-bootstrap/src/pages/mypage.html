@@ -58,18 +58,18 @@
                 <!-- Banner Content -->
                 <!-- Follows Content -->
                 <div>
-                  <ul class="nav nav-pills nav-lb-tab justify-content-center flex-nowrap" id="myTTab" role="tablist">
+                  <ul class="nav nav-pills nav-lb-tab justify-content-center flex-nowrap" role="tablist">
                     <!-- nav item -->
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
                       <!-- btn -->
-                      <button class="nav-link active fs-6 text-nowrap" id="followers-tab" data-bs-toggle="tab" data-bs-target="#followers-tab-pane" type="button" role="tab" aria-controls="followers-tab-pane" aria-selected="false">팔로워 500명
-                      </button>
+                      <a class="nav-link fs-6 text-nowrap" id="followers-tab" href="follows.html?activeTab=followers-tab" role="tab" aria-controls="followers-tab-pane" aria-selected="false">팔로워</a>
+
                     </li>
                     <!-- nav item -->
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
                       <!-- btn -->
-                      <button class="nav-link fs-6 text-nowrap" id="followings-tab" data-bs-toggle="tab" data-bs-target="#followings-tab-pane" type="button" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉 500명
-                      </button>
+                      <a class="nav-link fs-6 text-nowrap" id="followings-tab" href="follows.html?activeTab=followings-tab" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -474,29 +474,6 @@
                   </tr>
                   </thead>
                   <tbody id="visited-list">
-                  <tr>
-                    <td>Joon</td>
-                    <td class="px-14">
-                      <div class="mb-2">
-                        <span class="text-truncate">나는 아직 배고파요</span>
-                      </div>
-                    </td>
-                    <td class="text-end">2023.04.17</td>
-                    <td class="text-end">
-                      <div class="dropdown">
-                        <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="feather-icon icon-more-vertical fs-5"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              <i class="bi bi-trash me-3"></i>삭제
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
                   </tbody>
                 </table>
               </div>
@@ -534,6 +511,10 @@
   @@include("../partials/footer.html")
 
   <!-- Javascript-->
+  <script>
+    var userId=1;
+    var loggedUserId=13;
+  </script>
   <script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
   <script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
   @@include("../partials/scripts.html")
@@ -541,7 +522,7 @@
   <script src="@@webRoot/assets/js/vendors/tns-slider.js"></script>
   <script src="@@webRoot/assets/js/vendors/zoom.js"></script>
   <script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
-  <script src="@@webRoot/assets/js/buttons/mypage-follows.js"></script>
+  <script src="@@webRoot/assets/js/ajax/mypage-follows.js"></script>
   <script src="@@webRoot/assets/js/ajax/visited.js"></script>
 
 
