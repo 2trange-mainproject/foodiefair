@@ -28,7 +28,7 @@ public class CommentController {
         return ResponseEntity.ok("comment success");
     }
 
-    @DeleteMapping()
+    @DeleteMapping() //댓글 삭제
     public ResponseEntity<String> commentDelete(@PathVariable int commentId) {
         log.info(commentId);
         commentService.commentDelete(commentId);

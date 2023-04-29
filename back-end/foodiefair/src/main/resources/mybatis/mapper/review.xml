@@ -27,10 +27,16 @@
         <result column="reviewLikes" property="reviewLikes"/>
     </resultMap>
     <select id="dateReviewRead" resultMap="reviewReader">
-        SELECT review.reviewId, IFNULL(comment.commentNum, 0) as commentNum, user.userName, user.userImg, review.reviewDate, review.reviewTitle, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes FROM user INNER JOIN (SELECT * FROM review WHERE productId=#{productId}) review ON user.userId = review.userId LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = review.reviewId WHERE review.receiptImg = #{receiptImg} order by review.reviewId desc;
+        SELECT review.reviewId, IFNULL(comment.commentNum, 0) as commentNum, user.userName, user.userImg, review.reviewDate, review.reviewTitle, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes
+        FROM user INNER JOIN (SELECT * FROM review WHERE productId=#{productId}) review ON user.userId = review.userId
+        LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = review.reviewId
+        WHERE review.receiptImg = #{receiptImg} order by review.reviewId desc LIMIT 3 OFFSET ${offset};
     </select>
     <select id="likeReviewRead" resultMap="reviewReader">
-        SELECT review.reviewId, IFNULL(comment.commentNum, 0) as commentNum, user.userName, user.userImg, review.reviewDate, review.reviewTitle, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes FROM user INNER JOIN (SELECT * FROM review WHERE productId=#{productId}) review ON user.userId = review.userId LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = review.reviewId WHERE review.receiptImg = #{receiptImg} order by review.reviewLikes desc;
+        SELECT review.reviewId, IFNULL(comment.commentNum, 0) as commentNum, user.userName, user.userImg, review.reviewDate, review.reviewTitle, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes
+        FROM user INNER JOIN (SELECT * FROM review WHERE productId=#{productId}) review ON user.userId = review.userId
+        LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = review.reviewId
+        WHERE review.receiptImg = #{receiptImg} order by review.reviewLikes desc LIMIT 3 OFFSET ${offset};
     </select>
 
     <select id="reviewCount" resultType="int">
