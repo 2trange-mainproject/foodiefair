@@ -28,7 +28,14 @@ function reviewPageCount() { // 리뷰 더보기 offset 저장해두기 위한 �
 $(document).ready(function() {
     productInfo();
     $('#product-name').on('click', '.btn-dib', saveTrueFalse); // 찜 토글, 동적으로 페이지가 만들어지는 경우 부모 id를 통해 이벤트 발생 여부 체크
-    $('#comment-enroll').click(commentEnroll); // 댓글 등록
+    $('#receipt-review').on('click', '.btn-comment', function(e) {
+        if(!$(e.target).hasClass('collapsed'))
+            commentRead(e);
+        else
+            e.target.parentNode.parentNode.nextElementSibling.innerHTML='';
+    }); // 인증 리뷰 댓글 버튼 눌렀을 때
+    $('#receipt-review').on('click', '.btn-comment-enroll', commentEnroll); // 인증 리뷰 댓글 등록
+    $('#common-review').on('click', '.btn-comment-enroll', commentEnroll); // 일반 리뷰 댓글 등록
     $('.btn-comment-delete').click(commentDelete); // 댓글 삭제
     $('#receipt-review').on('click', '.btn-like', commentLike);// 인증 댓글 좋아요 토글
     $('#common-review').on('click', '.btn-like', commentLike);// 일반 댓글 좋아요 토글
@@ -38,12 +45,12 @@ $(document).ready(function() {
     });
 
     window.pageCount = reviewPageCount(); // 페이지 DOM 객체 생성시 클로저 변수 생성 (document.read 가 DOM을 만듦)
+
     $('#review-enroll').click(reviewEnroll); // 리뷰 등록
     $('#receipt-tab').click(receiptReviewRead); // 인증 리뷰 가져오기
     $('#common-tab').click(commonReviewRead); // 일반 리뷰 가져오기
     $('#receipt-more').click(receiptMoreReview); // 인증 리뷰 더보기
     $('#common-more').click(commonMoreReview); // 일반 리뷰 더보기
-
 
     $('#receipt-type').change(function (e) { // 인증 리뷰 정렬
         e.stopPropagation();
@@ -184,7 +191,7 @@ function receiptReviewRead() { // 인증 리뷰
                         <div class="d-flex justify-content-end mt-4 pb-6">
   <!--                        <a href="#" class="text-muted"><i class="bi bi-chat-left-text me-1"></i>더보기</a>-->
                           <div class="mx-4">
-                            <a href="#" class="text-muted" data-bs-toggle="collapse" data-bs-target="#${item.reviewId}"><i class="bi bi-chat-dots me-1"></i>댓글
+                            <a href="#" class="text-muted btn-comment" data-bs-toggle="collapse" data-bs-target="#${item.reviewId}"><i class="bi bi-chat-dots me-1"></i>댓글
                               <span class="translate-middle-y badge rounded-pill bg-pink-300">${item.commentNum}</span>
                             </a>
                           </div>
@@ -195,23 +202,6 @@ function receiptReviewRead() { // 인증 리뷰
                           </div>
                         </div>
                         <div class="collapse ms-15 pb-6 mb-6" id="${item.reviewId}">
-                          <div class="border-bottom pb-4 mb-4">
-                            <h6>
-                              Shankar Subbaraman<a href="#" class="text-muted ms-3 btn-comment-delete"><i class="bi bi-trash me-1"></i>삭제하기</a>
-                            </h6>
-                            <div>
-                              <p class="text-dark mb-1">무게 주작 함</p>
-                            </div>
-                            <div class="small text-muted">30 December 2022</div>
-                          </div>
-                          <div class="row g-3">
-                            <div class="col-sm-11">
-                              <input type="text" id="comment" class="form-control" placeholder="댓글을 작성해주세요.">
-                            </div>
-                            <div class="col-sm">
-                              <button type="button" id="comment-enroll" class="btn btn-outline-secondary form-control-sm"><i class="bi bi-check2"></i></button>
-                            </div>
-                          </div>
                         </div>`;
 
                 if(window.pageCount.receiptVal()==0 && $('#receipt-review').children().length == 9) {
@@ -304,7 +294,7 @@ function commonReviewRead() { // 일반 리뷰
                         <div class="d-flex justify-content-end mt-4 pb-6">
   <!--                        <a href="#" class="text-muted"><i class="bi bi-chat-left-text me-1"></i>더보기</a>-->
                           <div class="mx-4">
-                            <a href="#" class="text-muted" data-bs-toggle="collapse" data-bs-target="#${item.reviewId}"><i class="bi bi-chat-dots me-1"></i>댓글
+                            <a href="#" class="text-muted btn-comment" data-bs-toggle="collapse" data-bs-target="#${item.reviewId}"><i class="bi bi-chat-dots me-1"></i>댓글
                               <span class="translate-middle-y badge rounded-pill bg-pink-300">${item.commentNum}</span>
                             </a>
                           </div>
@@ -315,23 +305,6 @@ function commonReviewRead() { // 일반 리뷰
                           </div>
                         </div>
                         <div class="collapse ms-15 pb-6 mb-6" id="${item.reviewId}">
-                          <div class="border-bottom pb-4 mb-4">
-                            <h6>
-                              Shankar Subbaraman<a href="#" class="text-muted ms-3 btn-comment-delete"><i class="bi bi-trash me-1"></i>삭제하기</a>
-                            </h6>
-                            <div>
-                              <p class="text-dark mb-1">무게 주작 함</p>
-                            </div>
-                            <div class="small text-muted">30 December 2022</div>
-                          </div>
-                          <div class="row g-3">
-                            <div class="col-sm-11">
-                              <input type="text" id="comment" class="form-control" placeholder="댓글을 작성해주세요.">
-                            </div>
-                            <div class="col-sm">
-                              <button type="button" id="comment-enroll" class="btn btn-outline-secondary form-control-sm"><i class="bi bi-check2"></i></button>
-                            </div>
-                          </div>
                         </div>`;
 
                 if(window.pageCount.commonVal()==0 && $('#common-review').children().length == 9) {
@@ -349,15 +322,18 @@ function commonReviewRead() { // 일반 리뷰
 
 // 리뷰 기능 끝
 
-function commentEnroll() { // 댓글 등록
+function commentEnroll(event) { // 댓글 등록
+    let target = event.target;
+    if (target.parentNode.previousElementSibling.childNodes.item(1).value=='')
+        return false;
+
     var data = {
-        //commentId:1, auto increment 때문에 필요 없음.
-        writerId:'sui',
-        reviewerId:'messi',
-        comment:$('#comment').val()
+        userId:20,
+        reviewId:Number(target.parentNode.parentNode.parentNode.id),
+        commentContent:target.parentNode.previousElementSibling.childNodes.item(1).value
     }
     $.ajax({
-        url:'http://localhost:8081/products/comment',
+        url:'http://localhost:8081/products/comment/',
         type:'post',
         contentType:'application/json',
         data:JSON.stringify(data),
@@ -369,6 +345,45 @@ function commentEnroll() { // 댓글 등록
         }
     });
 };
+
+function commentRead(event) {
+    let reviewId = Number(event.target.getAttribute('data-bs-target').substring(1));
+    $.ajax({
+        url:'http://localhost:8081/products/comment/'+reviewId,
+        type:'get',
+        success: function (data) {
+            let parent = event.target.parentNode.parentNode.nextElementSibling;
+
+            $.each(data, function (index, item) {
+                let comment = document.createElement('div');
+                comment.innerHTML = `<div class="border-bottom pb-4 mb-4">
+                            <h6>
+                              ${item.userName}<a href="#" class="text-muted ms-3 btn-comment-delete"><i class="bi bi-trash me-1"></i>삭제하기</a>
+                            </h6>
+                            <div>
+                              <p class="text-dark mb-1">${item.commentContent}</p>
+                            </div>
+                            <div class="small text-muted">${item.commentDate}</div>
+                          </div>`;
+                parent.append(comment);
+            });
+
+            let commentEnroll = document.createElement('div');
+            commentEnroll.innerHTML = `                          <div class="row g-3">
+                            <div class="col-sm-11">
+                              <input type="text" class="form-control" placeholder="댓글을 작성해주세요.">
+                            </div>
+                            <div class="col-sm">
+                              <button type="button" class="btn btn-outline-secondary form-control-sm btn-comment-enroll"><i class="bi bi-check2"></i></button>
+                            </div>
+                          </div>`;
+            parent.append(commentEnroll);
+        },
+        error: function(data) {
+            console.log(data)
+        }
+    });
+}
 
 function commentDelete(e) { // 댓글 삭제
     e.preventDefault();

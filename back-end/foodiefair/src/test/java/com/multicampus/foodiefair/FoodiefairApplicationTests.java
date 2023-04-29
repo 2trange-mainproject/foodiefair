@@ -35,13 +35,4 @@ class FoodiefairApplicationTests {
         int reviewId = iReviewDAO.findReviewId(productId, userId);
         log.info(reviewId);
     }
-
-    @Test
-    void findComment() {
-        int reviewId=5;
-        List<CommentDTO> commentDTOList = iCommentDAO.commentRead(reviewId);
-        for (CommentDTO commentDTO : commentDTOList) {
-            log.info(commentDTO.getCommentContent());
-        }
-    }
 }

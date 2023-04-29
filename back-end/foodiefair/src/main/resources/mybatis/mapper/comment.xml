@@ -3,14 +3,22 @@
 
 <mapper namespace="com.multicampus.foodiefair.dao.ICommentDAO">
     <insert id="commentInsert">
-        INSERT INTO Comment (userId, reviewId, commentContent) VALUES (22, 22, 'commentContent 22');
+        INSERT INTO Comment (userId, reviewId, commentContent) VALUES (#{userId}, #{reviewId}, #{commentContent});
     </insert>
 
     <delete id="commentDelete">
         DELETE FROM Comment WHERE commentId=21;
     </delete>
 
-    <select id="commentRead" resultType="com.multicampus.foodiefair.dto.CommentDTO">
-        SELECT reviewId, userId, commentContent FROM Comment WHERE reviewId=#{reviewId} order by commentDate asc;
+    <resultMap id="commentList" type="java.util.Map">
+        <result column="commentId" property="commentId"/>
+        <result column="userName" property="userName"/>
+        <result column="commentContent" property="commentContent"/>
+        <result column="commentDate" property="commentDate"/>
+    </resultMap>
+    <select id="commentRead" resultMap="commentList">
+        SELECT user.userName, comment.commentContent, comment.commentDate, comment.commentId
+        FROM comment INNER JOIN user ON user.userId = comment.userId
+        WHERE reviewId=#{reviewId} order by commentId asc;
     </select>
 </mapper>

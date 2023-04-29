@@ -3,9 +3,10 @@ package com.multicampus.foodiefair.service;
 import com.multicampus.foodiefair.dto.CommentDTO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ICommentService {
     int commentInsert(CommentDTO commentDTO);
     int commentDelete(int CommentId);
-    List<CommentDTO> commentRead(String productName, int userId);
+    List<Map<String, Object>> commentRead(int reviewId);
 }

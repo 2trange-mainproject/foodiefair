@@ -11,9 +11,9 @@ import java.time.LocalDate;
 public class CommentDTO {
     private int commentId;
     @NotNull
-    private String userId;
+    private int userId;
     @NotNull
-    private String reviewId;
+    private int reviewId;
     @NotNull
     private String commentContent;
     private LocalDate commentDate;

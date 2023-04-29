@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -35,9 +37,9 @@ public class CommentController {
         return ResponseEntity.ok("comment delete");
     }
 
-    @GetMapping() // 프론트 할 때 추가 해야 함
-    public ResponseEntity<String> commentRead(String productName, int userId) {
-        commentService.commentRead(productName, userId);
-        return ResponseEntity.ok("comment ead");
+    @GetMapping("/{reviewId}") // 프론트 할 때 추가 해야 함
+    public ResponseEntity<List<Map<String, Object>>> commentRead(@PathVariable int reviewId) {
+        List<Map<String, Object>> commentDTOList = commentService.commentRead(reviewId);
+        return ResponseEntity.ok(commentDTOList);
     }
 }
