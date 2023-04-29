@@ -1,15 +1,16 @@
 package com.multicampus.foodiefair.dao;
 
-import com.multicampus.foodiefair.dto.VisitedDTO;
+import com.multicampus.foodiefair.dto.visited.VisitedDTO;
 import org.apache.ibatis.annotations.Mapper;
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 @Mapper
 public interface VisitedDAO {
 
     // 방명록 리스트 출력
-    List<Map<String, Object>> selectVisitedList(Long ownerId, int offset, int limit);
+    ArrayList<HashMap<String, Object>> selectVisitedList(Long ownerId, int offset, int limit);
     // 방명록 갯수 (페이징용)
     int countVisitedList(Long ownerId);
     // 방명록 등록

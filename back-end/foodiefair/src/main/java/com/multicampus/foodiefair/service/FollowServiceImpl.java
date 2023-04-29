@@ -5,9 +5,8 @@ import com.multicampus.foodiefair.dao.FollowProfileDAO;
 import com.multicampus.foodiefair.dto.FollowDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 // FollowService 인터페이스를 구현한 클래스
 @Service
@@ -54,13 +53,13 @@ public class FollowServiceImpl implements FollowService {
 
     // 팔로워 프로필 목록 조회 (무한 스크롤 적용)
     @Override
-    public List<Map<String, Object>> getFollowerProfiles(Long followedId, Long lastFollowId, int perPage) {
+    public ArrayList<HashMap<String, Object>> getFollowerProfiles(Long followedId, Long lastFollowId, int perPage) {
         return followProfileDAO.selectFollowerProfiles(followedId, lastFollowId, perPage);
     }
 
     // 팔로잉 프로필 목록 조회 (무한 스크롤 적용)
     @Override
-    public List<Map<String, Object>> getFollowingProfiles(Long followingId, Long lastFollowId, int perPage) {
+    public ArrayList<HashMap<String, Object>> getFollowingProfiles(Long followingId, Long lastFollowId, int perPage) {
         return followProfileDAO.selectFollowingProfiles(followingId, lastFollowId, perPage);
     }
 

@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/mypage/{userId}")
@@ -20,21 +20,21 @@ public class FollowController {
 
     // 팔로워 프로필 목록 가져오기 (무한 스크롤 적용)
     @GetMapping("/followers")
-    public ResponseEntity<List<Map<String, Object>>> getFollowerProfiles(
+    public ResponseEntity<ArrayList<HashMap<String, Object>>> getFollowerProfiles(
             @PathVariable Long userId,
             @RequestParam(required = false) Long lastFollowId,
             @RequestParam(defaultValue = "10") int perPage) {
-        List<Map<String, Object>> profiles = followService.getFollowerProfiles(userId, lastFollowId, perPage);
+        ArrayList<HashMap<String, Object>> profiles = followService.getFollowerProfiles(userId, lastFollowId, perPage);
         return new ResponseEntity<>(profiles, HttpStatus.OK);
     }
 
     // 팔로잉 프로필 목록 가져오기 (무한 스크롤 적용)
     @GetMapping("/followings")
-    public ResponseEntity<List<Map<String, Object>>> getFollowingProfiles(
+    public ResponseEntity<ArrayList<HashMap<String, Object>>> getFollowingProfiles(
             @PathVariable Long userId,
             @RequestParam(required = false) Long lastFollowId,
             @RequestParam(defaultValue = "10") int perPage) {
-        List<Map<String, Object>> profiles = followService.getFollowingProfiles(userId, lastFollowId, perPage);
+        ArrayList<HashMap<String, Object>> profiles = followService.getFollowingProfiles(userId, lastFollowId, perPage);
         return new ResponseEntity<>(profiles, HttpStatus.OK);
     }
 

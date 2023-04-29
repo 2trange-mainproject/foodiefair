@@ -1,4 +1,4 @@
-package com.multicampus.foodiefair.dto;
+package com.multicampus.foodiefair.dto.visited;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

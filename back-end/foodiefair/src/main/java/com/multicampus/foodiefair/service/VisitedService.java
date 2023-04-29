@@ -1,11 +1,8 @@
 package com.multicampus.foodiefair.service;
 
-import com.multicampus.foodiefair.dto.VisitedDTO;
-import com.multicampus.foodiefair.dto.VisitedPageRequestDTO;
-import com.multicampus.foodiefair.dto.VisitedPageResponseDTO;
-
-import java.util.List;
-import java.util.Map;
+import com.multicampus.foodiefair.dto.visited.VisitedDTO;
+import com.multicampus.foodiefair.dto.visited.VisitedPageRequestDTO;
+import com.multicampus.foodiefair.dto.visited.VisitedPageResponseDTO;
 
 public interface VisitedService {
     // 방명록 목록 가져오기

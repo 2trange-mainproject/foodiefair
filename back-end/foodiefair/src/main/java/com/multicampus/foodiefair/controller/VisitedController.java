@@ -1,8 +1,8 @@
 package com.multicampus.foodiefair.controller;
 
-import com.multicampus.foodiefair.dto.VisitedDTO;
-import com.multicampus.foodiefair.dto.VisitedPageRequestDTO;
-import com.multicampus.foodiefair.dto.VisitedPageResponseDTO;
+import com.multicampus.foodiefair.dto.visited.VisitedDTO;
+import com.multicampus.foodiefair.dto.visited.VisitedPageRequestDTO;
+import com.multicampus.foodiefair.dto.visited.VisitedPageResponseDTO;
 import com.multicampus.foodiefair.service.VisitedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

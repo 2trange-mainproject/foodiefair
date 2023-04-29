@@ -1,9 +1,8 @@
 package com.multicampus.foodiefair.service;
 
 import com.multicampus.foodiefair.dto.FollowDTO;
-
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 // Follow 서비스 용 인터페이스
 public interface FollowService {
@@ -16,7 +15,7 @@ public interface FollowService {
     int getFollowingCount(Long followingId);
     Boolean checkFollowStatus(Long followingId, Long followedId);
     // 팔로워 프로필 목록 조회 (무한 스크롤 적용)
-    List<Map<String, Object>> getFollowerProfiles(Long followedId, Long lastFollowId, int perPage);
+    ArrayList<HashMap<String, Object>> getFollowerProfiles(Long followedId, Long lastFollowId, int perPage);
     // 팔로잉 프로필 목록 조회 (무한 스크롤 적용)
-    List<Map<String, Object>> getFollowingProfiles(Long followingId, Long lastFollowId, int perPage);
+    ArrayList<HashMap<String, Object>> getFollowingProfiles(Long followingId, Long lastFollowId, int perPage);
 }

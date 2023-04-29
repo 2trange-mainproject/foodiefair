@@ -1,12 +1,9 @@
-package com.multicampus.foodiefair.dto;
-
+package com.multicampus.foodiefair.dto.visited;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 
@@ -20,7 +17,6 @@ public class VisitedPageRequestDTO {
     @Positive
     private int page=1;
     @Builder.Default
-    @Min(value = 5)
-    @Max(value = 100)
+    @Positive
     private int size=5;
 }

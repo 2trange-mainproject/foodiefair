@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.SavedDAO">
+    <insert id="insertSaved">
+        INSERT INTO Saved (userId, productId)
+        VALUES (#{userId}, #{productId})
+    </insert>
+
+    <delete id="deleteSaved" parameterType="java.lang.Long">
+        DELETE FROM Saved
+        WHERE savedId=#{savedId}
+    </delete>
+
+    <select id="countSavedProduct" resultType="int">
+        SELECT COUNT(*) FROM Saved
+        WHERE productId = #{productId}
+    </select>
+
+    <select id="countSavedUser" resultType="int">
+        SELECT COUNT(*) FROM Saved
+        WHERE userId = #{userId}
+    </select>
+
+    <select id="selectSavedList" parameterType="map" resultType="hashmap">
+        SELECT * FROM Saved
+        WHERE userId = #{userId}
+        ORDER BY savedId DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+</mapper>

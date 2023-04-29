@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Date;
-import java.util.Map;
+import java.util.HashMap;
 
 // 팔로우 목록에 user id, user profile img 표시하는 데 필요한 데이터를 나타냄
 @Data
@@ -19,7 +19,7 @@ public class UserDTO {
     private String userEmail;
     private String userIntro;
     // JSON userTag 필드를 represent 하기 위해 Map 사용
-    private Map<String, Object> userTag;
+    private HashMap<String, Object> userTag;
     // 신고횟수
     private Integer userReport;
     // 이미지의 저장 link를 string으로 저장

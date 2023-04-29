@@ -1,14 +1,13 @@
 package com.multicampus.foodiefair.service;
 
 import com.multicampus.foodiefair.dao.VisitedDAO;
-import com.multicampus.foodiefair.dto.VisitedDTO;
-import com.multicampus.foodiefair.dto.VisitedPageRequestDTO;
-import com.multicampus.foodiefair.dto.VisitedPageResponseDTO;
+import com.multicampus.foodiefair.dto.visited.VisitedDTO;
+import com.multicampus.foodiefair.dto.visited.VisitedPageRequestDTO;
+import com.multicampus.foodiefair.dto.visited.VisitedPageResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +18,7 @@ public class VisitedServiceImpl implements VisitedService{
     @Override
     public VisitedPageResponseDTO getVisitedList(VisitedDTO visitedDTO, VisitedPageRequestDTO pageRequestDTO) {
         // 페이지에 표시될 데이터 목록 조회
-        List<Map<String, Object>> dataList = visitedDAO.selectVisitedList(visitedDTO.getOwnerId(),
+        ArrayList<HashMap<String, Object>> dataList = visitedDAO.selectVisitedList(visitedDTO.getOwnerId(),
                 (pageRequestDTO.getPage() - 1) * pageRequestDTO.getSize(), pageRequestDTO.getSize());
 
         // 전체 방명록 개수 조회
@@ -40,14 +39,6 @@ public class VisitedServiceImpl implements VisitedService{
 
     @Override
     public int removeVisited(Long visitedId) {
-        int result = visitedDAO.deleteVisited(visitedId);
-        if (result == 1) {
-            System.out.println("Visited removed successfully with ID: " + visitedId);
-        } else if (result == 0){
-            System.out.println("Error removing visited with ID: " + visitedId);
-        } else {
-            System.out.println("result : "+result+"visitedId : " + visitedId);
-        }
-        return result;
+        return visitedDAO.deleteVisited(visitedId);
     }
 }

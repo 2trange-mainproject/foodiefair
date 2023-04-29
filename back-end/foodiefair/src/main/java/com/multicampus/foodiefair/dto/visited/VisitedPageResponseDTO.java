@@ -1,15 +1,14 @@
-package com.multicampus.foodiefair.dto;
+package com.multicampus.foodiefair.dto.visited;
 
 import lombok.*;
-
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @Getter
 @ToString
 public class VisitedPageResponseDTO{
 
-    private List<Map<String,Object>> dataList;    // 페이지에 표시될 데이터 목록
+    private ArrayList<HashMap<String, Object>> dataList;    // 페이지에 표시될 데이터 목록
     private int page;            // 현재 페이지 번호
     private int size;            // 한 페이지에 표시할 데이터 수
     private int totalPages;      // 전체 페이지 수
@@ -19,7 +18,7 @@ public class VisitedPageResponseDTO{
     private boolean next;        // 다음 페이지 존재 여부
 
     @Builder(builderMethodName = "withAll")
-    public VisitedPageResponseDTO(VisitedPageRequestDTO pageRequestDto, List<Map<String,Object>> dataList, int total) {
+    public VisitedPageResponseDTO(VisitedPageRequestDTO pageRequestDto, ArrayList<HashMap<String, Object>> dataList, int total) {
         this.page = pageRequestDto.getPage();
         this.size = pageRequestDto.getSize();
         this.totalPages = (int) (Math.ceil((double)total / 5.0));

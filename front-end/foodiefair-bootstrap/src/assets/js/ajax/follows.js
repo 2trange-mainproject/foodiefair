@@ -149,5 +149,6 @@ function getActiveTab() {
         // Add the 'active' class to the selected tab and its pane
         $(`#${activeTabId}`).addClass('active');
         $(`#${activeTabId}-pane`).addClass('show active');
+        localStorage.removeItem('activeTab');
     }
 }

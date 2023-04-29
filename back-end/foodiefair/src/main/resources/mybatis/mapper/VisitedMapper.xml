@@ -16,7 +16,7 @@
         WHERE ownerId = #{ownerId}
     </select>
 
-    <insert id="insertVisited" parameterType="com.multicampus.foodiefair.dto.VisitedDTO">
+    <insert id="insertVisited" parameterType="com.multicampus.foodiefair.dto.visited.VisitedDTO">
         INSERT INTO Visited (writerId, ownerId, visitedDate, visitedContent)
         VALUES (#{writerId}, #{ownerId}, #{visitedDate}, #{visitedContent})
     </insert>
