@@ -15,6 +15,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const registerVisitedForm = document.getElementById("register-visited-form");
     const registerVisitedBtn = document.getElementById("register-visited-btn");
 
+    registerVisitedForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const visitedContent = registerVisitedForm.visitedContent.value;
+        const isSuccess = await registerVisited(userId, visitedContent);
+        if (isSuccess) {
+            // Reload the visited list
+            displayVisitedList(userId, currentPage, pageSize).then(() => {
+                // Clear the input field
+                registerVisitedForm.visitedContent.value = "";
+            });
+        } else {
+            alert("Error registering visited content");
+        }
+    });
+
     registerVisitedBtn.addEventListener("click", async (event) => {
         event.preventDefault();
         const visitedContent = registerVisitedForm.visitedContent.value;
