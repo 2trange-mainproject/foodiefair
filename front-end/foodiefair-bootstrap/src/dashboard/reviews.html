@@ -3,7 +3,7 @@
 
 <head>
   @@include("../partials/head.html")
-  <title>Dashboard</title>
+  <title>관리자 페이지</title>
 </head>
 
 <body>
@@ -25,12 +25,12 @@
           <div class="col-md-12">
             <div>
               <!-- page header -->
-              <h2>Reviews</h2>
+              <h2>리뷰 관리</h2>
               <!-- breacrumb -->
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                  <li class="breadcrumb-item"><a href="#" class="text-inherit">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Reviews</li>
+                  <li class="breadcrumb-item"><a href="#" class="text-inherit" style="color: #889397">관리자 페이지</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">리뷰 관리</li>
                 </ol>
               </nav>
 
@@ -53,9 +53,9 @@
                   <div class="col-lg-2 col-md-4 col-12">
                     <!-- main -->
                     <select class="form-select">
-                      <option selected>Select Rating</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
+                      <option selected>정렬 조건</option>
+                      <option value="1">리뷰 ID 오름차순</option>
+                      <option value="2">리뷰 ID 내림차순</option>
                       <option value="3">Three</option>
                       <option value="4">Four</option>
                       <option value="5">Five</option>
@@ -77,11 +77,11 @@
                             </label>
                           </div>
                         </th>
-                        <th>Product</th>
-                        <th>Name</th>
-                        <th>Reviews</th>
-                        <th>Rating</th>
-                        <th>Date</th>
+                        <th>리뷰 ID</th>
+                        <th>회원 ID</th>
+                        <th>상품 ID</th>
+                        <th>등록일자</th>
+                        <th>영수증 여부</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -97,23 +97,19 @@
                           </div>
                         </td>
 
-                        <td><a href="#" class="text-reset">Haldiram's Sev Bhujia</a></td>
-                        <td>Barry McKenzie</td>
+                        <td><a href="read-review.html" class="text-reset">35</a></td>
+                        <td>3</td>
 
                         <td>
-                          <span class="text-truncate">Nice & fresh oranges with value for money..</span>
+                          <span class="text-truncate">AA0001</span>
                         </td>
                         <td>
                           <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
+                            2022/03/01
                           </div>
                         </td>
                         <td>
-                          23 Nov,2022
+                          TRUE
                         </td>
                         <td>
                           <div class="dropdown">
@@ -122,8 +118,6 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
                             </ul>
                           </div>
                         </td>
@@ -139,23 +133,19 @@
                           </div>
                         </td>
 
-                        <td><a href="#" class="text-reset">NutriChoice Digestive</a></td>
-                        <td>Dale Jenkins</td>
+                        <td><a href="read-review.html" class="text-reset">38</a></td>
+                        <td>34</td>
 
                         <td>
-                          <span class="text-truncate">Nice product 👌 quality 👌...</span>
+                          <span class="text-truncate">CA0205</span>
                         </td>
                         <td>
                           <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
+                            2021/08/21
                           </div>
                         </td>
                         <td>
-                          23 Nov,2022
+                          TRUE
                         </td>
                         <td>
                           <div class="dropdown">
@@ -164,8 +154,6 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
                             </ul>
                           </div>
                         </td>
@@ -181,23 +169,19 @@
                           </div>
                         </td>
 
-                        <td><a href="#" class="text-reset">Cadbury 5 Star Chocolate</a></td>
-                        <td>Michael Phillips</td>
+                        <td><a href="read-review.html" class="text-reset">39</a></td>
+                        <td>104</td>
 
                         <td>
-                          <span class="text-truncate">Good quality product delivered...</span>
+                          <span class="text-truncate">DA0001</span>
                         </td>
                         <td>
                           <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
+                            2021/09/15
                           </div>
                         </td>
                         <td>
-                          23 Nov,2022
+                          FALSE
                         </td>
                         <td>
                           <div class="dropdown">
@@ -206,8 +190,6 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
                             </ul>
                           </div>
                         </td>
@@ -223,23 +205,19 @@
                           </div>
                         </td>
 
-                        <td><a href="#" class="text-reset">Onion Flavour Potato</a></td>
-                        <td>James Parker</td>
+                        <td><a href="read-review.html" class="text-reset">40</a></td>
+                        <td>38</td>
 
                         <td>
-                          <span class="text-truncate">Excellent Quality by an Indian company..</span>
+                          <span class="text-truncate">AC2001</span>
                         </td>
                         <td>
                           <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
+                            2021/10/01
                           </div>
                         </td>
                         <td>
-                          23 Nov,2022
+                          TRUE
                         </td>
                         <td>
                           <div class="dropdown">
@@ -248,8 +226,6 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
                             </ul>
                           </div>
                         </td>
@@ -265,23 +241,19 @@
                           </div>
                         </td>
 
-                        <td><a href="#" class="text-reset">Salted Instant Popcorn</a></td>
-                        <td>William Hansen</td>
+                        <td><a href="read-review.html" class="text-reset">41</a></td>
+                        <td>94</td>
 
                         <td>
-                          <span class="text-truncate">Very expensive. Cheaper at local stores...</span>
+                          <span class="text-truncate">AF0402</span>
                         </td>
                         <td>
                           <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
+                            2022/01/03
                           </div>
                         </td>
                         <td>
-                          23 Nov,2022
+                          FALSE
                         </td>
                         <td>
                           <div class="dropdown">
@@ -290,8 +262,6 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
                             </ul>
                           </div>
                         </td>
@@ -307,23 +277,19 @@
                           </div>
                         </td>
 
-                        <td><a href="#" class="text-reset">Blueberry Greek Yogurt</a></td>
-                        <td>Helen Speller</td>
+                        <td><a href="read-review.html" class="text-reset">42</a></td>
+                        <td>83</td>
 
                         <td>
-                          <span class="text-truncate">Etiam in felis eget eros dictum</span>
+                          <span class="text-truncate">CB0012</span>
                         </td>
                         <td>
                           <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
+                            2022/02/13
                           </div>
                         </td>
                         <td>
-                          23 Nov,2022
+                          FALSE
                         </td>
                         <td>
                           <div class="dropdown">
@@ -332,8 +298,6 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
                             </ul>
                           </div>
                         </td>
@@ -349,23 +313,19 @@
                           </div>
                         </td>
 
-                        <td><a href="#" class="text-reset">Britannia Cheese Slices</a></td>
-                        <td>Larry Anderson</td>
+                        <td><a href="read-review.html" class="text-reset">43</a></td>
+                        <td>201</td>
 
                         <td>
-                          <span class="text-truncate">is good but had to wait for a late delivery.</span>
+                          <span class="text-truncate">CC2002</span>
                         </td>
                         <td>
                           <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
+                            2022/04/08
                           </div>
                         </td>
                         <td>
-                          23 Nov,2022
+                          FALSE
                         </td>
                         <td>
                           <div class="dropdown">
@@ -374,8 +334,6 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
                             </ul>
                           </div>
                         </td>
@@ -391,23 +349,19 @@
                           </div>
                         </td>
 
-                        <td><a href="#" class="text-reset">Kellogg's Original Cereals</a></td>
-                        <td>William McCulloch</td>
+                        <td><a href="read-review.html" class="text-reset">44</a></td>
+                        <td>120</td>
 
                         <td>
-                          <span class="text-truncate">Very expensive. Cheaper at local stores</span>
+                          <span class="text-truncate">BA0112</span>
                         </td>
                         <td>
                           <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
+                            2022/05/01
                           </div>
                         </td>
                         <td>
-                          23 Nov,2022
+                          FALSE
                         </td>
                         <td>
                           <div class="dropdown">
@@ -416,8 +370,6 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
                             </ul>
                           </div>
                         </td>
@@ -433,23 +385,19 @@
                           </div>
                         </td>
 
-                        <td><a href="#" class="text-reset">Slurrp Millet Chocolate</a></td>
-                        <td>Louise Brown</td>
+                        <td><a href="read-review.html" class="text-reset">45</a></td>
+                        <td>145</td>
 
                         <td>
-                          <span class="text-truncate">My toddler loved the flavor and enjoys...</span>
+                          <span class="text-truncate">BB1234</span>
                         </td>
                         <td>
                           <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
+                            2023/01/03
                           </div>
                         </td>
                         <td>
-                          23 Nov,2022
+                          TRUE
                         </td>
                         <td>
                           <div class="dropdown">
@@ -458,8 +406,6 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
                             </ul>
                           </div>
                         </td>
@@ -475,23 +421,19 @@
                           </div>
                         </td>
 
-                        <td><a href="#" class="text-reset">Amul Butter - 500 g</a></td>
-                        <td>John Meyer</td>
+                        <td><a href="read-review.html" class="text-reset">46</a></td>
+                        <td>653</td>
 
                         <td>
-                          <span class="text-truncate">Good Product but packaging needs...</span>
+                          <span class="text-truncate">DB1210</span>
                         </td>
                         <td>
                           <div>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
-                            <span><i class="bi bi-star-fill text-light"></i></span>
+                            2023/04/19
                           </div>
                         </td>
                         <td>
-                          23 Nov,2022
+                          TRUE
                         </td>
                         <td>
                           <div class="dropdown">
@@ -500,8 +442,6 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
-                              </li>
                             </ul>
                           </div>
                         </td>
