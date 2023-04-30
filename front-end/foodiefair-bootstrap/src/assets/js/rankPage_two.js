@@ -136,6 +136,8 @@ function loadRankPageTwo() {
 
     function renderPagination(currentPage, totalItems) {
         var totalPages = Math.ceil(totalItems / 12);
+        var pageGroupSize = 5;
+        var currentGroup = Math.ceil(currentPage / pageGroupSize);
 
         var pagination = $(".pagination");
         pagination.empty();
@@ -149,7 +151,9 @@ function loadRankPageTwo() {
                         </li>`);
 
         // 페이지 번호 링크 추가
-        for (var i = 1; i <= totalPages; i++) {
+        var startPage = (currentGroup - 1) * pageGroupSize + 1;
+        var endPage = Math.min(startPage + pageGroupSize - 1, totalPages);
+        for (var i = startPage; i <= endPage; i++) {
             var activeClass = i === currentPage ? "active" : "";
             var listItem = `<li class="page-item ${activeClass}">
                     <a class="page-link mx-1" href="#" data-page="${i}">${i}</a>
@@ -170,7 +174,7 @@ function loadRankPageTwo() {
             event.preventDefault();
             var pageNumber = parseInt($(this).data("page"));
             if (!isNaN(pageNumber)) {
-                loadUsers(pageNumber);
+                loadProducts(pageNumber);
             }
         });
     }

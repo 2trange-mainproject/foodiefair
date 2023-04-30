@@ -95,7 +95,7 @@
                 </div>
               </div>
               <div class="d-flex justify-content-end" style="padding-top: 10px">
-                <a href="products.html" class="btn btn-soft-pink btn-sm" style="font-size: 16px;" id="add-product">
+                <a href="#" class="btn btn-soft-pink btn-sm" style="font-size: 16px;" id="add-product">
                   상품 추가 완료
                 </a>
               </div>
@@ -112,46 +112,7 @@
 <script src="@@webRoot/node_modules/quill/dist/quill.min.js"></script>
 <script src="@@webRoot/assets/js/vendors/editor.js"></script>
 <script src="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-    var productImgUrl;  //이미지 url 저장용
-
-    $("#add-product").on('click', function(e) {
-      // 입력된 정보 가져오기
-      var productId = $("#product-id").val();
-      var productName = $("#product-name").val();
-      var productPrice = $("#product-price").val();
-      var productFestival = $("#product-festival").val();
-      var productTag = $("#product-tag").val();
-      var productImg = $("#product-img")[0].files[0];
-
-      // FormData 객체 생성
-      var formData = new FormData();
-      formData.append("productId", productId);
-      formData.append("productName", productName);
-      formData.append("productPrice", productPrice);
-      formData.append("productFestival", productFestival);
-      formData.append("productTag", productTag);
-      formData.append("productImg", productImg); // 이미지 파일 추가
-
-      // Ajax를 이용해 서버로 정보 전송
-      $.ajax({
-        type: "POST",
-        url: "http://localhost:8081/dashboard/product-add",
-        processData: false, // 필수: FormData 사용 시 false로 설정
-        contentType: false, // 필수: FormData 사용 시 false로 설정
-        data: formData,
-        success: function(response) {
-          console.log(response);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
-        },
-      });
-    });
-  });
-</script>
+<script src="@@webRoot/assets/js/dashboards/productInsert.js"></script>
 
 </body>
 

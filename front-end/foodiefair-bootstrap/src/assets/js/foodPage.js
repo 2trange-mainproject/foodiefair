@@ -194,20 +194,6 @@ function renderProducts(data) {
     $.each(data, function(index, product) {
         var festivalText, festivalColor;
 
-        /* 체크 안되어있을 땐 모두 출력하기 위함
-        var storeMatched = filters.stores.some(function(store) {
-            return JSON.parse(product.fixedTag).store.includes(store);
-        });
-
-        var categoryMatched = filters.categories.some(function(category) {
-            return JSON.parse(product.fixedTag).smallCategory.includes(category);
-        });
-
-        if (!storeMatched || !categoryMatched) {
-            return;
-        }
-        */
-        
         filteredProductCount++;
 
         if (product.productEvent === 1) {
@@ -272,6 +258,8 @@ function renderProducts(data) {
 
 function renderPagination(currentPage, totalItems) {
     var totalPages = Math.ceil(totalItems / 15);
+    var pageGroupSize = 5;
+    var currentGroup = Math.ceil(currentPage / pageGroupSize);
 
     var pagination = $(".pagination");
     pagination.empty();
@@ -285,7 +273,9 @@ function renderPagination(currentPage, totalItems) {
                         </li>`);
 
     // 페이지 번호 링크 추가
-    for (var i = 1; i <= totalPages; i++) {
+    var startPage = (currentGroup - 1) * pageGroupSize + 1;
+    var endPage = Math.min(startPage + pageGroupSize - 1, totalPages);
+    for (var i = startPage; i <= endPage; i++) {
         var activeClass = i === currentPage ? "active" : "";
         var listItem = `<li class="page-item ${activeClass}">
                     <a class="page-link mx-1" href="#" data-page="${i}">${i}</a>
