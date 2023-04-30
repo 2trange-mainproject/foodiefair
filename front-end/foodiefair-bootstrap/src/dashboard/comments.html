@@ -4,6 +4,7 @@
 <head>
   @@include("../partials/head.html")
   <title>관리자 페이지</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -13,8 +14,7 @@
   <div class="main-wrapper">
     <!-- navbar vertical -->
     @@include('../partials/navbar-vertical.html', {
-    "page_group": "order",
-    "page": "list"
+    "page": "comments"
 
     })
     <!-- main wrapper -->
@@ -44,20 +44,24 @@
             <div class="card h-100 card-lg">
               <div class=" p-6 ">
                 <div class="row justify-content-between">
-                  <div class="col-md-4 col-12 mb-2 mb-md-0">
-                    <!-- form -->
-                    <form class="d-flex" role="search">
-                      <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-
+                  <div class="col-lg-4 col-md-6 col-12 mb-2 mb-lg-0 d-flex">
+                    <form id="search-form" class="d-flex" role="search" style="width: 400px;">
+                      <input class="form-control" id="search-input" type="search" placeholder="검색할 댓글의 리뷰ID를 입력하세요." aria-label="Search">
                     </form>
+                    <button id="reset-search" class="btn btn-outline-gray-400 text-muted" style="margin-left: 10px;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                      </svg>
+                    </button>
                   </div>
                   <div class="col-lg-2 col-md-4 col-12">
                     <!-- select -->
                     <select class="form-select">
-                      <option selected>정렬 조건</option>
-                      <option value="Success">댓글 ID 내림차순</option>
-                      <option value="Pending">댓글 ID 오름차순</option>
-                      <option value="Cancel">작성날짜 내림차순</option>
+                      <option value="commentIdDESC" selected>댓글 ID 내림차순</option>
+                      <option value="commentIdASC">댓글 ID 오름차순</option>
+                      <option value="userIdDESC">유저 ID 내림차순</option>
+                      <option value="userIdASC">유저 ID 오름차순</option>
                     </select>
                   </div>
                 </div>
@@ -85,230 +89,14 @@
                         <th></th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderOne">
-                            <label class="form-check-label" for="orderOne">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          4
-                        </td>
-                        <td>123</td>
-                        <td>83</td>
-
-                        <td><a href="read-comment.html" class="text-reset">초콜릿은 역시 가나..</a></td>
-                        <td>2023/04/18</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderTwo">
-                            <label class="form-check-label" for="orderTwo">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          5
-                        </td>
-                        <td>109</td>
-                        <td>21</td>
-
-                        <td><a href="read-comment.html" class="text-reset">진라면 순한맛은 최고야</a></td>
-                        <td>2023/01/12</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderThree">
-                            <label class="form-check-label" for="orderThree">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          6
-                        </td>
-                        <td>24</td>
-                        <td>90 </td>
-
-                        <td><a href="read-comment.html" class="text-reset">난 이 리뷰에 반대일세</a></td>
-                        <td>2022/12/15</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderFour">
-                            <label class="form-check-label" for="orderFour">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          7
-                        </td>
-                        <td>45</td>
-                        <td>165</td>
-
-                        <td><a href="read-comment.html" class="text-reset">2조가 그렇게 잘한다며?</a></td>
-                        <td>2022/10/28</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderFive">
-                            <label class="form-check-label" for="orderFive">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          8
-                        </td>
-                        <td>289</td>
-                        <td>2856</td>
-
-                        <td><a href="read-comment.html" class="text-reset">퍼블리싱 끝이 보인다..</a></td>
-                        <td>2022/08/21</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderSix">
-                            <label class="form-check-label" for="orderSix">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          9
-                        </td>
-                        <td>183</td>
-                        <td>427</td>
-
-                        <td><a href="read-comment.html" class="text-reset">조장 칭찬 받을만하다</a></td>
-                        <td>2021/12/11</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="orderSeven">
-                            <label class="form-check-label" for="orderSeven">
-
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          10
-                        </td>
-                        <td>23</td>
-                        <td>42</td>
-
-                        <td><a href="read-comment.html" class="text-reset">너무 맛있었어요!</a></td>
-                        <td>2020/03/12</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                            </ul>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
+                    <tbody id="commentContainer"></tbody>
                   </table>
                 </div>
               </div>
-              <div class="border-top d-md-flex justify-content-between align-items-center p-6">
-                <span>Showing 1 to 8 of 12 entries</span>
-                <nav class="mt-2 mt-md-0">
-                  <ul class="pagination mb-0 ">
-                    <li class="page-item disabled"><a class="page-link " href="#!">Previous</a></li>
-                    <li class="page-item"><a class="page-link active" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Next</a></li>
+              <div class=" border-top d-md-flex justify-content-between align-items-center px-6 py-6">
+                <span></span>
+                <nav>
+                  <ul class="pagination">
                   </ul>
                 </nav>
               </div>
@@ -324,6 +112,8 @@
 
 
   @@include("../partials/scripts.html")
+  <script src="@@webRoot/assets/js/dashboards/search.js"></script>
+  <script src="@@webRoot/assets/js/dashboards/commentManage.js"></script>
 
 </body>
 

@@ -5,8 +5,9 @@
 
   @@include("../partials/head.html")
   <link href="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <title>Dashboard</title>
+  <title>관리자 페이지</title>
 </head>
 
 <body>
@@ -17,7 +18,7 @@
     <!-- navbar vertical -->
     @@include('../partials/navbar-vertical.html', {
 
-    "page": "list"
+    "page": "comments"
 
     })
     <!-- main -->
@@ -49,45 +50,7 @@
           </div>
         </div>
         <!-- row -->
-        <div class="row">
-
-          <div class="col-12">
-            <!-- card -->
-            <div class="card mb-6 card-lg">
-              <!-- card body -->
-              <div class="card-body p-6 ">
-                <div class="row">
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">댓글 ID</label>
-                    <input type="text" class="form-control" value="4" readonly>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">회원 ID</label>
-                    <input type="text" class="form-control" value="123" readonly>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">리뷰 ID</label>
-                    <input type="text" class="form-control" value="83" readonly>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">댓글 작성 날짜</label>
-                    <input type="text" class="form-control" value="2023/04/18" readonly>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-12 mt-5">
-                    <h4 class="mb-3 h5">댓글 내용</h4>
-                    <input type="textarea" class="form-control" value="정말이지 가나 초콜릿은 너무너무 맛있네요. 가나가 최고!" readonly>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
+        <div id="commentContainer"></div>
       </div>
     </main>
 
@@ -98,7 +61,7 @@
   <script src="@@webRoot/node_modules/quill/dist/quill.min.js"></script>
   <script src="@@webRoot/assets/js/vendors/editor.js"></script>
   <script src="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.js"></script>
-
+  <script src="@@webRoot/assets/js/dashboards/commentRead.js"></script>
 </body>
 
 </html>

@@ -31,7 +31,7 @@ document.getElementById('reset-search').addEventListener('click', function () {
     toggleResetSearchButton();
 
     // 페이지를 새로고침하거나 데이터를 다시 불러오기
-    loadUsers(1);
+    loadQuestions(1);
 });
 
 function toggleResetSearchButton() {
@@ -50,32 +50,32 @@ function toggleResetSearchButton() {
 $("#searchForm").on("submit", function (event) {
     event.preventDefault();
     var keyword = $("#searchInput").val();
-    loadUsers(1, null);
+    loadQuestions(1, null);
 
     redirectToShopFilterPage();
 });
 
 $(".form-select").on("change", function() {
-    loadUsers(1, $(this).val());
+    loadQuestions(1, $(this).val());
 });
 
-$(document).on("click", ".delete-user", function (event) {
+$(document).on("click", ".delete-question", function (event) {
     event.preventDefault();
-    var userId = $(this).data("user-id");
-    deleteUser(userId);
+    var questionId = $(this).data("question-id");
+    deleteQuestion(questionId);
 });
 
-function deleteUser(userId) {
+function deleteQuestion(questionId) {
     if (!confirm("정말로 이 회원을 삭제하시겠습니까?")) {
         return;
     }
 
     $.ajax({
-        url: `http://localhost:8081/dashboard/user-delete/${userId}`,
+        url: `http://localhost:8081/dashboard/question-delete/${questionId}`,
         type: "DELETE",
         success: function (response) {
             alert("회원이 삭제되었습니다.");
-            loadUsers(1);
+            loadQuestions(1);
         },
         error: function (error) {
             console.log(error);
@@ -84,7 +84,12 @@ function deleteUser(userId) {
     });
 }
 
-function loadUsers(page, sortOrder) {
+//문장 자르기
+function truncateString(str, num) {
+    return str.length > num ? str.slice(0, num) + "..." : str;
+}
+
+function loadQuestions(page, sortOrder) {
     const searchKeyword = localStorage.getItem('searchKeyword');
     console.log('검색 키워드:', searchKeyword);
 
@@ -99,7 +104,7 @@ function loadUsers(page, sortOrder) {
     }
 
     $.ajax({
-        url: `http://localhost:8081/dashboard/user-list${queryString}`,
+        url: `http://localhost:8081/dashboard/question-list${queryString}`,
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -107,7 +112,7 @@ function loadUsers(page, sortOrder) {
             var total = response.total;
             var currentPage = response.page;
 
-            renderUsers(data);
+            renderQuestions(data);
             renderPagination(currentPage, total);
         },
         error: function (error) {
@@ -116,46 +121,37 @@ function loadUsers(page, sortOrder) {
     });
 }
 
-function renderUsers(data) {
-    var $userContainer = $('#userContainer');
-    $userContainer.empty();
-    var userHtml = '';
+function renderQuestions(data) {
+    var $questionContainer = $('#questionContainer');
+    $questionContainer.empty();
+    var questionHtml = '';
 
-    $.each(data, function(index, user) {
-        var locked = user.locked ? "TRUE" : "FALSE";
+    $.each(data, function(index, question) {
+        var releaseDate = new Date(question.questionDate).toISOString().split('T')[0];
 
-        userHtml += `
+        questionHtml += `
                       <tr>
                           <td class="pe-0">
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="customerEleven">
-                              <label class="form-check-label" for="customerEleven">
+                              <input class="form-check-input" type="checkbox" value="" id="questionEleven">
+                              <label class="form-check-label" for="questionEleven">
 
                               </label>
                             </div>
                           </td>
 
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="${user.userImg}" alt=""
-                                class="avatar avatar-xs rounded-circle">
-                              <div class="ms-2">
-                                <a href="read-customer.html?userId=${user.userId}" class="text-inherit">${user.userName}</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td><a href="read-customer.html?userId=${user.userId}" style="color: black">${user.userEmail}</a></td>
-                          <td><a href="read-customer.html?userId=${user.userId}" style="color: black">${user.userTag}</a></td>
-                          <td><a href="read-customer.html?userId=${user.userId}" style="color: black">${user.userReport}</a></td>
-                          <td><a href="read-customer.html?userId=${user.userId}" style="color: black">${locked}</a></td>
+                          <td><a href="read-question.html?questionId=${question.questionId}" style="color: black">${question.questionId}</a></td>
+                          <td><a href="read-question.html?questionId=${question.questionId}" style="color: black">${question.userId}</a></td>
+                          <td><a href="read-question.html?questionId=${question.questionId}" style="color: black">${question.questionType}</a></td>
+                          <td><a href="read-question.html?questionId=${question.questionId}" style="color: black">${truncateString(question.questionContent, 30)}</a></td>
+                          <td><a href="read-question.html?questionId=${question.questionId}" style="color: black">${releaseDate}</a></td>
                           <td>
                             <div class="dropdown ">
                               <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="feather-icon icon-more-vertical fs-5"></i>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a class="dropdown-item delete-user" href="#" data-user-id="${user.userId}"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="edit-user.html?userId=${user.userId}"><i class="bi bi-pencil-square me-3 "></i>Edit</a></li>
+                                <li><a class="dropdown-item delete-question" href="#" data-question-id="${question.questionId}"><i class="bi bi-trash me-3"></i>Delete</a></li>
                               </ul>
                             </div>
                           </td>
@@ -163,11 +159,11 @@ function renderUsers(data) {
           `;
     });
 
-    var userListHtml = `
-        ${userHtml}
+    var questionListHtml = `
+        ${questionHtml}
     `;
 
-    $userContainer.append(userListHtml);
+    $questionContainer.append(questionListHtml);
 }
 
 function renderPagination(currentPage, totalItems) {
@@ -210,11 +206,11 @@ function renderPagination(currentPage, totalItems) {
         event.preventDefault();
         var pageNumber = parseInt($(this).data("page"));
         if (!isNaN(pageNumber)) {
-            loadUsers(pageNumber);
+            loadQuestions(pageNumber);
         }
     });
 }
 
 $(document).ready(function () {
-    loadUsers(1);
+    loadQuestions(1);
 });

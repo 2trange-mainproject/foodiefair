@@ -15,7 +15,7 @@
       <!-- navbar vertical -->
       @@include('../partials/navbar-vertical.html', {
 
-      "page": "customers"
+      "page": "questions"
 
       })
       <main class="main-content-wrapper">
@@ -24,19 +24,19 @@
             <div class="col-md-12">
               <div class="d-md-flex justify-content-between align-items-center">
                 <div>
-                  <h2>회원 관리</h2>
+                  <h2>문의 관리</h2>
                     <!-- breacrumb -->
                     <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                       <li class="breadcrumb-item"><a href="#" class="text-inherit" style="color: #889397">관리자 페이지</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">회원 관리</li>
+                      <li class="breadcrumb-item active" aria-current="page">문의 관리</li>
                     </ol>
                   </nav>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row" style="width: 108%">
+          <div class="row">
             <div class="col-xl-12 col-12 mb-5">
               <div class="card h-100 card-lg">
 
@@ -44,7 +44,7 @@
                   <div class="row justify-content-between">
                     <div class="col-lg-4 col-md-6 col-12 mb-2 mb-lg-0 d-flex">
                       <form id="search-form" class="d-flex" role="search" style="width: 400px;">
-                        <input class="form-control" id="search-input" type="search" placeholder="검색할 회원을 입력하세요." aria-label="Search">
+                        <input class="form-control" id="search-input" type="search" placeholder="검색할 문의의 종류를 입력하세요." aria-label="Search">
                       </form>
                       <button id="reset-search" class="btn btn-outline-gray-400 text-muted" style="margin-left: 10px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
@@ -56,10 +56,10 @@
                     <div class="col-lg-2 col-md-4 col-12">
                       <!-- main -->
                       <select class="form-select">
+                        <option value="questionIdDESC">문의 ID 내림차순</option>
+                        <option value="questionIdASC">문의 ID 오름차순</option>
                         <option value="userIdDESC">유저 ID 내림차순</option>
                         <option value="userIdASC">유저 ID 오름차순</option>
-                        <option value="userReportDESC">신고횟수 내림차순</option>
-                        <option value="userReportASC">신고횟수 오름차순</option>
                       </select>
                     </div>
                   </div>
@@ -79,16 +79,16 @@
                               </label>
                             </div>
                           </th>
-                          <th>닉네임</th>
-                          <th>이메일</th>
-                          <th>마이태그</th>
-                          <th>신고횟수</th>
-                          <th>locked</th>
+                          <th>문의 ID</th>
+                          <th>회원 ID</th>
+                          <th>문의 종류</th>
+                          <th>문의 내용</th>
+                          <th>문의 날짜</th>
 
                           <th></th>
                         </tr>
                       </thead>
-                      <tbody id="userContainer"></tbody>
+                      <tbody id="questionContainer"></tbody>
                     </table>
 
                   </div>
@@ -114,7 +114,7 @@
 
     @@include("../partials/scripts.html")
     <script src="@@webRoot/assets/js/dashboards/search.js"></script>
-    <script src="@@webRoot/assets/js/dashboards/userManage.js"></script>
+    <script src="@@webRoot/assets/js/dashboards/questionManage.js"></script>
 </body>
 
 </html>
