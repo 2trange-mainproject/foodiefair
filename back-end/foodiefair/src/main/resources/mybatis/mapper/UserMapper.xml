@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- UserMapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multicampus.foodiefair.dao.IUserDAO">
+    <!-- User 테이블 가져오기 -->
+    <select id="getUserList" resultType="com.multicampus.foodiefair.dto.UserDTO">
+        SELECT * FROM User
+    </select>
+
+    <!-- 회원가입 -->
+    <insert id="insertUser">
+        INSERT INTO User
+            (userName, userPwd, userEmail, userIntro, userTag, userImg)
+        VALUES
+            (#{userName},#{userPwd},#{userEmail},#{userIntro},#{userTag},#{userImg})
+    </insert>
+
+
+    <!-- 회원 정보 가져오기 --> <!--로그인 전용 -->
+    <select id="getUserByEmail" resultType="com.multicampus.foodiefair.dto.UserDTO">
+        SELECT *
+        FROM User
+        WHERE userEmail = #{userEmail}
+    </select>
+
+    <select id="getUserById" resultType="com.multicampus.foodiefair.dto.UserDTO">
+        SELECT *
+        FROM User
+        WHERE userId = #{userId}
+    </select>
+
+    <!-- 회원정보 수정 -->
+    <update id="updateUser">
+        UPDATE User
+        SET userName = #{userName},
+            userPwd = #{userPwd},
+            userEmail = #{userEmail}
+        WHERE userId = #{userId}
+    </update>
+
+    <!-- 탈퇴 -->
+    <delete id="deleteUser">
+        DELETE
+        FROM User
+        WHERE id = #{id}
+    </delete>
+
+    <!-- 회원 비밀번호 수정 -->
+    <update id="updateUserPassword">
+        UPDATE User
+        SET userPwd = #{userPwd}
+        WHERE userEmail = #{userEmail}
+    </update>
+</mapper>

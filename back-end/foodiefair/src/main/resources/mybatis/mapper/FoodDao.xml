@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.multicampus.foodiefair.dao.IProductDAO">
+    <select id="readDao" resultType="com.multicampus.foodiefair.dto.ProductDTO">
+        select * from Product where productId = #{selectedId}
+    </select>
+
     <select id="selectFilteredList" resultType="com.multicampus.foodiefair.dto.ProductDTO">
         SELECT *
         FROM (
@@ -51,6 +55,9 @@
                 </foreach>
                 )
             </if>
+            <if test="searchKeyword != null">
+                AND tt.productName LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
         </where>
         ) t
         WHERE row_num BETWEEN #{pageRequestDto.skip} + 1 AND #{pageRequestDto.page} * #{pageRequestDto.size}
@@ -73,6 +80,9 @@
                     fixedTag LIKE CONCAT('%', #{filter}, '%')
                 </foreach>
                 )
+            </if>
+            <if test="searchKeyword != null">
+                AND productName LIKE CONCAT('%', #{searchKeyword}, '%')
             </if>
         </where>
         ) AS filtered_product

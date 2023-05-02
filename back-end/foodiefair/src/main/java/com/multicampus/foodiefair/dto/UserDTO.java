@@ -14,7 +14,7 @@ public class UserDTO {
     private String userTag;         // 마이태그
     private Integer userReport;     // 신고횟수
     private String userImg;         // 프로필 사진 서버 링크와 연결
-    private Boolean locked;         // 로그인 불가
+    private Integer locked;         // 로그인 불가
     private String userAuth;        // 관리자권한
     private Boolean kakao;          // 카카오 로그인
     private Date registerDate;      // 가입날짜

@@ -31,6 +31,26 @@ public class ProductController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    // Read
+    @GetMapping("/product-read/{productId}")
+    public ResponseEntity<Map<String, Object>> ProductRead(
+            @PathVariable("productId") String productId) {
+        logger.info(productId);
+
+        ProductDTO product = productService.read(productId);
+
+        // 파일 URL 생성
+        S3Client s3Client = new S3Client();
+        String objectKey = product.getProductImg();
+        String url = s3Client.getProductUrl(objectKey, 3600);
+        product.setProductImg(url);
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("productRead", product);
+
+        return new ResponseEntity<>(resultMap, HttpStatus.OK);
+    }
+
     @GetMapping("/food-list")
     public ResponseEntity<Map<String, Object>> foodList(
             @RequestParam Map<String, String> requestParams) {
@@ -55,7 +75,7 @@ public class ProductController {
                 .categoryFilters(categoryFilters)
                 .build();
 
-        PageResponseDTO<ProductDTO> pageResponseDTO = productService.getFilteredList(pageRequestDTO, storeFilters, categoryFilters, sortOrder);
+        PageResponseDTO<ProductDTO> pageResponseDTO = productService.getFilteredList(pageRequestDTO, storeFilters, categoryFilters, sortOrder, searchKeyword);
 
         // 파일 URL 생성
         S3Client s3Client = new S3Client();
@@ -116,26 +136,5 @@ public class ProductController {
         logger.info("ResultMap: {}", resultMap);
 
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
-    }
-
-    @PostMapping("/upload-image")
-    public ResponseEntity<Map<String, Object>> uploadImage(@RequestParam("product-img") MultipartFile file) {
-        S3Client s3Client = new S3Client();
-        try {
-            File tempFile = File.createTempFile("temp", ".jpg");
-            file.transferTo(tempFile);
-            String imageUrl = s3Client.uploadFile(tempFile, file.getOriginalFilename());
-            return new ResponseEntity<>(Collections.singletonMap("url", imageUrl), HttpStatus.OK);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(Collections.singletonMap("error", "Error"), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping("/add-product")
-    public ResponseEntity<String> addProduct(@RequestBody Map<String, String> productInfo) {
-        logger.debug("addProduct method called with productInfo: {}", productInfo);
-        // 수신된 정보를 처리
-        return new ResponseEntity<>("Success", HttpStatus.OK); // 프런트 엔드로 응답 메시지 보내기
     }
 }

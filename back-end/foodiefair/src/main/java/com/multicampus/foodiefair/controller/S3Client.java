@@ -42,6 +42,16 @@ public class S3Client {
         return (url != null) ? url.toString() : null;
     }
 
+    //NPC Object Storage에 파일을 업로드하고 URL을 반환하는 메서드
+    public String uploadReviewFile(File file, String objectKey) {
+        String folderPath = "reviews/";
+        PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, folderPath + objectKey, file);
+        s3Client.putObject(putObjectRequest);
+
+        URL url = s3Client.getUrl(BUCKET_NAME, folderPath + objectKey);
+        return (url != null) ? url.toString() : null;
+    }
+
     //이미 업로드된 파일에 대한 SignedUrl을 생성하는 메서드
     public String getProductUrl(String objectKey, int expirationTimeInSeconds) {
         String folderPath = "products/";
@@ -61,16 +71,12 @@ public class S3Client {
         return signedUrl.toString();
     }
 
-
-    //파일 URL을 생성하는 메서드
-    public String getUrl(String objectKey) {
-        URL url = s3Client.getUrl(BUCKET_NAME, objectKey);
-        if (url != null) {
-            return url.toString();
-        } else {
-            // 로깅 또는 오류 메시지 처리
-            System.err.println("Error generating URL for object key: " + objectKey);
-            return null;
-        }
+    public String getReviewUrl(String objectKey, int expirationTimeInSeconds) {
+        String folderPath = "reviews/";
+        GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(BUCKET_NAME, folderPath + objectKey)
+                .withMethod(HttpMethod.GET)
+                .withExpiration(new Date(System.currentTimeMillis() + expirationTimeInSeconds * 1000));
+        URL signedUrl = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
+        return signedUrl.toString();
     }
 }

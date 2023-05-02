@@ -30,8 +30,22 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    //이메일
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
     //네이버 스토리지 : aws랑 호환됨
     implementation 'com.amazonaws:aws-java-sdk:1.12.154'
+
+    //키워드 뽑아내는 CLOVA Sentiment 사용하기 위함
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+
+    //한국어 형태소 분석기
+    implementation 'org.openkoreantext:open-korean-text:2.3.1'
+
+    //단어 임베딩
+    implementation 'org.deeplearning4j:deeplearning4j-core:1.0.0-beta7'
+    implementation 'org.deeplearning4j:deeplearning4j-nlp:1.0.0-beta7'
+    implementation 'org.nd4j:nd4j-native-platform:1.0.0-beta7'
 }
 
 tasks.named('test') {

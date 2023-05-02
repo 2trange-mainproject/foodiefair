@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.dashboard.IDashUserDAO">
+    <select id="readDao" resultType="com.multicampus.foodiefair.dto.UserDTO">
+        select * from User where userId = #{selectedId}
+    </select>
+
+    <delete id="deleteDao">
+        delete from User where userId = #{selectedId}
+    </delete>
+
+    <update id="updateDao">
+        update User set userReport = #{userReport}, locked = #{locked}
+        where userId = #{selectedId}
+    </update>
+
+    <select id="selectDashUserList" resultType="com.multicampus.foodiefair.dto.UserDTO">
+        SELECT *
+        FROM (
+        SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
+            <choose>
+                <when test="sortOrder == 'userIdDESC'">
+                    tt.userId DESC
+                </when>
+                <when test="sortOrder == 'userIdASC'">
+                    tt.userId ASC
+                </when>
+                <when test="sortOrder == 'userReportDESC'">
+                    tt.userReport DESC
+                </when>
+                <when test="sortOrder == 'userReportASC'">
+                    tt.userReport ASC
+                </when>
+                <otherwise>
+                    tt.userReport DESC
+                </otherwise>
+            </choose>
+        ) row_num
+        FROM User tt
+        <where>
+            <if test="searchKeyword != null">
+                AND tt.userName LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
+        </where>
+        ) t
+        WHERE row_num BETWEEN #{pageReviewerRequestDto.skip} + 1 AND #{pageReviewerRequestDto.page} * #{pageReviewerRequestDto.size}
+    </select>
+
+    <select id="getDashUserCount" resultType="int">
+        SELECT count(*) FROM (
+        SELECT userId FROM User
+        <where>
+            <if test="searchKeyword != null">
+                AND userName LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
+        </where>
+        ) AS filtered_product
+    </select>
+</mapper>
