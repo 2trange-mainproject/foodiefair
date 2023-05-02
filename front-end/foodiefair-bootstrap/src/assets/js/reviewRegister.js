@@ -5,12 +5,12 @@ function getKeywordIdFromUrl() {
 
 // Create Dropzone instances for foodImgDropzone and receiptImgDropzone
 const foodImgDropzone = new Dropzone("#foodImgDropzone", {
-    url: "http://localhost:8081/api/review-add",
+    //url: "http://localhost:8081/api/review-add",
     autoProcessQueue: false,
 });
 
 const receiptImgDropzone = new Dropzone("#receiptImgDropzone", {
-    url: "http://localhost:8081/api/review-add",
+    //url: "http://localhost:8081/api/review-add",
     autoProcessQueue: false,
 });
 
@@ -118,8 +118,8 @@ $("#review-reset").on("click", function(e) {
     $("#bad-review").val('');
 
     //Dropzone 초기화
-    Dropzone.forElement("#receiptImg").removeAllFiles(true);
-    Dropzone.forElement("#foodImg").removeAllFiles(true);
+    Dropzone.forElement("#receiptImgDropzone").removeAllFiles(true);
+    Dropzone.forElement("#foodImgDropzone").removeAllFiles(true);
 });
 
 //----------------등록 버튼------------------
@@ -131,10 +131,9 @@ $("#review-enroll").on('click', function(e) {
     var productId = getProductIdFromUrl();
     var goodReviews = $("#good-review").val().trim();
     var badReviews = $("#bad-review").val().trim();
-    //var receiptImg = $("#receiptImg")[0].files[0];
-    //var reviewImg = $("#foodImg")[0].files[0];
-    var receiptImg = 0;
-    var reviewImg = "none.jpg";
+    // receiptImgDropzone.files 배열의 길이가 0인 경우 파일이 선택되지 않았음을 의미합니다.
+    var receiptImg = receiptImgDropzone.files.length > 0 ? receiptImgDropzone.files[0] : null;
+    var reviewImg = foodImgDropzone.files[0];
 
     // FormData 객체 생성
     var formData = new FormData();
@@ -142,7 +141,9 @@ $("#review-enroll").on('click', function(e) {
     formData.append("userId", userId);
     formData.append("goodReviews", goodReviews);
     formData.append("badReviews", badReviews);
-    formData.append("receiptImg", receiptImg);
+    if (receiptImg) {
+        formData.append("receiptImg", receiptImg);
+    }
     formData.append("reviewImg", reviewImg);
 
     // Ajax를 이용해 서버로 정보 전송

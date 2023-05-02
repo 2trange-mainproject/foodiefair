@@ -9,8 +9,8 @@
 
 <body>
 
-  @@include("../partials/navbar-account.html")
-  <main>
+@@include("../partials/navbar-account.html")
+<main>
   <!-- section -->
 
   <section class="my-lg-14 my-8">
@@ -25,73 +25,103 @@
         <!-- col -->
         <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">
           <!-- form -->
-          <form>
-            <h6>*은 필수 사항입니다.</h6>
+          <form action="/signup2" method="post" id="signup3-form">
             <div class="row g-3">
               <h4>프로필 업로드</h4>
-              <input type="file" onchange="readURL(this);" style="margin-top: 1px" required>
+              <input type="file" onchange="readURL(this);" style="margin-top: 1px" name="userImg" required>
               <div class="col-12" style="margin-top: 4px; text-align: center;">
                 <img id="preview" style="max-width: 220px; max-height: 220px;"/>
               </div>
 
               <!-- col -->
               <div class="col-12">
-                <h5>*닉네임</h5>
-                <!-- 닉네임 input -->
-                <input type="text" class="form-control" id="userNickName" placeholder="닉네임을 입력하세요." required>
-              </div>
-              <div class="col-12">
-                <h5>MBTI</h5>
-                <!-- input -->
-                <input type="text" class="form-control" id="mbti" placeholder="MBTI를 입력하세요.">
-              </div>
-              <div class="col-12">
-                <h5>선호 음식</h5>
-                <!-- input -->
-                <input type="text" class="form-control" id="like" placeholder="좋아하는 음식 및 카테고리를 적어주세요.">
-              </div>
-              <div class="col-12">
                 <h5>마이태그</h5>
                 <!-- input -->
-                <input type="text" class="form-control" id="mytag`" placeholder="프로필에 넣고 싶은 태그를 적어주세요.">
+                <input type="text" class="form-control" id="mytag" placeholder="프로필에 넣고 싶은 태그를 적어주세요." name="userTag">
               </div>
               <div class="col-12">
                 <div class="col-12">
-
-                  <form>
-                    <h5>자기 소개</h5>
-                    <p><textarea cols="50" rows="10" placeholder="프로필에 넣고 싶은 자기소개를 적어주세요."></textarea></p>
-                  </form>
+                  <h5>자기 소개</h5>
+                  <p><textarea cols="50" rows="10" placeholder="프로필에 넣고 싶은 자기소개를 적어주세요." name="userIntro"></textarea></p>
                 </div>
               </div>
 
-
-              <div class="col-12">
               <!-- btn -->
-              <div class="col-12 d-grid"> <button type="submit" class="btn btn-pink">등록하기</button>
+              <div class="col-12 d-grid">
+                <button type="submit" class="btn btn-pink" id="submit-button">등록하기</button>
               </div>
 
               <!-- text -->
-              <p><small>By continuing, you agree to our <a href="#!" style="color: hotpink;"> Terms of Service</a> & <a href="@@webRoot/pages/contract.html" style="color: hotpink;">Privacy
-                    Policy</a></small></p>
+              <p><small>By continuing, you agree to our <a href="#!" style="color: hotpink;"> Terms of Service</a> & <a href="@@webRoot/pages/contract.html" style="color: hotpink;">Privacy Policy</a></small></p>
             </div>
+
+            <input type="hidden" name="userName" th:value="${param.userName}">
+            <input type="hidden" name="userEmail" th:value="${param.userEmail}">
+            <input type="hidden" name="userPwd" th:value="${param.userPwd}">
           </form>
+
         </div>
       </div>
     </div>
 
 
   </section>
-  </main>
+</main>
 
 
 
-  <!-- Footer -->
-  @@include("../partials/footer.html")
-  <!-- Javascript-->
-  @@include("../partials/scripts.html")
-  <script src="../assets/js/vendors/password.js"></script>
+<!-- Footer -->
+@@include("../partials/footer.html")
+<!-- Javascript-->
+@@include("../partials/scripts.html")
+<script src="../assets/js/vendors/password.js"></script>
 
+<script>
+  document.getElementById("submit-button").addEventListener("click", function() {
+    event.preventDefault(); // form 태그 기본 동작 취소
+    const queryString = window.location.search;
+
+    const params = new URLSearchParams(queryString);
+
+    const jsonData = {};
+
+    params.forEach(function (value, key) {
+      jsonData[key] = decodeURIComponent(value);
+    });
+
+    const formData = $("#signup3-form").serializeArray();
+
+    // form 데이터를 객체로 변환
+    const formDataObj = {};
+    formData.forEach(function (input) {
+      formDataObj[input.name] = input.value;
+    });
+
+    // formData와 jsonData 객체를 병합
+    const mergedData = Object.assign({}, formDataObj, jsonData);
+    console.log(mergedData);
+
+
+    $.ajax({
+      type: "POST",
+      url: "http://localhost:8081/signup", // 계정 찾기 요청을 처리하는 URL 주소를 입력합니다.
+      data: JSON.stringify(mergedData), // JSON 문자열로 변환하여 전송
+      contentType: "application/json", // Content-Type을 application/json으로 설정
+      success: function (result) {
+        if (result.success) {
+          alert(result.message);
+          location.href="/pages/signin.html"
+        } else {
+          alert(result.message);
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error(xhr.responseText);
+        alert(xhr.responseJSON.message);
+      }
+    });
+  });
+</script>
 </body>
 
 </html>

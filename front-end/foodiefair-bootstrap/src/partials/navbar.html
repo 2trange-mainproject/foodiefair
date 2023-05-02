@@ -87,17 +87,36 @@
                 </a>
               </button>
             </div>
+            <!--<div class="col-md-2 col-xxl-1 text-end d-none d-lg-block">-->
             <div class="col-md-2 col-xxl-1 text-end d-none d-lg-block">
-              <!--<a href="@@webRoot/pages/contract.html" class="text-muted" data-bs-toggle="modal" data-bs-target="#userModal">-->
-              <a href="@@webRoot/pages/contract.html">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                     stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                     class="feather feather-user">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </a>
-              <a href="@@webRoot/pages/signin.html" style="color: gray;">로그인</a>
+              <span id="login-message"></span>
+              <a id="logout-link" style="color: #889397; display: none" href="#" onclick="logout()">로그아웃</a>
+              <a id="signin-link" style="color: #889397; display: none" href="@@webRoot/pages/signin.html">로그인</a>
+              <a id="signup-link" style="color: #889397; display: none" href="@@webRoot/pages/contract.html">회원가입</a>
+              <script>
+                window.onload = function() {
+                  const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+                  if (loginUser != null) {
+                    document.getElementById('login-message').innerHTML = loginUser.userName + '님, 안녕하세요!';
+                    document.getElementById('logout-link').style.display = 'inline';
+                    document.getElementById('update-link').style.display = 'inline';
+                    document.getElementById('delete-link').style.display = 'inline';
+                  } else {
+                    document.getElementById('signin-link').style.display = 'inline';
+                    document.getElementById('signup-link').style.display = 'inline';
+                  }
+                }
+                function logout() {
+                  fetch('http://localhost:8081/logout', {
+                    method: 'POST',
+                    mode: 'cors'
+                  }).then(response => {
+                    localStorage.removeItem('loginUser');
+                    alert('로그아웃 되었습니다.');
+                    location.reload();
+                  });
+                }
+              </script>
             </div>
           </div>
         </div>
