@@ -8,7 +8,6 @@ import java.util.Map;
 
 public interface IReviewService {
     int reviewInsert(ReviewDTO reviewDTO);
-    ProductDTO productInfo(String productId);
     int reviewCount(String productId);
     int reviewDelete(int reviewId);
     int reviewModify();

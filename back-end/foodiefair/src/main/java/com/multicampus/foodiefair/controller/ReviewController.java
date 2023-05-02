@@ -22,12 +22,6 @@ import java.util.Map;
 public class ReviewController {
     private final IReviewService iReviewService;
 
-    @GetMapping("/{productId}")
-    public ResponseEntity<ProductDTO> productInfo(@PathVariable String productId) {
-        log.info("productInfo");
-        return ResponseEntity.ok(iReviewService.productInfo(productId));
-    }
-
     @PostMapping("/review/insert")
     public ResponseEntity<String> reviewInsert(@Valid @RequestBody ReviewDTO reviewDTO, BindingResult bindingResult) {
         log.info("reviewInsertController");

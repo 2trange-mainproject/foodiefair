@@ -16,12 +16,6 @@ import java.util.Map;
 @Log4j2
 public class ReviewService implements IReviewService{
     private final IReviewDAO iReviewDAO;
-    private final IProductDAO iProductDAO;
-
-    @Override
-    public ProductDTO productInfo(String productId) {
-        return iProductDAO.productInfo(productId);
-    }
 
     @Override
     public int reviewCount(String productId) {
