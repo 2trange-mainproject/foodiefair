@@ -9,6 +9,6 @@ import java.util.Map;
 @Mapper
 public interface ICommentDAO {
     int commentInsert(CommentDTO commentDTO);
-    int commentDelete(int CommentId);
+    int commentDelete(int commentId);
     List<Map<String, Object>> commentRead(int reviewId);
 }

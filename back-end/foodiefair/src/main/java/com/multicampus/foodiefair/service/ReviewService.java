@@ -35,8 +35,8 @@ public class ReviewService implements IReviewService{
     }
 
     @Override
-    public int reviewDelete() {
-        return 0;
+    public int reviewDelete(int reviewId) {
+        return iReviewDAO.reviewDelete(reviewId);
     }
 
     @Override

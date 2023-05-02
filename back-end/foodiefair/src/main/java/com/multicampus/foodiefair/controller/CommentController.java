@@ -30,7 +30,7 @@ public class CommentController {
         return ResponseEntity.ok("comment success");
     }
 
-    @DeleteMapping() //댓글 삭제
+    @DeleteMapping("/delete/{commentId}") //댓글 삭제
     public ResponseEntity<String> commentDelete(@PathVariable int commentId) {
         log.info(commentId);
         commentService.commentDelete(commentId);

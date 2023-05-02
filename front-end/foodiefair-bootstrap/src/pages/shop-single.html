@@ -42,7 +42,6 @@
           <div class="product" id="product">
             <div class="zoom" onmousemove="zoom(event)"
               style="background-image: url(../assets/images/products/product-single-img-1.jpg)">
-              <!-- img -->
               <!-- img --><img src="../assets/images/products/product-single-img-1.jpg" alt="">
             </div>
             <div>
@@ -180,7 +179,7 @@
               <div class="border-bottom py-4 mb-4">
                 <div class="row">
                   <div class="col-6">
-                    <h5>사진 또는 비디오</h5>
+                      <h5>사진 또는 비디오</h5>
                     <p>사진이나 비디오를 업로드 해주세요.</p>
                   </div>
                   <div class="col-6">
@@ -191,14 +190,14 @@
                 <!-- form -->
                 <div class="row">
                   <div class="col-6">
-                    <form action="#" class=" dropzone profile-dropzone">
+                    <form action="#" class="dropzone profile-dropzone">
                       <div class="fallback">
                         <input name="file" type="file" multiple />
                       </div>
                     </form>
                   </div>
                   <div class="col-6">
-                    <form action="#" class=" dropzone profile-dropzone">
+                    <form action="#" class="dropzone profile-dropzone">
                       <div class="fallback">
                         <input name="file" type="file" multiple />
                       </div>
@@ -275,14 +274,14 @@
                         <!-- form -->
                         <div class="row">
                           <div class="col-6">
-                            <form action="#" class=" dropzone profile-dropzone">
-                              <div class="fallback">
+                            <form action="#" class="dropzone" id="product-dropzone">
+                              <div class="dropzone product-dropzone">
                                 <input name="file" type="file" multiple />
                               </div>
                             </form>
                           </div>
                           <div class="col-6">
-                            <form action="#" class=" dropzone profile-dropzone">
+                            <form action="#" class="dropzone receipt-dropzone">
                               <div class="fallback">
                                 <input name="file" type="file" multiple />
                               </div>

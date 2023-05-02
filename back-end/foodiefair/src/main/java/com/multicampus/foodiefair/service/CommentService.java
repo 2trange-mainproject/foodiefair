@@ -22,9 +22,9 @@ public class CommentService implements ICommentService {
     }
 
     @Override
-    public int commentDelete(int CommentId) {
+    public int commentDelete(int commentId) {
         log.info("CommentServiceDelete");
-        return iCommentDAO.commentDelete(CommentId);
+        return iCommentDAO.commentDelete(commentId);
     }
 
     @Override

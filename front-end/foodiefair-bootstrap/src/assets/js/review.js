@@ -28,16 +28,18 @@ function reviewPageCount() { // 리뷰 더보기 offset 저장해두기 위한 �
 $(document).ready(function() {
     productInfo();
     $('#product-name').on('click', '.btn-dib', saveTrueFalse); // 찜 토글, 동적으로 페이지가 만들어지는 경우 부모 id를 통해 이벤트 발생 여부 체크
-    $('#receipt-review').on('click', '.btn-comment', function(e) {
+    $('#receipt-review').on('click', '.btn-comment', function(e) { // 인증 리뷰 댓글 눌렀을 때
         if(!$(e.target).hasClass('collapsed'))
             commentRead(e);
         else
             e.target.parentNode.parentNode.nextElementSibling.innerHTML='';
     }); // 인증 리뷰 댓글 버튼 눌렀을 때
     $('#receipt-review').on('click', '.btn-comment-enroll', commentEnroll); // 인증 리뷰 댓글 등록
-    $('#common-review').on('click', '.btn-comment-enroll', commentEnroll); // 일반 리뷰 댓글 등록
-    $('.btn-comment-delete').click(commentDelete); // 댓글 삭제
+    $('#receipt-review').on('click', '.btn-comment-delete',commentDelete); // 인증 리뷰 댓글 삭제
     $('#receipt-review').on('click', '.btn-like', commentLike);// 인증 댓글 좋아요 토글
+    $('#receipt-review').on('click', '.review-delete', reviewDelete); // 인증 리뷰 삭제
+
+    $('#common-review').on('click', '.btn-comment-enroll', commentEnroll); // 일반 리뷰 댓글 등록
     $('#common-review').on('click', '.btn-like', commentLike);// 일반 댓글 좋아요 토글
 
     window.addEventListener('unload', function (){ // 페이지 종료 시 클로저 변수 할당 해제 가비지 컬렉터가 소멸 시켜줌
@@ -160,8 +162,8 @@ function receiptReviewRead() { // 인증 리뷰
                         <div id="review-name">
                           <h6 class="mb-1">
                             ${item.userName}
-                            <a href="#" class="text-muted ms-3"><i class="bi bi-trash me-1"></i>삭제하기</a>
-                            <a href="#" class="text-muted ms-3"><i class="bi bi-pencil me-1"></i>수정하기</a>
+                            <a href="#" class="text-muted ms-3 review-delete" data-value="${item.reviewId}"><i class="bi bi-trash me-1"></i>삭제하기</a>
+<!--                            <a href="#" class="text-muted ms-3"><i class="bi bi-pencil me-1"></i>수정하기</a>-->
                           </h6>
                         </div>
                         <p class="small"> <span class="text-muted">${item.reviewDate}</span>
@@ -230,7 +232,7 @@ function reviewEnroll(e) { // 리뷰 등록
         badReviews:$('#bad-review').val() //실제로 얘만 있어야 함
     }
     $.ajax({
-        url:'http://localhost:8081/products/review',
+        url:'http://localhost:8081/products/review/insert',
         type:'post',
         contentType:'application/json',
         data:JSON.stringify(data),
@@ -245,6 +247,22 @@ function reviewEnroll(e) { // 리뷰 등록
         }
     });
 };
+
+function reviewDelete(e) { // 리뷰 삭제
+    e.preventDefault();
+    let reviewId = Number(e.target.getAttribute('data-value'))
+    $.ajax({
+        url:'http://localhost:8081/products/review/delete/'+reviewId,
+        type:'delete',
+        contentType:'application/json',
+        success: function (data) {
+            console.log(data);
+        },
+        error: function(data) {
+            console.log(data)
+        }
+    });
+}
 
 function commonReviewRead() { // 일반 리뷰
     var data = {
@@ -324,12 +342,14 @@ function commonReviewRead() { // 일반 리뷰
 
 function commentEnroll(event) { // 댓글 등록
     let target = event.target;
+    console.log(target.parentNode.parentNode.parentNode.parentNode.id);
+    console.log(target.parentNode.previousElementSibling.childNodes.item(1).value);
     if (target.parentNode.previousElementSibling.childNodes.item(1).value=='')
         return false;
 
     var data = {
-        userId:20,
-        reviewId:Number(target.parentNode.parentNode.parentNode.id),
+        userId:2,
+        reviewId:Number(target.parentNode.parentNode.parentNode.parentNode.id),
         commentContent:target.parentNode.previousElementSibling.childNodes.item(1).value
     }
     $.ajax({
@@ -358,7 +378,7 @@ function commentRead(event) {
                 let comment = document.createElement('div');
                 comment.innerHTML = `<div class="border-bottom pb-4 mb-4">
                             <h6>
-                              ${item.userName}<a href="#" class="text-muted ms-3 btn-comment-delete"><i class="bi bi-trash me-1"></i>삭제하기</a>
+                              ${item.userName}<a href="#" class="text-muted ms-3 btn-comment-delete" id="${item.commentId}"><i class="bi bi-trash me-1"></i>삭제하기</a>
                             </h6>
                             <div>
                               <p class="text-dark mb-1">${item.commentContent}</p>
@@ -366,11 +386,12 @@ function commentRead(event) {
                             <div class="small text-muted">${item.commentDate}</div>
                           </div>`;
                 parent.append(comment);
+
             });
 
             let commentEnroll = document.createElement('div');
-            commentEnroll.innerHTML = `                          <div class="row g-3">
-                            <div class="col-sm-11">
+            commentEnroll.innerHTML = `<div class="row g-3">
+                            <div class="col-sm-11 comment-area">
                               <input type="text" class="form-control" placeholder="댓글을 작성해주세요.">
                             </div>
                             <div class="col-sm">
@@ -378,6 +399,12 @@ function commentRead(event) {
                             </div>
                           </div>`;
             parent.append(commentEnroll);
+
+            let inputarea = document.createElement('input')
+            inputarea.type='text';
+            inputarea.className='form-control';
+            inputarea.placeholder='댓글을 작성해주세요.';
+            document.querySelector('#comment-area').appendChild(inputarea);
         },
         error: function(data) {
             console.log(data)
@@ -387,9 +414,9 @@ function commentRead(event) {
 
 function commentDelete(e) { // 댓글 삭제
     e.preventDefault();
-    var data = 22;
+    let commentId = Number(e.target.id)
     $.ajax({
-        url:'http://localhost:8081/products/commentDelete/'+data,
+        url:'http://localhost:8081/products/comment/delete/'+commentId,
         type:'delete',
         contentType:'application/json',
         success: function (data) {

@@ -10,7 +10,7 @@ public interface IReviewService {
     int reviewInsert(ReviewDTO reviewDTO);
     ProductDTO productInfo(String productId);
     int reviewCount(String productId);
-    int reviewDelete();
+    int reviewDelete(int reviewId);
     int reviewModify();
     List<Map<String, Object>> reviewRead(String productId, int offset, int receiptImg, int sort);
 }

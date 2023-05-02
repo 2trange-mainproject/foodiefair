@@ -7,17 +7,18 @@
     </insert>
 
     <delete id="commentDelete">
-        DELETE FROM Comment WHERE commentId=21;
+        DELETE FROM Comment WHERE commentId=${commentId};
     </delete>
 
     <resultMap id="commentList" type="java.util.Map">
+        <result column="reviewId" property="reviewId"/>
         <result column="commentId" property="commentId"/>
         <result column="userName" property="userName"/>
         <result column="commentContent" property="commentContent"/>
         <result column="commentDate" property="commentDate"/>
     </resultMap>
     <select id="commentRead" resultMap="commentList">
-        SELECT user.userName, comment.commentContent, comment.commentDate, comment.commentId
+        SELECT user.userName, comment.commentContent, comment.commentDate, comment.commentId, comment.reviewId
         FROM comment INNER JOIN user ON user.userId = comment.userId
         WHERE reviewId=#{reviewId} order by commentId asc;
     </select>
