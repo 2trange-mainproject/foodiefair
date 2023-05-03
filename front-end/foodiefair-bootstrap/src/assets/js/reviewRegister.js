@@ -3,27 +3,39 @@ function getKeywordIdFromUrl() {
     return urlParams.get("productId");
 }
 
-// Create Dropzone instances for foodImgDropzone and receiptImgDropzone
-const foodImgDropzone = new Dropzone("#foodImgDropzone", {
-    //url: "http://localhost:8081/api/review-add",
-    autoProcessQueue: false,
-});
+let foodImage = null;
+let receiptImage = null;
 
-const receiptImgDropzone = new Dropzone("#receiptImgDropzone", {
-    //url: "http://localhost:8081/api/review-add",
-    autoProcessQueue: false,
-});
+function foodURL(input) {
+    if (input.files && input.files[0]) {
+        foodImage = input.files[0];
+        let reader = new FileReader();
+        reader.onload = async function (e) {
+            document.getElementById('food_preview').src = e.target.result;
 
-// Add a click event listener for the '등록' button
-document.getElementById("review-enroll").addEventListener("click", function (event) {
-    event.preventDefault();
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        document.getElementById('food_preview').src = "";
+    }
+}
 
-    // Process the file upload queues for both Dropzone instances
-    foodImgDropzone.processQueue();
-    receiptImgDropzone.processQueue();
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        receiptImage = input.files[0];
+        let reader = new FileReader();
+        reader.onload = async function (e) {
+            document.getElementById('OCR_preview').src = e.target.result;
 
-    // Add your additional form submission logic here
-});
+            const base64Data = e.target.result.split(',')[1];
+
+            const response = await requestWithBase64(base64Data);
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        document.getElementById('OCR_preview').src = "";
+    }
+}
 
 function loadKeywords(productId) {
     var productId = getKeywordIdFromUrl();
@@ -132,8 +144,8 @@ $("#review-enroll").on('click', function(e) {
     var goodReviews = $("#good-review").val().trim();
     var badReviews = $("#bad-review").val().trim();
     // receiptImgDropzone.files 배열의 길이가 0인 경우 파일이 선택되지 않았음을 의미합니다.
-    var receiptImg = receiptImgDropzone.files.length > 0 ? receiptImgDropzone.files[0] : null;
-    var reviewImg = foodImgDropzone.files[0];
+    var receiptImg = receiptImage;
+    var reviewImg = foodImage;
 
     // FormData 객체 생성
     var formData = new FormData();
@@ -141,9 +153,7 @@ $("#review-enroll").on('click', function(e) {
     formData.append("userId", userId);
     formData.append("goodReviews", goodReviews);
     formData.append("badReviews", badReviews);
-    if (receiptImg) {
-        formData.append("receiptImg", receiptImg);
-    }
+    formData.append("receiptImg", receiptImg);
     formData.append("reviewImg", reviewImg);
 
     // Ajax를 이용해 서버로 정보 전송
@@ -162,3 +172,76 @@ $("#review-enroll").on('click', function(e) {
         },
     });
 });
+
+//영수증
+async function requestWithBase64(base64Data) {
+    const url = "http://localhost:8081/api/receipt/";
+    const data = {
+        image: base64Data
+    };
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+        ocrConfirmModal(jsonResponse);
+
+    } catch (error) {
+        console.log('Error processing request:', error);
+    }
+}
+
+function ocrConfirmModal(jsonResponse) {
+    let OCRContainer = $('#OCRContainer');
+    OCRContainer.empty();
+    let ocrModal = '';
+    if (jsonResponse.status === 'success') {
+        ocrModal += `
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Receipt authentication succeeded</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Authentication succeeded
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+    } else {
+        ocrModal += `
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Receipt authentication failed</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    영수증 인증을 실패했습니다.</br>
+                    [인증 실패]</br>
+                    올바른 영수증인지 다시 확인 해주세요.</br>
+                    해당 상품의 영수증이 아닐 수 있습니다.</br>
+                    영수증이 훼손된 경우, 정확한 판독이 어렵습니다.</br>
+                    자세한 사항은 문의사항을 통해 문의해주세요.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+    }
+    OCRContainer.append(ocrModal);
+}

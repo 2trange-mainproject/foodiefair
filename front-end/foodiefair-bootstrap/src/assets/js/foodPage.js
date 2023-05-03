@@ -9,7 +9,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     toggleResetSearchButton();
+    selectCategoryFromLocalStorage();
 });
+
+function selectCategoryFromLocalStorage() {
+    const selectedCategory = localStorage.getItem("selectedCategory");
+
+    if (selectedCategory) {
+        $(`input[type='checkbox'][data-category='${selectedCategory}']`).prop("checked", true);
+        localStorage.removeItem("selectedCategory");
+        loadProducts(1, $(".form-select").val());
+    }
+}
 
 function getSelectedFilters() {
     var stores = [];

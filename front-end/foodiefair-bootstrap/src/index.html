@@ -8,7 +8,7 @@
     <link href="@@webRoot/node_modules/slick-carousel/slick/slick.css" rel="stylesheet"/>
     <link href="@@webRoot/node_modules/slick-carousel/slick/slick-theme.css" rel="stylesheet"/>
     <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
-    <link href="@@webRoot/src/assets/css/stroetag.css" rel="stylesheet"/>
+
     @@include("partials/head.html")
 </head>
 
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="hero-slider ">
                 <div
-                        style="background: url(@@webRoot/assets/images/slider/here.jpg)no-repeat; background-size: cover; border-radius: .5rem; background-position: center;">
+                        style="background: url(@@webRoot/assets/images/slider/banner.png)no-repeat; background-size: cover; border-radius: .5rem; background-position: center;">
                     <div class="ps-lg-12 py-lg-16 col-xxl-5 col-md-7 py-14 px-8 text-xs-center">
                         <h2 class="text-dark display-5 fw-bold mt-4">FoodieFair</h2>
                         <p class="lead">"정직하고 올바른 리뷰를 제공하겠습니다."</p>
@@ -72,9 +72,9 @@
                             <!-- item -->
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?categories=도시락" class="text-decoration-none text-inherit">
                                     <!-- card -->
-                                    <div class="card mb-3 card-lift">
+                                    <div class="card mb-3 card-lift" id="simple-01">
                                         <div class="card-body text-center py-6 text-center">
                                             <div class="my-5">
                                                 <img src="@@webRoot/src/assets/images/icons/lunch-box.png" alt="도시락"
@@ -88,9 +88,9 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?categories=simple-02" class="text-decoration-none text-inherit">
                                     <!-- card -->
-                                    <div class="card mb-3 card-lift">
+                                    <div class="card mb-3 card-lift" id="simple-02">
                                         <div class="card-body text-center py-6">
                                             <!-- img -->
                                             <div class="my-5">
@@ -98,36 +98,36 @@
                                                      width="56" height="56"/>
                                             </div>
                                             <!-- text -->
-                                            <div class="text-truncate">샌드위치</div>
+                                            <div class="text-truncate">샌드위치/햄버거</div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=샐러드" class="text-decoration-none text-inherit">
                                     <!-- card -->
-                                    <div class="card mb-3 card-lift">
+                                    <div class="card mb-3 card-lift" id="simple-03">
                                         <div class="card-body text-center py-6">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <div class="my-5">
-                                                    <img src="@@webRoot/src/assets/images/icons/hamburger.png"
-                                                         alt="hamburger" width="56" height="56"/>
+                                                    <img src="@@webRoot/src/assets/images/icons/salad.png"
+                                                         alt="salad" width="56" height="56"/>
                                                 </div>
                                             </div>
                                             <!-- text -->
-                                            <div class="text-truncate">햄버거</div>
+                                            <div class="text-truncate">샐러드</div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=simple-04" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="simple-04">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <img src="@@webRoot/src/assets/images/icons/rice-balls.png"
@@ -141,9 +141,9 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=simple-05" class="text-decoration-none text-inherit">
                                     <!-- card -->
-                                    <div class="card mb-3 card-lift">
+                                    <div class="card mb-3 card-lift" id="simple-05">
                                         <div class="card-body text-center py-6">
                                             <!-- img -->
                                             <div class="my-5">
@@ -158,10 +158,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=simple-06" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="simple-06">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <img src="@@webRoot/src/assets/images/icons/canned-food.png"
@@ -175,10 +175,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=instant-01" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="instant-01">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <img src="@@webRoot/src/assets/images/icons/stick.png" alt="stick"
@@ -192,10 +192,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=instant-02" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="instant-02">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <svg width="56" height="56" fill="#3d4f58"
@@ -212,10 +212,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=instant-03" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="instant-03">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <svg width="56" height="56" fill="#3d4f58"
@@ -232,10 +232,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=cookie-01" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="cookie-01">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <svg width="56" height="56" fill="#3d4f58"
@@ -252,10 +252,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=cookie-02" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="cookie-02">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <img src="@@webRoot/src/assets/images/icons/dessert.png" alt="dessert"
@@ -269,10 +269,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=cookie-03" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="cookie-03">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <img src="@@webRoot/src/assets/images/icons/icecream.png" alt="icecream"
@@ -286,10 +286,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=cookie-04" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="cookie-04">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <div class="my-5">
@@ -305,10 +305,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=drink-01" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="drink-01">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <img src="@@webRoot/src/assets/images/icons/soda.png" alt="soda"
@@ -322,10 +322,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=drink-02" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="drink-02">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <img src="@@webRoot/src/assets/images/icons/icedrink.png" alt="icedrink"
@@ -339,10 +339,10 @@
                             </div>
                             <div class="item">
                                 <!-- item -->
-                                <a href="shop-grid.html" class="text-decoration-none text-inherit">
+                                <a href="pages/shop-filter.html?category=drink-03" class="text-decoration-none text-inherit">
                                     <!-- card -->
                                     <div class="card mb-3 card-lift">
-                                        <div class="card-body text-center py-6">
+                                        <div class="card-body text-center py-6" id="drink-03">
                                             <!-- img -->
                                             <div class="my-5">
                                                 <svg width="56" height="56" fill="#3d4f58"
@@ -383,631 +383,35 @@
                             </polygon>
                         </svg>
                         <span class="ms-3">신상품</span>
-                        <!--태그-->
                         <div class="button-group ms-3">
-                            <button class="btn btn-secondary btn-sm"
-                                    style="border: none; background-color: #DDDF50; border-radius: 92px;">CU
+                            <button class="CU"
+                                    style="border: none; background-color: #DDDF50; color: #ffffff; border-radius: 92px;">
+                                CU
                             </button>
-                            <button class="btn btn-secondary btn-sm"
-                                    style="border: none; background-color: #5ED1E7; border-radius: 92px;">GS25
+                            <button class="GS25"
+                                    style="border: none; background-color: #5ED1E7; color: #ffffff; border-radius: 92px;">
+                                GS25
                             </button>
-                            <button class="btn btn-secondary btn-sm"
-                                    style="border: none; background-color: #fece6a; border-radius: 92px;">emart24
+                            <button class="Emart24"
+                                    style="border: none; background-color: #fece6a; color: #ffffff; border-radius: 92px;">
+                                emart24
                             </button>
-                            <button class="btn btn-secondary btn-sm"
-                                    style="border: none; background-color: #52904D; border-radius: 92px;">7ELVEN
+                            <button class="sevenElven"
+                                    style="border: none; background-color: #52904D; color: #ffffff; border-radius: 92px;">
+                                7ELVEN
                             </button>
                         </div>
                     </h3>
                 </div>
-                <div class="col-lg-2 col-2">
+                <div class="col-lg-2 col-3">
                     <div class="slider-arrow  " id="slider-second-arrows"></div>
                 </div>
             </div>
-            <!-- slider -->
-            <div class="product-slider-second " id="slider-second">
-                <!-- item -->
-                <div class="item">
-                    <!-- item -->
-                    <div class="card card-product mb-lg-4">
-                        <div class="card-body">
-                            <!-- badge -->
-                            <div class="text-center position-relative ">
-                                <div class=" position-absolute top-0 start-0">
-                                    <span class="badge bg-danger">Sale</span>
-                                </div>
-                                <!-- img -->
-                                <!-- img -->
-                                <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-15.jpg"
-                                                   alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                <!-- action btn -->
-                                <!-- action btn -->
-                                <div class="card-product-action">
-                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                       data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                                           data-bs-toggle="tooltip" data-bs-html="true"
-                                                                           title="Quick View"></i></a>
-                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                       title="Wishlist"><i class="bi bi-heart"></i></a>
-                                </div>
-                            </div>
-                            <!-- title -->
-                            <div class="text-small mb-1"><a href="#!"
-                                                            class="text-decoration-none text-muted"><small>Fruits &
-                                Vegetables</small></a>
-                            </div>
-                            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Fresh Apple</a>
-                            </h2>
-                            <div>
-                                <!-- rating -->
-                                <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i></small> <span
-                                    class="text-muted small">4.5(149)</span>
-                            </div>
-                            <!-- price -->
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <div><span class="text-dark">$18</span> <span
-                                        class="text-decoration-line-through text-muted">$24</span>
-                                </div>
-                                <!-- btn -->
-                                <div>
-                                    <a href="#!" class="btn btn-pink btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- item -->
-                <div class="item">
-                    <!-- item -->
-                    <div class="card card-product mb-lg-4">
-                        <div class="card-body">
-                            <div class="text-center position-relative">
-                                <!-- badge -->
-                                <div class=" position-absolute top-0 start-0">
-                                    <span class="badge bg-success">14%</span>
-                                </div>
-                                <!-- img -->
-                                <a href="#!"><img src="@@webRoot/assets/images/products/product-img-16.jpg"
-                                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                <!-- action btn -->
-                                <!-- action btn -->
-                                <div class="card-product-action">
-                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                       data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                                           data-bs-toggle="tooltip" data-bs-html="true"
-                                                                           title="Quick View"></i></a>
-                                    <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip"
-                                       data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                </div>
-                            </div>
-                            <!-- title -->
-                            <div class="text-small mb-1"><a href="#!"
-                                                            class="text-decoration-none text-muted"><small>Fruits &
-                                Vegetables</small></a>
-                            </div>
-                            <!-- title -->
-                            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Golden Pineapple
-                            </a>
-                            </h2>
-                            <!-- rating -->
-                            <div class="text-warning">
-                                <!-- rating -->
-                                <small> <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i></small> <span class="text-muted small">4.5
-                              (25)</span>
-                            </div>
-                            <!-- price -->
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <div><span class="text-dark">$24</span>
-                                </div>
-                                <!-- btn -->
-                                <div>
-                                    <a href="#!" class="btn btn-pink btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- item -->
-                <div class="item">
-                    <!-- item -->
-                    <div class="card card-product mb-lg-4">
-                        <div class="card-body">
-                            <div class="text-center position-relative">
-                                <!-- img -->
-                                <a href="#!"><img src="@@webRoot/assets/images/products/product-img-17.jpg"
-                                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                <!-- action btn -->
-                                <div class="card-product-action">
-                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                       data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                                           data-bs-toggle="tooltip" data-bs-html="true"
-                                                                           title="Quick View"></i></a>
-                                    <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip"
-                                       data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                </div>
-                            </div>
-                            <!-- title -->
-                            <div class="text-small mb-1"><a href="#!"
-                                                            class="text-decoration-none text-muted"><small>Fruits &
-                                Vegetables</small></a>
-                            </div>
-                            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Fresh Kiwi</a>
-                            </h2>
-                            <!-- rating -->
-                            <div class="text-warning">
-                                <!-- rating -->
-                                <small> <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i></small> <span class="text-muted small">5
-                              (469)</span>
-                            </div>
-                            <!-- rating -->
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <div><span class="text-dark">$32</span> <span
-                                        class="text-decoration-line-through text-muted">$35</span>
-                                </div>
-                                <!-- btn -->
-                                <div>
-                                    <a href="#!" class="btn btn-pink btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- item -->
-                <div class="item">
-                    <!-- item -->
-                    <div class="card card-product mb-lg-4">
-                        <div class="card-body">
-                            <div class="text-center position-relative">
-                                <!-- badge -->
-                                <div class=" position-absolute top-0 start-0">
-                                    <span class="badge bg-danger">Hot</span>
-                                </div>
-                                <!-- img -->
-                                <a href="#!"><img src="@@webRoot/assets/images/products/product-img-18.jpg"
-                                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                <!-- action btn -->
-                                <div class="card-product-action">
-                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                       data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                                           data-bs-toggle="tooltip" data-bs-html="true"
-                                                                           title="Quick View"></i></a>
-                                    <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip"
-                                       data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                </div>
-                            </div>
-                            <!-- action btn -->
-                            <div class="text-small mb-1"><a href="#!"
-                                                            class="text-decoration-none text-muted"><small>Fruits &
-                                Vegetables</small></a>
-                            </div>
-                            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Fresh Banana</a>
-                            </h2>
-                            <!-- rating -->
-                            <div class="text-warning">
-                                <!-- rating -->
-                                <small> <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
-                                    <i class="bi bi-star"></i></small> <span class="text-muted small">3.5
-                              (456)</span>
-                            </div>
-                            <!-- price -->
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <div><span class="text-dark">$3</span> <span
-                                        class="text-decoration-line-through text-muted">$5</span>
-                                </div>
-                                <!-- btn -->
-                                <div>
-                                    <a href="#!" class="btn btn-pink btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- item -->
-                <div class="item">
-                    <!-- item -->
-                    <div class="card card-product mb-lg-4">
-                        <div class="card-body">
-                            <div class="text-center position-relative">
-                                <!-- img -->
-                                <a href="#!"><img src="@@webRoot/assets/images/products/product-img-19.jpg"
-                                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                <!-- action btn -->
-                                <div class="card-product-action">
-                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                       data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                                           data-bs-toggle="tooltip" data-bs-html="true"
-                                                                           title="Quick View"></i></a>
-                                    <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip"
-                                       data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                </div>
-                            </div>
-                            <!-- title -->
-                            <div class="text-small mb-1"><a href="#!"
-                                                            class="text-decoration-none text-muted"><small>Fruits &
-                                Vegetables</small></a>
-                            </div>
-                            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Beatroot</a>
-                            </h2>
-                            <!-- rating -->
-                            <div class="text-warning">
-                                <!-- rating -->
-                                <small> <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i></small> <span class="text-muted small">4.5
-                              (39)</span>
-                            </div>
-                            <!-- price -->
-                            <div class="d-flex justify-content-between mt-4">
-                                <div><span class="text-dark">$13</span> <span
-                                        class="text-decoration-line-through text-muted">$18</span>
-                                </div>
-                                <!--  btn -->
-                                <div>
-                                    <a href="#!" class="btn btn-pink btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- item -->
-                <div class="item">
-                    <!-- item -->
-                    <div class="card card-product mb-lg-4">
-                        <div class="card-body">
-                            <div class="text-center position-relative ">
-                                <!-- badge -->
-                                <div class=" position-absolute top-0 start-0">
-                                    <span class="badge bg-danger">Sale</span>
-                                </div>
-                                <!-- img -->
-                                <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-15.jpg"
-                                                   alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                <!-- action btn -->
-                                <div class="card-product-action">
-                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                       data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                                           data-bs-toggle="tooltip" data-bs-html="true"
-                                                                           title="Quick View"></i></a>
-                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                                       title="Wishlist"><i class="bi bi-heart"></i></a>
-                                </div>
-                            </div>
-                            <!-- title -->
-                            <div class="text-small mb-1"><a href="#!"
-                                                            class="text-decoration-none text-muted"><small>Fruits &
-                                Vegetables</small></a>
-                            </div>
-                            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Fresh Apple</a>
-                            </h2>
-                            <div>
-                                <!-- rating -->
-                                <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i></small> <span
-                                    class="text-muted small">4.5(149)</span>
-                            </div>
-                            <!-- price -->
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <div><span class="text-dark">$18</span> <span
-                                        class="text-decoration-line-through text-muted">$24</span>
-                                </div>
-                                <!-- btn -->
-                                <div>
-                                    <a href="#!" class="btn btn-pink btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- item -->
-                <div class="item">
-                    <!-- item -->
-                    <div class="card card-product mb-lg-4">
-                        <div class="card-body">
-                            <div class="text-center position-relative">
-                                <!-- badge -->
-                                <div class=" position-absolute top-0 start-0">
-                                    <span class="badge bg-success">14%</span>
-                                </div>
-                                <!-- img -->
-                                <a href="#!"><img src="@@webRoot/assets/images/products/product-img-16.jpg"
-                                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                <!-- action btn -->
-                                <div class="card-product-action">
-                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                       data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                                           data-bs-toggle="tooltip" data-bs-html="true"
-                                                                           title="Quick View"></i></a>
-                                    <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip"
-                                       data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                </div>
-                            </div>
-                            <!-- title -->
-                            <div class="text-small mb-1"><a href="#!"
-                                                            class="text-decoration-none text-muted"><small>Fruits &
-                                Vegetables</small></a>
-                            </div>
-                            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Golden Pineapple
-                            </a>
-                            </h2>
-                            <div class="text-warning">
-                                <!-- rating -->
-                                <small> <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i></small> <span class="text-muted small">4.5
-                              (25)</span>
-                            </div>
-                            <!-- price -->
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <div><span class="text-dark">$24</span>
-                                </div>
-                                <!-- btn -->
-                                <div>
-                                    <a href="#!" class="btn btn-pink btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- item -->
-                <div class="item">
-                    <!-- item -->
-                    <div class="card card-product mb-lg-4">
-                        <div class="card-body">
-                            <div class="text-center position-relative">
-                                <!-- img -->
-                                <a href="#!"><img src="@@webRoot/assets/images/products/product-img-17.jpg"
-                                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                <!-- action btn -->
-                                <div class="card-product-action">
-                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                       data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                                           data-bs-toggle="tooltip" data-bs-html="true"
-                                                                           title="Quick View"></i></a>
-                                    <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip"
-                                       data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                </div>
-                            </div>
-                            <!-- title -->
-                            <div class="text-small mb-1"><a href="#!"
-                                                            class="text-decoration-none text-muted"><small>Fruits &
-                                Vegetables</small></a>
-                            </div>
-                            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Fresh Kiwi</a>
-                            </h2>
-                            <!-- rating-->
-                            <div class="text-warning">
-                                <!-- rating -->
-                                <small> <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i></small> <span class="text-muted small">5
-                              (469)</span>
-                            </div>
-                            <!-- price -->
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <div><span class="text-dark">$32</span> <span
-                                        class="text-decoration-line-through text-muted">$35</span>
-                                </div>
-                                <!--  btn -->
-                                <div>
-                                    <a href="#!" class="btn btn-pink btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- item -->
-                <div class="item">
-                    <!-- item -->
-                    <div class="card card-product mb-lg-4">
-                        <div class="card-body">
-                            <div class="text-center position-relative">
-                                <!-- badge -->
-                                <div class=" position-absolute top-0 start-0">
-                                    <span class="badge bg-danger">Hot</span>
-                                </div>
-                                <!-- img -->
-                                <a href="#!"><img src="@@webRoot/assets/images/products/product-img-18.jpg"
-                                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                <!-- action btn -->
-                                <div class="card-product-action">
-                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                       data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                                           data-bs-toggle="tooltip" data-bs-html="true"
-                                                                           title="Quick View"></i></a>
-                                    <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip"
-                                       data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                </div>
-                            </div>
-                            <!-- title -->
-                            <div class="text-small mb-1"><a href="#!"
-                                                            class="text-decoration-none text-muted"><small>Fruits &
-                                Vegetables</small></a>
-                            </div>
-                            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Fresh Banana</a>
-                            </h2>
-                            <div class="text-warning">
-                                <!-- rating -->
-                                <small> <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
-                                    <i class="bi bi-star"></i></small> <span class="text-muted small">3.5
-                              (456)</span>
-                            </div>
-                            <!-- price -->
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <div><span class="text-dark">$3</span> <span
-                                        class="text-decoration-line-through text-muted">$5</span>
-                                </div>
-                                <!-- btn -->
-                                <div>
-                                    <a href="#!" class="btn btn-pink btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- item -->
-                <div class="item">
-                    <!-- item -->
-                    <div class="card card-product mb-lg-4">
-                        <div class="card-body">
-                            <div class="text-center position-relative">
-                                <!-- img -->
-                                <a href="#!"><img src="@@webRoot/assets/images/products/product-img-19.jpg"
-                                                  alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                <!-- action btn -->
-                                <div class="card-product-action">
-                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
-                                       data-bs-target="#quickViewModal"><i class="bi bi-eye"
-                                                                           data-bs-toggle="tooltip" data-bs-html="true"
-                                                                           title="Quick View"></i></a>
-                                    <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip"
-                                       data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
-                                </div>
-                            </div>
-                            <!-- title -->
-                            <div class="text-small mb-1"><a href="#!"
-                                                            class="text-decoration-none text-muted"><small>Fruits &
-                                Vegetables</small></a>
-                            </div>
-                            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Beatroot</a>
-                            </h2>
-                            <div class="text-warning">
-                                <!-- rating -->
-                                <small> <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i></small> <span class="text-muted small">4.5
-                              (39)</span>
-                            </div>
-                            <!-- price -->
-                            <div class="d-flex justify-content-between mt-4">
-                                <div><span class="text-dark">$13</span> <span
-                                        class="text-decoration-line-through text-muted">$18</span>
-                                </div>
-                                <!-- btn -->
-                                <div>
-                                    <a href="#!" class="btn btn-pink btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             class="feather feather-plus">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- row -->
+            <div class="row">
+                <div class="col-12">
+                    <div id="newProductContainer"></div>
+                    <script src="@@webRoot/assets/js/indexNewProduct.js"></script>
                 </div>
             </div>
         </div>
@@ -1031,7 +435,7 @@
                         </div>
                     </div>
                     <div id="rankingContainer"></div>
-                    <script src="@@webRoot/assets/js/indexConnect.js"></script>
+                    <script src="@@webRoot/assets/js/indexRankReviewer.js"></script>
                 </div>
             </div>
         </div>
@@ -1061,17 +465,21 @@
                             </div>
                             <!--태그-->
                             <div class="button-group ms-3">
-                                <button class="btn btn-secondary btn-sm tab-button" data-target="cu"
-                                        style="border: none; background-color: #DDDF50; border-radius: 92px;">CU
+                                <button class="CU-2"
+                                        style="border: none; background-color: #DDDF50; color: #ffffff; border-radius: 92px;">
+                                    CU
                                 </button>
-                                <button class="btn btn-secondary btn-sm tab-button" data-target="gs25"
-                                        style="border: none; background-color: #5ED1E7; border-radius: 92px;">GS25
+                                <button class="GS25-2"
+                                        style="border: none; background-color: #5ED1E7; color: #ffffff; border-radius: 92px;">
+                                    GS25
                                 </button>
-                                <button class="btn btn-secondary btn-sm tab-button" data-target="emart24"
-                                        style="border: none; background-color: #fece6a; border-radius: 92px;">emart24
+                                <button class="Emart24-2"
+                                        style="border: none; background-color: #fece6a; color: #ffffff; border-radius: 92px;">
+                                    emart24
                                 </button>
-                                <button class="btn btn-secondary btn-sm tab-button" data-target="7eleven"
-                                        style="border: none; background-color: #52904D; border-radius: 92px;">7ELVEN
+                                <button class="sevenElven-2"
+                                        style="border: none; background-color: #52904D; color: #ffffff; border-radius: 92px;">
+                                    7ELVEN
                                 </button>
                             </div>
                         </div>
@@ -1084,489 +492,48 @@
             <!-- row -->
             <div class="row">
                 <div class="col-12">
-                    <div class="product-slider-second " id="slider-third">
-                        <!-- item -->
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <div class=" position-absolute top-0 start-0">
-                                            <span class="badge bg-danger">Sale</span>
-                                        </div>
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-1.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Haldiram's Sev
-                                        Bhujia</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.5(149)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-danger">$18</span> <span
-                                                class="text-decoration-line-through text-muted">$24</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-2.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Britannia NutriChoice
-                                        Digestive Biscuits</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.4(3,149)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$15</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-3.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Cadbury 5 star
-                                        chocolate</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.7(1,130)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$32</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-4.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Onion Flavour
-                                        Potato</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.5(140)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-danger">$12</span><span
-                                                class="text-muted text-decoration-line-through ms-1">$18</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <div class=" position-absolute top-0 start-0">
-                                            <span class="badge bg-warning text-dark">14%</span>
-                                        </div>
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-5.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Salted Instant
-                                        Popcorn</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.5(212)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-danger">$40</span> <span
-                                                class="text-decoration-line-through text-muted">$65</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-6.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Epigamia Blueberry
-                                        Greek
-                                        Yogurt,
-                                        90g</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.4(694)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$17</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-8.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Kellogg's Special K
-                                        Original
-                                        Cereal</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.7(1,130)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-danger">$25</span><span
-                                                class="text-muted text-decoration-line-through ms-1">$28</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-9.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Slurrp Farm No Maida
-                                        Millet
-                                        Pancake Mix</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.5(212)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-danger">$34</span><span
-                                                class="text-muted text-decoration-line-through ms-1">$38</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-2.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Britannia NutriChoice
-                                        Digestive Biscuits</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.4(3,149)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$15</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="bestProductContainer"></div>
+                    <script src="@@webRoot/assets/js/indexBestProduct.js"></script>
                 </div>
             </div>
         </div>
     </section>
     <!-- 베스트 상품 Section End -->
     <!-- 행사 상품 Section -->
-    <section class="mb-lg-14 my-8">
-        <div class="container ">
+    <section class="my-lg-14 my-8">
+        <div class="container">
             <!-- row -->
             <div class="row align-items-center mb-6">
-                <div class="col-lg-10 col-9">
-                    <div class="d-xl-flex justify-content-between align-items-center">
-                        <!-- heading -->
-                        <div class="d-flex">
-                            <div class="mt-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                     viewBox="0 0 24 24" fill="none" stroke="pink" stroke-width="2"
-                                     stroke-linecap="round" stroke-linejoin="round"
-                                     class="feather feather-shopping-bag text-primary">
-                                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                                </svg>
-                            </div>
-                            <div class="ms-3">
-                                <h3 class=" mb-0">행사 상품</h3>
-                            </div>
-                            <!--태그-->
-                            <div class="button-group ms-3">
-                                <button class="btn btn-secondary btn-sm"
-                                        style="border: none; background-color: #DDDF50; border-radius: 92px;">CU
-                                </button>
-                                <button class="btn btn-secondary btn-sm"
-                                        style="border: none; background-color: #5ED1E7; border-radius: 92px;">GS25
-                                </button>
-                                <button class="btn btn-secondary btn-sm"
-                                        style="border: none; background-color: #fece6a; border-radius: 92px;">emart24
-                                </button>
-                                <button class="btn btn-secondary btn-sm"
-                                        style="border: none; background-color: #52904D; border-radius: 92px;">7ELVEN
-                                </button>
-                            </div>
+                <div class="col-lg-10 col-10 ">
+                    <!-- heading -->
+                    <h3 class="align-items-center d-flex mb-0 h4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             fill="none" stroke="pink" stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round" class="feather feather-star text-primary">
+                            <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg>
+                        <span class="ms-3">행사상품</span>
+                        <div class="button-group ms-3">
+                            <button class="CU-3"
+                                    style="border: none; background-color: #DDDF50; color: #ffffff; border-radius: 92px;">
+                                CU
+                            </button>
+                            <button class="GS25-3"
+                                    style="border: none; background-color: #5ED1E7; color: #ffffff; border-radius: 92px;">
+                                GS25
+                            </button>
+                            <button class="Emart24-3"
+                                    style="border: none; background-color: #fece6a; color: #ffffff; border-radius: 92px;">
+                                emart24
+                            </button>
+                            <button class="sevenElven-3"
+                                    style="border: none; background-color: #52904D; color: #ffffff; border-radius: 92px;">
+                                7ELVEN
+                            </button>
                         </div>
-                    </div>
+                    </h3>
                 </div>
                 <div class="col-lg-2 col-3">
                     <div class="slider-arrow  " id="slider-fourth-arrows"></div>
@@ -1575,450 +542,13 @@
             <!-- row -->
             <div class="row">
                 <div class="col-12">
-                    <div class="product-slider-second " id="slider-fourth">
-                        <!-- item -->
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <div class=" position-absolute top-0 start-0">
-                                            <span class="badge bg-danger">Sale</span>
-                                        </div>
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-1.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Haldiram's Sev
-                                        Bhujia</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.5(149)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-danger">$18</span> <span
-                                                class="text-decoration-line-through text-muted">$24</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-2.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Britannia NutriChoice
-                                        Digestive Biscuits</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.4(3,149)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$15</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-3.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Cadbury 5 star
-                                        chocolate</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.7(1,130)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$32</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-4.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Onion Flavour
-                                        Potato</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.5(140)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-danger">$12</span><span
-                                                class="text-muted text-decoration-line-through ms-1">$18</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <div class=" position-absolute top-0 start-0">
-                                            <span class="badge bg-warning text-dark">14%</span>
-                                        </div>
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-5.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Salted Instant
-                                        Popcorn</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.5(212)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-danger">$40</span> <span
-                                                class="text-decoration-line-through text-muted">$65</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-6.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Epigamia Blueberry
-                                        Greek
-                                        Yogurt,
-                                        90g</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.4(694)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$17</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-8.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Kellogg's Special K
-                                        Original
-                                        Cereal</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.7(1,130)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-danger">$25</span><span
-                                                class="text-muted text-decoration-line-through ms-1">$28</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-9.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Slurrp Farm No Maida
-                                        Millet
-                                        Pancake Mix</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.5(212)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-danger">$34</span><span
-                                                class="text-muted text-decoration-line-through ms-1">$38</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item ">
-                            <!-- card -->
-                            <div class="card  card-product h-100 mb-4">
-                                <div class="card-body position-relative">
-                                    <!-- badge -->
-                                    <div class="text-center position-relative ">
-                                        <!-- img -->
-                                        <a href="#!"> <img src="@@webRoot/assets/images/products/product-img-2.jpg"
-                                                           alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                        <!-- action btn -->
-                                        <div class="product-action-btn">
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                            <a href="#!" class="btn-action mb-1" data-bs-toggle="tooltip"
-                                               data-bs-html="true" title="Wishlist"><i
-                                                    class="bi bi-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- title -->
-                                    <h2 class="fs-6"><a href="#!"
-                                                        class="text-inherit text-decoration-none">Britannia NutriChoice
-                                        Digestive Biscuits</a>
-                                    </h2>
-                                    <div>
-                                        <!-- rating -->
-                                        <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i></small> <span
-                                            class="text-muted small">4.4(3,149)</span>
-                                    </div>
-                                    <!-- price -->
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div><span class="text-dark">$15</span>
-                                        </div>
-                                        <div><span class="text-uppercase small text-primary">
-                                       In Stock</span>
-                                        </div>
-                                    </div>
-                                    <!-- btn -->
-                                    <div class="d-grid mt-4">
-                                        <a href="#" class="btn btn-pink rounded-pill">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="eventProductContainer"></div>
+                    <script src="@@webRoot/assets/js/indexEventProduct.js"></script>
                 </div>
             </div>
         </div>
     </section>
-    <!-- 행사 상품 Section End -->
+    <!--     행사 상품 Section End -->
 </main>
 
 
@@ -2038,6 +568,7 @@
 <script src="@@webRoot/assets/js/vendors/zoom.js"></script>
 <script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
 <script src="@@webRoot/assets/js/rankDate.js"></script>
+<script src="@@webRoot/assets/js/indexCategory.js"></script>
 
 
 </body>
