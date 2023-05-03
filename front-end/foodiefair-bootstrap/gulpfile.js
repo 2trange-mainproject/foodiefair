@@ -18,12 +18,28 @@ const gulpTerser = require('gulp-terser');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 
+// -------------- 프록시 설정 : .html을 없애기 위함----------------------
+/*
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
+const express = require("express");
+const app = express();
 
+const rewriteMiddleware = createProxyMiddleware("/product/:productId", {
+    target: "http://localhost:3000",
+    pathRewrite: { "^/product/": "/pages/shop-single.html?productId=" },
+    changeOrigin: true,
+});
 
+app.use(rewriteMiddleware);
 
+// ...여기에 다른 라우트 및 미들웨어를 추가합니다...
 
-
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
+*/
+// -------------- ---------------------------------------------------------------
 
 // Paths to project folders
 

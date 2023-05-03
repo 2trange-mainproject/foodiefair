@@ -36,13 +36,13 @@ span{
   margin: 20px auto;
 }
 
-#register-cs {
+#csSubmit {
   margin-top: 30px;
   background-color: #dc5b9d;
   border-radius: 50px;
   border-color: transparent;
   width: 120px;
-  margin: 30px 0 100px 0;
+  margin-top: 15px;
   color: white;
 }
 
