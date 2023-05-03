@@ -1,6 +1,5 @@
 package com.multicampus.foodiefair.controller;
 
-import com.multicampus.foodiefair.dto.ProductDTO;
 import com.multicampus.foodiefair.dto.ReviewDTO;
 import com.multicampus.foodiefair.service.IReviewService;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +15,13 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/products")
+@RequestMapping("/products/review")
 @Log4j2
 @RequiredArgsConstructor
 public class ReviewController {
     private final IReviewService iReviewService;
 
-    @PostMapping("/review/insert")
+    @PostMapping("/reviewInsert")
     public ResponseEntity<String> reviewInsert(@Valid @RequestBody ReviewDTO reviewDTO, BindingResult bindingResult) {
         log.info("reviewInsertController");
         if (bindingResult.hasErrors()) {
@@ -32,22 +31,16 @@ public class ReviewController {
         return ResponseEntity.ok("review success");
     }
 
-    @GetMapping("/review")
+    @GetMapping("/reviewRead")
     public ResponseEntity<List<Map<String, Object>>> reviewRead(@RequestParam String productId, @RequestParam int offset, @RequestParam int receiptImg, @RequestParam int sort) {
         log.info("reviewReadController");
         log.info(offset);
         return ResponseEntity.ok(iReviewService.reviewRead(productId, offset, receiptImg, sort));
     }
 
-    @DeleteMapping("/review/delete/{reviewId}")
+    @DeleteMapping("/reviewDelete/{reviewId}")
     public ResponseEntity<String> reviewDelete (@PathVariable int reviewId) {
         iReviewService.reviewDelete(reviewId);
         return ResponseEntity.ok("review delete success");
-    }
-
-    @PostMapping("/reviewfile")
-    public ResponseEntity<String> fileUpload (@RequestParam("file") MultipartFile file) {
-        log.info(file);
-        return ResponseEntity.ok("upload success");
     }
 }

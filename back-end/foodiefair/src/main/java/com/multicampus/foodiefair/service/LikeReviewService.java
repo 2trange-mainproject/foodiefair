@@ -12,14 +12,20 @@ public class LikeReviewService implements ILikeReviewService{
     private final ILikeReviewDAO iLikeReviewDAO;
 
     @Override
-    public int likeReviewInsert(int userId, int reviewId) {
-        return iLikeReviewDAO.likeReviewInsert(userId, reviewId);
+    public int registerLikeReview(int reviewId, int userId) {
+        int result = iLikeReviewDAO.registerLikeReview(reviewId, userId);
+        if(result > 0) {
+            return iLikeReviewDAO.updateLikeReview(reviewId, userId, result);
+        }
+        return result;
     }
 
     @Override
-    public int likeReviewDelete(int userId, int reviewId) {
-        log.info(userId);
-        log.info(reviewId);
-        return iLikeReviewDAO.likeReviewDelete(userId, reviewId);
+    public int removeLikeReview(int reviewId, int userId) {
+        int result = iLikeReviewDAO.removeLikeReview(reviewId, userId);
+        if(result > 0) {
+            return iLikeReviewDAO.updateLikeReview(reviewId, userId, result*-1);
+        }
+        return result;
     }
 }

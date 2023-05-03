@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ISaveDAO {
-    int save(SaveDTO saveDTO);
-    int saveToDelete(SaveDTO saveDTO);
+    int registerSaved(SaveDTO saveDTO);
+    int removeSaved(String productId, int userId);
     int savedCount(String productId);
 }

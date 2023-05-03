@@ -12,36 +12,33 @@ import javax.validation.Valid;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/products/save")
+@RequestMapping("/products/{productId}")
 @Log4j2
 @RequiredArgsConstructor
 public class SaveController {
     private final ISaveService isaveService;
 
-    @PostMapping("/") // 찜 하기
-    public ResponseEntity<String> save (@Valid @RequestBody SaveDTO saveDTO, BindingResult bindingResult) {
+    @PostMapping("/saved") // 찜 하기
+    public ResponseEntity<String> registerSaved (@Valid @RequestBody SaveDTO saveDTO, BindingResult bindingResult) {
         log.info("saveController");
         if(bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body("올바른 입력이 아닙니다.");
         }
-        isaveService.save(saveDTO);
+        isaveService.registerSaved(saveDTO);
         return ResponseEntity.ok("save success");
     }
 
-    @PostMapping("/savedToDelete") // 찜 삭제
-    public ResponseEntity<String> savedToDelete (@Valid @RequestBody SaveDTO saveDTO, BindingResult bindingResult) {
+    @DeleteMapping("/saved/{userId}") // 찜 삭제
+    public ResponseEntity<String> removeSaved (@PathVariable String productId, @PathVariable int userId) {
         log.info("savedToDelete");
 
-        if(bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("올바른 입력이 아닙니다.");
-        }
-        isaveService.saveToDelete(saveDTO);
+        isaveService.removeSaved(productId, userId);
         return ResponseEntity.ok("Delete success");
     }
 
-    @GetMapping("/count/{productId}")
-    public ResponseEntity<String> savedCount (@PathVariable String productId) {
-        isaveService.savedCount(productId);
-        return ResponseEntity.ok("count success");
-    }
+//    @GetMapping("/count/{productId}")
+//    public ResponseEntity<String> savedCount (@PathVariable String productId) {
+//        isaveService.savedCount(productId);
+//        return ResponseEntity.ok("count success");
+//    }
 }

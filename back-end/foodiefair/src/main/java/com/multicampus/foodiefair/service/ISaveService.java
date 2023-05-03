@@ -3,7 +3,7 @@ package com.multicampus.foodiefair.service;
 import com.multicampus.foodiefair.dto.SaveDTO;
 
 public interface ISaveService {
-    int save(SaveDTO saveDTO);
-    int saveToDelete(SaveDTO saveDTO);
+    int registerSaved(SaveDTO saveDTO);
+    int removeSaved(String productId, int userId);
     int savedCount(String productId);
 }

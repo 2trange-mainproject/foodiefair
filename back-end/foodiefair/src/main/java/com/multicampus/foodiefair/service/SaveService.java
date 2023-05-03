@@ -11,13 +11,13 @@ public class SaveService implements ISaveService{
     private final ISaveDAO isaveDAO;
 
     @Override
-    public int save(SaveDTO saveDTO) {
-        return isaveDAO.save(saveDTO);
+    public int registerSaved(SaveDTO saveDTO) {
+        return isaveDAO.registerSaved(saveDTO);
     }
 
     @Override
-    public int saveToDelete(SaveDTO saveDTO) {
-        return isaveDAO.saveToDelete(saveDTO);
+    public int removeSaved(String productId, int userId) {
+        return isaveDAO.removeSaved(productId, userId);
     }
 
     @Override

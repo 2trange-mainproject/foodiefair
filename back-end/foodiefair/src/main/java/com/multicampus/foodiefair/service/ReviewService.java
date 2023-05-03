@@ -1,8 +1,6 @@
 package com.multicampus.foodiefair.service;
 
-import com.multicampus.foodiefair.dao.IProductDAO;
 import com.multicampus.foodiefair.dao.IReviewDAO;
-import com.multicampus.foodiefair.dto.ProductDTO;
 import com.multicampus.foodiefair.dto.ReviewDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
