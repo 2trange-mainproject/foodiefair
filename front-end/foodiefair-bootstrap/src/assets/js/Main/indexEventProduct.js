@@ -1,27 +1,29 @@
+//편의점별 탭 버튼 불렀을 때 상품 로드
 $(document).ready(function () {
-    loadProducts("CU");
+    loadEventProducts("CU");
 
-    $(".CU").on("click", function () {
-        loadProducts("CU");
+    $(".CU-3").on("click", function () {
+        loadEventProducts("CU");
     });
 
-    $(".GS25").on("click", function () {
-        loadProducts("GS25");
+    $(".GS25-3").on("click", function () {
+        loadEventProducts("GS25");
     });
 
-    $(".Emart24").on("click", function () {
-        loadProducts("Emart24");
+    $(".Emart24-3").on("click", function () {
+        loadEventProducts("이마트24");
     });
 
-    $(".sevenElven").on("click", function () {
-        loadProducts("7ELVEN");
+    $(".sevenEleven-3").on("click", function () {
+        loadEventProducts("세븐일레븐");
     });
 });
 
-function loadProducts(storeCode) {
+
+function loadEventProducts(storeCode) {
     let filters = {
         stores: [storeCode],
-        events: [1]
+        events: [2, 3]
     };
 
     let queryString = "?page=1&size=15";
@@ -40,23 +42,21 @@ function loadProducts(storeCode) {
         dataType: "json",
         success: function (response) {
             let data = response.dtoList;
-            renderNewProducts(data);
-            if ($('#newProductContainer').hasClass('slick-initialized')) {
-                $('#newProductContainer').slick('refresh');
-            } else {
-                initSlider();
+            if ($('#eventProductContainer').hasClass('slick-initialized')) {
+                $('#eventProductContainer').slick('unslick');
             }
+            renderEventProducts(data);
+            initEventSlider();
         },
-
-
         error: function (error) {
             console.log(error);
         },
     });
 }
 
-function initSlider() {
-    $('#newProductContainer').slick({
+// 탭 버튼 누를때마다 슬라이더 초기화 하기 위함
+function initEventSlider() {
+    $('#eventProductContainer').slick({
         slidesToShow: 5,
         slidesToScroll: 1,
         autoplay: true,
@@ -66,28 +66,39 @@ function initSlider() {
     });
 }
 
-function renderNewProducts(data) {
-    let $newProductContainer = $('#newProductContainer');
-    $newProductContainer.empty();
-    let productHtml = '';
+
+function renderEventProducts(data) {
+    let $eventProductContainer = $('#eventProductContainer');
+    $eventProductContainer.empty();
+    let productEventHtml = '';
+
 
     $.each(data, function (index, product) {
+
+        let festivalText, festivalColor;
+        if (product.productEvent === 2) {
+            festivalText = '1+1';
+            festivalColor = 'purple';
+        } else if (product.productEvent === 3) {
+            festivalText = '2+1';
+            festivalColor = 'orange';
+        }
         let fixedTag = JSON.parse(product.fixedTag).smallCategory;
 
-        productHtml += `
+        productEventHtml += `
                 <div class="item">
                   <div class="card card-product h-100 mb-4">
                     <div class="card-body position-relative">
                       <div class="text-center position-relative">
                         <div class=" position-absolute top-0 start-0">
-                          <span class="badge bg-pink">신상품</span>
+                          <span class="badge bg-${festivalColor}">${festivalText}</span>
                         </div>
                         <a href="/pages/shop-single.html?productId=${product.productId}">
                           <img class="mb-3 img-fluid" style="max-width: 220px; max-height: 220px;" src="${product.productImg}">
                         </a>
                       </div>
                       <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
-                      <h2 class="fs-6"><a href="/pages/shop-single.html?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
+                      <h2 class="fs-6"><a href="shop-single.html?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
                       <div>
                         <small class="text-warning"><i class="bi bi-star-fill"></i></small>
                         <span class="text-muted small">조회(<span>${product.productViews}</span>)</span>
@@ -108,6 +119,7 @@ function renderNewProducts(data) {
                </div>
           `;
     });
-    $newProductContainer.append(productHtml);
+
+    $eventProductContainer.append(productEventHtml);
 
 }

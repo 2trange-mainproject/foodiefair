@@ -3,6 +3,7 @@ function renderUsers(data) {
     $rankingContainer.addClass("d-flex gap-4");
 
     $.each(data, function (index, user) {
+        //유저 랭킹은 3등까지만 보여짐.
         if (user.user_rank === 1 || user.user_rank === 2 || user.user_rank === 3) {
             let myTag = JSON.parse(user.userTag).tag1;
 
@@ -60,7 +61,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (response) {
             var data = response.dtoList;
-            console.log(data)
+            console.log(data) //불러오는 건 1페이지의 10명의 유저를 다 불러옴
 
             renderUsers(data);
         },

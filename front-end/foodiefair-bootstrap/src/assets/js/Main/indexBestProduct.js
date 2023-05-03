@@ -1,3 +1,4 @@
+//편의점별 탭 버튼 불렀을 때 상품 로드
 $(document).ready(function () {
     loadBestProducts("CU", 'popularity');
 
@@ -10,11 +11,11 @@ $(document).ready(function () {
     });
 
     $(".Emart24-2").on("click", function () {
-        loadBestProducts("Emart24", 'popularity');
+        loadBestProducts("이마트24", 'popularity');
     });
 
-    $(".sevenElven-2").on("click", function () {
-        loadBestProducts("7ELVEN", 'popularity');
+    $(".sevenEleven-2").on("click", function () {
+        loadBestProducts("세븐일레븐", 'popularity');
     });
 });
 
@@ -33,8 +34,6 @@ function loadBestProducts(storeCode, sortOrder) {
         queryString += `&sortOrder=${filters.sortOrder}`;
     }
 
-    // console.log(filters.sortOrder);
-    // console.log(filters.stores[0]);
 
     $.ajax({
         url: `http://localhost:8081/api/food-list${queryString}`,
@@ -42,12 +41,11 @@ function loadBestProducts(storeCode, sortOrder) {
         dataType: "json",
         success: function (response) {
             let data = response.dtoList;
-            renderBestProducts(data);
             if ($('#bestProductContainer').hasClass('slick-initialized')) {
-                $('#bestProductContainer').slick('refresh');
-            } else {
-                initBestSlider();
+                $('#bestProductContainer').slick('unslick');
             }
+            renderBestProducts(data);
+            initBestSlider();
         },
         error: function (error) {
             console.log(error.responseText);
@@ -55,6 +53,7 @@ function loadBestProducts(storeCode, sortOrder) {
     });
 }
 
+// 탭 버튼 누를때마다 슬라이더 초기화 하기 위함
 function initBestSlider() {
     $('#bestProductContainer').slick({
         slidesToShow: 5,
@@ -104,7 +103,7 @@ function renderBestProducts(data) {
                     </a>
                   </div>
                   <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
-                  <h2 class="fs-6"><a href="/pages/shop-single.html?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
+                  <h2 class="fs-6"><a href="shop-single.html?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
                   <div>
                     <small class="text-warning"><i class="bi bi-star-fill"></i></small>
                     <span class="text-muted small">조회(<span>${product.productViews}</span>)</span>
