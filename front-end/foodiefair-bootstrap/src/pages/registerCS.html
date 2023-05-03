@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>FoodieFair</title>
-  <link rel="stylesheet" href="@@webRoot/src/assets/css/registerCS.css">
-  @@include("../partials/head.html")
+    <title>FoodieFair</title>
+    <link rel="stylesheet" href="@@webRoot/src/assets/css/registerCS.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.min.css">
+
+
+    @@include("../partials/head.html")
 </head>
 
 <body>
@@ -14,48 +17,46 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
 
-<form class="registerCS"  id="registerCSForm">
-  <div style="margin-bottom: 10px">
-    <div class="registerTitle"> 문의하기 </div>
+<form class="registerCS" id="registerCSForm">
+    <div class="registerTitle">문의하기</div>
 
     <div class="radioSection">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioRegister" id="csDB">
-        <label class="form-check-label" for="csDB">
-          DB관련 문의
-        </label>
-        </br>
-        <span>상품 수정이 필요하거나 없는 상품에 대해 알려주세요.</span>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioRegister" id="csService" checked>
-        <label class="form-check-label" for="csService">
-          서비스 이용 문의
-        </label>
-        </br>
-        <span>서비스 이용 중 문제나, 개선이 필요한 점을 문의해주세요.</span>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioRegister" id="csReport" checked>
-        <label class="form-check-label" for="csReport">
-          신고하기
-        </label>
-        </br>
-        <span>부적절한 내용의 리뷰나 비매너 회원을 신고해주세요.</span>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="radioRegister" id="csEtc" checked>
-        <label class="form-check-label" for="csEtc">
-          기타 문의
-        </label>
-      </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioRegister" id="csDB">
+            <label class="form-check-label" for="csDB">
+                DB관련 문의
+            </label>
+            <br>
+            <span>상품 수정이 필요하거나 없는 상품에 대해 알려주세요.</span>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioRegister" id="csService" checked>
+            <label class="form-check-label" for="csService">
+                서비스 이용 문의
+            </label>
+            <br>
+            <span>서비스 이용 중 문제나, 개선이 필요한 점을 문의해주세요.</span>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioRegister" id="csReport" checked>
+            <label class="form-check-label" for="csReport">
+                신고하기
+            </label>
+            <br>
+            <span>부적절한 내용의 리뷰나 비매너 회원을 신고해주세요.</span>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioRegister" id="csEtc" checked>
+            <label class="form-check-label" for="csEtc">
+                기타 문의
+            </label>
+        </div>
     </div>
 
     <div style="text-align: center;">
-      <textarea class="register-content" placeholder="문의 및 제안 주신 내용은 검토후에 이메일로 답변드리겠습니다."></textarea>
-      <button type="submit" id="register-cs">등록하기</button>
+        <textarea class="register-content" placeholder="문의 및 제안 주신 내용은 검토후에 이메일로 답변드리겠습니다."></textarea>
+        <input type="submit" class="btn btn-pink" id="csSubmit" value="등록하기">
     </div>
-  </div>
 </form>
 
 <!-- Footer -->
@@ -63,6 +64,7 @@
 <!-- Javascript-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="@@webRoot/src/assets/js/ajax/registerCS.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
 </body>
 </html>
