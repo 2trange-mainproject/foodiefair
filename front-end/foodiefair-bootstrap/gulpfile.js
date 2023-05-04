@@ -161,6 +161,10 @@ function browsersyncServe(callback){
     server: {
       baseDir: [paths.temp.basetemp, paths.src.basesrc, paths.base.base]
     }
+    , https: {
+          key: './localhost-key.pem',
+          cert: './localhost.pem'
+      }
   });
   callback();
 }

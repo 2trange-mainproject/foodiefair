@@ -23,9 +23,20 @@
     </select>
 
     <select id="selectSavedList" parameterType="map" resultType="hashmap">
-        SELECT * FROM Saved
+        SELECT s.*, p.*
+        FROM Saved s
+            JOIN Product p ON s.productId = p.productId
         WHERE userId = #{userId}
         ORDER BY savedId DESC
         LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="selectSavedFour" parameterType="map" resultType="hashmap">
+        SELECT s.*, p.*
+        FROM Saved s
+                 JOIN Product p ON s.productId = p.productId
+        WHERE userId = #{userId}
+        ORDER BY savedId DESC
+        LIMIT 4;
     </select>
 </mapper>

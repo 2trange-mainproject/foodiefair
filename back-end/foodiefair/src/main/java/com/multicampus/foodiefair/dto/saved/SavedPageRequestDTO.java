@@ -17,5 +17,5 @@ public class SavedPageRequestDTO {
     @Positive
     private int page=1;
     @Builder.Default
-    private int size=15;
+    private int size=16;
 }

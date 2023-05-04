@@ -51,4 +51,9 @@ public class SavedServiceImpl implements SavedService{
                 .total(total)
                 .build();
     }
+
+    @Override
+    public ArrayList<HashMap<String, Object>> getSavedFour(Long userId) {
+        return savedDAO.selectSavedFour(userId);
+    }
 }

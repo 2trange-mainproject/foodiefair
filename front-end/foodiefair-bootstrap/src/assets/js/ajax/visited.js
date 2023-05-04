@@ -63,7 +63,9 @@ function createPageButtons(currentPage, totalPages, pageSize) {
     const prevPageButton = document.createElement("li");
     prevPageButton.className = "page-item";
     prevPageButton.id = "prev-page";
-    prevPageButton.innerHTML = '<a class="page-link" href="#!">Previous</a>';
+    prevPageButton.innerHTML = '<a class="page-link  mx-1 " href="#!" aria-label="Previous">\n' +
+        '                      <i class="feather-icon icon-chevron-left"></i>\n' +
+        '                    </a>';
     paginationElement.appendChild(prevPageButton);
 
     // 이전 페이지 버튼 클릭 이벤트 추가
@@ -93,7 +95,9 @@ function createPageButtons(currentPage, totalPages, pageSize) {
     const nextPageButton = document.createElement("li");
     nextPageButton.className = "page-item";
     nextPageButton.id = "next-page";
-    nextPageButton.innerHTML = '<a class="page-link" href="#!">Next</a>';
+    nextPageButton.innerHTML = ' <a class="page-link mx-1 text-body" href="#!" aria-label="Next">\n' +
+        '                      <i class="feather-icon icon-chevron-right"></i>\n' +
+        '                    </a>';
     paginationElement.appendChild(nextPageButton);
 
     // 다음 페이지 버튼 클릭 이벤트 추가

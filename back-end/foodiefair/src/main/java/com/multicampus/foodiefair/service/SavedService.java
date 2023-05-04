@@ -4,6 +4,9 @@ import com.multicampus.foodiefair.dto.saved.SavedDTO;
 import com.multicampus.foodiefair.dto.saved.SavedPageRequestDTO;
 import com.multicampus.foodiefair.dto.saved.SavedPageResponseDTO;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public interface SavedService {
     int registerSaved(SavedDTO savedDTO);
     int removeSaved(Long savedId);
@@ -13,4 +16,5 @@ public interface SavedService {
     int getSavedUserCount(Long userId);
     // 회원 찜 리스트 출력
     SavedPageResponseDTO getSavedList(SavedDTO savedDTO, SavedPageRequestDTO pageRequestDTO);
+    ArrayList<HashMap<String,Object>> getSavedFour(Long userId);
 }

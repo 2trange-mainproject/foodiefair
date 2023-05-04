@@ -40401,3 +40401,10 @@ span.flatpickr-weekday {
   75% {transform: scale(1.05, 0.95);}
   to {transform: scale(1, 1);}
 }
+
+#register-visited-btnh {
+  border: 1px solid #e2e5e4;
+  border-radius: 10px;
+  box-shadow : none;
+  padding: 9px 25px;  /* 위아래 여백 9px, 좌우 여백 25px */
+}

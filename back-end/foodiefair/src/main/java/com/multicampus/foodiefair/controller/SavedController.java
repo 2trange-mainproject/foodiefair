@@ -9,10 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 @RequiredArgsConstructor
 public class SavedController {
 
@@ -53,7 +55,7 @@ public class SavedController {
     public ResponseEntity<SavedPageResponseDTO> getSavedList(
             @PathVariable Long userId,
             @RequestParam(required = false, defaultValue = "1") int page,
-            @RequestParam(required = false, defaultValue = "15") int size) {
+            @RequestParam(required = false, defaultValue = "16") int size) {
 
         SavedDTO savedDTO = new SavedDTO();
         savedDTO.setUserId(userId);
@@ -65,6 +67,13 @@ public class SavedController {
 
         SavedPageResponseDTO savedList = savedService.getSavedList(savedDTO, pageRequestDTO);
         return ResponseEntity.ok(savedList);
+    }
+
+    @GetMapping("/mypage/{userId}/saved-examples")
+    public ResponseEntity<ArrayList<HashMap<String, Object>>> getSavedFour(@PathVariable Long userId) {
+        ArrayList<HashMap<String, Object>> savedExamples = savedService.getSavedFour(userId);
+        System.out.println(savedExamples);
+        return ResponseEntity.ok(savedExamples);
     }
 
 }

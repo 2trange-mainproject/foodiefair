@@ -16,5 +16,7 @@ public interface SavedDAO {
     int countSavedUser(Long userId);
     // 회원 찜 리스트 출력
     ArrayList<HashMap<String, Object>> selectSavedList(Long userId, int offset, int limit);
+    ArrayList<HashMap<String, Object>> selectSavedFour(Long userId);
+
 
 }

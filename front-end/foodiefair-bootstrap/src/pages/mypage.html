@@ -39,11 +39,6 @@
         <!-- col -->
         <aside class="col-lg-3 col-md-4 mb-6 mb-md-0">
           <div class="offcanvas offcanvas-start offcanvas-collapse w-md-50 " tabindex="-1" id="offcanvasCategory" aria-labelledby="offcanvasCategoryLabel">
-
-            <div class="offcanvas-header d-lg-none">
-              <h5 class="offcanvas-title" id="offcanvasCategoryLabel">Filter</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
             <div class="offcanvas-body ps-lg-2 pt-lg-0">
               <div class="mb-8 d-flex flex-column align-items-center text-center">
                 <!-- Banner Image -->
@@ -105,15 +100,15 @@
             </div>
             <div>
               <!-- heading -->
-              <strong class="fs-5">#안주 매니아</strong>
+              <span class="badge bg-pink me-2 mb-2" style="cursor: pointer; font-size: 2.0ex;">#배고파</span>
             </div>
             <div>
               <!-- heading -->
-              <strong class="fs-5">#라면 다이아</strong>
+              <span class="badge bg-pink me-2 mb-2" style="cursor: pointer; font-size: 2.0ex;">#배고파</span>
             </div>
             <div>
               <!-- heading -->
-              <strong class="fs-5">#감자칩 실버</strong>
+              <span class="badge bg-pink me-2 mb-2" style="cursor: pointer; font-size: 2.0ex;">#배고파</span>
             </div>
             <div>
               <a href="#" style="cursor:pointer">
@@ -123,27 +118,19 @@
               </a>
             </div>
           </div>
-          <div class="d-flex justify-content-between align-items-center mb-8 mt-sm-3 mt-md-5">
+          <div class="d-flex justify-content-between align-items-start mb-8 mt-sm-3 mt-md-5">
             <div style="display: flex; align-items: center;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="black" class="bi bi-suit-club-fill" viewBox="0 0 16 16">
                   <path d="M11.5 12.5a3.493 3.493 0 0 1-2.684-1.254 19.92 19.92 0 0 0 1.582 2.907c.231.35-.02.847-.438.847H6.04c-.419 0-.67-.497-.438-.847a19.919 19.919 0 0 0 1.582-2.907 3.5 3.5 0 1 1-2.538-5.743 3.5 3.5 0 1 1 6.708 0A3.5 3.5 0 1 1 11.5 12.5z"/>
                 </svg>
               <strong class="fs-5" style="margin-left: 8px;"> 마이태그 :</strong>
             </div>
-            <div>
-              <!-- heading -->
-              <strong class="fs-5">#배고픔</strong>
+            <!-- UserTag Area -->
+            <div id="userTags" class="flex-column">
             </div>
-            <div>
-              <!-- heading -->
-              <strong class="fs-5">#피곤함</strong>
-            </div>
-            <div>
-              <!-- heading -->
-              <strong class="fs-5">#머리가 텅빈</strong>
-            </div>
-            <div>
-              <a href="#" style="cursor:pointer">
+            <!-- UserTag Area -->
+            <div id="hideTags">
+              <a style="cursor:pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFCCE8" class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
                   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z"/>
                 </svg>
@@ -160,7 +147,7 @@
               </div>
             </div>
             <div class="mt-sm-5 mt-md-10">
-              <a href="http://localhost:3000/pages/mypage-saved.html" style="cursor:pointer">
+              <a href="mypage-saved.html" style="cursor:pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#d63384" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                   <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                 </svg>
@@ -168,133 +155,7 @@
             </div>
           </div>
           <!-- row -->
-          <div class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
-
-            <!-- col -->
-            <div class="col">
-              <!-- card -->
-              <div class="card card-product">
-                <div class="card-body">
-
-                  <!-- badge -->
-                  <div class="text-center position-relative ">
-                    <div class=" position-absolute top-0 start-0">
-                      <span class="badge bg-danger">New</span>
-                    </div>
-                    <a href="shop-single.html">
-                      <!-- img --><img src="../assets/images/products/product-img-1.jpg"
-                                       alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                    <!-- action btn -->
-                    <div class="card-product-action">
-                      <a href="#!" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                              class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                      <a href="shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
-                         title="찜 해제"><i class="bi bi-heart"></i></a>
-                    </div>
-                  </div>
-                  <!-- heading -->
-                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Snack &
-                    Munchies</small></a></div>
-                  <h2 class="fs-6"><a href="shop-single.html" class="text-inherit text-decoration-none">Haldiram's Sev Bhujia</a></h2>
-                  <!-- price -->
-                  <div class="d-flex justify-content-between align-items-center mt-3">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- col -->
-            <div class="col">
-              <!-- card -->
-              <div class="card card-product">
-                <div class="card-body">
-                  <!-- badge -->
-                  <div class="text-center position-relative">
-                    <div class=" position-absolute top-0 start-0">
-                      <span class="badge bg-warning">2+1</span>
-                    </div>
-
-                    <a href="shop-single.html">
-                      <!-- img --><img src="../assets/images/products/product-img-2.jpg"
-                                       alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                    <!-- action btn -->
-                    <div class="card-product-action">
-                      <a href="#!" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                              class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                      <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="찜 해제"><i
-                              class="bi bi-heart"></i></a>
-                    </div>
-                  </div>
-                  <!-- heading -->
-                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Bakery &
-                    Biscuits</small></a></div>
-                  <h2 class="fs-6"><a href="shop-single.html" class="text-inherit text-decoration-none">NutriChoice Digestive </a>
-                  </h2>
-                  <!-- price -->
-                  <div class="d-flex justify-content-between align-items-center mt-3">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- col -->
-            <div class="col">
-              <!-- card -->
-              <div class="card card-product">
-                <div class="card-body">
-                  <!-- badge -->
-                  <div class="text-center position-relative"> <a href="shop-single.html"><img
-                          src="../assets/images/products/product-img-3.jpg" alt="Grocery Ecommerce Template"
-                          class="mb-3 img-fluid"></a>
-                    <!-- action btn -->
-                    <div class="card-product-action">
-                      <a href="#!" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                              class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                      <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="찜 해제"><i
-                              class="bi bi-heart"></i></a>
-                    </div>
-                  </div>
-                  <!-- heading -->
-                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Bakery &
-                    Biscuits</small></a></div>
-                  <h2 class="fs-6"><a href="shop-single.html" class="text-inherit text-decoration-none">Cadbury 5 Star Chocolate</a>
-                  </h2>
-                  <!-- price -->
-                  <div class="d-flex justify-content-between align-items-center mt-3">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- col -->
-            <div class="col">
-              <!-- card -->
-              <div class="card card-product">
-                <div class="card-body">
-                  <!-- badge -->
-                  <div class="text-center position-relative">
-                    <div class=" position-absolute top-0">
-                      <span class="badge bg-primary">1+1</span>
-                    </div>
-
-                    <a href="shop-single.html">
-                      <!-- img --><img src="../assets/images/products/product-img-4.jpg"
-                                       alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                    <!-- action btn -->
-                    <div class="card-product-action">
-                      <a href="#!" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                              class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></a>
-                      <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="찜 해제"><i
-                              class="bi bi-heart"></i></a>
-                    </div>
-                  </div>
-                  <!-- heading -->
-                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Snack &
-                    Munchies</small></a></div>
-                  <h2 class="fs-6"><a href="shop-single.html" class="text-inherit text-decoration-none">Onion Flavour Potato</a></h2>
-                  <!-- price -->
-                  <div class="d-flex justify-content-between align-items-center mt-3">
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div id ="saved-list" class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
           </div>
           <div class="d-flex justify-content-between align-items-center">
           <!-- card -->
@@ -305,7 +166,7 @@
             </div>
           </div>
           <div class="mt-sm-5 mt-md-10">
-            <a href="http://localhost:3000/pages/mypage-reviews.html" style="cursor:pointer">
+            <a href="mypage-reviews.html" style="cursor:pointer">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#d63384" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                 <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
               </svg>
@@ -493,7 +354,9 @@
                       <input class="form-control rounded" type="search" name="visitedContent" placeholder="방명록을 작성해주세요.">
                     </div>
                   </form>
-                  <button id="register-visited-btn">등록</button>
+                  <div style="margin-right: 10px">
+                    <button id="register-visited-btn" class="btn btn-outline-gray-400 text-muted">등록</button>
+                  </div>
                 </div>
               </div>
               <div class="border-top d-md-flex justify-content-between align-items-center p-6">
@@ -533,6 +396,9 @@
   <script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
   <script src="@@webRoot/assets/js/ajax/mypage-follows.js"></script>
   <script src="@@webRoot/assets/js/ajax/visited.js"></script>
+  <script src="@@webRoot/assets/js/ajax/userTag.js"></script>
+  <script src="@@webRoot/assets/js/ajax/mypage-saved.js"></script>
+
 
 </body>
 

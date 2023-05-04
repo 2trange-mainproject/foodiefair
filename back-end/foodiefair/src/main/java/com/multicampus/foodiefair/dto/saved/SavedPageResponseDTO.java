@@ -22,10 +22,10 @@ public class SavedPageResponseDTO {
     public SavedPageResponseDTO(SavedPageRequestDTO pageRequestDto, ArrayList<HashMap<String, Object>> dataList, int total) {
         this.page = pageRequestDto.getPage();
         this.size = pageRequestDto.getSize();
-        this.totalPages = (int) (Math.ceil((double)total / 15.0));
+        this.totalPages = (int) (Math.ceil((double)total / 16.0));
         this.dataList = dataList;
-        this.endPage = (int) (Math.ceil(this.page / 15.0)) * 15;
-        this.startPage = this.endPage - 14;
+        this.endPage = (int) (Math.ceil(this.page / 16.0)) * 16;
+        this.startPage = this.endPage - 15;
         int last = (int) (Math.ceil((total / (double) size)));
         this.endPage = Math.min(endPage, last);
         this.prev = this.startPage > 1;
