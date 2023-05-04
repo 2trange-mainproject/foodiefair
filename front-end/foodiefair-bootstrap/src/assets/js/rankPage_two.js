@@ -103,12 +103,12 @@ function loadRankPageTwo() {
               <div class="card card-product">
                 <div class="card-body">
                   <div class="text-center position-relative">
-                    <a href="mypage.html?userName=${user.userName}">
+                    <a href="mypage?userName=${user.userName}">
                         <img class="mb-3 img-fluid" style="max-width: 250px; max-height: 250px;" src="${user.userImg}">
                     </a>
                   </div>
                   <div class="text-center">
-                    <h2 class="fs-3"><a href="mypage.html.html?userName=${user.userName}" class="text-inherit text-decoration-none">${user.userName}</a></h2>
+                    <h2 class="fs-3"><a href="mypage?userName=${user.userName}" class="text-inherit text-decoration-none">${user.userName}</a></h2>
                     <div class="text-muted fs-5"><a href="#!" class="text-decoration-none text-pink">${user.totalReviewCount}개 이용후기</a></div>
                   </div>
                 </div>

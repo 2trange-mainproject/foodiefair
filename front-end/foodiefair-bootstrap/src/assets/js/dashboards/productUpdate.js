@@ -157,7 +157,7 @@ function updateProduct(productId){
         },
         success: function (response) {
             alert('상품이 성공적으로 수정되었습니다.');
-            window.location.href = 'read-product.html?productId=' + productId;
+            window.location.href = 'read-product?productId=' + productId;
         },
         error: function (error) {
             console.log(error);

@@ -99,7 +99,7 @@ function renderProductDetails(product) {
                   </div>
                 </div>
                 <div class="d-flex justify-content-end" style="padding-top: 10px">
-                  <a href="edit-product.html?productId=${product.productId}" class="btn btn-soft-pink btn-sm" style="font-size: 16px;">
+                  <a href="edit-product?productId=${product.productId}" class="btn btn-soft-pink btn-sm" style="font-size: 16px;">
                     상품 수정하기
                   </a>
                 </div>

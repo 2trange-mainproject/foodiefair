@@ -158,14 +158,14 @@ function renderProducts(data) {
                           </div>
                         </td>
                         <td>
-                          <a href="read-product.html?productId=${product.productId}"> <img src="${product.productImg}" class="icon-shape icon-md"></a>
+                          <a href="read-product?productId=${product.productId}"> <img src="${product.productImg}" class="icon-shape icon-md"></a>
                         </td>
-                        <td><a href="read-product.html?productId=${product.productId}" style="color: black">${product.productName}</a></td>
-                        <td><a href="read-product.html?productId=${product.productId}" style="color: black">${fixedTag}</a></td>
-                        <td><a href="read-product.html?productId=${product.productId}" style="color: black">${product.productPrice}</a></td>
-                        <td><a href="read-product.html?productId=${product.productId}" style="color: black">${releaseDate}</a></td>
-                        <td><a href="read-product.html?productId=${product.productId}" style="color: black">${festivalText}</a></td>
-                        <td><a href="read-product.html?productId=${product.productId}" style="color: black">${product.productId}</a></td>
+                        <td><a href="read-product?productId=${product.productId}" style="color: black">${product.productName}</a></td>
+                        <td><a href="read-product?productId=${product.productId}" style="color: black">${fixedTag}</a></td>
+                        <td><a href="read-product?productId=${product.productId}" style="color: black">${product.productPrice}</a></td>
+                        <td><a href="read-product?productId=${product.productId}" style="color: black">${releaseDate}</a></td>
+                        <td><a href="read-product?productId=${product.productId}" style="color: black">${festivalText}</a></td>
+                        <td><a href="read-product?productId=${product.productId}" style="color: black">${product.productId}</a></td>
                         <td>
                           <div class="dropdown">
                             <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
@@ -173,7 +173,7 @@ function renderProducts(data) {
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item delete-product" href="#" data-product-id="${product.productId}"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product.html?productId=${product.productId}"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                              <li><a class="dropdown-item" href="edit-product?productId=${product.productId}"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
                               </li>
                             </ul>
                           </div>

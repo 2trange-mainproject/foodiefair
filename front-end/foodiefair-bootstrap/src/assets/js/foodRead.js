@@ -76,12 +76,13 @@ function renderProductDetails(product) {
         <div class="col-md-6">
           <div class="ps-lg-10 mt-6 mt-md-0">
             <!-- content -->
+            <a href="#!" style="color: deeppink" class="mb-4 d-block">${fixedTagBig}</a>
             <!-- heading -->
             <h1 class="mb-1">${product.productName}<a href="#" class="ms-2 btn-dib" style="color: deeppink"><i class="bi bi-bookmark"></i></a></h1>
             <div class="mb-4">
               <!-- rating -->
-              <a href="#" class="ms-2" style="color: deeppink" id="product-review"></a>
-              <a href="#" class="ms-2" style="color: deeppink" id="product-saved"></a>
+              <a href="#" class="ms-2" style="color: deeppink" id="product-review">(${product.productReviews} 리뷰 개수)</a>
+              <a href="#" class="ms-2" style="color: deeppink" id="product-saved">(${product.productSaved} 찜 개수)</a>
             </div>
             <div class="fs-4">
               <!-- price --><span class="fw-bold text-dark" id="product-price"></span>
@@ -121,3 +122,35 @@ function renderProductDetails(product) {
 
     $productContainer.append(productListHtml);
 }
+
+// 상품 찜 토글
+async function productSaved(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const sendData = { // 데이터 저장 및 삭제에 필요한 정보
+        userId: 3,
+        productId: await $('#product-name').attr('data-productId')
+    };
+
+    $(this).toggleClass('active'); // 토글 활성화
+    if ($(this).hasClass('active')) {  // 토글 활성화시 데이터 저장
+        $(this).find('i').removeClass('bi-bookmark').addClass('bi-bookmark-fill');
+        const response = await fetch('http://localhost:8081/products/'+sendData.productId+'/saved', {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(sendData)
+        });
+        const data = await response.text();
+        return data
+    } else { // 토글 비활성화시 데이터 삭제
+        $(this).find('i').removeClass('bi-bookmark-fill').addClass('bi-bookmark');
+        const response = await fetch('http://localhost:8081/products/'+sendData.productId+'/saved/'+sendData.userId, {
+            method:'DELETE'
+        });
+        const data = await response.text();
+        return data
+    }
+};

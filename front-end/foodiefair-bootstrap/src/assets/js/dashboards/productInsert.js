@@ -41,7 +41,7 @@ $(document).ready(function() {
             data: formData,
             success: function(response) {
                 console.log(response);
-                window.location.href = 'products.html';
+                window.location.href = 'products';
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);

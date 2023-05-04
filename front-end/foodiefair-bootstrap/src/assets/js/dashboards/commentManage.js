@@ -140,11 +140,11 @@ function renderComments(data) {
                             </label>
                           </div>
                         </td>
-                        <td><a href="read-comment.html?commentId=${comment.commentId}" class="text-reset">${comment.commentId}</a></td>
-                        <td><a href="read-comment.html?commentId=${comment.commentId}" class="text-reset">${comment.userId}</a></td>
-                        <td><a href="read-comment.html?commentId=${comment.commentId}" class="text-reset">${comment.reviewId}</a></td>
-                        <td><a href="read-comment.html?commentId=${comment.commentId}" class="text-reset">${truncateString(comment.commentContent, 20)}</a></td>
-                        <td><a href="read-comment.html?commentId=${comment.commentId}" class="text-reset">${releaseDate}</a></td>
+                        <td><a href="read-comment?commentId=${comment.commentId}" class="text-reset">${comment.commentId}</a></td>
+                        <td><a href="read-comment?commentId=${comment.commentId}" class="text-reset">${comment.userId}</a></td>
+                        <td><a href="read-comment?commentId=${comment.commentId}" class="text-reset">${comment.reviewId}</a></td>
+                        <td><a href="read-comment?commentId=${comment.commentId}" class="text-reset">${truncateString(comment.commentContent, 20)}</a></td>
+                        <td><a href="read-comment?commentId=${comment.commentId}" class="text-reset">${releaseDate}</a></td>
 
                         <td>
                           <div class="dropdown">

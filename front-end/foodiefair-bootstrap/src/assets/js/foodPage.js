@@ -131,7 +131,7 @@ function toggleResetSearchButton() {
     }
 }
 
-//shop-filter.html에서도 검색어 사용할 수 있게 만드는 기능
+//food.html에서도 검색어 사용할 수 있게 만드는 기능
 document.getElementById('search-form').addEventListener('submit', function (e) {
     e.preventDefault();
     updateSearchKeyword();
@@ -151,7 +151,7 @@ function updateSearchKeyword() {
 
 
 function loadProducts(page, sortOrder) {
-    // shop-filter.html 페이지의 JavaScript 코드
+    // food.html 페이지의 JavaScript 코드
     const searchKeyword = localStorage.getItem('searchKeyword');
     console.log('검색 키워드:', searchKeyword);
 
@@ -231,12 +231,12 @@ function renderProducts(data) {
                     <div class=" position-absolute top-0 start-0">
                       <span class="badge bg-${festivalColor}">${festivalText}</span>
                     </div>
-                    <a href="shop-single.html?productId=${product.productId}">
+                    <a href="viewFood?productId=${product.productId}">
                         <img class="mb-3 img-fluid" style="max-width: 220px; max-height: 220px;" src="${product.productImg}">
                     </a>
                   </div>
                   <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
-                  <h2 class="fs-6"><a href="shop-single.html?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
+                  <h2 class="fs-6"><a href="viewFood?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
                   <div>
                     <small class="text-warning"><i class="bi bi-star-fill"></i></small>
                     <span class="text-muted small">조회(<span>${product.productViews}</span>)</span>

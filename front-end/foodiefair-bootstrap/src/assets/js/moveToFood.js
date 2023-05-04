@@ -21,7 +21,7 @@ function redirectToShopFilterPage() {
     const baseUrl = currentUrl.substring(0, lastSlashIndex + 1);
 
     // 적절한 상대 경로를 생성합니다.
-    const targetUrl = baseUrl + (baseUrl.endsWith('pages/') ? '' : 'pages/') + 'shop-filter.html';
+    const targetUrl = baseUrl + (baseUrl.endsWith('pages/') ? '' : 'pages/') + 'food';
 
     // LocalStorage를 사용하여 키워드 값을 저장합니다.
     localStorage.setItem('searchKeyword', keyword);

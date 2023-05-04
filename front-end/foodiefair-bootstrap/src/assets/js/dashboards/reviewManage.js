@@ -137,11 +137,11 @@ function renderReviews(data) {
                           </div>
                         </td>
 
-                        <td><a href="read-review.html?reviewId=${review.reviewId}" class="text-reset">${review.reviewId}</a></td>
-                        <td><a href="read-review.html?reviewId=${review.reviewId}" class="text-reset">${review.userId}</a></td>
-                        <td><a href="read-review.html?reviewId=${review.reviewId}" class="text-reset">${review.productId}</a></td>
-                        <td><a href="read-review.html?reviewId=${review.reviewId}" class="text-reset">${releaseDate}</a></td>
-                        <td><a href="read-review.html?reviewId=${review.reviewId}" class="text-reset">${receipt}</a></td>
+                        <td><a href="read-review?reviewId=${review.reviewId}" class="text-reset">${review.reviewId}</a></td>
+                        <td><a href="read-review?reviewId=${review.reviewId}" class="text-reset">${review.userId}</a></td>
+                        <td><a href="read-review?reviewId=${review.reviewId}" class="text-reset">${review.productId}</a></td>
+                        <td><a href="read-review?reviewId=${review.reviewId}" class="text-reset">${releaseDate}</a></td>
+                        <td><a href="read-review?reviewId=${review.reviewId}" class="text-reset">${receipt}</a></td>
                         <td>
                           <div class="dropdown">
                             <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">

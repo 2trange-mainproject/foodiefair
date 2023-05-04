@@ -24,7 +24,7 @@ $(document).ready(function () {
                 console.log("Success:", response);
                 if (response === "ok") {
                     Swal.fire({
-                        icon: 'success',
+                        icon: "success",
                         html:
                             "답변은 이메일로 전달해드립니다.</br>" +
                             "처리까지 시간이 걸릴 수 있습니다. 감사합니다.",
@@ -33,7 +33,7 @@ $(document).ready(function () {
                     });
                 } else {
                     Swal.fire({
-                        icon: 'error',
+                        icon: "error",
                         html:
                             "불편을 드려 죄송합니다.</br>" +
                             "잠시 후에 다시 시도해주세요.",

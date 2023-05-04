@@ -130,7 +130,7 @@ function updateUser(userId){
         },
         success: function (response) {
             alert('상품이 성공적으로 수정되었습니다.');
-            window.location.href = 'read-customer.html?userId=' + userId;
+            window.location.href = 'read-customer?userId=' + userId;
         },
         error: function (error) {
             console.log(error);

@@ -29,6 +29,6 @@ submitButton.addEventListener('click', function(event) {
         });
     }
     else{
-        window.location.href = 'signup-2.html';
+        window.location.href = 'signup-2';
     }
 });

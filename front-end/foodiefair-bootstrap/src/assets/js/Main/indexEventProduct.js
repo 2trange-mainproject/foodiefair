@@ -93,12 +93,12 @@ function renderEventProducts(data) {
                         <div class=" position-absolute top-0 start-0">
                           <span class="badge bg-${festivalColor}">${festivalText}</span>
                         </div>
-                        <a href="/pages/shop-single.html?productId=${product.productId}">
+                        <a href="/pages/viewFood?productId=${product.productId}">
                           <img class="mb-3 img-fluid" style="max-width: 220px; max-height: 220px;" src="${product.productImg}">
                         </a>
                       </div>
                       <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
-                      <h2 class="fs-6"><a href="shop-single.html?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
+                      <h2 class="fs-6"><a href="viewFood?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
                       <div>
                         <small class="text-warning"><i class="bi bi-star-fill"></i></small>
                         <span class="text-muted small">조회(<span>${product.productViews}</span>)</span>

@@ -140,11 +140,11 @@ function renderQuestions(data) {
                             </div>
                           </td>
 
-                          <td><a href="read-question.html?questionId=${question.questionId}" style="color: black">${question.questionId}</a></td>
-                          <td><a href="read-question.html?questionId=${question.questionId}" style="color: black">${question.userId}</a></td>
-                          <td><a href="read-question.html?questionId=${question.questionId}" style="color: black">${question.questionType}</a></td>
-                          <td><a href="read-question.html?questionId=${question.questionId}" style="color: black">${truncateString(question.questionContent, 30)}</a></td>
-                          <td><a href="read-question.html?questionId=${question.questionId}" style="color: black">${releaseDate}</a></td>
+                          <td><a href="read-question?questionId=${question.questionId}" style="color: black">${question.questionId}</a></td>
+                          <td><a href="read-question?questionId=${question.questionId}" style="color: black">${question.userId}</a></td>
+                          <td><a href="read-question?questionId=${question.questionId}" style="color: black">${question.questionType}</a></td>
+                          <td><a href="read-question?questionId=${question.questionId}" style="color: black">${truncateString(question.questionContent, 30)}</a></td>
+                          <td><a href="read-question?questionId=${question.questionId}" style="color: black">${releaseDate}</a></td>
                           <td>
                             <div class="dropdown ">
                               <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">

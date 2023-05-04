@@ -63,7 +63,7 @@ function loadRankPageOne() {
                           <div class="col-md-4 col-12">
 
                              <div class="text-center position-relative">
-                                <a href="mypage.html" class="d-flex">
+                                <a href="mypage" class="d-flex">
                                    <!-- img -->
                                    <div class="flex-grow-1">
                                       ${rankElement}
@@ -76,7 +76,7 @@ function loadRankPageOne() {
                           </div>
                           <div class="col-md-8 col-12 flex-grow-1">
                              <!-- heading -->
-                             <h2 class="fs-2"><a href="mypage.html" class="text-inherit text-decoration-none">${user.userName}</a></h2>
+                             <h2 class="fs-2"><a href="mypage" class="text-inherit text-decoration-none">${user.userName}</a></h2>
                              <div>
 
                                  <!-- 칭호 -->

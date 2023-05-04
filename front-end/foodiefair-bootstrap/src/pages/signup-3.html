@@ -39,7 +39,7 @@
               <div class="col-12 d-grid">
                 <button type="submit" class="btn btn-pink" id="submit-button">등록하기</button>
               </div>
-              <p><small>By continuing, you agree to our <a href="#!" style="color: hotpink;"> Terms of Service</a> & <a href="@@webRoot/pages/contract.html" style="color: hotpink;">Privacy Policy</a></small></p>
+              <p><small>By continuing, you agree to our <a href="#!" style="color: hotpink;"> Terms of Service</a> & <a href="@@webRoot/pages/contract" style="color: hotpink;">Privacy Policy</a></small></p>
             </div>
             <input type="hidden" name="userName" value="${param.userName}">
             <input type="hidden" name="userEmail" value="${param.userEmail}">
@@ -111,18 +111,20 @@
     });
 
     const formData = $("#signup3-form").serializeArray();
-    const formDataObj = {};
 
+    // form 데이터를 객체로 변환
+    const formDataObj = {};
     formData.forEach(function (input) {
       formDataObj[input.name] = input.value;
     });
 
+    //{"userTag": [{"tag":"안녕"}, {"tag":"초코"}, {"tag":"반가워"}]}
     const userTagsArray = tags.map(tag => {
       return { "tag": tag };
     });
 
     const userTagsObject = {
-      "MyTag": userTagsArray
+      "userTag": userTagsArray
     };
 
     // userTags를 JSON Array 형태로 만들기
@@ -140,7 +142,7 @@
       success: function (result) {
         if (result.success) {
           alert(result.message);
-          location.href = "/pages/signin.html"
+          location.href = "/pages/signin"
         } else {
           alert(result.message);
         }

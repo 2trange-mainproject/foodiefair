@@ -96,7 +96,7 @@ function renderUserDetails(user) {
             </div>
             <!-- button -->
             <div class="d-grid">
-              <a href="edit-customer.html?userId=${user.userId}" class="btn btn-pink">
+              <a href="edit-customer?userId=${user.userId}" class="btn btn-pink">
                 회원정보 수정하기
               </a>
             </div>
