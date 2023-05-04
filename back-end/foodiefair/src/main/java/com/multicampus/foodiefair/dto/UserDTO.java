@@ -23,4 +23,6 @@ public class UserDTO {
     private Integer user_rank;
     //뱃지 리뷰어에 출력할 리뷰개수
     private Integer totalReviewCount;
+    //여러 개 받아오는 거
+    private String userTags;
 }

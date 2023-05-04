@@ -58,16 +58,20 @@ public class ReviewController {
             @RequestParam("userId") Integer userId,
             @RequestParam("goodReviews") String goodReviews,
             @RequestParam("badReviews") String badReviews,
-            @RequestParam("receiptImg") MultipartFile receiptImg,
-            @RequestParam("reviewImg") MultipartFile reviewImg) {
+            @RequestParam(value = "receiptImg", required = false) MultipartFile receiptImg,
+            @RequestParam(value = "reviewImg", required = false) MultipartFile reviewImg) {
         try {
-            // 이미지를 네이버 클라우드 플랫폼 버킷에 올림.
-            File reviewFile = convertMultipartFileToFile(reviewImg);
-            S3Client s3Client = new S3Client();
-            String reviewKey = reviewImg.getOriginalFilename();
-            String imageUrl = s3Client.uploadReviewFile(reviewFile, reviewKey);
-            logger.info(reviewKey);
-            logger.info(imageUrl);
+            String reviewKey = null;
+            if (reviewImg != null) {
+                // 이미지를 네이버 클라우드 플랫폼 버킷에 올림.
+                File reviewFile = convertMultipartFileToFile(reviewImg);
+
+                S3Client s3Client = new S3Client();
+                reviewKey = reviewImg.getOriginalFilename();
+                String imageUrl = s3Client.uploadReviewFile(reviewFile, reviewKey);
+                logger.info(reviewKey);
+                logger.info(imageUrl);
+            }
 
             Integer receiptBoolean = (receiptImg == null) ? 0 : 1;
             logger.info("영수증 : " + receiptBoolean);

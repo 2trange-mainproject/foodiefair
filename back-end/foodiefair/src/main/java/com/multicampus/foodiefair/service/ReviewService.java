@@ -41,16 +41,6 @@ public class ReviewService implements IReviewService {
     }
 
     @Override
-    public int updateKeywords(String productId, String positiveKeyword, String negativeKeyword) {
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("productId", productId);
-        paramMap.put("positiveKeyword", positiveKeyword);
-        paramMap.put("negativeKeyword", negativeKeyword);
-
-        return dao.updateKeywords(paramMap);
-    }
-
-    @Override
     public int insert(String productId, Integer userId, String goodReviews, String badReviews, Integer receiptImg, String reviewImg) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("productId", productId);

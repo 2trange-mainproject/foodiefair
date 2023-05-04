@@ -12,8 +12,6 @@ public interface IReviewService {
     public int updatePositive(String productId, String positiveKeyword);
     public int updateNegative(String productId, String negativeKeyword);
 
-    public int updateKeywords(String productId, String positiveKeyword, String negativeKeyword);
-
     //리뷰 추가
     public int insert(String productId, Integer userId, String goodReviews, String badReviews, Integer receiptImg, String reviewImg);
 }

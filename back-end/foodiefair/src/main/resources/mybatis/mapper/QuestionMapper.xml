@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.multicampus.foodiefair.dao.QuestionDAO">
     <insert id="insertQuestion" parameterType="com.multicampus.foodiefair.dto.QuestionDTO">
-        INSERT INTO Question (questionType, questionDate, questionContent)
-        VALUES (#{questionType}, #{questionDate}, #{questionContent})
+        INSERT INTO Question (userId, questionType, questionDate, questionContent)
+        VALUES (#{userId}, #{questionType}, #{questionDate}, #{questionContent})
     </insert>
 </mapper>

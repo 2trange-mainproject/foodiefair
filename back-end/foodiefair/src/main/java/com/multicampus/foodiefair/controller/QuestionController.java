@@ -23,6 +23,7 @@ public class QuestionController {
     @PostMapping("/registercs")
     public ResponseEntity<String> registerInquiry(@RequestBody QuestionDTO question) {
 
+        System.out.println("Question userID: " + question.getUserId());
         System.out.println("Question Type: " + question.getQuestionType());
         System.out.println("Question Date: " + question.getQuestionDate());
         System.out.println("Question Content: " + question.getQuestionContent());
@@ -30,6 +31,6 @@ public class QuestionController {
         //db에 저장
         questionMapper.insertQuestion(question);
 
-        return new ResponseEntity<>("Form data received successfully", HttpStatus.OK);
+        return new ResponseEntity<>("ok", HttpStatus.OK);
     }
 }

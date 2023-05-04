@@ -15,8 +15,6 @@ public interface IReviewDAO {
     public int updatePositiveDao(Map<String, Object> paramMap);
     public int updateNegativeDao(Map<String, Object> paramMap);
 
-    public int updateKeywords(Map<String, Object> paramMap);
-
     //리뷰 추가
     public int insertDao(Map<String, Object> paramMap);
 }

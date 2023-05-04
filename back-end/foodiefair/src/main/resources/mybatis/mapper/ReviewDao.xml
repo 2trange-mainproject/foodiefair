@@ -5,8 +5,10 @@
 
 <mapper namespace="com.multicampus.foodiefair.dao.IReviewDAO">
     <insert id="insertDao">
-        INSERT INTO Review (userId, productId, goodReviews, badReviews, receiptImg, reviewImg)
-        VALUES(#{userId}, #{productId}, #{goodReviews}, #{badReviews}, #{receiptImg}, #{reviewImg})
+        INSERT INTO Review (userId, productId, goodReviews, badReviews, receiptImg
+        <if test="reviewImg != null">, reviewImg</if>)
+        VALUES (#{userId}, #{productId}, #{goodReviews}, #{badReviews}, #{receiptImg}
+        <if test="reviewImg != null">, #{reviewImg}</if>)
     </insert>
 
     <update id="updatePositiveDao">
@@ -23,24 +25,6 @@
             ON DUPLICATE KEY UPDATE negativeKeyword = JSON_SET(
                 COALESCE(negativeKeyword, '{}'), '$."${negativeKeyword}"',
                 IF(JSON_EXTRACT(negativeKeyword, '$."${negativeKeyword}"') IS NULL, 1, CAST(JSON_EXTRACT(negativeKeyword, '$."${negativeKeyword}"') + 1 AS UNSIGNED)))
-    </update>
-
-    <update id="updateKeywords">
-        INSERT INTO Keyword (productId, positiveKeyword, negativeKeyword)
-        VALUES ('${productId}',
-        <if test="positiveKeyword != null">
-            JSON_OBJECT('${positiveKeyword}', 1)
-        </if>,
-        <if test="negativeKeyword != null">
-            JSON_OBJECT('${negativeKeyword}', 1)
-        </if>)
-        ON DUPLICATE KEY UPDATE
-        <if test="positiveKeyword != null">
-            positiveKeyword = JSON_SET(positiveKeyword, '$."${positiveKeyword}"', IF(JSON_EXTRACT(positiveKeyword, '$."${positiveKeyword}"') IS NULL, 1, CAST(JSON_EXTRACT(positiveKeyword, '$."${positiveKeyword}"') + 1 AS UNSIGNED))),
-        </if>
-        <if test="negativeKeyword != null">
-            negativeKeyword = JSON_SET(negativeKeyword, '$."${negativeKeyword}"', IF(JSON_EXTRACT(negativeKeyword, '$."${negativeKeyword}"') IS NULL, 1, CAST(JSON_EXTRACT(negativeKeyword, '$."${negativeKeyword}"') + 1 AS UNSIGNED)))
-        </if>
     </update>
 
     <select id="listDao" resultType="com.multicampus.foodiefair.dto.ReviewDTO">

@@ -4,6 +4,7 @@ package com.multicampus.foodiefair.controller; //TestController
 //둘 중 하나는 코드를 모두 주석처리하고 실행해야 한다.
 
 import com.multicampus.foodiefair.dto.UserDTO;
+import com.multicampus.foodiefair.service.IUserService;
 import com.multicampus.foodiefair.service.RegisterMail;
 import com.multicampus.foodiefair.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.util.Map;
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class UserController {
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @Autowired
     private RegisterMail registerMail;
@@ -86,9 +87,12 @@ public class UserController {
     public ResponseEntity<Map<String, Object>> signup(@RequestBody UserDTO userDto) throws Exception {
         Map<String, Object> result = new HashMap<>();
         System.out.println("user = " + userDto);
-        //태그 기능 구현시 삭제해주세요.
-        userDto.setUserTag(null);
+
+        userDto.setUserTag(userDto.getUserTags());
+        System.out.println(userDto.getUserTag());
+
         //이미지 파일 업로드 기능을 구현해주세요.
+        System.out.println(userDto.getUserImg());
 
         UserDTO userByEmail = userService.getUserByEmail(userDto.getUserEmail());
         //이메일이 중복인 데이터 insert시 다른곳에서 오류 발생함, 이메일 중복X
