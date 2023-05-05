@@ -15,7 +15,8 @@ public class LikeReviewService implements ILikeReviewService{
     public int registerLikeReview(int reviewId, int userId) {
         int result = iLikeReviewDAO.registerLikeReview(reviewId, userId);
         if(result > 0) {
-            return iLikeReviewDAO.updateLikeReview(reviewId, userId, result);
+            if(iLikeReviewDAO.updateLikeReview(reviewId, userId, result) > 0)
+                return iLikeReviewDAO.reviewLikeCount(reviewId);
         }
         return result;
     }
@@ -24,7 +25,8 @@ public class LikeReviewService implements ILikeReviewService{
     public int removeLikeReview(int reviewId, int userId) {
         int result = iLikeReviewDAO.removeLikeReview(reviewId, userId);
         if(result > 0) {
-            return iLikeReviewDAO.updateLikeReview(reviewId, userId, result*-1);
+            if(iLikeReviewDAO.updateLikeReview(reviewId, userId, result*-1) > 0)
+                return iLikeReviewDAO.reviewLikeCount(reviewId);
         }
         return result;
     }

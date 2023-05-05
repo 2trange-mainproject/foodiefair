@@ -17,14 +17,14 @@ public class LikeReviewController {
     private final ILikeReviewService iLikeReviewService;
 
     @PostMapping("/likeReview")
-    public ResponseEntity<String> registerLikeReview (@RequestBody Map<String, Object> requestBody) {
-        iLikeReviewService.registerLikeReview((int)requestBody.get("reviewId"), (int)requestBody.get("userId"));
-        return ResponseEntity.ok("likeReviewInsert success");
+    public ResponseEntity<Integer> registerLikeReview (@RequestBody Map<String, Object> requestBody) {
+        Integer result = iLikeReviewService.registerLikeReview((int)requestBody.get("reviewId"), (int)requestBody.get("userId"));
+        return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/likeReview/{reviewId}/{userId}")
-    public ResponseEntity<String> removeLikeReview (@PathVariable int reviewId, @PathVariable int userId) {
-        iLikeReviewService.removeLikeReview(reviewId, userId);
-        return ResponseEntity.ok("likeReviewDelete success");
+    public ResponseEntity<Integer> removeLikeReview (@PathVariable int reviewId, @PathVariable int userId) {
+        Integer result = iLikeReviewService.removeLikeReview(reviewId, userId);
+        return ResponseEntity.ok(result);
     }
 }

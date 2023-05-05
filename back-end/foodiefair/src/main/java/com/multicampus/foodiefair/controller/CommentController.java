@@ -20,24 +20,24 @@ import java.util.Map;
 public class CommentController {
     private final ICommentService commentService;
 
-    @PostMapping("/") //댓글
-    public ResponseEntity<String> commentInsert(@Valid @RequestBody CommentDTO commentDTO, BindingResult bindingResult) {
+    @PostMapping("/")
+    public ResponseEntity<Integer> registerComment(@Valid @RequestBody CommentDTO commentDTO, BindingResult bindingResult) {
         log.info("CommentController");
         if(bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("올바른 입력이 아닙니다.");
+            return ResponseEntity.badRequest().body(0);
         }
-        commentService.commentInsert(commentDTO);
-        return ResponseEntity.ok("comment success");
+        Integer reviewCommentCount = commentService.registerComment(commentDTO);
+        return ResponseEntity.ok(reviewCommentCount);
     }
 
-    @DeleteMapping("/delete/{commentId}") //댓글 삭제
+    @DeleteMapping("/{commentId}")
     public ResponseEntity<String> commentDelete(@PathVariable int commentId) {
         log.info(commentId);
         commentService.commentDelete(commentId);
         return ResponseEntity.ok("comment delete");
     }
 
-    @GetMapping("/{reviewId}") // 프론트 할 때 추가 해야 함
+    @GetMapping("/{reviewId}")
     public ResponseEntity<List<Map<String, Object>>> commentRead(@PathVariable int reviewId) {
         List<Map<String, Object>> commentDTOList = commentService.commentRead(reviewId);
         return ResponseEntity.ok(commentDTOList);

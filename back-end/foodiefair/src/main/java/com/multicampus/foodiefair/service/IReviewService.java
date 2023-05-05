@@ -1,6 +1,5 @@
 package com.multicampus.foodiefair.service;
 
-import com.multicampus.foodiefair.dto.ProductDTO;
 import com.multicampus.foodiefair.dto.ReviewDTO;
 
 import java.util.List;

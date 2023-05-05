@@ -8,7 +8,8 @@ import java.util.Map;
 
 @Mapper
 public interface ICommentDAO {
-    int commentInsert(CommentDTO commentDTO);
+    int registerComment(CommentDTO commentDTO);
+    int reviewCommentCount(int reviewId);
     int commentDelete(int commentId);
     List<Map<String, Object>> commentRead(int reviewId);
 }

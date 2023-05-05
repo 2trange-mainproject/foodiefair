@@ -16,9 +16,13 @@ public class CommentService implements ICommentService {
     private final ICommentDAO iCommentDAO;
 
     @Override
-    public int commentInsert(CommentDTO commentDTO) {
+    public int registerComment(CommentDTO commentDTO) {
         log.info("CommentServiceInsert");
-        return iCommentDAO.commentInsert(commentDTO);
+        int result = iCommentDAO.registerComment(commentDTO);
+        if(result > 0) {
+            return iCommentDAO.reviewCommentCount(commentDTO.getReviewId());
+        }
+        return result;
     }
 
     @Override

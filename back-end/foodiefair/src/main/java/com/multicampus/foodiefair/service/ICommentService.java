@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface ICommentService {
-    int commentInsert(CommentDTO commentDTO);
+    int registerComment(CommentDTO commentDTO);
     int commentDelete(int commentId);
     List<Map<String, Object>> commentRead(int reviewId);
 }

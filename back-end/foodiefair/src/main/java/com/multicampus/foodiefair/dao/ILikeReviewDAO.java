@@ -7,4 +7,5 @@ public interface ILikeReviewDAO {
     int registerLikeReview(int reviewId, int userId);
     int removeLikeReview(int reviewId, int userId);
     int updateLikeReview(int reviewId, int userId, int update);
+    int reviewLikeCount(int reviewId);
 }
