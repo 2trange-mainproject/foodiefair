@@ -19,7 +19,7 @@ public class DashQuestionService implements IDashQuestionService {
     private final IDashQuestionDAO dao;
 
     @Override
-    public QuestionDTO read(String selectedId) {
+    public QuestionDTO read(long selectedId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("selectedId", selectedId);
 
@@ -27,7 +27,7 @@ public class DashQuestionService implements IDashQuestionService {
     }
 
     @Override
-    public int delete(String selectedId) {
+    public int delete(long selectedId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("selectedId", selectedId);
 

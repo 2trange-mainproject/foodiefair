@@ -26,7 +26,7 @@ public class DashQuestionController {
     // Delete
     @DeleteMapping("/question-delete/{questionId}")
     public ResponseEntity<String> questionDelete(
-            @PathVariable("questionId") String questionId) {
+            @PathVariable("questionId") long questionId) {
 
         dashQuestionService.delete(questionId);
 
@@ -36,7 +36,7 @@ public class DashQuestionController {
     // Read
     @GetMapping("/question-read/{questionId}")
     public ResponseEntity<Map<String, Object>> questionRead(
-            @PathVariable("questionId") String questionId) {
+            @PathVariable("questionId") long questionId) {
 
         QuestionDTO question = dashQuestionService.read(questionId);
 

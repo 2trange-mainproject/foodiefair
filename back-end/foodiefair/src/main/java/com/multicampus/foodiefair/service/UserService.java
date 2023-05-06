@@ -41,7 +41,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void deleteUser(Long userId) {
+    public void deleteUser(int userId) {
         userDAO.deleteUser(userId);
     }
 

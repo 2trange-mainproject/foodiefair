@@ -13,6 +13,6 @@ public interface IUserDAO {
     public UserDTO getUserByEmail(String userEmail);    // 회원 정보 가져오기
     public UserDTO getUserById(Long id);
     public void updateUser(UserDTO userDto);            // 회원 정보 수정
-    public void deleteUser(Long userId);                // 회원 탈퇴
+    public void deleteUser(int userId);                // 회원 탈퇴
     public void updateUserPassword(@Param("userEmail") String userEmail,@Param("userPwd") String userPwd); //비밀번호 변경
 }

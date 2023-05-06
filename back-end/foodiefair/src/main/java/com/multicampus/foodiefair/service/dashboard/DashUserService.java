@@ -17,7 +17,7 @@ public class DashUserService implements IDashUserService {
     private final IDashUserDAO dao;
 
     @Override
-    public UserDTO read(String selectedId) {
+    public UserDTO read(int selectedId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("selectedId", selectedId);
 
@@ -25,7 +25,7 @@ public class DashUserService implements IDashUserService {
     }
 
     @Override
-    public int delete(String selectedId) {
+    public int delete(int selectedId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("selectedId", selectedId);
 
@@ -33,7 +33,7 @@ public class DashUserService implements IDashUserService {
     }
 
     @Override
-    public int update(String selectedId, Integer userReport, Integer locked) {
+    public int update(int selectedId, int userReport, int locked) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("selectedId", selectedId);
         paramMap.put("userReport", userReport);

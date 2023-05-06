@@ -27,7 +27,7 @@ public class DashCommentController {
     // Delete
     @DeleteMapping("/comment-delete/{commentId}")
     public ResponseEntity<String> commentDelete(
-            @PathVariable("commentId") String commentId) {
+            @PathVariable("commentId") long commentId) {
 
         dashCommentService.delete(commentId);
 
@@ -37,7 +37,7 @@ public class DashCommentController {
     // Read
     @GetMapping("/comment-read/{commentId}")
     public ResponseEntity<Map<String, Object>> commentRead(
-            @PathVariable("commentId") String commentId) {
+            @PathVariable("commentId") long commentId) {
 
         CommentDTO comment = dashCommentService.read(commentId);
 

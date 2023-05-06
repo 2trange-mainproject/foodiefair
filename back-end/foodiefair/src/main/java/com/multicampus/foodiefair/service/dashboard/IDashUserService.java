@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface IDashUserService {
     // 회원 읽기
-    public UserDTO read(String selectedId);
+    public UserDTO read(int selectedId);
 
     // 회원 삭제
-    public int delete(String selectedId);
+    public int delete(int selectedId);
 
     // 회원 수정
-    public int update(String selectedId, Integer userReport, Integer locked);
+    public int update(int selectedId, int userReport, int locked);
 
     // 리스트 출력
     public List<UserDTO> selectDashUserList(PageReviewerRequestDTO pageReviewerRequestDto, String sortOrder, String searchKeyword);

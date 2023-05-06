@@ -44,7 +44,7 @@ public class DashProductController {
     public ResponseEntity<String> addProduct(
             @RequestParam("productId") String productId,
             @RequestParam("productName") String productName,
-            @RequestParam("productPrice") Integer productPrice,
+            @RequestParam("productPrice") int productPrice,
             @RequestParam("productFestival") String productFestival,
             @RequestParam("productTag") String productTag,
             @RequestParam("productImg") MultipartFile productImg) {
@@ -84,7 +84,7 @@ public class DashProductController {
     public ResponseEntity<String> productUpdatePost(
             @PathVariable("productId") String productId,
             @RequestParam("updatedProductName") String productName,
-            @RequestParam("updatedProductPrice") Integer productPrice,
+            @RequestParam("updatedProductPrice") int productPrice,
             @RequestParam("updatedProductFestival") String productFestival,
             @RequestParam("updatedProductTagJson") String productTag) {
 

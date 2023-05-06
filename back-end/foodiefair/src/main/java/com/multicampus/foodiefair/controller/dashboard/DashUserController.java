@@ -34,7 +34,7 @@ public class DashUserController {
     // Delete
     @DeleteMapping("/user-delete/{userId}")
     public ResponseEntity<String> userDelete(
-            @PathVariable("userId") String userId) {
+            @PathVariable("userId") int userId) {
 
         dashUserService.delete(userId);
 
@@ -44,7 +44,7 @@ public class DashUserController {
     // Read
     @GetMapping("/user-read/{userId}")
     public ResponseEntity<Map<String, Object>> userRead(
-            @PathVariable("userId") String userId) {
+            @PathVariable("userId") int userId) {
 
         UserDTO user = dashUserService.read(userId);
 
@@ -63,9 +63,9 @@ public class DashUserController {
     // Update
     @PutMapping("/user-update/{userId}")
     public ResponseEntity<String> userUpdate(
-            @PathVariable("userId") String userId,
-            @RequestParam("updatedUserReport") Integer userReport,
-            @RequestParam("updatedUserLocked") Integer locked) {
+            @PathVariable("userId") int userId,
+            @RequestParam("updatedUserReport") int userReport,
+            @RequestParam("updatedUserLocked") int locked) {
 
         dashUserService.update(userId, userReport, locked);
 

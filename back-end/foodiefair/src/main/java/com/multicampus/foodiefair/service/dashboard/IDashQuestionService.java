@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface IDashQuestionService {
     // 문의 읽기
-    public QuestionDTO read(String selectedId);
+    public QuestionDTO read(long selectedId);
 
     // 문의 삭제
-    public int delete(String selectedId);
+    public int delete(long selectedId);
 
     // 리스트 출력
     public List<QuestionDTO> selectDashQuestionList(PageReviewerRequestDTO pageReviewerRequestDto, String sortOrder, String searchKeyword);

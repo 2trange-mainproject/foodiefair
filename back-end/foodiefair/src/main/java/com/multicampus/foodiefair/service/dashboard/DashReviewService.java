@@ -17,7 +17,7 @@ public class DashReviewService implements IDashReviewService {
     private final IDashReviewDAO dao;
 
     @Override
-    public ReviewDTO read(String selectedId) {
+    public ReviewDTO read(long selectedId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("selectedId", selectedId);
 
@@ -25,7 +25,7 @@ public class DashReviewService implements IDashReviewService {
     }
 
     @Override
-    public int delete(String selectedId) {
+    public int delete(long selectedId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("selectedId", selectedId);
 

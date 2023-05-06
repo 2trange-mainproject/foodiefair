@@ -17,4 +17,15 @@ public interface IReviewDAO {
 
     //리뷰 추가
     public int insertDao(Map<String, Object> paramMap);
+
+    //창환 오빠 부분
+    public int findReviewId(String productId, int userId);
+    public int reviewInsert(ReviewDTO reviewDTO);
+    public int reviewCount(String productId);
+    public int reviewDelete(long reviewId);
+    int commentDelete(long reviewId);
+
+    //int reviewModify(); 시간 나면 하기
+    public List<ReviewDTO> dateReviewRead(Map<String, Object> paramMap);
+    public List<ReviewDTO> likeReviewRead(Map<String, Object> paramMap);
 }

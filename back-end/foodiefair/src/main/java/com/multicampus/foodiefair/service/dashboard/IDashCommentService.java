@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface IDashCommentService {
     // 댓글 읽기
-    public CommentDTO read(String selectedId);
+    public CommentDTO read(long selectedId);
 
     // 댓글 삭제
-    public int delete(String selectedId);
+    public int delete(long selectedId);
 
     // 리스트 출력
     public List<CommentDTO> selectDashCommentList(PageReviewerRequestDTO pageReviewerRequestDto, String sortOrder, String searchKeyword);

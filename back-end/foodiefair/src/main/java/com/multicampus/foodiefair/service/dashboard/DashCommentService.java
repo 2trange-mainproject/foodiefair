@@ -18,7 +18,7 @@ public class DashCommentService implements IDashCommentService {
     private final IDashCommentDAO dao;
 
     @Override
-    public CommentDTO read(String selectedId) {
+    public CommentDTO read(long selectedId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("selectedId", selectedId);
 
@@ -26,7 +26,7 @@ public class DashCommentService implements IDashCommentService {
     }
 
     @Override
-    public int delete(String selectedId) {
+    public int delete(long selectedId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("selectedId", selectedId);
 

@@ -33,7 +33,13 @@ public class UserController {
         Map<String, Object> result = new HashMap<>();
         UserDTO userDto = userService.getUserByEmail(userEmail);
         if (userDto != null && userDto.getUserPwd().equals(userPwd)) {
+            S3Client s3Client = new S3Client();
+            String objectKey = userDto.getUserImg();
+            String url = s3Client.getUserUrl(objectKey, 3600);
+            userDto.setUserImg(url);
+
             session.setAttribute("loginUser", userDto);
+
             result.put("success", true);
             result.put("user", userDto);
             return ResponseEntity.ok(result);

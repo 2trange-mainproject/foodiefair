@@ -27,7 +27,7 @@ public class DashReviewController {
     // Delete
     @DeleteMapping("/review-delete/{reviewId}")
     public ResponseEntity<String> reviewDelete(
-            @PathVariable("reviewId") String reviewId) {
+            @PathVariable("reviewId") long reviewId) {
 
         dashReviewService.delete(reviewId);
 
@@ -37,7 +37,7 @@ public class DashReviewController {
     // Read
     @GetMapping("/review-read/{reviewId}")
     public ResponseEntity<Map<String, Object>> reviewRead(
-            @PathVariable("reviewId") String reviewId) {
+            @PathVariable("reviewId") long reviewId) {
 
         ReviewDTO review = dashReviewService.read(reviewId);
 

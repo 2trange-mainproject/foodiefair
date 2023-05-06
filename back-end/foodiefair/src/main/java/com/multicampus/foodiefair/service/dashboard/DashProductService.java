@@ -25,7 +25,7 @@ public class DashProductService implements IDashProductService {
     }
 
     @Override
-    public int insert(String productId, String productName, Integer productPrice, String productFestival, String productTag, String productImg) {
+    public int insert(String productId, String productName, int productPrice, String productFestival, String productTag, String productImg) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("productId", productId);
         paramMap.put("productName", productName);
@@ -46,7 +46,7 @@ public class DashProductService implements IDashProductService {
     }
 
     @Override
-    public int update(String productId, String productName, Integer productPrice, String productFestival, String productTag) {
+    public int update(String productId, String productName, int productPrice, String productFestival, String productTag) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("productId", productId);
         paramMap.put("productName", productName);
