@@ -11,5 +11,6 @@ public interface ICommentDAO {
     int registerComment(CommentDTO commentDTO);
     int reviewCommentCount(int reviewId);
     int commentDelete(int commentId);
+    int findReviewId(int commentId);
     List<Map<String, Object>> commentRead(int reviewId);
 }

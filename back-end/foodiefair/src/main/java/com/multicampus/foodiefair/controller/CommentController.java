@@ -31,10 +31,10 @@ public class CommentController {
     }
 
     @DeleteMapping("/{commentId}")
-    public ResponseEntity<String> commentDelete(@PathVariable int commentId) {
+    public ResponseEntity<Integer> commentDelete(@PathVariable int commentId) {
         log.info(commentId);
-        commentService.commentDelete(commentId);
-        return ResponseEntity.ok("comment delete");
+        Integer reviewCount = commentService.commentDelete(commentId);
+        return ResponseEntity.ok(reviewCount);
     }
 
     @GetMapping("/{reviewId}")

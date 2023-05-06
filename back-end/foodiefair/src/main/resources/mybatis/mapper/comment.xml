@@ -26,4 +26,8 @@
     <select id="reviewCommentCount" resultType="int">
         SELECT COUNT(*) reviewCommentCount FROM comment WHERE reviewId=#{reviewId};
     </select>
+
+    <select id="findReviewId" resultType="int">
+        SELECT reviewId FROM comment WHERE commentId = #{commentId};
+    </select>
 </mapper>
