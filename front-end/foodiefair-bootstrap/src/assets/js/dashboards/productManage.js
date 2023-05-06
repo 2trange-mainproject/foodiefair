@@ -162,7 +162,7 @@ function renderProducts(data) {
                         </td>
                         <td><a href="read-product?productId=${product.productId}" style="color: black">${product.productName}</a></td>
                         <td><a href="read-product?productId=${product.productId}" style="color: black">${fixedTag}</a></td>
-                        <td><a href="read-product?productId=${product.productId}" style="color: black">${product.productPrice}</a></td>
+                        <td><a href="read-product?productId=${product.productId}" style="color: black">${product.productPrice.toLocaleString('ko-KR')}원</a></td>
                         <td><a href="read-product?productId=${product.productId}" style="color: black">${releaseDate}</a></td>
                         <td><a href="read-product?productId=${product.productId}" style="color: black">${festivalText}</a></td>
                         <td><a href="read-product?productId=${product.productId}" style="color: black">${product.productId}</a></td>

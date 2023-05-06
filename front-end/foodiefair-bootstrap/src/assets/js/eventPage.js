@@ -134,7 +134,7 @@ function renderProducts(data) {
                   <div class="d-flex justify-content-between align-items-center mt-3">
                     <div></div>
                     <div>
-                      <span class="text-dark">${product.productPrice}원</span>
+                      <span class="text-dark">${product.productPrice.toLocaleString('ko-KR')}원</span>
                       <a href="#" class="ms-2 btn-action" style="color: deeppink"><i class="bi bi-bookmark"></i></a>
                     </div>
                   </div>

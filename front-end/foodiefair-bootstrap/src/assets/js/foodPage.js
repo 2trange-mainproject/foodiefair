@@ -232,7 +232,7 @@ function renderProducts(data) {
                       <span class="badge bg-${festivalColor}">${festivalText}</span>
                     </div>
                     <a href="viewFood?productId=${product.productId}">
-                        <img class="mb-3 img-fluid" style="max-width: 220px; max-height: 220px;" src="${product.productImg}">
+                        <img class="mb-3 img-fluid" style="height: 220px;" src="${product.productImg}">
                     </a>
                   </div>
                   <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
@@ -248,7 +248,7 @@ function renderProducts(data) {
                   <div class="d-flex justify-content-between align-items-center mt-3">
                     <div></div>
                     <div>
-                      <span class="text-dark">${product.productPrice}원</span>
+                      <span class="text-dark">${product.productPrice.toLocaleString('ko-KR')}원</span>
                       <a href="#" class="ms-2 btn-action" style="color: deeppink"><i class="bi bi-bookmark"></i></a>
                     </div>
                   </div>

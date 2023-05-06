@@ -8,7 +8,7 @@
   <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
   <link href="@@webRoot/node_modules/slick-carousel/slick/slick.css" rel="stylesheet" />
   <link href="@@webRoot/node_modules/slick-carousel/slick/slick-theme.css" rel="stylesheet" />
-  <link href="@@webRoot/src/assets/css/OCRReceipt.css" rel="stylesheet">
+  <link href="@@webRoot/assets/css/OCRReceipt.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   @@include("../partials/head.html")
 </head>
@@ -26,69 +26,48 @@
         <div class="col-md-12">
           <ul class="nav nav-pills nav-lb-tab" id="myTab" role="tablist">
             <!-- nav item -->
-            <!-- nav item -->
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="receipt-tab" data-bs-toggle="tab"
-                      data-bs-target="#certified-tab-pane" type="button" role="tab" aria-controls="certified-tab-pane"
-                      aria-selected="true">인증 리뷰</button>
-            </li>
-            <!-- nav item -->
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="common-tab" data-bs-toggle="tab"
+              <button class="nav-link active btn-reviews" id="receipt-reviews-tab" data-bs-toggle="tab"
                       data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane"
-                      aria-selected="false">일반 리뷰</button>
+                      aria-selected="true">인증 리뷰
+              </button>
             </li>
             <!-- nav item -->
+            <li class="nav-item" role="presentation">
+              <button class="nav-link btn-reviews" id="common-reviews-tab" data-bs-toggle="tab"
+                      data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane"
+                      aria-selected="false">일반 리뷰
+              </button>
+            </li>
           </ul>
           <!-- tab content -->
           <div class="tab-content" id="myTabContent">
             <!-- tab pane -->
-            <div class="tab-pane fade show active" id="certified-tab-pane" role="tabpanel" aria-labelledby="certified-tab-tab" tabindex="0">
-              <!-- col -->
+            <div class="tab-pane fade show active" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
               <div class="my-8">
-                <div class="mb-10">
-                  <div class="d-flex justify-content-between align-items-center mb-8">
-                    <div>
-                      <!-- heading -->
-                      <h4>리뷰</h4>
+                <!-- row -->
+                <div class="row">
+                  <!-- col -->
+                  <div class="col-md-12">
+                    <div class="mb-10">
+                      <div class="d-flex justify-content-between align-items-center mb-8">
+                        <div>
+                          <!-- heading -->
+                          <h4>리뷰</h4>
+                        </div>
+                        <div>
+                          <select class="form-select" id="select-review-type">
+                            <option value="0" selected>최신순</option>
+                            <option value="1">좋아요순</option>
+                          </select>
+                        </div>
+                        <!--                       인증 리뷰 예시-->
+                      </div>
+                      <section id="review-section"></section>
+                      <div>
+                        <a href="#" class="btn btn-outline-gray-400 text-muted btn-reviewMore">리뷰 더보기</a>
+                      </div>
                     </div>
-                    <div>
-                      <select class="form-select" id="receipt-type">
-                        <option value="recent" selected>최신순</option>
-                        <option value="likes">좋아요순</option>
-                      </select>
-                    </div>
-                  </div>
-                  <section id="receipt-review"></section>
-                  <div class="border-top pt-6 mt-6">
-                    <a href="#" class="btn btn-outline-gray-400 text-muted" id="receipt-more">Read More Reviews</a>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-
-            <!-- tab pane -->
-            <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
-              <!-- col -->
-              <div class="my-8">
-                <div class="mb-10">
-                  <div class="d-flex justify-content-between align-items-center mb-8">
-                    <div>
-                      <!-- heading -->
-                      <h4>리뷰</h4>
-                    </div>
-                    <div>
-                      <select class="form-select" id="common-type">
-                        <option value="recent" selected>최신순</option>
-                        <option value="likes">좋아요순</option>
-                      </select>
-                    </div>
-                  </div>
-                  <section id="common-review"></section>
-                  <div class="border-top pt-6 mt-6">
-                    <a href="#" class="btn btn-outline-gray-400 text-muted" id="common-more">Read More Reviews</a>
                   </div>
                 </div>
               </div>
@@ -107,8 +86,8 @@
       <div class="border-bottom py-4 mb-4">
         <div class="row" style="margin-bottom: 10px">
           <div class="col-6">
-            <h5 style="display: inline;">사진 또는 비디오</h5> &nbsp;
-            <span style="display: inline;">사진이나 비디오를 업로드 해주세요.</span>
+            <h5 style="display: inline;">음식 사진</h5> &nbsp;
+            <span style="display: inline;">음식 사진을 업로드 해주세요.</span>
           </div>
           <div class="col-6">
             <h5 style="display: inline;">영수증 인증</h5> &nbsp;
@@ -128,16 +107,13 @@
           <div class="col-6">
             <div class="OCR_form">
               <label for="OCR_file">
-                <input class="OCR_file" type="file" accept="image/*" onchange="readURL(this);" id="OCR_file"/>
-                <span class="OCR_img"><img id="OCR_preview"/></span>
+                <input class="OCR_file" type="file" accept="image/*" onchange="readURL(this);" id="OCR_file" />
+                <span class="OCR_img"><img id="OCR_preview" /></span>
               </label>
             </div>
             <div class="d-flex justify-content-end">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                인증하기
-              </button>
-              <div id="OCRContainer"></div>
-              <script src="@@webRoot/assets/js/OCRReceipt.js"></script>
+              <button id="ocrButton" class="btn btn-primary">자동인증</button>
+              <div id="spinner" class="spinner-border ml-2" role="status" style="display: none;"></div>
             </div>
           </div>
         </div>
@@ -171,8 +147,6 @@
 <!-- modal -->
 @@include("../partials/modal-product.html")
 
-
-
 <!-- Javascript-->
 <script src="@@webRoot/node_modules/rater-js/index.js"></script>
 <script src="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.js"></script>
@@ -183,9 +157,10 @@
 <script src="@@webRoot/assets/js/vendors/tns-slider.js"></script>
 <script src="@@webRoot/assets/js/vendors/zoom.js"></script>
 <script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
-<script src="@@webRoot/assets/js/review.js"></script>
 <script src="@@webRoot/assets/js/foodRead.js"></script>
 <script src="@@webRoot/assets/js/reviewRegister.js"></script>
+<script src="@@webRoot/assets/js/productReviews.js"></script>
+<script src="@@webRoot/assets/js/productComment.js"></script>
 
 </body>
 

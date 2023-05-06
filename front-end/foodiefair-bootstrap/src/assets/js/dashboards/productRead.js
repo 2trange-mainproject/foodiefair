@@ -64,7 +64,7 @@ function renderProductDetails(product) {
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">상품 가격</label>
-                    <input type="text" class="form-control" value="${product.productPrice}" disabled>
+                    <input type="text" class="form-control" value="${product.productPrice.toLocaleString('ko-KR')}원" disabled>
                   </div>
                   <!-- input -->
                   <div class="mb-3 col-lg-6">

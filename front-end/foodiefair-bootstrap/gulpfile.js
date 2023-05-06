@@ -26,41 +26,41 @@ const express = require('express');
 // -------------- ---------------------------------------------------------------
 
 // Paths to project folders
- const paths = {
-  base:{
-    base: './',
-    node: './node_modules'
+const paths = {
+    base:{
+        base: './',
+        node: './node_modules'
     },
-  src:{
-    basesrc: './src',
-    basesrcfiles: './src/**/*',
-    scss: './src/assets/scss/**/*.scss',
-    css: './src/assets/css',
-    js: './src/assets/js/**/*.js',
-    vendorJs: './src/assets/js/vendors/*.js',
-    html: './src/**/*.html',
-    images: './src/assets/images/**/*',
-    fonts: './src/assets/fonts/**/*',
-    assets: './src/assets/**/*',
-    partials: '.src/partials/**/*'
+    src:{
+        basesrc: './src',
+        basesrcfiles: './src/**/*',
+        scss: './src/assets/scss/**/*.scss',
+        css: './src/assets/css',
+        js: './src/assets/js/**/*.js',
+        vendorJs: './src/assets/js/vendors/*.js',
+        html: './src/**/*.html',
+        images: './src/assets/images/**/*',
+        fonts: './src/assets/fonts/**/*',
+        assets: './src/assets/**/*',
+        partials: '.src/partials/**/*'
     },
-  temp:{
-    basetemp: './.temp'
+    temp:{
+        basetemp: './.temp'
     },
-  dist:{
-    basedist: './dist',
-    js: './dist/assets/js',
-    vendorJs: './dist/assets/js/vendors',
-    images: './dist/assets/images',
-    css: './dist/assets/css',
-    fonts: './dist/assets/fonts',
-    libs: './dist/assets/libs'
+    dist:{
+        basedist: './dist',
+        js: './dist/assets/js',
+        vendorJs: './dist/assets/js/vendors',
+        images: './dist/assets/images',
+        css: './dist/assets/css',
+        fonts: './dist/assets/fonts',
+        libs: './dist/assets/libs'
 
     }
 }
 
 
-// SCSS to CSS
+// SCSS 파일을 CSS로 변환하고 소스맵을 생성
 function scss(callback) {
     return src(paths.src.scss)
         .pipe(sourcemaps.init())
@@ -72,38 +72,38 @@ function scss(callback) {
     callback();
 }
 
-// vendor js
+// vendor JS 파일을 압축하고 최종 dist 디렉터리로 이동
 function vendorJs(callback) {
-  return src(paths.src.vendorJs)
-  .pipe(uglify())
-  .pipe(dest(paths.dist.vendorJs))
-  callback();
+    return src(paths.src.vendorJs)
+        .pipe(uglify())
+        .pipe(dest(paths.dist.vendorJs))
+    callback();
 }
 
 
-// Image
+// 이미지 파일을 최종 dist 디렉터리로 이동
 function images(callback) {
-  return src(paths.src.images)
+    return src(paths.src.images)
         .pipe(dest(paths.dist.images))
     callback();
 }
 
 
-// Font task
+// 폰트 파일을 최종 dist 디렉터리로 이동
 function fonts(callback) {
     return src(paths.src.fonts)
-    .pipe(dest(paths.dist.fonts))
+        .pipe(dest(paths.dist.fonts))
     callback();
 }
 
 
-// HTML
+// HTML 파일을 처리하고 최종 dist 디렉터리로 이동. 이 과정에서 파일 포함, 노드 모듈 경로 변경, useref 및 최적화가 처리
 function html(callback) {
-  return src([paths.src.html, '!./src/partials/**/*'])
-      .pipe(fileinclude({
-        prefix: '@@',
-        basepath: '@file'
-      }))
+    return src([paths.src.html, '!./src/partials/**/*'])
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
         .pipe(replace(/src="(.{0,10})node_modules/g, 'src="$1assets/libs'))
         .pipe(replace(/href="(.{0,10})node_modules/g, 'href="$1assets/libs'))
         .pipe(useref())
@@ -118,43 +118,42 @@ function html(callback) {
 }
 
 
-// File include task for temp
+// HTML 파일에 대한 파일 포함 처리를 수행하고 .temp 디렉터리에 저장
 function fileincludeTask(callback) {
-  return src([paths.src.html, '!./src/partials/**/*'])
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: '@file',
-    }))
-    .pipe(cached())
-    .pipe(dest(paths.temp.basetemp));
+    return src([paths.src.html, '!./src/partials/**/*'])
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file',
+        }))
+        .pipe(cached())
+        .pipe(dest(paths.temp.basetemp));
     callback();
 }
 
 
-// Copy libs file from nodemodules to dist
+// 노드 모듈에서 필요한 라이브러리를 dist 디렉터리로 복사
 function copyLibs(callback) {
-  return src(npmDist(),{base: paths.base.node})
-    .pipe(dest(paths.dist.libs));
-  callback();
+    return src(npmDist(),{base: paths.base.node})
+        .pipe(dest(paths.dist.libs));
+    callback();
 }
 
 
-// Clean .temp folder
+//  .temp 디렉터리를 삭제
 function cleanTemp(callback) {
     del.sync(paths.temp.basetemp);
     callback();
 }
 
-
-// Clean Dist folder
+// dist 디렉터리를 삭제
 function cleanDist(callback) {
-     del.sync(paths.dist.basedist);
-     callback();
+    del.sync(paths.dist.basedist);
+    callback();
 }
 
 const serveStatic = require('serve-static');
 
-// Browser Sync Serve
+// Express 서버를 설정하고 HTML 확장명을 제거하는 미들웨어를 사용하여 로컬 서버를 실행
 function browsersyncServe(callback) {
     const app = express();
 
@@ -179,13 +178,13 @@ function browsersyncServe(callback) {
     callback();
 }
 
-// SyncReload
+//  BrowserSync를 사용하여 브라우저를 새로 고침
 function syncReload(callback){
     browsersync.reload();
     callback();
 }
 
-// Watch Task
+// 파일 변경을 감지하고 관련 작업을 실행
 function watchTask(){
     watch(paths.src.html, series( fileincludeTask, syncReload));
     watch([paths.src.images, paths.src.fonts, paths.src.vendorJs], series(images, fonts, vendorJs));

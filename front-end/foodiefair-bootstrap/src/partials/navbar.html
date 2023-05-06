@@ -81,26 +81,64 @@
             </div>
             <div class="col-md-2 col-xxl-3 d-none d-lg-block">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-outline-gray-400 text-muted">
+              <!--<button type="button" class="btn btn-outline-gray-400 text-muted">
                 <a href="@@webRoot/pages/find-store" style="color: #889397">
                   <i class="feather-icon icon-map-pin me-2"></i>내 주변 편의점 찾기
                 </a>
-              </button>
+              </button>-->
             </div>
             <!--<div class="col-md-2 col-xxl-1 text-end d-none d-lg-block">-->
             <div class="col-md-2 col-xxl-1 text-end d-none d-lg-block" style="white-space: nowrap;">
-              <span id="login-message"></span>
-              <a id="logout-link" style="color: #889397; display: none" href="#" onclick="logout()">로그아웃</a>
-              <a id="signin-link" style="color: #889397; display: none" href="@@webRoot/pages/signin">로그인</a>
+              <span id="login-name"></span>
+              <li class="dropdown ms-4" id="login-profile" style="display: none">
+                <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img id="login-image" src="" class="avatar avatar-md rounded-circle">
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-end p-0">
+                  <div class="lh-1 px-5 py-4 border-bottom">
+                    <h5 class="mb-1 h6" id="login-message"></h5>
+                    <small id="login-email"></small>
+                  </div>
+                  <ul class="list-unstyled px-2" style="margin-top: 4px; margin-bottom: 4px">
+                    <li>
+                      <a class="dropdown-item" id="mypage-link">
+                        마이페이지
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="@@webRoot/pages/userUpdate">
+                        회원정보 수정
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#!">
+                        회원탈퇴
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="border-top px-5 py-3">
+                    <a id="logout-link" style="display: none" href="#" onclick="logout()">로그아웃</a>
+                  </div>
+                </div>
+              </li>
+              <a id="signin-link" style="color: #889397; margin-right:10px; display: none" href="@@webRoot/pages/signin">로그인</a>
               <a id="signup-link" style="color: #889397; display: none" href="@@webRoot/pages/contract">회원가입</a>
               <script>
                 window.onload = function() {
                   const loginUser = JSON.parse(localStorage.getItem('loginUser'));
-                  if (loginUser != null) {
-                    document.getElementById('login-message').innerHTML = loginUser.userName + '님, 안녕하세요!';
+                  if
+                  (loginUser != null) {
+                    document.getElementById('login-name').innerHTML = loginUser.userName + ' 님';
+                    document.getElementById('login-message').innerHTML = loginUser.userName + ' 님';
+                    document.getElementById('login-email').innerHTML = loginUser.userEmail;
+                    document.getElementById('login-image').src = loginUser.userImg;
+
+                    const mypageLink = document.getElementById('mypage-link');
+                    mypageLink.href = `@@webRoot/pages/mypage?userId=${loginUser.userId}`;
+
                     document.getElementById('logout-link').style.display = 'inline';
-                    document.getElementById('update-link').style.display = 'inline';
-                    document.getElementById('delete-link').style.display = 'inline';
+                    document.getElementById('login-profile').style.display = 'inline';
                   } else {
                     document.getElementById('signin-link').style.display = 'inline';
                     document.getElementById('signup-link').style.display = 'inline';
@@ -155,10 +193,10 @@
             </div>
             <div class="d-none d-lg-block">
               <div class="nav-links" style="display: flex; justify-content: center;">
-                <a class="nav-link" href="@@webRoot/pages/food" role="button" style="font-size: 25px; margin: 0 90px;">음식</a>
-                <a class="nav-link" href="@@webRoot/pages/event" role="button" style="font-size: 25px; margin: 0 90px;">신상품/행사</a>
-                <a class="nav-link" href="@@webRoot/pages/reviewer" role="button" style="font-size: 25px; margin: 0 90px;">리뷰어</a>
-                <a class="nav-link" href="@@webRoot/pages/mypage" role="button" style="font-size: 25px; margin: 0 90px;">마이페이지</a>
+                <a class="nav-link" href="@@webRoot/pages/food" role="button" style="font-size: 25px; margin: 0 85px;">음식</a>
+                <a class="nav-link" href="@@webRoot/pages/event" role="button" style="font-size: 25px; margin: 0 85px;">신상품/행사</a>
+                <a class="nav-link" href="@@webRoot/pages/reviewer" role="button" style="font-size: 25px; margin: 0 85px;">리뷰어</a>
+                <a class="nav-link" href="@@webRoot/pages/find-store" role="button" style="font-size: 25px; margin: 0 85px;">내 주변 편의점</a>
               </div>
             </div>
           </div>

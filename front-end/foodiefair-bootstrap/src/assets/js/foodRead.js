@@ -1,6 +1,8 @@
 $(document).ready(function () {
     var productId = getProductIdFromUrl();
     loadProductDetails(productId);
+
+    productReviewsRead();
 });
 
 function getProductIdFromUrl() {
@@ -78,14 +80,16 @@ function renderProductDetails(product) {
             <!-- content -->
             <a href="#!" style="color: deeppink" class="mb-4 d-block">${fixedTagBig}</a>
             <!-- heading -->
-            <h1 class="mb-1">${product.productName}<a href="#" class="ms-2 btn-dib" style="color: deeppink"><i class="bi bi-bookmark"></i></a></h1>
+            <h1 class="mb-1" id="product-name" data-productId="${product.productId}">${product.productName}<a href="#" class="ms-2" style="color: deeppink" id="product-save"><i class="bi bi-bookmark"></i></a></h1>
             <div class="mb-4">
               <!-- rating -->
-              <a href="#" class="ms-2" style="color: deeppink" id="product-review">(${product.productReviews} 리뷰 개수)</a>
-              <a href="#" class="ms-2" style="color: deeppink" id="product-saved">(${product.productSaved} 찜 개수)</a>
+              <a href="#" class="ms-2" style="color: deeppink" id="product-review">(리뷰 개수 ${product.productReviews})</a>
+              <a href="#" class="ms-2" style="color: deeppink" id="product-saved">(찜 개수 ${product.productSaved})</a>
+              <a href="#" class="ms-2" style="color: deeppink">(조회수 ${product.productViews})</a>
             </div>
             <div class="fs-4">
-              <!-- price --><span class="fw-bold text-dark" id="product-price"></span>
+              <!-- price -->
+              <span class="fw-bold text-dark" id="product-price">${product.productPrice.toLocaleString('ko-KR')}원</span>
             </div>
 
             <hr class="my-6">
@@ -121,6 +125,8 @@ function renderProductDetails(product) {
     `;
 
     $productContainer.append(productListHtml);
+
+    $('#product-save').on('click', productSaved);
 }
 
 // 상품 찜 토글
