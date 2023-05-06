@@ -28,6 +28,7 @@ public class ReviewService implements IReviewService{
 
     @Override
     public int reviewDelete(int reviewId) {
+        iReviewDAO.commentDelete(reviewId);
         return iReviewDAO.reviewDelete(reviewId);
     }
 

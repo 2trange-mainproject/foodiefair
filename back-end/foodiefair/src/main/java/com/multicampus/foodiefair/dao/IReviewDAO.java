@@ -12,6 +12,7 @@ public interface IReviewDAO {
     int reviewInsert(ReviewDTO reviewDTO);
     int reviewCount(String productId);
     int reviewDelete(int reviewId);
+    int commentDelete(int reviewId);
     //int reviewModify(); 시간 나면 하기
     List<Map<String, Object>> dateReviewRead(String productId, int offset, int receiptImg);
     List<Map<String, Object>> likeReviewRead(String productId, int offset, int receiptImg);
