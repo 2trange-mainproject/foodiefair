@@ -6,6 +6,7 @@ $(document).ready(function () {
         $(e.target).empty();
     })
     $('#review-section').on('click', '.btn-comment-enroll', registerComment);
+    $('#review-section').on('click', '.btn-comment-delete', commentDelete);
 });
 async function productReviewCommentRead(e) {
     const response = await fetch('http://localhost:8081/products/comment/'+e.id);
@@ -52,4 +53,20 @@ async function registerComment (e) {
     const event = e.target.closest('.collapse'); // productReviewCommentRead로 넘길 위치 저장 (저장 안 하고 empty() 쓰면 이벤트 위치가 사라져서 찾을 수 없음)
     await $(e.target).closest('.collapse').empty(); // 페이지 비우기
     productReviewCommentRead(event); // 다시 댓글 목록 가져오기
+}
+
+async function commentDelete (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const event = e.target.closest('.collapse');
+    const commentId = $(this).closest('.btn-comment-delete').attr('id');
+    const response = await fetch('http://localhost:8081/products/comment/'+commentId, {
+        method:'DELETE'
+    });
+    const data = await response.json();
+    console.log("data" + data);
+    await $(e.target).closest('.collapse').siblings('.d-flex').find($('.bg-pink-300')).text(data);
+    await $(e.target).closest('.collapse').empty();
+    productReviewCommentRead(event);
 }

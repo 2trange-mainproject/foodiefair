@@ -29,6 +29,7 @@ $(document).ready(function (){
     $('#review-section').on('click', '.btn-reviewLike', productReviewLike); // 리뷰 좋아요 눌렀을 때 토글 및 DB저장, 숫자 반영
     $('.btn-reviewMore').click(productReviewMore); // 리뷰 더보기 버튼
     $('#select-review-type').change(productReviewType); // 정렬 선택
+    $('#review-section').on('click', '.review-delete', productReviewRemove);
 });
 
 async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
@@ -132,6 +133,19 @@ async function productReviewLike(e) { // 상품 리뷰 좋아요 토글 버튼
         await $(this).find('.badge').text(data); // 하위 자식중에 badge를 찾아서 좋아요 개수 업데이트
     }
 };
+
+async function productReviewRemove (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const reviewId = $(this).closest('.review-delete').data('reviewid');
+    await fetch('http://localhost:8081/products/review/reviewDelete/'+reviewId, {
+        method:'DELETE'
+    });
+    $('#review-section').empty();
+    pageOffset.init();
+    productReviewsRead(e);
+}
 
 function productReviewMore(e) {
     pageOffset.increaseOffset();
