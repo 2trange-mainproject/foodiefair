@@ -139,9 +139,14 @@ async function productReviewRemove (e) {
     e.stopPropagation();
 
     const reviewId = $(this).closest('.review-delete').data('reviewid');
-    await fetch('http://localhost:8081/products/review/reviewDelete/'+reviewId, {
+    const response = await fetch('http://localhost:8081/products/review/reviewDelete/'+reviewId, {
         method:'DELETE'
     });
+
+    const responseData = await response.json();
+    const reviewCount = responseData.reviewCount;
+    $("#product-review").text(`(리뷰 개수 ${reviewCount})`);
+
     $('#review-section').empty();
     pageOffset.init();
     productReviewsRead(e);

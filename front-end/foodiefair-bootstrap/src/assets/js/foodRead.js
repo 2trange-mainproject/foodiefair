@@ -149,6 +149,11 @@ async function productSaved(e) {
             },
             body: JSON.stringify(sendData)
         });
+
+        const responseData = await response.json();
+        const savedCount = responseData.savedCount;
+        $("#product-saved").text(`(찜 개수 ${savedCount})`);
+
         const data = await response.text();
         return data
     } else { // 토글 비활성화시 데이터 삭제
@@ -156,6 +161,11 @@ async function productSaved(e) {
         const response = await fetch('http://localhost:8081/products/'+sendData.productId+'/saved/'+sendData.userId, {
             method:'DELETE'
         });
+
+        const responseData = await response.json();
+        const savedCount = responseData.savedCount;
+        $("#product-saved").text(`(찜 개수 ${savedCount})`);
+
         const data = await response.text();
         return data
     }

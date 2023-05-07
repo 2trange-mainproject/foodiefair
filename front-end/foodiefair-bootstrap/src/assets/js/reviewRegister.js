@@ -140,6 +140,14 @@ $("#review-reset").on("click", function(e) {
     //사진 초기화
     $("#food_preview").attr("src", "").css("display", "none");
     $("#OCR_preview").attr("src", "").css("display", "none");
+
+    // 파일 input 값 초기화
+    $("#food_image_input").val('');
+    $("#receipt_image_input").val('');
+
+    // 이미지 변수 초기화
+    foodImage = null;
+    receiptImage = null;
 });
 
 //----------------등록 버튼------------------
@@ -175,6 +183,8 @@ $("#review-enroll").on('click', function(e) {
             console.log(response);
             loadKeywords(productId);
 
+            $("#product-review").text(`(리뷰 개수 ${response.reviewCount})`);
+
             // 리뷰 정보 초기화
             $("#good-review").val('');
             $("#bad-review").val('');
@@ -183,6 +193,13 @@ $("#review-enroll").on('click', function(e) {
             $("#food_preview").attr("src", "").css("display", "none");
             $("#OCR_preview").attr("src", "").css("display", "none");
 
+            // 파일 input 값 초기화
+            $("#food_image_input").val('');
+            $("#receipt_image_input").val('');
+
+            // 이미지 변수 초기화
+            foodImage = null;
+            receiptImage = null;
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
