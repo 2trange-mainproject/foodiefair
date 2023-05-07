@@ -22,21 +22,24 @@ public class SavedController {
 
     // 상품 찜
     @PostMapping("/products/{productId}/saved")
-    public ResponseEntity<String> registerSaved (@Valid @RequestBody SavedDTO savedDTO, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("올바른 입력이 아닙니다.");
+    public ResponseEntity<String> registerSaved (@Valid @RequestBody SavedDTO savedDTO) {
+        int result = savedService.registerSaved(savedDTO);
+        if (result == 1) {
+            return ResponseEntity.ok("Saved added successfully");
+        } else {
+            return ResponseEntity.badRequest().body("Error adding saved");
         }
-        savedService.registerSaved(savedDTO);
-        return ResponseEntity.ok("save success");
     }
 
-    @DeleteMapping("/products/{productId}/saved/{savedId}")
-    public ResponseEntity<String> removeSaved (@Valid @PathVariable("savedId") Long savedId, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("올바른 입력이 아닙니다.");
+    @DeleteMapping("/products/{productId}/saved")
+    public ResponseEntity<String> removeSaved(@PathVariable("productId") String productId, @RequestParam("userId") int userId) {
+        System.out.println("Received request to remove saved product with productId: " + productId + " and userId: " + userId);
+        int result = savedService.removeSaved(productId, userId);
+        if (result == 1) {
+            return ResponseEntity.ok("Saved removed successfully");
+        } else {
+            return ResponseEntity.badRequest().body("Error removing saved");
         }
-        savedService.removeSaved(savedId);
-        return ResponseEntity.ok("Delete success");
     }
 
     @GetMapping("/products/{productId}/saved/count")
@@ -46,14 +49,14 @@ public class SavedController {
     }
 
     @GetMapping("/mypage/{userId}/saved-products/count")
-    public ResponseEntity<String> getSavedUserCount (@PathVariable Long userId) {
-        savedService.getSavedUserCount(userId);
-        return ResponseEntity.ok("User's saved-product count success");
+    public ResponseEntity<Integer> getSavedUserCount (@PathVariable int userId) {
+        int result = savedService.getSavedUserCount(userId);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/mypage/{userId}/saved-products")
     public ResponseEntity<SavedPageResponseDTO> getSavedList(
-            @PathVariable Long userId,
+            @PathVariable int userId,
             @RequestParam(required = false, defaultValue = "1") int page,
             @RequestParam(required = false, defaultValue = "16") int size) {
 
@@ -70,7 +73,7 @@ public class SavedController {
     }
 
     @GetMapping("/mypage/{userId}/saved-examples")
-    public ResponseEntity<ArrayList<HashMap<String, Object>>> getSavedFour(@PathVariable Long userId) {
+    public ResponseEntity<ArrayList<HashMap<String, Object>>> getSavedFour(@PathVariable int userId) {
         ArrayList<HashMap<String, Object>> savedExamples = savedService.getSavedFour(userId);
         System.out.println(savedExamples);
         return ResponseEntity.ok(savedExamples);

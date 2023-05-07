@@ -1,4 +1,5 @@
 let userId = 1;
+let loggedUserId = 1;
 
 $(document).ready(async function () {
     try {
@@ -29,7 +30,7 @@ $(document).ready(async function () {
     getActiveTab();
 });
 
-async function fetchFollowData(userId, type, lastFollowId, perPage) {
+async function fetchFollowData(userId, type, lastFollowId, perPage, loggedUserId) {
     try {
         const response = await $.ajax({
             url: `http://localhost:8081/mypage/${userId}/${type}`,
@@ -38,6 +39,7 @@ async function fetchFollowData(userId, type, lastFollowId, perPage) {
             data: {
                 lastFollowId: lastFollowId,
                 perPage: perPage,
+                loggedUserId: loggedUserId
             },
         });
         return response;
@@ -87,8 +89,8 @@ function createProfileCard(user) {
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <button class="btn btn-pink">팔로우</button>
-                            </div>
+                                <button class="btn ${user.isFollowed ? 'btn-light' : 'btn-pink'}" onclick="${user.isFollowed ? 'unfollowUser(' + user.userId + ',' + loggedUserId + ',' + user.userId + ')' : 'followUser(' + user.userId + ',' + loggedUserId + ',' + user.userId + ')'}">${user.isFollowed ? '언팔로우' : '팔로우'}</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -97,44 +99,72 @@ function createProfileCard(user) {
     </div>`;
 }
 
-async function loadMoreFollowData(containerSelector, userId, type, loadMoreUrl) {
+async function loadMoreFollowData(containerSelector, userId, type) {
     let lastItem = $(containerSelector).children().last();
     let lastFollowId = lastItem.length ? lastItem.data('follow-id') : null;
 
     try {
-        const data = await fetchFollowData(userId, type, lastFollowId, 10);
+        const data = await fetchFollowData(userId, type, lastFollowId, 10, loggedUserId);
         console.log("Fetched data:", data);
         const html = data.map(createProfileCard).join('');
         $(containerSelector).append(html);
 
-        if (data.length === 10) {
-            let nextLastFollowId = data[data.length - 1].followId;
-            let loadMoreUrl = `http://localhost:8081/mypage/${userId}/${type}?lastFollowId=${nextLastFollowId}`;
-            $(window).off('scroll').on('scroll', async function () {
-                if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-                    if ($('#followers-tab').hasClass('active')) {
-                        await loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers', loadMoreUrl);
-                    } else if ($('#followings-tab').hasClass('active')) {
-                        await loadMoreFollowData('#followings-tab-pane .row-cols-1', userId, 'followings', loadMoreUrl);
-                    }
-                }
-            });
+        if (data.length < 10) {
+            $(window).off('scroll');
         }
     } catch (error) {
         console.error(`Error fetching ${type} data:`, error);
     }
 }
 
+async function followUser(userId, loggedUserId, followedId) {
+    const followDTO = {
+        followingId: loggedUserId,
+        followedId: followedId,
+    };
+
+    const response = await fetch(`http://localhost:8081/mypage/${userId}/follow`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(followDTO),
+    });
+
+    if (response.ok) {
+        console.log('Follow success');
+    } else {
+        console.error('Failed to follow user');
+    }
+}
+
+async function unfollowUser(userId, loggedUserId, followedId) {
+    const response = await fetch(`http://localhost:8081/mypage/${userId}/unfollow?loggedUserId=${loggedUserId}&followedId=${followedId}`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        console.log('Unfollow success');
+    } else {
+        console.error('Failed to unfollow user');
+    }
+}
+
+
 function debounce(func, wait) {
     let timeout;
+    let inProgress = false;
     return function () {
+        if (inProgress) return; // Prevent further requests if the previous request is still in progress
         const context = this;
         const args = arguments;
         const later = function () {
             timeout = null;
+            inProgress = false; // Set inProgress to false after the request has been completed
             func.apply(context, args);
         };
         clearTimeout(timeout);
+        inProgress = true; // Set inProgress to true before starting the request
         timeout = setTimeout(later, wait);
     };
 }
@@ -152,3 +182,5 @@ function getActiveTab() {
         localStorage.removeItem('activeTab');
     }
 }
+
+

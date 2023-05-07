@@ -10,9 +10,9 @@ import java.util.HashMap;
 public interface VisitedDAO {
 
     // 방명록 리스트 출력
-    ArrayList<HashMap<String, Object>> selectVisitedList(Long ownerId, int offset, int limit);
+    ArrayList<HashMap<String, Object>> selectVisitedList(int ownerId, int offset, int limit);
     // 방명록 갯수 (페이징용)
-    int countVisitedList(Long ownerId);
+    int countVisitedList(int ownerId);
     // 방명록 등록
     int insertVisited(VisitedDTO visitedDTO);
     // 방명록 삭제 (작성 회원 + 페이지 소유자)

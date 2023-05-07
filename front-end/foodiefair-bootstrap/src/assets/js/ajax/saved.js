@@ -1,20 +1,13 @@
-let currentPage = 1;
-const pageSize = 16;
-
 const savedListElement = document.getElementById("saved-list");
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    displaySavedList(userId, currentPage, pageSize);
-
+    displaySavedList(userId, loggedUserId);
 });
 
 
 // 찜 상품 리스트 표시
-async function displaySavedList(userId, page, pageSize) {
-    const response = await fetchSavedList(userId, page, pageSize);
-    const savedList = response.dataList;
-    const totalPages = response.totalPages;
+    async function displaySavedList(userId, loggedUserId) {
+        const savedList = await fetchSavedList(userId);
 
     // 이전 내용 지우기
     savedListElement.innerHTML = '';
@@ -95,7 +88,14 @@ async function displaySavedList(userId, page, pageSize) {
         bookmarkLink.href = "#";
         bookmarkLink.className = "ms-2 btn-action";
         bookmarkLink.style.color = "deeppink";
-        bookmarkLink.innerHTML = "<i class='bi bi-bookmark'></i>";
+
+// Conditionally display the bookmark button
+        if (userId === loggedUserId) {
+            bookmarkLink.innerHTML = "<i class='bi bi-bookmark-fill'></i>";
+        } else {
+            bookmarkLink.style.display = "none";
+        }
+
         priceInfoDiv.appendChild(priceSpan);
         priceInfoDiv.appendChild(bookmarkLink);
         priceDiv.appendChild(emptyDiv);
@@ -116,88 +116,58 @@ async function displaySavedList(userId, page, pageSize) {
         colDiv.appendChild(cardDiv);
 
         savedListElement.appendChild(colDiv);
+
+        bookmarkLink.addEventListener("click", async (event) => {
+            event.preventDefault();
+            if (bookmarkLink.querySelector(".bi-bookmark-fill")) {
+                await removeSavedProduct(saved.productId, userId); // Use the appropriate savedId property from the saved object
+                bookmarkLink.innerHTML = "<i class='bi bi-bookmark'></i>";
+            } else {
+                await registerSavedProduct(saved.productId, userId); // Use the appropriate productId property from the saved object and the userId
+                bookmarkLink.innerHTML = "<i class='bi bi-bookmark-fill'></i>";
+            }
+        });
     });
 
-    // 페이지 버튼 생성
-    createPageButtons(page, totalPages, pageSize);
 }
 
-async function fetchSavedList(userId, page = 1, size = 16) {
-    const response = await fetch(`http://localhost:8081/mypage/${userId}/saved-products?page=${page}&size=${size}`);
+async function fetchSavedList(userId) {
+    const response = await fetch(`http://localhost:8081/mypage/${userId}/saved-examples`);
     return await response.json();
 }
 
-// 페이지 버튼 생성
-function createPageButtons(currentPage, totalPages, pageSize) {
-    // 페이지네이션 요소 가져오기
-    const paginationElement = document.getElementById("pagination");
-    // 페이지네이션 요소 초기화
-    paginationElement.innerHTML = "";
-
-    // 한 섹션당 페이지 수
-    const sectionSize = 5;
-    // 전체 섹션 수
-    const totalSections = Math.ceil(totalPages / sectionSize);
-    // 현재 페이지가 속한 섹션
-    const currentSection = Math.floor((currentPage - 1) / sectionSize) + 1;
-    // 시작 페이지
-    const startPage = (currentSection - 1) * sectionSize + 1;
-    // 종료 페이지
-    const endPage = Math.min(startPage + sectionSize - 1, totalPages);
-    // 이전 페이지 버튼 생성
-    const prevPageButton = document.createElement("li");
-    prevPageButton.className = "page-item";
-    prevPageButton.id = "prev-page";
-    prevPageButton.innerHTML = '<a class="page-link  mx-1 " href="#" aria-label="Previous">\n' +
-        '                      <i class="feather-icon icon-chevron-left"></i>\n' +
-        '                    </a>';
-    paginationElement.appendChild(prevPageButton);
-
-    // 이전 페이지 버튼 클릭 이벤트 추가
-    prevPageButton.addEventListener("click", () => {
-        if (currentPage > 1) {
-            currentPage--;
-            displaySavedList(userId, currentPage, pageSize);
-        }
+async function removeSavedProduct(productId, userId) {
+    const response = await fetch(`http://localhost:8081/products/${productId}/saved?userId=${userId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
     });
 
-    // 페이지 버튼 생성
-    for (let i = startPage; i <= endPage; i++) {
-        const pageButton = document.createElement("li");
-        pageButton.className = "page-item" + (i === currentPage ? " active" : "");
-        pageButton.innerHTML = `<a class="page-link" href="#!" data-page="${i}">${i}</a>`;
-        paginationElement.appendChild(pageButton);
-
-        // 페이지 버튼 클릭 이벤트 추가
-        pageButton.addEventListener("click", () => {
-            displaySavedList(userId, i, pageSize);
-            currentPage = i;
-            createPageButtons(currentPage, totalPages, pageSize);
-        });
+    if (response.ok) {
+        console.log('Delete success');
+    } else {
+        console.error('Failed to remove saved product');
     }
+}
 
-    // 다음 페이지 버튼 생성
-    const nextPageButton = document.createElement("li");
-    nextPageButton.className = "page-item";
-    nextPageButton.id = "next-page";
-    nextPageButton.innerHTML = ' <a class="page-link mx-1 text-body" href="#!" aria-label="Next">\n' +
-        '                      <i class="feather-icon icon-chevron-right"></i>\n' +
-        '                    </a>';
-    paginationElement.appendChild(nextPageButton);
+async function registerSavedProduct(productId, userId) {
+    const savedDTO = {
+        productId: productId,
+        userId: userId,
+    };
 
-    // 다음 페이지 버튼 클릭 이벤트 추가
-    nextPageButton.addEventListener("click", () => {
-        if (currentPage < totalPages) {
-            currentPage++;
-            displaySavedList(userId, currentPage, pageSize);
-        } else if (currentPage === totalPages) {
-            const lastPageButton = paginationElement.querySelector(`[data-page="${totalPages}"]`);
-            lastPageButton.classList.add("active");
-            displaySavedList(userId, currentPage, pageSize);
-        }
+    const response = await fetch(`http://localhost:8081/products/${productId}/saved`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(savedDTO),
     });
 
-    // 이전/다음 페이지 버튼 보이기
-    prevPageButton.style.visibility = "visible";
-    nextPageButton.style.visibility = "visible";
+    if (response.ok) {
+        console.log('Save success');
+    } else {
+        console.error('Failed to add saved product');
+    }
 }

@@ -21,8 +21,8 @@ public class SavedServiceImpl implements SavedService{
     }
 
     @Override
-    public int removeSaved(Long savedId) {
-        return savedDAO.deleteSaved(savedId);
+    public int removeSaved(String productId, int userId) {
+        return savedDAO.deleteSaved(productId, userId);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class SavedServiceImpl implements SavedService{
     }
 
     @Override
-    public int getSavedUserCount(Long userId) {
+    public int getSavedUserCount(int userId) {
         return savedDAO.countSavedUser(userId);
     }
 
@@ -53,7 +53,7 @@ public class SavedServiceImpl implements SavedService{
     }
 
     @Override
-    public ArrayList<HashMap<String, Object>> getSavedFour(Long userId) {
+    public ArrayList<HashMap<String, Object>> getSavedFour(int userId) {
         return savedDAO.selectSavedFour(userId);
     }
 }

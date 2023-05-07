@@ -17,11 +17,11 @@
         WHERE followingId = #{followingId} AND followedId = #{followedId}
     </delete>
 
-    <select id="selectFollowerCount" resultType="java.lang.Integer" parameterType="java.lang.Long">
+    <select id="selectFollowerCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         SELECT COUNT(*) FROM Follow WHERE followedId = #{followedId}
     </select>
 
-    <select id="selectFollowingCount" resultType="java.lang.Integer" parameterType="java.lang.Long">
+    <select id="selectFollowingCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         SELECT COUNT(*) FROM Follow WHERE followingId = #{followingId}
     </select>
 

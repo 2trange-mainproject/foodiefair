@@ -17,12 +17,12 @@ public class UserTagServiceImpl implements UserTagService{
 
 
     @Override
-    public String getUserTags(Long userId) {
+    public String getUserTags(int userId) {
         return userTagDAO.selectUserTagList(userId);
     }
 
     @Override
-    public String getUserBadges(Long userId) {
+    public String getUserBadges(int userId) {
         return userTagDAO.selectUserBadgeList(userId);
     }
 }

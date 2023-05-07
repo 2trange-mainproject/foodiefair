@@ -7,9 +7,9 @@
         VALUES (#{userId}, #{productId})
     </insert>
 
-    <delete id="deleteSaved" parameterType="java.lang.Long">
+    <delete id="deleteSaved">
         DELETE FROM Saved
-        WHERE savedId=#{savedId}
+        WHERE productId = #{productId} AND userId=#{userId}
     </delete>
 
     <select id="countSavedProduct" resultType="int">

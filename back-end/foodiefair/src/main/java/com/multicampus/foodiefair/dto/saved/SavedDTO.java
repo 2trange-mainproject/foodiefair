@@ -13,7 +13,7 @@ import java.sql.Date;
 @NoArgsConstructor
 public class SavedDTO {
     private Long savedId;
-    private Long userId;
+    private Integer userId;
     private String productId;
     private Date savedDate;
 

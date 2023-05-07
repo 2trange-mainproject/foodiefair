@@ -9,12 +9,12 @@ import java.util.HashMap;
 
 public interface SavedService {
     int registerSaved(SavedDTO savedDTO);
-    int removeSaved(Long savedId);
+    int removeSaved(String productId, int userId);
     // 상품의 찜 숫자 조회
     int getSavedProductCount(String productId);
     // 유저의 찜 상품 숫자 조회
-    int getSavedUserCount(Long userId);
+    int getSavedUserCount(int userId);
     // 회원 찜 리스트 출력
     SavedPageResponseDTO getSavedList(SavedDTO savedDTO, SavedPageRequestDTO pageRequestDTO);
-    ArrayList<HashMap<String,Object>> getSavedFour(Long userId);
+    ArrayList<HashMap<String,Object>> getSavedFour(int userId);
 }

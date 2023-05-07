@@ -13,13 +13,17 @@ import java.util.HashMap;
 public interface FollowProfileDAO {
     // 무한스크롤 기능 적용. No offset
     ArrayList<HashMap<String, Object>> selectFollowerProfiles(
-            @Param("followedId") Long followedId,
+            @Param("followedId") int followedId,
             @Param("lastFollowId") Long lastFollowId,
-            @Param("perPage") int perPage);
+            @Param("perPage") int perPage,
+            @Param("loggedUserId") int loggedUserId);
+
 
     ArrayList<HashMap<String, Object>> selectFollowingProfiles(
-            @Param("followingId") Long followingId,
+            @Param("followingId") int followingId,
             @Param("lastFollowId") Long lastFollowId,
-            @Param("perPage") int perPage);
+            @Param("perPage") int perPage,
+            @Param("loggedUserId") int loggedUserId);
+
 
 }

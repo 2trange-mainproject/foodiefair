@@ -18,7 +18,7 @@ public class VisitedController {
 
     @GetMapping("/visited")
     public ResponseEntity<VisitedPageResponseDTO> getVisitedList(
-            @PathVariable Long userId,
+            @PathVariable int userId,
             @RequestParam(required = false, defaultValue = "1") int page,
             @RequestParam(required = false, defaultValue = "5") int size) {
 

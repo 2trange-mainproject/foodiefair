@@ -4,6 +4,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserTagDAO {
-    String selectUserTagList(Long userId);
-    String selectUserBadgeList(Long userId);
+    String selectUserTagList(int userId);
+    String selectUserBadgeList(int userId);
 }

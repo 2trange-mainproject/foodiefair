@@ -13,7 +13,7 @@ import java.util.HashMap;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
-    private Long userId;
+    private Integer userId;
     private String userPwd;
     private String userName;
     private String userEmail;

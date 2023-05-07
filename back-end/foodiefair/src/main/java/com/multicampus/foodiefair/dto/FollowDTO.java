@@ -14,7 +14,7 @@ public class FollowDTO {
     // 팔로우 고유 ID
     private Long followId;
     // 팔로잉 하는 userId
-    private Long followingId;
+    private Integer followingId;
     // 팔로우 받는 userId
-    private Long followedId;
+    private Integer followedId;
 }
