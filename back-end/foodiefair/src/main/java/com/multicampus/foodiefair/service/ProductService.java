@@ -29,6 +29,14 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public int update(String selectedId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("selectedId", selectedId);
+
+        return dao.updateProductViews(paramMap);
+    }
+
+    @Override
     public List<ProductDTO> selectFilteredList(PageRequestDTO pageRequestDto, List<String> storeFilters, List<String> categoryFilters, String sortOrder, String searchKeyword) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("pageRequestDto", pageRequestDto);

@@ -53,17 +53,39 @@ public class ReviewService implements IReviewService {
         return dao.insertDao(paramMap);
     }
 
-    //창환오빠 부분
+    @Override
+    public int updatePlusReviewNum(String productId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("productId", productId);
+
+        return dao.updatePlusReviewNum(paramMap);
+    }
+
+    @Override
+    public int updateMinusReviewNum(long reviewId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("reviewId", reviewId);
+
+        return dao.updateMinusReviewNum(paramMap);
+    }
+
     @Override
     public int reviewCount(String productId) {
-        return dao.reviewCount(productId);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("productId", productId);
+
+        return dao.reviewCount(paramMap);
     }
 
     @Override
-    public int reviewInsert(ReviewDTO reviewDTO) {
-        return dao.reviewInsert(reviewDTO);
+    public int reviewDownCount(long reviewId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("reviewId", reviewId);
+
+        return dao.reviewDownCount(paramMap);
     }
 
+    //창환오빠 부분
     @Override
     public int reviewDelete(long reviewId) {
         dao.commentDelete(reviewId);

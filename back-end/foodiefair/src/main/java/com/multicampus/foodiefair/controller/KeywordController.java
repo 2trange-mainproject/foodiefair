@@ -53,13 +53,14 @@ public class KeywordController {
     }
 
     @PostMapping("/review-add")
-    public ResponseEntity<String> addReview(
+    public ResponseEntity<Map<String, Object>> addReview(
             @RequestParam("productId") String productId,
             @RequestParam("userId") int userId,
             @RequestParam("goodReviews") String goodReviews,
             @RequestParam("badReviews") String badReviews,
             @RequestParam(value = "receiptImg", required = false) MultipartFile receiptImg,
             @RequestParam(value = "reviewImg", required = false) MultipartFile reviewImg) {
+        Map<String, Object> resultMap = new HashMap<>();
         try {
             String reviewKey = null;
             if (reviewImg != null) {
@@ -78,10 +79,15 @@ public class KeywordController {
 
             // imageUrl을 데이터베이스에 저장. (ProductDTO와 IDashProductService 사용)
             reviewService.insert(productId, userId, goodReviews, badReviews, receiptBoolean, reviewKey);
+            
+            // 해당 상품의 리뷰 개수 1개 올리기
+            reviewService.updatePlusReviewNum(productId);
+            int reviewCount = reviewService.reviewCount(productId);
+            resultMap.put("reviewCount", reviewCount);
 
         } catch (IOException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultMap);
         }
 
         //키워드 추출
@@ -102,6 +108,7 @@ public class KeywordController {
         }
 
         // 처리 코드 작성
-        return ResponseEntity.ok("success");
+        resultMap.put("status", "success");
+        return ResponseEntity.ok(resultMap);
     }
 }

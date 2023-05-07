@@ -18,10 +18,19 @@ public interface IReviewDAO {
     //리뷰 추가
     public int insertDao(Map<String, Object> paramMap);
 
+    //리뷰 추가 시 리뷰 개수 1개 올리기
+    public int updatePlusReviewNum(Map<String, Object> paramMap);
+
+    //리뷰 삭제 시 리뷰 개수 1개 줄이기
+    public int updateMinusReviewNum(Map<String, Object> paramMap);
+
+    //리뷰 개수
+    public int reviewCount(Map<String, Object> paramMap);
+    public int reviewDownCount(Map<String, Object> paramMap);
+
     //창환 오빠 부분
     public int findReviewId(String productId, int userId);
     public int reviewInsert(ReviewDTO reviewDTO);
-    public int reviewCount(String productId);
     public int reviewDelete(long reviewId);
     int commentDelete(long reviewId);
 

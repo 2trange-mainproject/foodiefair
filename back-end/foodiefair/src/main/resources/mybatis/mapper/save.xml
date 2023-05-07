@@ -11,6 +11,14 @@
     </delete>
 
     <select id="savedCount" resultType="int">
-        SELECT count(*) saved FROM Saved WHERE productId=#{productId};
+        select productSaved from Product where productId = #{productId}
     </select>
+
+    <update id="updatePlusSave">
+        update Product set productSaved = productSaved + 1 where productId = #{productId}
+    </update>
+
+    <update id="updateMinusSave">
+        update Product set productSaved = productSaved - 1 where productId = #{productId}
+    </update>
 </mapper>

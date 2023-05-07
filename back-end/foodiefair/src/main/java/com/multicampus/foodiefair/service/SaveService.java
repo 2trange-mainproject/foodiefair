@@ -29,6 +29,25 @@ public class SaveService implements ISaveService{
 
     @Override
     public int savedCount(String productId) {
-        return isaveDAO.savedCount(productId);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("productId", productId);
+
+        return isaveDAO.savedCount(paramMap);
+    }
+
+    @Override
+    public int updatePlusSave(String productId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("productId", productId);
+
+        return isaveDAO.updatePlusSave(paramMap);
+    }
+
+    @Override
+    public int updateMinusSave(String productId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("productId", productId);
+
+        return isaveDAO.updateMinusSave(paramMap);
     }
 }

@@ -52,8 +52,17 @@ public class ReviewController {
     }
 
     @DeleteMapping("/reviewDelete/{reviewId}")
-    public ResponseEntity<String> reviewDelete (@PathVariable long reviewId) {
+    public ResponseEntity<Map<String, Object>> reviewDelete (@PathVariable long reviewId) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        iReviewService.updateMinusReviewNum(reviewId);
+
+        int reviewCount = iReviewService.reviewDownCount(reviewId);
+        resultMap.put("reviewCount", reviewCount);
+        resultMap.put("status", "success");
+
         iReviewService.reviewDelete(reviewId);
-        return ResponseEntity.ok("review delete success");
+
+        return ResponseEntity.ok(resultMap);
     }
 }

@@ -35,10 +35,6 @@
         WHERE review.receiptImg = #{receiptImg} order by review.reviewLikes desc LIMIT 3 OFFSET #{offset};
     </select>
 
-    <select id="reviewCount" resultType="int">
-        SELECT COUNT(*) reviewCount FROM review WHERE productId=${productId};
-    </select>
-
     <delete id="commentDelete">
         DELETE FROM comment WHERE reviewId=#{reviewId};
     </delete>

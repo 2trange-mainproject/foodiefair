@@ -9,6 +9,8 @@ import java.util.Map;
 public interface ISaveDAO {
     int registerSaved(SaveDTO saveDTO);
     int removeSaved(Map<String, Object> paramMap);
-    int savedCount(String productId);
+    int savedCount(Map<String, Object> paramMap);
+    int updatePlusSave(Map<String, Object> paramMap);
+    int updateMinusSave(Map<String, Object> paramMap);
 }
 

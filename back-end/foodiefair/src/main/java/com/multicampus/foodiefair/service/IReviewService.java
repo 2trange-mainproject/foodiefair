@@ -16,9 +16,14 @@ public interface IReviewService {
     //리뷰 추가
     public int insert(String productId, int userId, String goodReviews, String badReviews, int receiptImg, String reviewImg);
 
-    //창환 오빠 부분
-    int reviewInsert(ReviewDTO reviewDTO);
+    //리뷰 개수 올리고 내리기
+    public int updatePlusReviewNum(String productId);
+    public int updateMinusReviewNum(long reviewId);
+
     int reviewCount(String productId);
+    int reviewDownCount(long reviewId);
+
+    //창환 오빠 부분
     int reviewDelete(long reviewId);
     int reviewModify();
 

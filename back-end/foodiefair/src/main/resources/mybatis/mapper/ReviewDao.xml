@@ -11,6 +11,27 @@
         <if test="reviewImg != null">, #{reviewImg}</if>)
     </insert>
 
+    <update id="updatePlusReviewNum">
+        update Product set productReviews = productReviews + 1 where productId = #{productId}
+    </update>
+
+    <update id="updateMinusReviewNum">
+        update Product set productReviews = productReviews - 1
+        where productId = (
+            SELECT productId FROM Review WHERE reviewId = #{reviewId}
+        )
+    </update>
+
+    <select id="reviewCount" resultType="int">
+        select productReviews from Product where productId = #{productId}
+    </select>
+
+    <select id="reviewDownCount" resultType="int">
+        select productReviews from Product where productId = (
+            SELECT productId FROM Review WHERE reviewId = #{reviewId}
+        )
+    </select>
+
     <update id="updatePositiveDao">
         INSERT INTO Keyword (productId, positiveKeyword)
         VALUES ('${productId}', JSON_OBJECT('${positiveKeyword}', 1))

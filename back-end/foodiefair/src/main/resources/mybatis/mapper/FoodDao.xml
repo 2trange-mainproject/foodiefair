@@ -8,6 +8,10 @@
         select * from Product where productId = #{selectedId}
     </select>
 
+    <update id="updateProductViews">
+        update Product set productViews = productViews + 1 where productId = #{selectedId}
+    </update>
+
     <select id="selectFilteredList" resultType="com.multicampus.foodiefair.dto.ProductDTO">
         SELECT *
         FROM (

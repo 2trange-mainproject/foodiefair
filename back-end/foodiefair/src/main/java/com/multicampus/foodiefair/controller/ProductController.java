@@ -37,7 +37,8 @@ public class ProductController {
             @PathVariable("productId") String productId) {
         logger.info(productId);
 
-        ProductDTO product = productService.read(productId);
+        productService.update(productId);                       //해당 상품 조회수 1 올리기
+        ProductDTO product = productService.read(productId);    //상품 읽기
 
         // 파일 URL 생성
         S3Client s3Client = new S3Client();

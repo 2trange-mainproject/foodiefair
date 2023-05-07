@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -19,26 +21,32 @@ public class SaveController {
     private final ISaveService isaveService;
 
     @PostMapping("/saved") // 찜 하기
-    public ResponseEntity<String> registerSaved (@Valid @RequestBody SaveDTO saveDTO, BindingResult bindingResult) {
-        log.info("saveController");
+    public ResponseEntity<Map<String, Object>> registerSaved (@Valid @RequestBody SaveDTO saveDTO, BindingResult bindingResult) {
+        Map<String, Object> resultMap = new HashMap<>();
         if(bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("올바른 입력이 아닙니다.");
+            return ResponseEntity.badRequest().body(resultMap);
         }
         isaveService.registerSaved(saveDTO);
-        return ResponseEntity.ok("save success");
+        isaveService.updatePlusSave(saveDTO.getProductId());
+        int savedCount = isaveService.savedCount(saveDTO.getProductId());
+
+        resultMap.put("savedCount", savedCount);
+        resultMap.put("status", "success");
+
+        return ResponseEntity.ok(resultMap);
     }
 
     @DeleteMapping("/saved/{userId}") // 찜 삭제
-    public ResponseEntity<String> removeSaved (@PathVariable String productId, @PathVariable int userId) {
-        log.info("productId : " + productId + ", uesrId : " + userId);
+    public ResponseEntity<Map<String, Object>> removeSaved (@PathVariable String productId, @PathVariable int userId) {
+        Map<String, Object> resultMap = new HashMap<>();
 
+        isaveService.updateMinusSave(productId);
+        int savedCount = isaveService.savedCount(productId);
         isaveService.removeSaved(productId, userId);
-        return ResponseEntity.ok("Delete success");
-    }
 
-//    @GetMapping("/count/{productId}")
-//    public ResponseEntity<String> savedCount (@PathVariable String productId) {
-//        isaveService.savedCount(productId);
-//        return ResponseEntity.ok("count success");
-//    }
+        resultMap.put("savedCount", savedCount);
+        resultMap.put("status", "success");
+
+        return ResponseEntity.ok(resultMap);
+    }
 }
