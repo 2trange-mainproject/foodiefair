@@ -5,12 +5,12 @@
         <div class="container">
           <div class="row w-100 align-items-center gx-lg-2 gx-0">
             <div class="col-xxl-2 col-lg-3" style="padding-top: 10px; padding-bottom: 20px; padding-left: 10px">
-              <a class="navbar-brand d-none d-lg-block" href="@@webRoot/index.html">
+              <a class="navbar-brand d-none d-lg-block" href="@@webRoot/foodiefair">
                 <!--<img src="@@webRoot/assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">-->
                 <img src="@@webRoot/assets/images/logo/FoodieFair Logo.png" alt="eCommerce HTML Template" style="max-width: 100%;max-height: 100%;width: auto;height: 40%;">
               </a>
               <div class="d-flex justify-content-between w-100 d-lg-none" style="padding-top: 10px; padding-bottom: 20px; padding-left: 10px">
-                <a class="navbar-brand" href="@@webRoot/index.html">
+                <a class="navbar-brand" href="@@webRoot/foodiefair">
                   <!--<img src="@@webRoot/assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template">-->
                   <img src="@@webRoot/assets/images/logo/FoodieFair Logo.png" alt="eCommerce HTML Template" style="max-width: 100%;max-height: 100%;width: auto;height: 40%;">
                 </a>
@@ -19,7 +19,7 @@
                   <div class="list-inline me-4">
                     <div class="list-inline-item">
 
-                      <a href="@@webRoot/pages/contract.html">
+                      <a href="@@webRoot/pages/contract">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-user">
@@ -63,43 +63,98 @@
 
             </div>
             <div class="col-xxl-6 col-lg-5 d-none d-lg-block">
-
-              <form action="#">
+              <form id="search-form" action="#">
                 <div class="input-group" style="padding-top: 20px; padding-bottom: 20px;">
-                  <input class="form-control rounded" type="search" placeholder="궁금하신 상품을 검색해보세요. #불닭볶음면 #루피과자">
+                  <input id="search-input" class="form-control rounded" type="search" placeholder="궁금하신 상품을 검색해보세요. #불닭볶음면 #루피과자">
                   <span class="input-group-append">
-                  <button class="btn bg-white border border-start-0 ms-n10 rounded-0 rounded-end" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                         class="feather feather-search">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                  </button>
-                </span>
+                    <button id="search-button" class="btn bg-white border border-start-0 ms-n10 rounded-0 rounded-end" type="button">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-search">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    </button>
+                  </span>
                 </div>
-
               </form>
             </div>
             <div class="col-md-2 col-xxl-3 d-none d-lg-block">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-outline-gray-400 text-muted">
-                <a href="@@webRoot/pages/find-store.html" style="color: #889397">
+              <!--<button type="button" class="btn btn-outline-gray-400 text-muted">
+                <a href="@@webRoot/pages/find-store" style="color: #889397">
                   <i class="feather-icon icon-map-pin me-2"></i>내 주변 편의점 찾기
                 </a>
-              </button>
+              </button>-->
             </div>
-            <div class="col-md-2 col-xxl-1 text-end d-none d-lg-block">
-              <!--<a href="@@webRoot/pages/contract.html" class="text-muted" data-bs-toggle="modal" data-bs-target="#userModal">-->
-              <a href="@@webRoot/pages/contract.html">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                     stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                     class="feather feather-user">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </a>
-              <a href="@@webRoot/pages/signin.html" style="color: gray;">로그인</a>
+            <!--<div class="col-md-2 col-xxl-1 text-end d-none d-lg-block">-->
+            <div class="col-md-2 col-xxl-1 text-end d-none d-lg-block" style="white-space: nowrap;">
+              <span id="login-name"></span>
+              <li class="dropdown ms-4" id="login-profile" style="display: none">
+                <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img id="login-image" src="" class="avatar avatar-md rounded-circle">
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-end p-0">
+                  <div class="lh-1 px-5 py-4 border-bottom">
+                    <h5 class="mb-1 h6" id="login-message"></h5>
+                    <small id="login-email"></small>
+                  </div>
+                  <ul class="list-unstyled px-2" style="margin-top: 4px; margin-bottom: 4px">
+                    <li>
+                      <a class="dropdown-item" id="mypage-link">
+                        마이페이지
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="@@webRoot/pages/userUpdate">
+                        회원정보 수정
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#!">
+                        회원탈퇴
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="border-top px-5 py-3">
+                    <a id="logout-link" style="display: none" href="#" onclick="logout()">로그아웃</a>
+                  </div>
+                </div>
+              </li>
+              <a id="signin-link" style="color: #889397; margin-right:10px; display: none" href="@@webRoot/pages/signin">로그인</a>
+              <a id="signup-link" style="color: #889397; display: none" href="@@webRoot/pages/contract">회원가입</a>
+              <script>
+                window.onload = function() {
+                  const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+                  if
+                  (loginUser != null) {
+                    document.getElementById('login-name').innerHTML = loginUser.userName + ' 님';
+                    document.getElementById('login-message').innerHTML = loginUser.userName + ' 님';
+                    document.getElementById('login-email').innerHTML = loginUser.userEmail;
+                    document.getElementById('login-image').src = loginUser.userImg;
+
+                    const mypageLink = document.getElementById('mypage-link');
+                    mypageLink.href = `@@webRoot/pages/mypage?userId=${loginUser.userId}`;
+
+                    document.getElementById('logout-link').style.display = 'inline';
+                    document.getElementById('login-profile').style.display = 'inline';
+                  } else {
+                    document.getElementById('signin-link').style.display = 'inline';
+                    document.getElementById('signup-link').style.display = 'inline';
+                  }
+                }
+                function logout() {
+                  fetch('http://localhost:8081/logout', {
+                    method: 'POST',
+                    mode: 'cors'
+                  }).then(response => {
+                    localStorage.removeItem('loginUser');
+                    alert('로그아웃 되었습니다.');
+                    location.reload();
+                  });
+                }
+              </script>
             </div>
           </div>
         </div>
@@ -109,7 +164,7 @@
         <div class="container px-0 px-md-3">
           <div class="offcanvas offcanvas-start p-4 p-lg-0" id="navbar-default">
             <div class="d-flex justify-content-between align-items-center mb-2 d-block d-lg-none">
-              <a href="@@webRoot/index.html"><img src="@@webRoot/assets/images/logo/freshcart-logo.svg"
+              <a href="@@webRoot/foodiefair"><img src="@@webRoot/assets/images/logo/freshcart-logo.svg"
                                                   alt="eCommerce HTML Template"></a>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
@@ -138,10 +193,10 @@
             </div>
             <div class="d-none d-lg-block">
               <div class="nav-links" style="display: flex; justify-content: center;">
-                <a class="nav-link" href="@@webRoot/pages/shop-filter.html" role="button" style="font-size: 25px; margin: 0 90px;">음식</a>
-                <a class="nav-link" href="@@webRoot/pages/shop-checkout.html" role="button" style="font-size: 25px; margin: 0 90px;">신상품/행사</a>
-                <a class="nav-link" href="@@webRoot/pages/shop-list.html" role="button" style="font-size: 25px; margin: 0 90px;">리뷰어</a>
-                <a class="nav-link" href="@@webRoot/pages/mypage.html" role="button" style="font-size: 25px; margin: 0 90px;">마이페이지</a>
+                <a class="nav-link" href="@@webRoot/pages/food" role="button" style="font-size: 25px; margin: 0 85px;">음식</a>
+                <a class="nav-link" href="@@webRoot/pages/event" role="button" style="font-size: 25px; margin: 0 85px;">신상품/행사</a>
+                <a class="nav-link" href="@@webRoot/pages/reviewer" role="button" style="font-size: 25px; margin: 0 85px;">리뷰어</a>
+                <a class="nav-link" href="@@webRoot/pages/find-store" role="button" style="font-size: 25px; margin: 0 85px;">내 주변 편의점</a>
               </div>
             </div>
           </div>
@@ -215,7 +270,7 @@
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
-              <a href="@@webRoot/pages/shop-single.html" class="text-inherit">
+              <a href="@@webRoot/pages/viewFood" class="text-inherit">
                 <h6 class="mb-0">Haldiram's Sev Bhujia</h6>
               </a>
               <span><small class="text-muted">.98 / lb</small></span>
@@ -261,7 +316,7 @@
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
-              <a href="@@webRoot/pages/shop-single.html" class="text-inherit">
+              <a href="@@webRoot/pages/viewFood" class="text-inherit">
                 <h6 class="mb-0">NutriChoice Digestive </h6>
               </a>
               <span><small class="text-muted">250g</small></span>
@@ -306,7 +361,7 @@
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
-              <a href="@@webRoot/pages/shop-single.html" class="text-inherit">
+              <a href="@@webRoot/pages/viewFood" class="text-inherit">
                 <h6 class="mb-0">Cadbury 5 Star Chocolate</h6>
               </a>
               <span><small class="text-muted">1 kg</small></span>
@@ -351,7 +406,7 @@
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
-              <a href="@@webRoot/pages/shop-single.html" class="text-inherit">
+              <a href="@@webRoot/pages/viewFood" class="text-inherit">
                 <h6 class="mb-0">Onion Flavour Potato</h6>
               </a>
               <span><small class="text-muted">250g</small></span>
@@ -396,7 +451,7 @@
                 class="img-fluid"></div>
             <div class="col-4 col-md-6 col-lg-5">
               <!-- title -->
-              <a href="@@webRoot/pages/shop-single.html" class="text-inherit">
+              <a href="@@webRoot/pages/viewFood" class="text-inherit">
                 <h6 class="mb-0">Salted Instant Popcorn </h6>
               </a>
               <span><small class="text-muted">100g</small></span>
@@ -508,3 +563,5 @@
     </div>
   </div>
 </div>
+
+<script src="@@webRoot/assets/js/moveToFood.js"></script>

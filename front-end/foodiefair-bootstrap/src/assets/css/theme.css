@@ -2746,6 +2746,10 @@
   font-size: calc(1.25625rem + 0.075vw) !important;
 }
 
+.fs-4-5 {
+  font-size: calc(1.175rem + 0.0375vw) !important;
+}
+
 .fs-5 {
   font-size: 1.09375rem !important;
 }
@@ -12326,9 +12330,9 @@ div.zoom img {
   --fc-info-text: #014095;
   --fc-warning-text: #997404;
   --fc-danger-text: #af2626;
-  --fc-light-text: #5c6c75;
-  --fc-dark-text: #3d4f58;
-  --fc-primary-bg-subtle: #ceefce;
+  --fc-light-text: #7f1f4f;
+  --fc-dark-text: #7f1f4f;
+  --fc-primary-bg-subtle: #edaccd;
   --fc-secondary-bg-subtle: #f0f3f2;
   --fc-success-bg-subtle: #d1e7dd;
   --fc-info-bg-subtle: #cce1fe;
@@ -12424,8 +12428,8 @@ div.zoom img {
   --fc-info-text: #67a6fb;
   --fc-warning-text: #ffda6a;
   --fc-danger-text: #e98383;
-  --fc-light-text: #f0f3f2;
-  --fc-dark-text: #dfe2e1;
+  --fc-light-text: #f5d4e5;
+  --fc-dark-text: #f5d4e5;
   --fc-primary-bg-subtle: #022302;
   --fc-secondary-bg-subtle: #001e2b;
   --fc-success-bg-subtle: #051b11;
@@ -16054,19 +16058,19 @@ textarea.form-control-lg {
 
 .btn-light-primary {
   --fc-btn-color: #000;
-  --fc-btn-bg: #ceefce;
-  --fc-btn-border-color: #ceefce;
+  --fc-btn-bg: #f5d4e5;
+  --fc-btn-border-color: #f5d4e5;
   --fc-btn-hover-color: #000;
-  --fc-btn-hover-bg: #d5f1d5;
-  --fc-btn-hover-border-color: #d3f1d3;
+  --fc-btn-hover-bg: #f5d4e5;
+  --fc-btn-hover-border-color: #f5d4e5;
   --fc-btn-focus-shadow-rgb: 175, 203, 175;
   --fc-btn-active-color: #000;
-  --fc-btn-active-bg: #d8f2d8;
-  --fc-btn-active-border-color: #d3f1d3;
+  --fc-btn-active-bg: #f5d4e5;
+  --fc-btn-active-border-color: #f5d4e5;
   --fc-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --fc-btn-disabled-color: #000;
-  --fc-btn-disabled-bg: #ceefce;
-  --fc-btn-disabled-border-color: #ceefce;
+  --fc-btn-disabled-bg: #f5d4e5;
+  --fc-btn-disabled-border-color: #f5d4e5;
 }
 
 .btn-light-secondary {
@@ -16139,36 +16143,36 @@ textarea.form-control-lg {
 
 .btn-light-success {
   --fc-btn-color: #000;
-  --fc-btn-bg: #d1e7dd;
-  --fc-btn-border-color: #d1e7dd;
+  --fc-btn-bg: #f5d4e5;
+  --fc-btn-border-color: #f5d4e5;
   --fc-btn-hover-color: #000;
-  --fc-btn-hover-bg: #d8ebe2;
-  --fc-btn-hover-border-color: #d6e9e0;
+  --fc-btn-hover-bg: #f5d4e5;
+  --fc-btn-hover-border-color: #f5d4e5;
   --fc-btn-focus-shadow-rgb: 178, 196, 188;
   --fc-btn-active-color: #000;
-  --fc-btn-active-bg: #daece4;
-  --fc-btn-active-border-color: #d6e9e0;
+  --fc-btn-active-bg: #f5d4e5;
+  --fc-btn-active-border-color: #f5d4e5;
   --fc-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --fc-btn-disabled-color: #000;
-  --fc-btn-disabled-bg: #d1e7dd;
-  --fc-btn-disabled-border-color: #d1e7dd;
+  --fc-btn-disabled-bg: #f5d4e5;
+  --fc-btn-disabled-border-color: #f5d4e5;
 }
 
 .btn-dark-primary {
   --fc-btn-color: #fff;
-  --fc-btn-bg: #044504;
-  --fc-btn-border-color: #044504;
+  --fc-btn-bg: #7f1f4f;
+  --fc-btn-border-color: #7f1f4f;
   --fc-btn-hover-color: #fff;
-  --fc-btn-hover-bg: #033b03;
-  --fc-btn-hover-border-color: #033703;
+  --fc-btn-hover-bg: #551436;
+  --fc-btn-hover-border-color: #551436;
   --fc-btn-focus-shadow-rgb: 42, 97, 42;
   --fc-btn-active-color: #fff;
-  --fc-btn-active-bg: #033703;
-  --fc-btn-active-border-color: #033403;
+  --fc-btn-active-bg: #551436;
+  --fc-btn-active-border-color: #551436;
   --fc-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --fc-btn-disabled-color: #fff;
-  --fc-btn-disabled-bg: #044504;
-  --fc-btn-disabled-border-color: #044504;
+  --fc-btn-disabled-bg: #7f1f4f;
+  --fc-btn-disabled-border-color: #7f1f4f;
 }
 
 .btn-dark-warning {
@@ -16359,19 +16363,19 @@ textarea.form-control-lg {
 }
 
 .btn-outline-primary {
-  --fc-btn-color: #0aad0a;
-  --fc-btn-border-color: #0aad0a;
+  --fc-btn-color: #d43384;
+  --fc-btn-border-color: #d43384;
   --fc-btn-hover-color: #fff;
-  --fc-btn-hover-bg: #0aad0a;
-  --fc-btn-hover-border-color: #0aad0a;
+  --fc-btn-hover-bg: #d43384;
+  --fc-btn-hover-border-color: #d43384;
   --fc-btn-focus-shadow-rgb: 10, 173, 10;
   --fc-btn-active-color: #fff;
-  --fc-btn-active-bg: #0aad0a;
-  --fc-btn-active-border-color: #0aad0a;
+  --fc-btn-active-bg: #d43384;
+  --fc-btn-active-border-color: #d43384;
   --fc-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --fc-btn-disabled-color: #0aad0a;
+  --fc-btn-disabled-color: #d43384;
   --fc-btn-disabled-bg: transparent;
-  --fc-btn-disabled-border-color: #0aad0a;
+  --fc-btn-disabled-border-color: #d43384;
   --fc-gradient: none;
 }
 
@@ -16936,7 +16940,7 @@ textarea.form-control-lg {
   --fc-dropdown-link-hover-color: #3d4f58;
   --fc-dropdown-link-hover-bg: #f0f3f2;
   --fc-dropdown-link-active-color: #fff;
-  --fc-dropdown-link-active-bg: #0aad0a;
+  --fc-dropdown-link-active-bg: #d43384;
   --fc-dropdown-link-disabled-color: #889397;
   --fc-dropdown-item-padding-x: 0.75rem;
   --fc-dropdown-item-padding-y: 0.25rem;
@@ -17202,7 +17206,7 @@ textarea.form-control-lg {
   --fc-dropdown-divider-bg: #ecf0ef;
   --fc-dropdown-link-hover-bg: rgba(255, 255, 255, 0.15);
   --fc-dropdown-link-active-color: #fff;
-  --fc-dropdown-link-active-bg: #0aad0a;
+  --fc-dropdown-link-active-bg: #d43384;
   --fc-dropdown-link-disabled-color: #889397;
   --fc-dropdown-header-color: #889397;
 }
@@ -17386,7 +17390,7 @@ textarea.form-control-lg {
 .nav-pills {
   --fc-nav-pills-border-radius: 0.5rem;
   --fc-nav-pills-link-active-color: #fff;
-  --fc-nav-pills-link-active-bg: #0aad0a;
+  --fc-nav-pills-link-active-bg: #d43384;
 }
 .nav-pills .nav-link {
   background: none;
@@ -17432,8 +17436,8 @@ textarea.form-control-lg {
 .navbar {
   --fc-navbar-padding-x: 0;
   --fc-navbar-padding-y: 0.5rem;
-  --fc-navbar-color: #21313c;
-  --fc-navbar-hover-color: #0aad0a;
+  --fc-navbar-color: #7f1f4f;
+  --fc-navbar-hover-color: #d43384;
   --fc-navbar-disabled-color: rgba(0, 0, 0, 0.3);
   --fc-navbar-active-color: rgba(0, 0, 0, 0.9);
   --fc-navbar-brand-padding-y: 0.325rem;
@@ -18060,11 +18064,11 @@ textarea.form-control-lg {
   --fc-accordion-btn-icon-transform: rotate(-180deg);
   --fc-accordion-btn-icon-transition: transform 0.2s ease-in-out;
   --fc-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23099c09'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-  --fc-accordion-btn-focus-border-color: #85d685;
-  --fc-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(10, 173, 10, 0.25);
+  --fc-accordion-btn-focus-border-color: #dc5b9d;
+  --fc-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgb(127, 31, 79);
   --fc-accordion-body-padding-x: 1.25rem;
   --fc-accordion-body-padding-y: 1rem;
-  --fc-accordion-active-color: #099c09;
+  --fc-accordion-active-color: #d43384;
   --fc-accordion-active-bg: #e7f7e7;
 }
 
@@ -18572,7 +18576,7 @@ textarea.form-control-lg {
   --fc-progress-border-radius: 0.5rem;
   --fc-progress-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
   --fc-progress-bar-color: #fff;
-  --fc-progress-bar-bg: #0aad0a;
+  --fc-progress-bar-bg: #d43384;
   --fc-progress-bar-transition: width 0.6s ease;
   display: flex;
   height: var(--fc-progress-height);
@@ -20949,10 +20953,10 @@ textarea.form-control-lg {
 }
 
 .link-primary {
-  color: #0aad0a !important;
+  color: #dc5b9d !important;
 }
 .link-primary:hover, .link-primary:focus {
-  color: #088a08 !important;
+  color: #d43384 !important;
 }
 
 .link-secondary {
@@ -20963,10 +20967,10 @@ textarea.form-control-lg {
 }
 
 .link-success {
-  color: #198754 !important;
+  color: #d43384 !important;
 }
 .link-success:hover, .link-success:focus {
-  color: #146c43 !important;
+  color: #aa296a !important;
 }
 
 .link-info {
@@ -21124,10 +21128,10 @@ textarea.form-control-lg {
 }
 
 .link-teal {
-  color: #20c997 !important;
+  color: #c92099 !important;
 }
 .link-teal:hover, .link-teal:focus {
-  color: #4dd4ac !important;
+  color: #d44d95 !important;
 }
 
 .link-purple {
@@ -24253,47 +24257,47 @@ textarea.form-control-lg {
 
 .bg-primary-100 {
   --fc-bg-opacity: 1;
-  background-color: #ceefce !important;
+  background-color: #f5d4e5 !important;
 }
 
 .bg-primary-200 {
   --fc-bg-opacity: 1;
-  background-color: #9dde9d !important;
+  background-color: #edaccd !important;
 }
 
 .bg-primary-300 {
   --fc-bg-opacity: 1;
-  background-color: #6cce6c !important;
+  background-color: #e484b5 !important;
 }
 
 .bg-primary-400 {
   --fc-bg-opacity: 1;
-  background-color: #3bbd3b !important;
+  background-color: #dc5b9d !important;
 }
 
 .bg-primary-500 {
   --fc-bg-opacity: 1;
-  background-color: #0aad0a !important;
+  background-color: #d43384 !important;
 }
 
 .bg-primary-600 {
   --fc-bg-opacity: 1;
-  background-color: #088a08 !important;
+  background-color: #aa296a !important;
 }
 
 .bg-primary-700 {
   --fc-bg-opacity: 1;
-  background-color: #066806 !important;
+  background-color: #7f1f4f !important;
 }
 
 .bg-primary-800 {
   --fc-bg-opacity: 1;
-  background-color: #044504 !important;
+  background-color: #551436 !important;
 }
 
 .bg-primary-900 {
   --fc-bg-opacity: 1;
-  background-color: #022302 !important;
+  background-color: #2b0a1b !important;
 }
 
 .bg-indigo-100 {
@@ -35403,11 +35407,11 @@ body {
 }
 
 a {
-  color: #0aad0a;
+  color: #d43384;
   text-decoration: none;
 }
 a:hover {
-  color: #088a08;
+  color: #aa296a;
   text-decoration: none;
 }
 
@@ -35990,7 +35994,7 @@ h3,
   transform: translateX(0);
 }
 .card-product-v2 .product-content-fade.border-info {
-  border: 1px solid #0aad0a !important;
+  border: 1px solid #d43384 !important;
   border-radius: 0.5rem;
 }
 .card-product-v2:hover.card {
@@ -36021,10 +36025,10 @@ h3,
 }
 .card-lift:hover.card {
   background-color: var(--fc-transparent);
-  color: #0aad0a;
+  color: #d43384;
 }
 .card-lift:hover svg {
-  fill: #0aad0a;
+  fill: #d43384;
 }
 
 .card-lg {
@@ -40400,4 +40404,56 @@ span.flatpickr-weekday {
   65% {transform: scale(0.95, 1.05);}
   75% {transform: scale(1.05, 0.95);}
   to {transform: scale(1, 1);}
+}
+
+/* rankPage_one.js의 별, 마이태그 크기 조절 */
+.star-icon {
+  font-size: 15px; /* 별의 크기를 조절합니다. 원하는 크기로 변경할 수 있습니다. */
+}
+
+.tag-text {
+  font-size: 15px; /* 글씨 크기를 조절합니다. 원하는 크기로 변경할 수 있습니다. */
+}
+
+/* rankPage_one.js의 팔로우 버튼, 글씨 크기 조절 */
+.follow-btn {
+  font-size: 15px;
+  padding: 8px 16px;
+}
+
+.follow-icon {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.follow-text {
+  vertical-align: middle;
+}
+
+/* 검색어 버튼 */
+#reset-search {
+  border: 1px solid #e2e5e4;
+  border-radius: 10px;
+  box-shadow : none;
+  padding: 9px 25px;  /* 위아래 여백 9px, 좌우 여백 25px */
+}
+
+/* 아이콘 색상 변경 */
+/*
+.icon-hover {
+  filter: grayscale(100%); !* 이미지를 흑백으로 만듭니다. *!
+  transition: filter 0.3s; !* 색상 변경 효과에 애니메이션을 추가합니다. *!
+}
+
+.icon-hover:hover {
+  filter: grayscale(0%) hue-rotate(330deg) saturate(2); !* 마우스를 올리면 분홍색으로 변경 *!
+}*/
+
+@font-face{
+  src:url("../fonts/Cutefont.ttf");
+  font-family: "Cutefont";
+}
+
+#Cutefont_font{
+  font-family: "Cutefont";
 }

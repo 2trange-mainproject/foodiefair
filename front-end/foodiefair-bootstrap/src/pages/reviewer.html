@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>FoodieFair</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
+  <link href="@@webRoot/node_modules/nouislider/dist/nouislider.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+  <!-- rankPage_one.js에 SingleDay 적용하고 싶음 -->
+  @@include("../partials/head.html")
+</head>
+
+<body>
+
+  @@include("../partials/navbar.html")
+  <main>
+    <section class="mt-8">
+      <div class="container">
+          <div class="col-md-12">
+            <ul class="nav nav-pills nav-lb-tab justify-content-center" id="reviewer" role="tablist">
+              <!-- nav item -->
+              <li class="nav-item" role="presentation">
+                <!-- btn --> <button class="nav-link active fs-3" id="rank-tab" data-bs-toggle="tab"
+                                     data-bs-target="#rank-tab-pane" type="button" role="tab" aria-controls="rank-tab-pane"
+                                     aria-selected="true" style="margin-right: 300px;">리뷰어 랭킹</button>
+              </li>
+              <!-- nav item -->
+              <li class="nav-item" role="presentation">
+                <!-- btn --> <button class="nav-link fs-3" id="badge-tab" data-bs-toggle="tab"
+                                     data-bs-target="#badge-tab-pane" type="button" role="tab" aria-controls="badge-tab-pane"
+                                     aria-selected="false">뱃지 리뷰어</button>
+              </li>
+            </ul>
+            <!-- tab content -->
+            <div class="tab-content" id="reviewerContent">
+              <!-- tab pane -->
+              <div class="tab-pane fade show active" id="rank-tab-pane" role="tabpanel" aria-labelledby="rank-tab"
+                   tabindex="0">
+                <!-- section -->
+                <div class="mt-8 mb-lg-14 mb-8">
+                  <!-- container -->
+                  <div class="container">
+                    <div class="row gx-10 justify-content-center">
+                      <!-- col -->
+                      <aside class="col-lg-0"></aside>
+                      <section class="col-lg-9 col-md-12">
+                        <p class="mb-3" id="dateRange" style="font-size: 1rem; font-family: 'Noto Sans KR', sans-serif; margin-top: 0rem;"></p>
+
+                        <!--순위-->
+                        <div class="d-flex justify-content-end mt-2 mt-lg-0">
+                          <div>
+                            <!-- select option -->
+                            <select class="form-select">
+                              <option value="top10" selected>1~10위</option>
+                              <option value="top20">11~20위</option>
+                              <option value="top30"> 21~30위</option>
+                              <option value="top40"> 31~40위</option>
+                              <option value="top50"> 41~50위</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <!-- row -->
+                        <div id="productContainer"></div>
+                        <script src="@@webRoot/assets/js/rankPage_one.js"></script>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- tab pane : 뱃지 리뷰어-->
+              <div class="tab-pane fade" id="badge-tab-pane" role="tabpanel" aria-labelledby="badge-tab" tabindex="0">
+                <div class="my-8">
+                  <div class="row">
+                    <div class="col-12">
+                      <!-- filter btn -->
+                      <a class="btn btn-outline-gray-400 text-muted" data-bs-toggle="collapse" href="#collapseFilter" role="button"
+                         aria-expanded="true" aria-controls="collapseFilter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="feather feather-filter me-2">
+                          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                        </svg> Categories
+                      </a>
+
+                      <div class="collapse mt-6 show" id="collapseFilter">
+                        <div class="row">
+                          <div class="card mb-4 mb-lg-0 w-100">
+                            <div class="card-body p-4 w-auto">
+                              <div class="d-flex flex-wrap">
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <h5 class="mb-3 mr-2" style="display:inline-block; width:70px;">간편식사</h5>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-01" checked>
+                                  <label class="form-check-label" for="simple-01" style="display:inline-block; width:110px;">
+                                    도시락
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-02">
+                                  <label class="form-check-label" for="simple-02" style="display:inline-block; width:110px;">
+                                    샌드위치/햄버거
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-03">
+                                  <label class="form-check-label" for="simple-03" style="display:inline-block; width:110px;">
+                                    샐러드
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-04">
+                                  <label class="form-check-label" for="simple-04" style="display:inline-block; width:110px;">
+                                    주먹밥/김밥
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-05">
+                                  <label class="form-check-label" for="simple-05" style="display:inline-block; width:110px;">
+                                    가공식품
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="simple-06">
+                                  <label class="form-check-label" for="simple-06" style="display:inline-block; width:110px;">
+                                    안주류
+                                  </label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex flex-wrap">
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <h5 class="mb-3 mr-2" style="display:inline-block; width:70px;">즉석조리</h5>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="instant-01">
+                                  <label class="form-check-label" for="instant-01" style="display:inline-block; width:110px;">
+                                    튀김류
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="instant-02">
+                                  <label class="form-check-label" for="instant-02" style="display:inline-block; width:110px;">
+                                    베이커리
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="instant-03">
+                                  <label class="form-check-label" for="instant-03" style="display:inline-block; width:110px;">
+                                    즉석커피
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:110px;"></label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:110px;"></label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:110px;"></label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex flex-wrap">
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <h5 class="mb-3 mr-2" style="display:inline-block; width:70px;">과자류</h5>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="cookie-01">
+                                  <label class="form-check-label" for="cookie-01" style="display:inline-block; width:110px;">
+                                    스낵/비스켓
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="cookie-02">
+                                  <label class="form-check-label" for="cookie-02" style="display:inline-block; width:110px;">
+                                    빵/디저트
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="cookie-03">
+                                  <label class="form-check-label" for="cookie-03" style="display:inline-block; width:110px;">
+                                    아이스크림
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="cookie-04">
+                                  <label class="form-check-label" for="cookie-04" style="display:inline-block; width:110px;">
+                                    껌/초콜릿/캔디
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:110px;"></label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:110px;"></label>
+                                </div>
+                              </div>
+
+                              <div class="d-flex flex-wrap">
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <h5 class="mb-3 mr-2" style="display:inline-block; width:70px;">음료</h5>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="drink-01">
+                                  <label class="form-check-label" for="drink-01" style="display:inline-block; width:110px;">
+                                    음료
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="drink-02">
+                                  <label class="form-check-label" for="drink-02" style="display:inline-block; width:110px;">
+                                    아이스드링크
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <input class="form-check-input" type="checkbox" value="" id="drink-03">
+                                  <label class="form-check-label" for="drink-03" style="display:inline-block; width:110px;">
+                                    유제품
+                                  </label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:110px;"></label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:110px;"></label>
+                                </div>
+                                <div class="form-check mb-2 flex-grow-1">
+                                  <label style="display:inline-block; width:110px;"></label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--뱃지 보유자들-->
+                    <section class="mt-8 ">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <ul class="nav nav-pills nav-lb-tab justify-content-center" id="badgeReviewer" role="tablist">
+                              <!-- nav item -->
+                              <li class="nav-item" role="presentation">
+                                <!-- btn --> <button class="nav-link active fs-3" id="bronze-tab" type="button" role="tab" aria-controls="bronze-tab-pane"
+                                                     aria-selected="true" style="margin-right: 100px;">브론즈</button>
+                              </li>
+                              <!-- nav item -->
+                              <li class="nav-item" role="presentation">
+                                <!-- btn --> <button class="nav-link fs-3" id="silver-tab" type="button" role="tab" aria-controls="silver-tab-pane"
+                                                     aria-selected="false" style="margin-right: 100px;">실버</button>
+                              </li>
+                              <!-- nav item -->
+                              <li class="nav-item" role="presentation">
+                                <!-- btn --> <button class="nav-link fs-3" id="gold-tab" type="button" role="tab" aria-controls="gold-tab-pane"
+                                                     aria-selected="false" style="margin-right: 100px;">골드</button>
+                              </li>
+                              <!-- nav item -->
+                              <li class="nav-item" role="presentation">
+                                <!-- btn --> <button class="nav-link fs-3" id="platinum-tab" type="button" role="tab" aria-controls="platinum-tab-pane"
+                                                     aria-selected="false" style="margin-right: 100px;">플래티넘</button>
+                              </li>
+                              <!-- nav item -->
+                              <li class="nav-item" role="presentation">
+                                <!-- btn --> <button class="nav-link fs-3" id="diamond-tab" type="button" role="tab" aria-controls="diamond-tab-pane"
+                                                     aria-selected="false">다이아몬드</button>
+                              </li>
+                            </ul>
+                            <!-- tab content -->
+                            <div class="tab-content" id="badgeReviewerContent">
+                              <div id="userBadgeContainer"></div>
+                              <div class="tab-pane fade show active" id="bronze-tab-pane" role="tabpanel" aria-labelledby="bronze-tab" tabindex="0" data-content-id="bronze-content">
+                              </div>
+                              <div class="tab-pane fade" id="silver-tab-pane" role="tabpanel" aria-labelledby="silver-tab" tabindex="0" data-content-id="silver-content">
+                              </div>
+                              <div class="tab-pane fade" id="gold-tab-pane" role="tabpanel" aria-labelledby="gold-tab" tabindex="0" data-content-id="gold-content">
+                              </div>
+                              <div class="tab-pane fade" id="platinum-tab-pane" role="tabpanel" aria-labelledby="platinum-tab" tabindex="0" data-content-id="platinum-content">
+                              </div>
+                              <div class="tab-pane fade" id="diamond-tab-pane" role="tabpanel" aria-labelledby="diamond-tab" tabindex="0" data-content-id="diamond-content">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</main>
+  <!-- modal -->
+  @@include("../partials/modal-product.html")
+
+  <!-- Footer -->
+  @@include("../partials/footer.html")
+   <!-- Javascript-->
+   <script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
+   <script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
+  @@include("../partials/scripts.html")
+  <script src="@@webRoot/node_modules/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="@@webRoot/assets/js/vendors/tns-slider.js"></script>
+  <script src="@@webRoot/assets/js/vendors/zoom.js"></script>
+  <script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
+  <script src="@@webRoot/assets/js/rankDate.js"></script> <!-- 집계 기간이 언제부터 언제까지 인지 보여주는 JS -->
+  <script src="@@webRoot/assets/js/rankPage_two.js"></script>
+
+</body>
+
+</html>

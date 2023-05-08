@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.SavedDAO">
+    <insert id="insertSaved">
+        INSERT INTO Saved (userId, productId)
+        VALUES (#{userId}, #{productId})
+    </insert>
+
+    <delete id="deleteSaved">
+        DELETE FROM Saved
+        WHERE productId = #{productId} AND userId=#{userId}
+    </delete>
+
+    <select id="countSavedProduct" resultType="int">
+        SELECT COUNT(*) FROM Saved
+        WHERE productId = #{productId}
+    </select>
+
+    <select id="countSavedUser" resultType="int">
+        SELECT COUNT(*) FROM Saved
+        WHERE userId = #{userId}
+    </select>
+
+    <select id="selectSavedList" parameterType="map" resultType="hashmap">
+        SELECT s.*, p.*
+        FROM Saved s
+            JOIN Product p ON s.productId = p.productId
+        WHERE userId = #{userId}
+        ORDER BY savedId DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="selectSavedFour" parameterType="map" resultType="hashmap">
+        SELECT s.*, p.*
+        FROM Saved s
+                 JOIN Product p ON s.productId = p.productId
+        WHERE userId = #{userId}
+        ORDER BY savedId DESC
+        LIMIT 4;
+    </select>
+</mapper>

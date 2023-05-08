@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.IReviewerDAO">
+    <select id="listDao" resultType="com.multicampus.foodiefair.dto.UserDTO">
+        SELECT t.*, t.row_num AS user_rank
+        FROM (
+        SELECT U.*, ROW_NUMBER() OVER(ORDER BY SUM(R.reviewLikes) * 0.7 + COUNT(R.reviewId) * 0.3 DESC) row_num
+        FROM User U
+        JOIN Review R ON U.userId = R.userId
+        WHERE R.reviewDate BETWEEN DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH), '%Y-%m-01') AND LAST_DAY(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))
+        GROUP BY U.userId, U.userName
+        ) t
+        WHERE
+        <choose>
+            <when test="topRank == 'top10'">
+                row_num BETWEEN 1 AND 10
+            </when>
+            <when test="topRank == 'top20'">
+                row_num BETWEEN 11 AND 20
+            </when>
+            <when test="topRank == 'top30'">
+                row_num BETWEEN 21 AND 30
+            </when>
+            <when test="topRank == 'top40'">
+                row_num BETWEEN 31 AND 40
+            </when>
+            <when test="topRank == 'top50'">
+                row_num BETWEEN 41 AND 50
+            </when>
+            <otherwise>
+                row_num BETWEEN 1 AND 10
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="selectReviewerList" resultType="com.multicampus.foodiefair.dto.UserDTO">
+        SELECT *
+        FROM (
+        SELECT u.*, ROW_NUMBER() OVER(ORDER BY u.userName ASC) row_num,
+        (
+        <foreach item="filter" collection="categoryFilters" separator="+" open="(" close=")">
+            COALESCE(JSON_EXTRACT(ub.reviewNum, '$."${filter}"'), 0)
+        </foreach>
+        ) as totalReviewCount
+        FROM User u
+        JOIN ReviewNum AS ub ON u.userId = ub.userId
+        <where>
+            <if test="categoryFilters != null and categoryFilters.size() > 0">
+                AND (
+                <foreach item="filter" collection="categoryFilters" separator="OR">
+                    JSON_EXTRACT(ub.userBadge, '$."${filter}"') =
+                    <choose>
+                        <when test="selectedBadge == 'bronze'">
+                            '브론즈'
+                        </when>
+                        <when test="selectedBadge == 'silver'">
+                            '실버'
+                        </when>
+                        <when test="selectedBadge == 'gold'">
+                            '골드'
+                        </when>
+                        <when test="selectedBadge == 'platinum'">
+                            '플래티넘'
+                        </when>
+                        <when test="selectedBadge == 'diamond'">
+                            '다이아몬드'
+                        </when>
+                        <otherwise>
+                            '브론즈'
+                        </otherwise>
+                    </choose>
+                </foreach>
+                )
+            </if>
+        </where>
+        ) t
+        WHERE row_num BETWEEN #{pageReviewerRequestDto.skip} + 1 AND #{pageReviewerRequestDto.page} * #{pageReviewerRequestDto.size}
+    </select>
+
+    <select id="getReviewerCount" resultType="int">
+        SELECT count(*) FROM (
+        SELECT u.*, ROW_NUMBER() OVER(ORDER BY u.userName ASC) row_num,
+        (
+        <foreach item="filter" collection="categoryFilters" separator="+" open="(" close=")">
+            COALESCE(JSON_EXTRACT(ub.reviewNum, '$."${filter}"'), 0)
+        </foreach>
+        ) as totalReviewCount
+        FROM User u
+        JOIN ReviewNum AS ub ON u.userId = ub.userId
+        <where>
+            <if test="categoryFilters != null and categoryFilters.size() > 0">
+                AND (
+                <foreach item="filter" collection="categoryFilters" separator="OR">
+                    JSON_EXTRACT(ub.userBadge, '$."${filter}"') =
+                    <choose>
+                        <when test="selectedBadge == 'bronze'">
+                            '브론즈'
+                        </when>
+                        <when test="selectedBadge == 'silver'">
+                            '실버'
+                        </when>
+                        <when test="selectedBadge == 'gold'">
+                            '골드'
+                        </when>
+                        <when test="selectedBadge == 'platinum'">
+                            '플래티넘'
+                        </when>
+                        <when test="selectedBadge == 'diamond'">
+                            '다이아몬드'
+                        </when>
+                        <otherwise>
+                            '브론즈'
+                        </otherwise>
+                    </choose>
+                </foreach>
+                )
+            </if>
+        </where>
+        ) AS filtered_product
+    </select>
+</mapper>

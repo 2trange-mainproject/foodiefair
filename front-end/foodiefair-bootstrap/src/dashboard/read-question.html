@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  @@include("../partials/head.html")
+  <link href="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <title>관리자 페이지</title>
+</head>
+
+<body>
+  <!-- main wrapper -->
+
+  @@include("../partials/top-navbar.html")
+  <div class="main-wrapper">
+    <!-- navbar vertical -->
+    @@include('../partials/navbar-vertical.html', {
+
+    "page": "questions"
+
+    })
+    <!-- main -->
+    <main class="main-content-wrapper">
+      <!-- container -->
+      <div class="container">
+        <!-- row -->
+        <div class="row mb-8">
+          <div class="col-md-12">
+            <div class="d-md-flex justify-content-between align-items-center">
+              <!-- page header -->
+              <div>
+                <h2>문의 읽기</h2>
+                  <!-- breacrumb -->
+                  <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#" class="text-inherit">관리자 페이지</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="text-inherit">문의 관리</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">문의 읽기</li>
+                  </ol>
+                </nav>
+              </div>
+              <!-- button -->
+              <div>
+                <a href="questions" class="btn btn-light">문의 관리로 돌아가기</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- row -->
+        <div id="questionContainer"></div>
+      </div>
+    </main>
+
+  </div>
+
+
+  @@include("../partials/scripts.html")
+  <script src="@@webRoot/node_modules/quill/dist/quill.min.js"></script>
+  <script src="@@webRoot/assets/js/vendors/editor.js"></script>
+  <script src="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.js"></script>
+  <script src="@@webRoot/assets/js/dashboards/questionRead.js"></script>
+</body>
+
+</html>

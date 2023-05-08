@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.dashboard.IDashCommentDAO">
+    <select id="readDao" resultType="com.multicampus.foodiefair.dto.CommentDTO">
+        select * from Comment where commentId = #{selectedId}
+    </select>
+
+    <delete id="deleteDao">
+        delete from Comment where commentId = #{selectedId}
+    </delete>
+
+    <select id="selectDashCommentList" resultType="com.multicampus.foodiefair.dto.CommentDTO">
+        SELECT *
+        FROM (
+        SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
+            <choose>
+                <when test="sortOrder == 'commentIdDESC'">
+                    tt.commentId DESC
+                </when>
+                <when test="sortOrder == 'commentIdASC'">
+                    tt.commentId ASC
+                </when>
+                <when test="sortOrder == 'userIdDESC'">
+                    tt.userId DESC
+                </when>
+                <when test="sortOrder == 'userIdASC'">
+                    tt.userId ASC
+                </when>
+                <otherwise>
+                    tt.commentId DESC
+                </otherwise>
+            </choose>
+        ) row_num
+        FROM Comment tt
+        <where>
+            <if test="searchKeyword != null">
+                AND tt.reviewId LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
+        </where>
+        ) t
+        WHERE row_num BETWEEN #{pageReviewerRequestDto.skip} + 1 AND #{pageReviewerRequestDto.page} * #{pageReviewerRequestDto.size}
+    </select>
+
+    <select id="getDashCommentCount" resultType="int">
+        SELECT count(*) FROM (
+        SELECT commentId FROM Comment
+        <where>
+            <if test="searchKeyword != null">
+                AND reviewId LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
+        </where>
+        ) AS filtered_product
+    </select>
+</mapper>

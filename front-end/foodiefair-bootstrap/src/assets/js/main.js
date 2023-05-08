@@ -2,7 +2,6 @@
 // Main js
 //
 
-
 'use strict';
 
 (function () {
