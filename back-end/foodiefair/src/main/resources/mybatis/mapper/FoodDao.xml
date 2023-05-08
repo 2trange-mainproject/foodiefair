@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.IProductDAO">
+    <select id="readDao" resultType="com.multicampus.foodiefair.dto.ProductDTO">
+        select * from Product where productId = #{selectedId}
+    </select>
+
+    <select id="selectFilteredList" resultType="com.multicampus.foodiefair.dto.ProductDTO">
+        SELECT *
+        FROM (
+        SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
+            <choose>
+                <when test="sortOrder == 'popularity'">
+                    (tt.productSaved * 0.7 + tt.productViews * 0.3) DESC
+                </when>
+                <when test="sortOrder == 'view'">
+                    tt.productViews DESC
+                </when>
+                <when test="sortOrder == 'saves'">
+                    tt.productSaved DESC
+                </when>
+                <when test="sortOrder == 'reviews'">
+                    tt.productReviews DESC
+                </when>
+                <when test="sortOrder == 'releaseDate'">
+                    tt.releaseDate DESC
+                </when>
+                <when test="sortOrder == 'lowPrice'">
+                    tt.productPrice ASC
+                </when>
+                <when test="sortOrder == 'highPrice'">
+                    tt.productPrice DESC
+                </when>
+                <otherwise>
+                    tt.releaseDate DESC
+                </otherwise>
+            </choose>
+        ) row_num
+        FROM product tt
+        <where>
+            <if test="storeFilters != null and storeFilters.size() > 0">
+                AND (
+                <foreach item="filter" collection="storeFilters" separator="OR">
+                    tt.fixedTag LIKE CONCAT('%', #{filter}, '%')
+                </foreach>
+                )
+            </if>
+            <if test="categoryFilters != null and categoryFilters.size() > 0">
+                AND (
+                <foreach item="filter" collection="categoryFilters" separator="OR">
+                    tt.fixedTag LIKE CONCAT('%', #{filter}, '%')
+                </foreach>
+                )
+            </if>
+            <if test="searchKeyword != null">
+                AND tt.productName LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
+        </where>
+        ) t
+        WHERE row_num BETWEEN #{pageRequestDto.skip} + 1 AND #{pageRequestDto.page} * #{pageRequestDto.size}
+    </select>
+
+    <select id="getFilteredCount" resultType="int">
+        SELECT count(*) FROM (
+        SELECT productId FROM product
+        <where>
+            <if test="storeFilters != null and storeFilters.size() > 0">
+                AND (
+                <foreach item="filter" collection="storeFilters" separator="OR">
+                    fixedTag LIKE CONCAT('%', #{filter}, '%')
+                </foreach>
+                )
+            </if>
+            <if test="categoryFilters != null and categoryFilters.size() > 0">
+                AND (
+                <foreach item="filter" collection="categoryFilters" separator="OR">
+                    fixedTag LIKE CONCAT('%', #{filter}, '%')
+                </foreach>
+                )
+            </if>
+            <if test="searchKeyword != null">
+                AND productName LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
+        </where>
+        ) AS filtered_product
+    </select>
+</mapper>

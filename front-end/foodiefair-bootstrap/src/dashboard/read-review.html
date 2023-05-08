@@ -5,8 +5,9 @@
 
   @@include("../partials/head.html")
   <link href="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <title>Dashboard</title>
+  <title>관리자 페이지</title>
 </head>
 
 <body>
@@ -17,7 +18,7 @@
     <!-- navbar vertical -->
     @@include('../partials/navbar-vertical.html', {
 
-    "page": "contents"
+    "page": "reviews"
 
     })
     <!-- main -->
@@ -35,84 +36,21 @@
                   <nav aria-label="breadcrumb">
                   <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="#" class="text-inherit">관리자 페이지</a></li>
-                    <li class="breadcrumb-item"><a href="contents.html" class="text-inherit">리뷰 관리</a></li>
+                    <li class="breadcrumb-item"><a href="reviews" class="text-inherit">리뷰 관리</a></li>
                     <li class="breadcrumb-item active" aria-current="page">리뷰 읽기</li>
                   </ol>
                 </nav>
               </div>
               <!-- button -->
               <div>
-                <a href="contents.html" class="btn btn-light">리뷰 관리로 돌아가기</a>
+                <a href="reviews" class="btn btn-light">리뷰 관리로 돌아가기</a>
               </div>
             </div>
 
           </div>
         </div>
         <!-- row -->
-        <div class="row">
-
-          <div class="col-12">
-            <!-- card -->
-            <div class="card mb-6 card-lg">
-              <!-- card body -->
-              <div class="card-body p-6 ">
-                <div class="row">
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">리뷰 ID</label>
-                    <input type="text" class="form-control" value="35" readonly>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">회원 ID</label>
-                    <input type="text" class="form-control" value="3" readonly>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">상품 ID</label>
-                    <input type="text" class="form-control" value="AA0001" readonly>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">등록일자</label>
-                    <input type="text" class="form-control" value="2022/03/01" readonly>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">좋아요 개수</label>
-                    <input type="text" class="form-control" value="103" readonly>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">영수증 여부</label>
-                    <input type="text" class="form-control" value="TRUE" readonly>
-                  </div>
-                  <!-- input -->
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">좋았던 점</label>
-                    <textarea style="height: auto; max-height: 500px;" class="form-control" readonly>역시 가나는 너무너무 맛있네요! 마일드도 맛있지만 다크랑 밀크맛도 정말 맛있으니 꼭 드셔보세요><</textarea>
-                  </div>
-                  <div class="mb-3 col-lg-6">
-                    <label class="form-label">아쉬웠던 점</label>
-                    <textarea style="height: auto; max-height: 500px;" class="form-control" readonly>너무 맛있고 정말 좋지만.. 역시 날씨가 더워지면서 손에 묻는건 기분이 좀 그래요.. 초코 팔면서 포장지에 물티슈 기능같은거도 있으면 정말 좋을 것 같네요..</textarea>
-                  </div>
-                  <div>
-                    <div class="mb-3 col-lg-12 mt-5">
-                      <!-- heading -->
-                      <h4 class="mb-3 h5">음식 사진</h4>
-
-                      <!-- input -->
-                      <img src="../assets/images/products/product-img-9.jpg" alt="Grocery Ecommerce Template"
-                           class="mb-3 img-fluid">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
+        <div id="reviewContainer"></div>
       </div>
     </main>
 
@@ -123,7 +61,7 @@
   <script src="@@webRoot/node_modules/quill/dist/quill.min.js"></script>
   <script src="@@webRoot/assets/js/vendors/editor.js"></script>
   <script src="@@webRoot/node_modules/dropzone/dist/min/dropzone.min.js"></script>
-
+  <script src="@@webRoot/assets/js/dashboards/reviewRead.js"></script>
 </body>
 
 </html>

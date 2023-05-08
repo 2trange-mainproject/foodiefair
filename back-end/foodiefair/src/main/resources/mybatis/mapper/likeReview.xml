@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.ILikeReviewDAO">
+    <insert id="registerLikeReview">
+        INSERT INTO likereview (userId, reviewId) values (#{userId}, #{reviewId});
+    </insert>
+
+    <delete id="removeLikeReview">
+        DELETE FROM likereview WHERE userId = #{userId} AND reviewId = #{reviewId};
+    </delete>
+
+    <update id="updateLikeReview">
+        UPDATE review SET reviewLikes = reviewLikes + #{update} WHERE userId = #{userId} AND reviewId = #{reviewId};
+    </update>
+
+    <select id="reviewLikeCount" resultType="int">
+        SELECT reviewLikes FROM review WHERE reviewId=#{reviewId};
+    </select>
+</mapper>

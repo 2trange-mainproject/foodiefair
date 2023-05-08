@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.IReviewDAO">
+    <insert id="insertDao">
+        INSERT INTO Review (userId, productId, goodReviews, badReviews, receiptImg
+        <if test="reviewImg != null">, reviewImg</if>)
+        VALUES (#{userId}, #{productId}, #{goodReviews}, #{badReviews}, #{receiptImg}
+        <if test="reviewImg != null">, #{reviewImg}</if>)
+    </insert>
+
+    <update id="updatePositiveDao">
+        INSERT INTO Keyword (productId, positiveKeyword)
+        VALUES ('${productId}', JSON_OBJECT('${positiveKeyword}', 1))
+            ON DUPLICATE KEY UPDATE positiveKeyword = JSON_SET(
+                COALESCE(positiveKeyword, '{}'), '$."${positiveKeyword}"',
+                IF(JSON_EXTRACT(positiveKeyword, '$."${positiveKeyword}"') IS NULL, 1, CAST(JSON_EXTRACT(positiveKeyword, '$."${positiveKeyword}"') + 1 AS UNSIGNED)))
+    </update>
+
+    <update id="updateNegativeDao">
+        INSERT INTO Keyword (productId, negativeKeyword)
+        VALUES ('${productId}', JSON_OBJECT('${negativeKeyword}', 1))
+            ON DUPLICATE KEY UPDATE negativeKeyword = JSON_SET(
+                COALESCE(negativeKeyword, '{}'), '$."${negativeKeyword}"',
+                IF(JSON_EXTRACT(negativeKeyword, '$."${negativeKeyword}"') IS NULL, 1, CAST(JSON_EXTRACT(negativeKeyword, '$."${negativeKeyword}"') + 1 AS UNSIGNED)))
+    </update>
+
+    <select id="listDao" resultType="com.multicampus.foodiefair.dto.ReviewDTO">
+        SELECT * FROM Keyword WHERE productId = #{productId}
+    </select>
+</mapper>

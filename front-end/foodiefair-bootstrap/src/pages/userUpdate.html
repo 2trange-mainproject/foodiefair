@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>FoodieFair</title>
+  @@include("../partials/head.html")
+</head>
+
+<body>
+
+  @@include("../partials/navbar-account.html")
+  <main>
+  <!-- section -->
+
+  <section class="my-lg-14 my-8">
+    <!-- container -->
+    <div class="container">
+      <!-- row -->
+      <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
+          <!-- img -->
+          <img src="../assets/images/svg-graphics/none.jpg" alt="" class="img-fluid">
+        </div>
+        <!-- col -->
+        <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">
+          <!-- form -->
+          <form>
+            <h6>*은 필수 사항입니다.</h6>
+            <div class="row g-3">
+              <h4>프로필 업로드</h4>
+              <input type="file" onchange="readURL(this);" style="margin-top: 1px" required>
+              <div class="col-12" style="margin-top: 4px; text-align: center;">
+                <img id="preview" style="max-width: 220px; max-height: 220px;"/>
+              </div>
+
+              <!-- col -->
+              <div class="col-12">
+                <h5>*닉네임</h5>
+                <!-- 닉네임 input -->
+                <input type="text" class="form-control" id="userNickName" placeholder="닉네임을 입력하세요." required>
+              </div>
+              <div class="col-12">
+                <h5>MBTI</h5>
+                <!-- input -->
+                <input type="text" class="form-control" id="mbti" placeholder="MBTI를 입력하세요.">
+              </div>
+              <div class="col-12">
+                <h5>선호 음식</h5>
+                <!-- input -->
+                <input type="text" class="form-control" id="like" placeholder="좋아하는 음식 및 카테고리를 적어주세요.">
+              </div>
+              <div class="col-12">
+                <h5>마이태그</h5>
+                <!-- input -->
+                <input type="text" class="form-control" id="mytag`" placeholder="프로필에 넣고 싶은 태그를 적어주세요.">
+              </div>
+              <div class="col-12">
+                <div class="col-12">
+
+                  <form>
+                    <h5>자기 소개</h5>
+                    <p><textarea cols="50" rows="10" placeholder="프로필에 넣고 싶은 자기소개를 적어주세요."></textarea></p>
+                  </form>
+                </div>
+              </div>
+
+
+              <div class="col-12">
+              <!-- btn -->
+              <div class="col-12 d-grid"> <button type="submit" class="btn btn-pink">등록하기</button>
+              </div>
+
+              <!-- text -->
+              <p><small>By continuing, you agree to our <a href="#!" style="color: hotpink;"> Terms of Service</a> & <a href="@@webRoot/pages/contract" style="color: hotpink;">Privacy
+                    Policy</a></small></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+  </main>
+
+
+
+  <!-- Footer -->
+  @@include("../partials/footer.html")
+  <!-- Javascript-->
+  @@include("../partials/scripts.html")
+  <script src="../assets/js/vendors/password.js"></script>
+
+</body>
+
+</html>

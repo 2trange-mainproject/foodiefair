@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.dashboard.IDashProductDAO">
+    <select id="readDao" resultType="com.multicampus.foodiefair.dto.ProductDTO">
+        select * from Product where productId = #{selectedId}
+    </select>
+
+    <insert id="insertDao">
+        insert into Product(productId, productName, fixedTag, productImg, productPrice, productEvent)
+        values(#{productId}, #{productName}, #{productTag}, #{productImg}, #{productPrice}, #{productFestival})
+    </insert>
+
+    <delete id="deleteDao">
+        delete from Product where productId = #{selectedId}
+    </delete>
+
+    <update id="updateDao">
+        update Product set productName = #{productName}, productPrice = #{productPrice}, productEvent = #{productFestival}, fixedTag = #{productTag}
+        where productId = #{productId}
+    </update>
+
+    <select id="selectDashProductList" resultType="com.multicampus.foodiefair.dto.ProductDTO">
+        SELECT *
+        FROM (
+        SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
+            <choose>
+                <when test="sortOrder == 'dateDESC'">
+                    tt.releaseDate DESC
+                </when>
+                <when test="sortOrder == 'productIdASC'">
+                    tt.productId ASC
+                </when>
+                <when test="sortOrder == 'productIdDESC'">
+                    tt.productId DESC
+                </when>
+                <when test="sortOrder == 'priceASC'">
+                    tt.productPrice ASC
+                </when>
+                <when test="sortOrder == 'priceDESC'">
+                    tt.productPrice DESC
+                </when>
+                <otherwise>
+                    tt.releaseDate DESC
+                </otherwise>
+            </choose>
+        ) row_num
+        FROM product tt
+        <where>
+            <if test="searchKeyword != null">
+                AND tt.productName LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
+        </where>
+        ) t
+        WHERE row_num BETWEEN #{pageReviewerRequestDto.skip} + 1 AND #{pageReviewerRequestDto.page} * #{pageReviewerRequestDto.size}
+    </select>
+
+    <select id="getDashProductCount" resultType="int">
+        SELECT count(*) FROM (
+        SELECT productId FROM product
+        <where>
+            <if test="searchKeyword != null">
+                AND productName LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
+        </where>
+        ) AS filtered_product
+    </select>
+</mapper>

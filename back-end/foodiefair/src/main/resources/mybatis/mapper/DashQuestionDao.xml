@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.dashboard.IDashQuestionDAO">
+    <select id="readDao" resultType="com.multicampus.foodiefair.dto.QuestionDTO">
+        select * from Question where questionId = #{selectedId}
+    </select>
+
+    <delete id="deleteDao">
+        delete from Question where questionId = #{selectedId}
+    </delete>
+
+    <select id="selectDashQuestionList" resultType="com.multicampus.foodiefair.dto.QuestionDTO">
+        SELECT *
+        FROM (
+        SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
+            <choose>
+                <when test="sortOrder == 'questionIdDESC'">
+                    tt.questionId DESC
+                </when>
+                <when test="sortOrder == 'questionIdASC'">
+                    tt.questionId ASC
+                </when>
+                <when test="sortOrder == 'userIdDESC'">
+                    tt.userId DESC
+                </when>
+                <when test="sortOrder == 'userIdASC'">
+                    tt.userId ASC
+                </when>
+                <otherwise>
+                    tt.questionId DESC
+                </otherwise>
+            </choose>
+        ) row_num
+        FROM Question tt
+        <where>
+            <if test="searchKeyword != null">
+                AND tt.questionType LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
+        </where>
+        ) t
+        WHERE row_num BETWEEN #{pageReviewerRequestDto.skip} + 1 AND #{pageReviewerRequestDto.page} * #{pageReviewerRequestDto.size}
+    </select>
+
+    <select id="getDashQuestionCount" resultType="int">
+        SELECT count(*) FROM (
+        SELECT questionId FROM Question
+        <where>
+            <if test="searchKeyword != null">
+                AND questionType LIKE CONCAT('%', #{searchKeyword}, '%')
+            </if>
+        </where>
+        ) AS filtered_product
+    </select>
+</mapper>

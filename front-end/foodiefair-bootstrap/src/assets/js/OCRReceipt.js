@@ -1,3 +1,4 @@
+/* reviewRegister.js에 합침
 function readURL(input) {
     if (input.files && input.files[0]) {
         let reader = new FileReader();
@@ -86,34 +87,4 @@ function ocrConfirmModal(jsonResponse) {
     }
     OCRContainer.append(ocrModal);
 }
-
-
-const foodImgDropzone = new Dropzone("#foodImgDropzone", {
-     url: "http://localhost:8081/api/receipt/",
-    autoProcessQueue: false,
-});
-
-$("#review-enroll").on('click', function(e) {
-    e.preventDefault(); // 기본 이벤트 실행 막기
-    // 입력된 정보 가져오기
-    var reviewImg = foodImgDropzone.files[0];
-
-    // FormData 객체 생성
-    var formData = new FormData();
-    formData.append("reviewImg", reviewImg);
-
-    // Ajax를 이용해 서버로 정보 전송
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:8081/api/receipt/",
-        processData: false, // 필수: FormData 사용 시 false로 설정
-        contentType: false, // 필수: FormData 사용 시 false로 설정
-        data: formData,
-        success: function(response) {
-            console.log(response);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-        },
-    });
-});
+*/

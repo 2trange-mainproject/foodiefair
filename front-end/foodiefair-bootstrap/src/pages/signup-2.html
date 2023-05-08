@@ -9,8 +9,8 @@
 
 <body>
 
-  @@include("../partials/navbar-account.html")
-  <main>
+@@include("../partials/navbar-account.html")
+<main>
   <!-- section -->
 
   <section class="my-lg-14 my-8">
@@ -28,72 +28,122 @@
             <h1 class="mb-1 h2 fw-bold" style="color: deeppink">회원가입</h1>
           </div>
           <!-- form -->
-          <form action="signup-3.html" method="get"><!--method="post"-->
+          <form action="signup-3" method="get" id="signup3-form"><!--method="post"-->
             <h6>*은 필수 사항입니다.</h6>
-            <div class="row g-3">
+            <div class="row g-3" style="margin-top: 2px;">
               <!-- col -->
-              <!--<div class="col-12">
-                <h5>이름</h5>
-                &lt;!&ndash; 이름 input &ndash;&gt;
-                <input type="text" class="form-control" id="userName" placeholder="이름을 입력하세요." required>
+              <h5>*닉네임</h5>
+              <div class="col-12 d-flex align-items-center" style="margin-top: 0.5px;">
+                <div class="col-12">
+                  <input type="text" class="form-control" id="userName" name="userName" placeholder="닉네임을 입력하세요." required>
+                </div>
               </div>
-              <div class="col-12 ">
-                <h5>아이디</h5>
-                &lt;!&ndash; 아이디 input &ndash;&gt;
-                <input type="text" class="form-control" id="userId" placeholder="사용할 아이디를 입력하세요." required>
-              </div>-->
               <!-- 이메일 input -->
               <h5>*이메일</h5>
               <div class="col-12 d-flex align-items-center" style="margin-top: 0.5px;">
                 <div class="w-120">
-                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
+                  <input type="email" class="form-control" id="inputEmail4" name="userEmail" placeholder="Email" required>
                 </div>
-                <button type="submit" class="btn btn-pink ms-3" style="font-size: 13px; width: 170px; padding: 8px 8px;">인증번호 보내기</button>
+                <button type="button" class="btn btn-pink ms-3" style="font-size: 13px; width: 170px; padding: 8px 8px;" id="send-code-button">인증번호 보내기</button>
               </div>
               <h5>인증번호</h5>
               <div class="col-12 d-flex align-items-center" style="margin-top: 0.5px;">
                 <div class="w-120">
-                  <input type="text" class="form-control" id="certificationNum" placeholder="인증번호를 입력하세요." required>
+                  <input type="text" class="form-control" id="certificationNum" name="userCode" placeholder="인증번호를 입력하세요." required>
                 </div>
-                <button type="button" class="btn btn-pink ms-3 b" style="font-size: 13px; width: 170px; padding: 8px 8px;">인증번호 확인</button>
+                <button type="button" class="btn btn-pink ms-3 b" style="font-size: 13px; width: 170px; padding: 8px 8px;" id="check-code-button">인증번호 확인</button>
               </div>
               <div class="col-12">
                 <h5>*비밀번호</h5>
                 <div class="password-field position-relative">
-                  <input type="password" id="userPass1" placeholder="영문, 숫자 포함 8자 이상으로 입력해주세요." class="form-control" required >
+                  <input type="password" id="password" name="userPwd" placeholder="영문, 숫자 포함 8자 이상으로 입력해주세요." class="form-control" required>
                   <span><i id="passwordToggler"class="bi bi-eye-slash"></i></span>
                 </div>
               </div>
               <div class="col-12">
                 <h5>*비밀번호 확인</h5>
                 <div class="password-field position-relative">
-                  <input type="password" id="userPass2" placeholder="비밀번호를 다시 한번 입력해주세요." class="form-control" required >
+                  <input type="password" id="password-confirm" name="userPwdConfirm" placeholder="비밀번호를 다시 한번 입력해주세요." class="form-control" required>
                   <span><i id="passwordToggler2"class="bi bi-eye-slash"></i></span>
                 </div>
               </div>
               <!-- btn -->
               <div class="col-12 d-grid">
-                <button type="submit" class="btn btn-pink">가입하기</button>
+                <button type="submit" class="btn btn-pink" id="submit-button">가입하기</button>
               </div>
-
               <!-- text -->
-              <p><small>By continuing, you agree to our <a href="#!" style="color: hotpink;"> Terms of Service</a> & <a href="@@webRoot/pages/contract.html" style="color: hotpink;">Privacy
-                    Policy</a></small></p>
+              <p><small>By continuing, you agree to our <a href="#!" style="color: hotpink;"> Terms of Service</a> & <a href="@@webRoot/pages/contract" style="color: hotpink;">Privacy Policy</a></small></p>
             </div>
           </form>
+          <script>
+            var code = "";
+            var valid = false;
+            document.getElementById("send-code-button").addEventListener("click", function() {
+              // 인증번호 보내기 처리
+              $.ajax({
+                type: "POST",
+                url: "http://localhost:8081/mail-confirm", // 계정 찾기 요청을 처리하는 URL 주소를 입력합니다.
+                data: {"userEmail": $("#inputEmail4").val()}, // form 데이터를 서버로 전송합니다.
+                success: function (result) {
+                  if (result.success) {
+                    alert("인증번호가 전송되었습니다.");
+                    code = result.message;
+                  } else {
+                    alert(result.message);
+                  }
+                },
+                error: function (xhr, status, error) {
+                  console.error(xhr.responseText);
+                  alert(xhr.responseJSON.message);
+                }
+              });
+            });
+
+            document.getElementById("check-code-button").addEventListener("click", function() {
+              // 인증번호 확인 처리
+              valid = false;
+              const certificationNum = $("#certificationNum").val()
+              console.log(certificationNum);
+              if(code == certificationNum) {
+                alert("인증번호가 확인되었습니다.");
+                valid = true;
+                return;
+              }
+              alert("인증번호가 확인에 실패했습니다.");
+            });
+
+            document.getElementById("submit-button").addEventListener("click", function() {
+              event.preventDefault(); // form 태그 기본 동작 취소
+              if(!valid) {
+                alert("이메일을 인증해야 가입이 가능합니다.");
+                return;
+              }
+              $("#signup3-form").submit();
+            });
+
+            document.getElementById("password-confirm").addEventListener("input", function() {
+              var password = document.getElementById("password").value;
+              var passwordConfirm = document.getElementById("password-confirm").value;
+              if (password !== passwordConfirm) {
+                document.getElementById("password-confirm").setCustomValidity("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+              } else {
+                document.getElementById("password-confirm").setCustomValidity("");
+              }
+            });
+          </script>
         </div>
       </div>
     </div>
 
 
   </section>
-  </main>
+</main>
 
-  <!-- Footer -->
-  @@include("../partials/footer.html")
-  <!-- Javascript-->
-  @@include("../partials/scripts.html")
-  <script src="../assets/js/vendors/password.js"></script>
+<!-- Footer -->
+@@include("../partials/footer.html")
+<!-- Javascript-->
+@@include("../partials/scripts.html")
+<script src="../assets/js/vendors/password.js"></script>
 
 </body>
 

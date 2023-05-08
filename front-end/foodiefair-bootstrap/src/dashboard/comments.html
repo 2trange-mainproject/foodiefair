@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  @@include("../partials/head.html")
+  <title>관리자 페이지</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+  <!-- main -->
+  @@include("../partials/top-navbar.html")
+  <div class="main-wrapper">
+    <!-- navbar vertical -->
+    @@include('../partials/navbar-vertical.html', {
+    "page": "comments"
+
+    })
+    <!-- main wrapper -->
+    <main class="main-content-wrapper">
+      <div class="container">
+        <!-- row -->
+        <div class="row mb-8">
+          <div class="col-md-12">
+            <!-- page header -->
+            <div>
+              <h2>댓글 관리</h2>
+                <!-- breacrumb -->
+                <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                  <li class="breadcrumb-item"><a href="#" style="color: #889397">관리자 페이지</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">댓글 관리</li>
+                </ol>
+              </nav>
+
+            </div>
+          </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+          <div class="col-xl-12 col-12 mb-5">
+            <!-- card -->
+            <div class="card h-100 card-lg">
+              <div class=" p-6 ">
+                <div class="row justify-content-between">
+                  <div class="col-lg-4 col-md-6 col-12 mb-2 mb-lg-0 d-flex">
+                    <form id="search-form" class="d-flex" role="search" style="width: 400px;">
+                      <input class="form-control" id="search-input" type="search" placeholder="검색할 댓글의 리뷰ID를 입력하세요." aria-label="Search">
+                    </form>
+                    <button id="reset-search" class="btn btn-outline-gray-400 text-muted" style="margin-left: 10px;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="col-lg-2 col-md-4 col-12">
+                    <!-- select -->
+                    <select class="form-select">
+                      <option value="commentIdDESC" selected>댓글 ID 내림차순</option>
+                      <option value="commentIdASC">댓글 ID 오름차순</option>
+                      <option value="userIdDESC">유저 ID 내림차순</option>
+                      <option value="userIdASC">유저 ID 오름차순</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- card body -->
+              <div class="card-body p-0">
+                <!-- table responsive -->
+                <div class="table-responsive">
+                  <table class="table table-centered table-hover text-nowrap table-borderless mb-0 table-with-checkbox">
+                    <thead style="background-color: #f7f9fa">
+                      <tr>
+                        <th>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                            <label class="form-check-label" for="checkAll">
+
+                            </label>
+                          </div>
+                        </th>
+                        <th>댓글 ID</th>
+                        <th>회원 ID</th>
+                        <th>리뷰 ID</th>
+                        <th>댓글 내용</th>
+                        <th>작성 날짜</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="commentContainer"></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class=" border-top d-md-flex justify-content-between align-items-center px-6 py-6">
+                <span></span>
+                <nav>
+                  <ul class="pagination">
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+
+  @@include("../partials/scripts.html")
+  <script src="@@webRoot/assets/js/dashboards/search.js"></script>
+  <script src="@@webRoot/assets/js/dashboards/commentManage.js"></script>
+
+</body>
+
+</html>

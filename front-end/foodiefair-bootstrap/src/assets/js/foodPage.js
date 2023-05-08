@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
     selectCategoryFromLocalStorage();
 });
 
-//main에서 체크 localstorage
 function selectCategoryFromLocalStorage() {
     const selectedCategory = localStorage.getItem("selectedCategory");
 
@@ -24,8 +23,8 @@ function selectCategoryFromLocalStorage() {
 }
 
 function getSelectedFilters() {
-    let stores = [];
-    let categories = [];
+    var stores = [];
+    var categories = [];
 
     if ($("#CU").is(":checked")) {
         stores.push("CU");
@@ -110,7 +109,7 @@ document.getElementById('reset-search').addEventListener('click', function () {
     // LocalStorage에서 검색어를 삭제
     localStorage.removeItem('searchKeyword');
 
-    // 입력 필드의 값을 초기화
+   // 입력 필드의 값을 초기화
     const searchInput = document.getElementById('search-input');
     searchInput.value = '';
 
@@ -132,7 +131,7 @@ function toggleResetSearchButton() {
     }
 }
 
-//shop-filter.html에서도 검색어 사용할 수 있게 만드는 기능
+//food.html에서도 검색어 사용할 수 있게 만드는 기능
 document.getElementById('search-form').addEventListener('submit', function (e) {
     e.preventDefault();
     updateSearchKeyword();
@@ -152,7 +151,7 @@ function updateSearchKeyword() {
 
 
 function loadProducts(page, sortOrder) {
-    // shop-filter.html 페이지의 JavaScript 코드
+    // food.html 페이지의 JavaScript 코드
     const searchKeyword = localStorage.getItem('searchKeyword');
     console.log('검색 키워드:', searchKeyword);
 
@@ -175,7 +174,6 @@ function loadProducts(page, sortOrder) {
     if (searchKeyword) {
         queryString += `&searchKeyword=${encodeURIComponent(searchKeyword)}`;
     }
-
 
     $.ajax({
         url: `http://localhost:8081/api/food-list${queryString}`,
@@ -207,20 +205,6 @@ function renderProducts(data) {
     $.each(data, function(index, product) {
         var festivalText, festivalColor;
 
-        /* 체크 안되어있을 땐 모두 출력하기 위함
-        var storeMatched = filters.stores.some(function(store) {
-            return JSON.parse(product.fixedTag).store.includes(store);
-        });
-
-        var categoryMatched = filters.categories.some(function(category) {
-            return JSON.parse(product.fixedTag).smallCategory.includes(category);
-        });
-
-        if (!storeMatched || !categoryMatched) {
-            return;
-        }
-        */
-
         filteredProductCount++;
 
         if (product.productEvent === 1) {
@@ -247,12 +231,12 @@ function renderProducts(data) {
                     <div class=" position-absolute top-0 start-0">
                       <span class="badge bg-${festivalColor}">${festivalText}</span>
                     </div>
-                    <a href="shop-single.html?productId=${product.productId}">
-                        <img class="mb-3 img-fluid" style="max-width: 220px; max-height: 220px;" src="${product.productImg}">
+                    <a href="viewFood?productId=${product.productId}">
+                        <img class="mb-3 img-fluid" style="height: 220px;" src="${product.productImg}">
                     </a>
                   </div>
                   <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
-                  <h2 class="fs-6"><a href="shop-single.html?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
+                  <h2 class="fs-6"><a href="viewFood?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
                   <div>
                     <small class="text-warning"><i class="bi bi-star-fill"></i></small>
                     <span class="text-muted small">조회(<span>${product.productViews}</span>)</span>
@@ -264,7 +248,7 @@ function renderProducts(data) {
                   <div class="d-flex justify-content-between align-items-center mt-3">
                     <div></div>
                     <div>
-                      <span class="text-dark">${product.productPrice}원</span>
+                      <span class="text-dark">${product.productPrice.toLocaleString('ko-KR')}원</span>
                       <a href="#" class="ms-2 btn-action" style="color: deeppink"><i class="bi bi-bookmark"></i></a>
                     </div>
                   </div>
@@ -285,6 +269,8 @@ function renderProducts(data) {
 
 function renderPagination(currentPage, totalItems) {
     var totalPages = Math.ceil(totalItems / 15);
+    var pageGroupSize = 5;
+    var currentGroup = Math.ceil(currentPage / pageGroupSize);
 
     var pagination = $(".pagination");
     pagination.empty();
@@ -298,7 +284,9 @@ function renderPagination(currentPage, totalItems) {
                         </li>`);
 
     // 페이지 번호 링크 추가
-    for (var i = 1; i <= totalPages; i++) {
+    var startPage = (currentGroup - 1) * pageGroupSize + 1;
+    var endPage = Math.min(startPage + pageGroupSize - 1, totalPages);
+    for (var i = startPage; i <= endPage; i++) {
         var activeClass = i === currentPage ? "active" : "";
         var listItem = `<li class="page-item ${activeClass}">
                     <a class="page-link mx-1" href="#" data-page="${i}">${i}</a>

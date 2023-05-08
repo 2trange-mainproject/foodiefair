@@ -1,3 +1,7 @@
+var script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
+document.head.appendChild(script);
+
 $(document).ready(function () {
     $("#csSubmit").on("click", function (e) {
         e.preventDefault();
