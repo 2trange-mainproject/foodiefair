@@ -22,6 +22,7 @@ async function displaySavedList(userId, loggedUserId, page, pageSize) {
     // 이전 내용 지우기
     savedListElement.innerHTML = '';
 
+    // 야호
     // 저장된 항목 목록을 순회하기
     savedList.forEach((saved) => {
         const colDiv = document.createElement("div");
