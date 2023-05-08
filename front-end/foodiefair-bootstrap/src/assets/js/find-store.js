@@ -193,6 +193,6 @@ function getCurrentLocation() {
 }
 
 // 페이지 로드 완료 시 현재 위치 정보 가져오기
-window.onload = function reloadLocation() {
+$(document).ready(function () {
     getCurrentLocation();
-};
+});
