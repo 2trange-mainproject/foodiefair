@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multicampus.foodiefair.dao.FollowDAO">
+    <delete id="deleteFollowed" parameterType="map">
+        DELETE FROM Follow
+        WHERE followingId = #{followingId} AND followedId = #{followedId}
+    </delete>
+
+    <insert id="insertFollowing" parameterType="com.multicampus.foodiefair.dto.FollowDTO">
+        INSERT INTO Follow (followingId, followedId)
+        VALUES (#{followingId}, #{followedId})
+    </insert>
+
+    <delete id="deleteFollowing" parameterType="map">
+        DELETE FROM Follow
+        WHERE followingId = #{followingId} AND followedId = #{followedId}
+    </delete>
+
+    <select id="selectFollowerCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT COUNT(*) FROM Follow WHERE followedId = #{followedId}
+    </select>
+
+    <select id="selectFollowingCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT COUNT(*) FROM Follow WHERE followingId = #{followingId}
+    </select>
+
+    <!-- 매치하는 팔로우 관계 있으면 1, 없으면 0 -->
+    <select id="check" resultType="java.lang.Boolean" parameterType="java.util.Map">
+        SELECT COUNT(*) > 0
+        FROM Follow
+        WHERE followingId = #{followingId} AND followedId = #{followedId}
+    </select>
+
+</mapper>

@@ -23,7 +23,7 @@
           <!-- breadcrumb -->
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0" style="font-size:23px;">
-              <li class="breadcrumb-item"><a href="http://localhost:3000/pages/mypage">마이페이지</a></li>
+              <li class="breadcrumb-item"><a href="mypage">마이페이지</a></li>
               <li class="breadcrumb-item active" aria-current="page">작성 리뷰 목록</li>
             </ol>
           </nav>
@@ -40,51 +40,46 @@
         <!-- col -->
         <aside class="col-lg-3 col-md-4 mb-6 mb-md-0">
           <div class="offcanvas offcanvas-start offcanvas-collapse w-md-50 " tabindex="-1" id="offcanvasCategory" aria-labelledby="offcanvasCategoryLabel">
-
-            <div class="offcanvas-header d-lg-none">
-              <h5 class="offcanvas-title" id="offcanvasCategoryLabel">Filter</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
             <div class="offcanvas-body ps-lg-2 pt-lg-0">
               <div class="mb-8 d-flex flex-column align-items-center text-center">
                 <!-- Banner Image -->
                 <div class="position-relative mb-3" style="width: 150px; height: 150px; border: 1px solid black; border-radius: 50%; overflow: hidden;">
-                  <img src="@@webRoot/assets/images/profile/joon.png" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-circle">
+                  <img src="@@webRoot/assets/images/products/love-1.jpg" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-circle">
                 </div>
                 <!-- Banner Image -->
                 <!-- Banner Content -->
                 <div>
-                  <h3 class="mb-0">안주 매니아 </h3>
+                  <h4 class="mb-0">아이유 콘서트 가고싶다</h4>
                 </div>
                 <!-- Banner Content -->
                 <!-- Follows Content -->
                 <div>
-                  <ul class="nav nav-pills nav-lb-tab justify-content-center flex-nowrap" id="myTab" role="tablist">
+                  <ul class="nav nav-pills nav-lb-tab justify-content-center flex-nowrap" role="tablist">
                     <!-- nav item -->
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
                       <!-- btn -->
-                      <button class="nav-link active fs-6 text-nowrap" id="product-tab" data-bs-toggle="tab" data-bs-target="#product-tab-pane" type="button" role="tab" aria-controls="product-tab-pane" aria-selected="false">팔로워 500명
-                      </button>
+                      <a class="nav-link fs-6 text-nowrap" id="followers-tab" href="follows?activeTab=followers-tab" role="tab" aria-controls="followers-tab-pane" aria-selected="false">팔로워</a>
+
                     </li>
                     <!-- nav item -->
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
                       <!-- btn -->
-                      <button class="nav-link fs-6 text-nowrap" id="details-tab" data-bs-toggle="tab" data-bs-target="#details-tab-pane" type="button" role="tab" aria-controls="details-tab-pane" aria-selected="false">팔로잉 500명
-                      </button>
+                      <a class="nav-link fs-6 text-nowrap" id="followings-tab" href="follows?activeTab=followings-tab" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉
+                      </a>
                     </li>
                   </ul>
                 </div>
                 <!-- Follows Content -->
               </div>
+            </div>
           </div>
-        </div>
         </aside>
         <section class="col-lg-9 col-md-12">
           <!-- card -->
           <div class="card mb-4 bg-light border-0">
             <!-- card body -->
-            <div class=" card-body p-9">
-              <h2 class="mb-0 fs-1">작성 리뷰 목록</h2>
+            <div class=" card-body p-6">
+              <h2 class="mb-0 fs-3">작성 리뷰 목록</h2>
             </div>
           </div>
           <div class="container">
@@ -275,6 +270,10 @@
   @@include("../partials/footer.html")
 
   <!-- Javascript-->
+  <script>
+    const userId=1;
+    const loggedUserId=13;
+  </script>
   <script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
   <script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
   @@include("../partials/scripts.html")
@@ -282,6 +281,7 @@
   <script src="@@webRoot/assets/js/vendors/tns-slider.js"></script>
   <script src="@@webRoot/assets/js/vendors/zoom.js"></script>
   <script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
+  <script src="@@webRoot/assets/js/ajax/mypage-follows.js"></script>
 
 
 

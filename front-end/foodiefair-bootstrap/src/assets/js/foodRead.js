@@ -135,7 +135,7 @@ async function productSaved(e) {
     e.stopPropagation();
 
     const sendData = { // 데이터 저장 및 삭제에 필요한 정보
-        userId: 3,
+        userId: 35,
         productId: await $('#product-name').attr('data-productId')
     };
 
