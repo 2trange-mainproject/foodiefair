@@ -11,11 +11,26 @@ $(document).ready(async function () {
         $('#following-count').text(followingCount);
         $('#followings-tab').text(`팔로잉 ${followingCount}명`);
 
-        await loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers');
-        await loadMoreFollowData('#followings-tab-pane .row-cols-1', userId, 'followings');
+        // Set the initial active tab from localStorage
+        const initialActiveTabId = localStorage.getItem('activeTab');
+        if (initialActiveTabId) {
+            switchActiveTab(initialActiveTabId);
+            localStorage.removeItem('activeTab');
+        } else {
+            await loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers');
+        }
     } catch (error) {
         console.error('Error initializing the page:', error);
     }
+
+    // Add event listeners for tab buttons
+    document.getElementById('followers-tab').addEventListener('click', function() {
+        switchActiveTab('followers-tab');
+    });
+
+    document.getElementById('followings-tab').addEventListener('click', function() {
+        switchActiveTab('followings-tab');
+    });
 
     $(window).on('scroll', debounce(async function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
@@ -169,18 +184,23 @@ function debounce(func, wait) {
     };
 }
 
-function getActiveTab() {
-    const activeTabId = localStorage.getItem('activeTab');
-    if (activeTabId) {
-        // Remove the 'active' class from all tabs
-        $('.nav-link').removeClass('active');
-        $('.tab-pane').removeClass('show active');
-
-        // Add the 'active' class to the selected tab and its pane
-        $(`#${activeTabId}`).addClass('active');
-        $(`#${activeTabId}-pane`).addClass('show active');
-        localStorage.removeItem('activeTab');
+function switchActiveTab(newActiveTabId) {
+    // Deactivate the current active tab and clear its data
+    const currentActiveTabId = $('.nav-link.active').attr('id');
+    if (currentActiveTabId) {
+        $(`#${currentActiveTabId}`).removeClass('active');
+        $(`#${currentActiveTabId}-pane`).removeClass('show active');
+        $(`#${currentActiveTabId}-pane .row-cols-1`).empty();
     }
+
+    // Activate the new active tab
+    $(`#${newActiveTabId}`).addClass('active');
+    $(`#${newActiveTabId}-pane`).addClass('show active');
+
+    // Load data for the new active tab
+    loadMoreFollowData(`#${newActiveTabId}-pane .row-cols-1`, userId, newActiveTabId.slice(0, -4));
 }
+
+
 
 
