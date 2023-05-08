@@ -1,3 +1,5 @@
+const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+
 document.addEventListener('DOMContentLoaded', function () {
     // LocalStorage에서 저장된 검색 키워드 값을 가져옵니다.
     const searchKeyword = localStorage.getItem('searchKeyword');
@@ -111,7 +113,12 @@ function loadUsers(page, sortOrder) {
             renderPagination(currentPage, total);
         },
         error: function (error) {
-            console.log(error);
+            if(error.status === 403){
+                console.log("Access Denied");
+            }
+            else{
+                console.log(error);
+            }
         },
     });
 }

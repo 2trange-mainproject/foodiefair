@@ -1,47 +1,66 @@
 package com.multicampus.foodiefair.controller; //TestController
-//테스트용컨트롤러이며 RestAPI를 적용한 컨트롤러이다.
-//UserController랑 TestController를 동시에 실행하면 오류가 발생하므로 Controller를 실행할 때
-//둘 중 하나는 코드를 모두 주석처리하고 실행해야 한다.
 
 import com.multicampus.foodiefair.dto.UserDTO;
-import com.multicampus.foodiefair.service.IUserService;
 import com.multicampus.foodiefair.service.RegisterMail;
 import com.multicampus.foodiefair.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000"})
+@RequiredArgsConstructor
 public class UserController {
     @Autowired
-    private IUserService userService;
+    private final UserService userService;
+    private final RegisterMail registerMail;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private RegisterMail registerMail;
+    //MultipartFile을 File로 변환하는 메서드
+    public File convertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
+        Path tempDir = Files.createTempDirectory("");
+        File file = new File(tempDir.toFile(), multipartFile.getOriginalFilename());
+        multipartFile.transferTo(file);
+        return file;
+    }
 
     @PostMapping("/signin")
     public ResponseEntity<Map<String, Object>> login(@RequestParam String userEmail, @RequestParam String userPwd, HttpSession session) {
         Map<String, Object> result = new HashMap<>();
         UserDTO userDto = userService.getUserByEmail(userEmail);
-        if (userDto != null && userDto.getUserPwd().equals(userPwd)) {
+        System.out.println("passwordEncoder.matches(userDto.getUserPwd(), passwordEncoder.encode(userPwd) = " + passwordEncoder.matches(userPwd, userDto.getUserPwd()));
+        if (userDto != null && passwordEncoder.matches(userPwd, userDto.getUserPwd())) {
             S3Client s3Client = new S3Client();
             String objectKey = userDto.getUserImg();
             String url = s3Client.getUserUrl(objectKey, 3600);
             userDto.setUserImg(url);
 
             session.setAttribute("loginUser", userDto);
-
             result.put("success", true);
             result.put("user", userDto);
+
+            //인증된 사용자인지 확인..
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            System.out.println("Authentication: " + authentication);
+            System.out.println("Authorities: " + authentication.getAuthorities());
+
             return ResponseEntity.ok(result);
         } else {
             session.invalidate();
@@ -76,8 +95,10 @@ public class UserController {
 
     @PostMapping("/mail-confirm")
     public ResponseEntity<Map<String, Object>> mailConfirm(@RequestParam String userEmail) throws Exception {
+        System.out.println("이메일 : " + userEmail);
         Map<String, Object> result = new HashMap<>();
         String code = registerMail.sendSimpleMessage(userEmail);
+
         System.out.println("인증코드 : " + code);
         if(StringUtils.hasText(code)) {
             result.put("success", true);
@@ -90,14 +111,34 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<Map<String, Object>> signup(@RequestBody UserDTO userDto) throws Exception {
+    public ResponseEntity<Map<String, Object>> signup(@RequestParam("userName") String userName,
+                                                      @RequestParam("userEmail") String userEmail,
+                                                      @RequestParam("userPwd") String userPwd,
+                                                      @RequestParam("userTag") String userTag,
+                                                      @RequestParam("userIntro") String userIntro,
+                                                      @RequestParam("userTags") String userTags,
+                                                      @RequestParam("userImg") MultipartFile userImg) throws Exception {
         Map<String, Object> result = new HashMap<>();
-        System.out.println("user = " + userDto);
+        UserDTO userDto = new UserDTO();
+        userDto.setUserName(userName);
+        userDto.setUserEmail(userEmail);
+        userDto.setUserPwd(userPwd);
+        userDto.setUserTag(userTag);
+        userDto.setUserIntro(userIntro);
+        userDto.setUserTags(userTags);
+        userDto.setUserImg(userImg.getOriginalFilename());
 
+        System.out.println("user = " + userDto);
         userDto.setUserTag(userDto.getUserTags());
         System.out.println(userDto.getUserTag());
 
-        //이미지 파일 업로드 기능을 구현해주세요.
+        if (!userImg.isEmpty()) {
+            File file = convertMultipartFileToFile(userImg);
+            S3Client s3Client = new S3Client();
+            String objectKey = userImg.getOriginalFilename();
+            String imageurl = s3Client.uploadUserFile(file, objectKey);
+        }
+
         System.out.println(userDto.getUserImg());
 
         UserDTO userByEmail = userService.getUserByEmail(userDto.getUserEmail());
@@ -124,6 +165,42 @@ public class UserController {
         result.put("success", true);
         result.put("message", "비밀번호 수정에 성공하였습니다.");
         return ResponseEntity.ok(result);
+    }
+
+    //Modify
+    @PutMapping("/modify")
+    public ResponseEntity<Map<String, Object>> userUpdate(
+            @RequestParam("userName") String userName,
+            @RequestParam("userPwd") String userPwd,
+            @RequestParam("userEmail") String userEmail,
+            @RequestParam("userIntro") String userIntro,
+            @RequestParam("userImg") String userImg,
+            @RequestParam("userTag") String userTag
+    ) throws Exception{
+        System.out.println("userName = " + userName);
+        System.out.println("userPwd = " + userPwd);
+        System.out.println("userEmail = " + userEmail);
+        System.out.println("userIntro = " + userIntro);
+        System.out.println("userImg = " + userImg);
+        System.out.println("userTag = " + userTag);
+        userService.updateUser(userName, userPwd, userEmail, userIntro, userImg, userTag);
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("message", "회원정보 수정에 성공하였습니다.");
+        return ResponseEntity.ok(result);
+    }
+
+
+    @DeleteMapping("/user-delete/{userEmail}")
+    public ResponseEntity<String> deleteUser(@PathVariable("userEmail") String userEmail) {
+        try {
+            userService.delete(userEmail);
+            return ResponseEntity.ok("success");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 }

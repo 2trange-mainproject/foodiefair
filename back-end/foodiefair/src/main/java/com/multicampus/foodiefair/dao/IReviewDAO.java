@@ -28,6 +28,10 @@ public interface IReviewDAO {
     public int reviewCount(Map<String, Object> paramMap);
     public int reviewDownCount(Map<String, Object> paramMap);
 
+    //뱃지 부여
+    public String getSmallCategory(Map<String, Object> paramMap);
+    public void updateUserBadge(Map<String, Object> paramMap);
+
     //창환 오빠 부분
     public int findReviewId(String productId, int userId);
     public int reviewInsert(ReviewDTO reviewDTO);
