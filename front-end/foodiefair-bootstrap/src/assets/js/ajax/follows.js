@@ -1,5 +1,5 @@
 let userId = 1;
-let loggedUserId = 1;
+let loggedUserId = 2;
 
 $(document).ready(async function () {
     try {
@@ -200,7 +200,3 @@ function switchActiveTab(newActiveTabId) {
     // Load data for the new active tab
     loadMoreFollowData(`#${newActiveTabId}-pane .row-cols-1`, userId, newActiveTabId.slice(0, -4));
 }
-
-
-
-
