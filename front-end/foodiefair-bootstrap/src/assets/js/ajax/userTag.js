@@ -42,6 +42,7 @@ function displayUserTags(userTags) {
         tagSpan.className = 'badge bg-pink me-2 mb-2';
         tagSpan.style.cursor = 'pointer';
         tagSpan.style.fontSize = '2.0ex';
+        tagSpan.style.marginRight = '10px !important';
         tagSpan.textContent = tagObj.tag;
 
         row.appendChild(tagSpan);

@@ -2746,6 +2746,10 @@
   font-size: calc(1.25625rem + 0.075vw) !important;
 }
 
+.fs-4-5 {
+  font-size: calc(1.175rem + 0.0375vw) !important;
+}
+
 .fs-5 {
   font-size: 1.09375rem !important;
 }
