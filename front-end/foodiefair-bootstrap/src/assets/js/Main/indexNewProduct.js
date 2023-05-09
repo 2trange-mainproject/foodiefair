@@ -95,13 +95,13 @@ function renderNewProducts(data) {
                         <small class="text-warning"><i class="bi bi-star-fill"></i></small>
                         <span class="text-muted small">리뷰(<span>${product.productReviews}</span>)</span>
                         <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-                        <span class="text-muted small">찜(<span>${product.productSaved}</span>)</span>
+                        <span class="text-muted small" id="product-saved-${product.productId}">찜(${product.productSaved})</span>
                       </div>
                       <div class="d-flex justify-content-between align-items-center mt-3">
                         <div></div>
                         <div>
                           <span class="text-dark">${product.productPrice.toLocaleString('ko-KR')}원</span>
-                          <a href="#" class="ms-2 btn-action" style="color: deeppink"><i class="bi bi-bookmark"></i></a>
+                          <a href="#" class="ms-2 btn-action" style="color: deeppink" id="product-save" data-product-id="${product.productId}"><i class="bi bi-bookmark"></i></a>
                         </div>
                       </div>
                     </div>
