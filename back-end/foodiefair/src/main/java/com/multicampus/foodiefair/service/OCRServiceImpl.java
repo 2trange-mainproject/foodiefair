@@ -18,8 +18,8 @@ import org.json.JSONObject;
 @Service
 public class OCRServiceImpl implements OCRService {
 
-    private static final String API_URL = "https://ouituma6aw.apigw.ntruss.com/custom/v1/22246/f073576157cbfabcf91b678d21979f247d0cc5b5b3d9789e1d4502cc0017467f/document/receipt";
-    private static final String SECRET_KEY = "UGlYQmR2R0FNRWFFa2ZMQ3BHdGZVbnJjQUpaUmJGWm4=";
+    private static final String API_URL = "https://ipjnl4gfq7.apigw.ntruss.com/custom/v1/22244/79898cb520fb68141f512c098ab8bbb9dc147a454ef7066680552a72d8b03aef/document/receipt";
+    private static final String SECRET_KEY = "SmZjZmNSV2JiWldJZm16RlFqdHRjSmpYRWRjTXZxaHE=";
 
     public boolean sendOcrRequest(String base64Data, String productName) {
         try {
