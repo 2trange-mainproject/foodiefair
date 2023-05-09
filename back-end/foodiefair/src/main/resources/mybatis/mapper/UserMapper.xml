@@ -40,10 +40,10 @@
     </update>
 
     <!-- 탈퇴 -->
-    <delete id="deleteUser">
+    <delete id="deleteUser" parameterType="int">
         DELETE
         FROM User
-        WHERE id = #{id}
+        WHERE userId = #{userId}
     </delete>
 
     <!-- 회원 비밀번호 수정 -->
