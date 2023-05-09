@@ -115,6 +115,7 @@ function loadUsers(page, sortOrder) {
         error: function (error) {
             if(error.status === 403){
                 console.log("Access Denied");
+                //window.location.href = "http"
             }
             else{
                 console.log(error);
