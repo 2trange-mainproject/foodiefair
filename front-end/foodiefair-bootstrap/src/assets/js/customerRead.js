@@ -71,6 +71,7 @@ function renderUserDetails(user) {
               <p><small>By continuing, you agree to our <a href="#!" style="color: hotpink;"> Terms of Service</a> & <a href="@@webRoot/pages/contract" style="color: hotpink;">Privacy Policy</a></small></p>
             </div>
             <input type="hidden" name="userId" value="${user.userId}">
+            <input type="hidden" name="userEmail" value="${user.userEmail}">
           </form>
           `;
 
@@ -135,6 +136,12 @@ function displayTags() {
 $(document).on("click", "#update-button", function (event) {
     event.preventDefault();
 
+    const userName = document.getElementById("userName").value;
+    if (userName.trim() === "") {
+        alert("닉네임을 입력해주세요.");
+        return;
+    }
+
     const queryString = window.location.search;
     const params = new URLSearchParams(queryString);
     const jsonData = {};
@@ -174,8 +181,8 @@ $(document).on("click", "#update-button", function (event) {
         success: function (result) {
             if (result.success) {
                 alert(result.message);
+                localStorage.setItem('loginUser', JSON.stringify(result.user));
                 location.href = "/foodiefair"
-
             } else {
                 alert(result.message);
             }

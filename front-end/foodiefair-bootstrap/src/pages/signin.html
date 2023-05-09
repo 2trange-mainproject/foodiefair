@@ -58,6 +58,10 @@
             </div>
           </form>
           <script>
+            let script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
+            document.head.appendChild(script);
+
             const form = document.querySelector('#login-form');
             form.addEventListener('submit', async (event) => {
               event.preventDefault();
@@ -73,7 +77,17 @@
                 localStorage.setItem('loginUser', JSON.stringify(result.user));
                 location.href = '/foodiefair';
               } else {
-                alert('이메일과 비밀번호를 확인해주세요.');
+                if(result.locked) {
+                  Swal.fire({
+                    title: '로그인 불가',
+                    text: '로그인할 수 없는 회원입니다.',
+                    icon: 'warning',
+                    confirmButtonColor: "#d6335e",
+                    confirmButtonText: "확인"
+                  });
+                } else {
+                  alert('이메일과 비밀번호를 확인해주세요.');
+                }
               }
             });
           </script>
@@ -90,7 +104,6 @@
 <!-- Javascript-->
 @@include("../partials/scripts.html")
 <script src="../assets/js/vendors/password.js"></script>
-
 
 </body>
 
