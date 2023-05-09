@@ -13,6 +13,9 @@ function loadReviewDetails(reviewId) {
         url: `http://localhost:8081/dashboard/review-read/${reviewId}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             renderReviewDetails(response.reviewRead);
         },

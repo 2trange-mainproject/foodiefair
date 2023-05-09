@@ -13,4 +13,5 @@ public interface IUserService {
     public void deleteUser(int userId);
     public void updateUserPassword(String userEmail, String userPwd);
     public void delete(String userEmail) throws Exception;
+    public UserDTO read(int selectedId);
 }

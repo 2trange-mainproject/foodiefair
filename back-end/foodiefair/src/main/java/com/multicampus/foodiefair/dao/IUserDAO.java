@@ -27,5 +27,8 @@ public interface IUserDAO {
 
     public int deleteDao(String userEmail); //회원삭제하기
 
+    //회원 읽기
+    public UserDTO readDao(Map<String, Object> paramMap);
+
     public int updateDao(Map<String, Object> paramMap); //회원정보 수정하기
 }

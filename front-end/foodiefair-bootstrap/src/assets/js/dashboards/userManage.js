@@ -75,6 +75,9 @@ function deleteUser(userId) {
     $.ajax({
         url: `http://localhost:8081/dashboard/user-delete/${userId}`,
         type: "DELETE",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             alert("회원이 삭제되었습니다.");
             loadUsers(1);
@@ -104,6 +107,9 @@ function loadUsers(page, sortOrder) {
         url: `http://localhost:8081/dashboard/user-list${queryString}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             var data = response.dtoList;
             var total = response.total;

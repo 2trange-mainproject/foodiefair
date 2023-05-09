@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -66,10 +68,17 @@ public class UserService implements IUserService {
         userDAO.deleteDao(userEmail);
     }
 
-
     private void passwordEncode(UserDTO userDto) {
         String encodePwd = passwordEncoder.encode(userDto.getUserPwd());
         System.out.println("encodePwd = " + encodePwd);
         userDto.setUserPwd(encodePwd);
+    }
+
+    @Override
+    public UserDTO read(int selectedId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("selectedId", selectedId);
+
+        return userDAO.readDao(paramMap);
     }
 }
