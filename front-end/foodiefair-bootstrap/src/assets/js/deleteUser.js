@@ -27,9 +27,14 @@ function confirmDelete() {
                             title: '회원 탈퇴',
                             text: '더 이상 해당 이메일로는 회원가입이 불가능합니다.',
                             icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: false,
                             confirmButtonColor: "#d63384"
                         }
-                    )
+                    ).then(() => {
+                        localStorage.removeItem('loginUser');
+                        location.reload();
+                    });
                 },
                 error: function (error) {
                     console.log(error);

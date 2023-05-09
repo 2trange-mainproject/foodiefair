@@ -66,6 +66,15 @@ public class UserController {
         Map<String, Object> result = new HashMap<>();
         UserDTO userDto = userService.getUserByEmail(userEmail);
         System.out.println("passwordEncoder.matches(userPwd, userDto.getUserPwd()) = " + passwordEncoder.matches(userPwd, userDto.getUserPwd()));
+        
+        //Locked되어 있는 경우 로그인 불가능
+        if(userDto.getLocked() == 1){
+            session.invalidate();
+            result.put("success", false);
+            result.put("locked", true);
+            return ResponseEntity.badRequest().body(result);
+        }
+        
         if (userDto != null && passwordEncoder.matches(userPwd, userDto.getUserPwd())) {
             S3Client s3Client = new S3Client();
             String objectKey = userDto.getUserImg();
@@ -103,6 +112,7 @@ public class UserController {
         } else {
             session.invalidate();
             result.put("success", false);
+            result.put("locked", false);
             return ResponseEntity.badRequest().body(result);
         }
     }
@@ -111,13 +121,13 @@ public class UserController {
     public ResponseEntity<Void> logout(HttpSession session, HttpServletResponse response) {
         session.invalidate();
 
-        // Delete the cookie
+        // 쿠키 삭제
         Cookie cookie = new Cookie("loginUser", "");
         cookie.setMaxAge(0); // Expire the cookie immediately
         cookie.setHttpOnly(true);
         cookie.setPath("/");
 
-        // Add the cookie to the response
+        // 쿠키 삭제 후 클라이언트로 응답을 보내는 이유 : 웹 브라우저가 쿠키를 삭제하도록 지시하기 위함.
         response.addCookie(cookie);
 
         return ResponseEntity.ok().build();
@@ -218,17 +228,14 @@ public class UserController {
 
     //Modify
     @PutMapping("/modify")
-    public ResponseEntity<Map<String, Object>> userUpdate(
+    public ResponseEntity<Map<String, Object>> userUpdate( HttpSession session,
             @RequestParam("userId") int userId,
             @RequestParam("userImg") MultipartFile userImg,
             @RequestParam("userName") String userName,
             @RequestParam("userTags") String userTags,
-            @RequestParam("userIntro") String userIntro
+            @RequestParam("userIntro") String userIntro,
+            @RequestParam("userEmail") String userEmail
     ) throws Exception{
-        System.out.println("userId = " + userId);
-        System.out.println("userName = " + userName);
-        System.out.println("userTags = " + userTags);
-        System.out.println("userIntro = " + userIntro);
 
         if (!userImg.isEmpty()) {
             File file = convertMultipartFileToFile(userImg);
@@ -240,7 +247,17 @@ public class UserController {
         System.out.println("userImg = " + userImg.getOriginalFilename());
 
         userService.updateUser(userId, userImg.getOriginalFilename(), userName, userTags, userIntro);
+
+        UserDTO userDto = userService.getUserByEmail(userEmail);
+        S3Client s3Client = new S3Client();
+        String userImgUrl = userDto.getUserImg();
+        String url = s3Client.getUserUrl(userImgUrl, 3600);
+        userDto.setUserImg(url);
+
+        session.setAttribute("loginUser", userDto);
+
         Map<String, Object> result = new HashMap<>();
+        result.put("user", userDto);
         result.put("success", true);
         result.put("message", "회원정보 수정에 성공하였습니다.");
         return ResponseEntity.ok(result);
@@ -248,9 +265,20 @@ public class UserController {
 
 
     @PutMapping("/user-delete/{userEmail}")
-    public ResponseEntity<String> deleteUser(@PathVariable("userEmail") String userEmail, HttpSession session) {
+    public ResponseEntity<String> deleteUser(@PathVariable("userEmail") String userEmail, HttpSession session, HttpServletResponse response) {
         try {
             userService.delete(userEmail);
+
+            session.invalidate();
+
+            // Delete the cookie
+            Cookie cookie = new Cookie("loginUser", "");
+            cookie.setMaxAge(0); // Expire the cookie immediately
+            cookie.setHttpOnly(true);
+            cookie.setPath("/");
+
+            response.addCookie(cookie);
+
             return ResponseEntity.ok("success");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
