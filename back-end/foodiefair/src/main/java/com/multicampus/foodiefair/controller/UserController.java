@@ -1,5 +1,6 @@
 package com.multicampus.foodiefair.controller; //TestController
 
+import com.amazonaws.services.dynamodbv2.xspec.S;
 import com.multicampus.foodiefair.dto.UserDTO;
 import com.multicampus.foodiefair.service.RegisterMail;
 import com.multicampus.foodiefair.service.UserService;
@@ -218,20 +219,27 @@ public class UserController {
     //Modify
     @PutMapping("/modify")
     public ResponseEntity<Map<String, Object>> userUpdate(
+            @RequestParam("userId") int userId,
+            @RequestParam("userImg") MultipartFile userImg,
             @RequestParam("userName") String userName,
-            @RequestParam("userPwd") String userPwd,
-            @RequestParam("userEmail") String userEmail,
-            @RequestParam("userIntro") String userIntro,
-            @RequestParam("userImg") String userImg,
-            @RequestParam("userTag") String userTag
+            @RequestParam("userTags") String userTags,
+            @RequestParam("userIntro") String userIntro
     ) throws Exception{
+        System.out.println("userId = " + userId);
         System.out.println("userName = " + userName);
-        System.out.println("userPwd = " + userPwd);
-        System.out.println("userEmail = " + userEmail);
+        System.out.println("userTags = " + userTags);
         System.out.println("userIntro = " + userIntro);
-        System.out.println("userImg = " + userImg);
-        System.out.println("userTag = " + userTag);
-        userService.updateUser(userName, userPwd, userEmail, userIntro, userImg, userTag);
+
+        if (!userImg.isEmpty()) {
+            File file = convertMultipartFileToFile(userImg);
+            S3Client s3Client = new S3Client();
+            String objectKey = userImg.getOriginalFilename();
+            s3Client.uploadUserFile(file, objectKey);
+        }
+
+        System.out.println("userImg = " + userImg.getOriginalFilename());
+
+        userService.updateUser(userId, userImg.getOriginalFilename(), userName, userTags, userIntro);
         Map<String, Object> result = new HashMap<>();
         result.put("success", true);
         result.put("message", "회원정보 수정에 성공하였습니다.");

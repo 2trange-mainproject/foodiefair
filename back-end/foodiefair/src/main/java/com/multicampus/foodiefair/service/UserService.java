@@ -39,14 +39,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(String userName, String userEmail, String userPwd, String userIntro, String userTag, String userImg) {
-        System.out.println("userName = " + userName);
-        System.out.println("userEmail = " + userEmail);
-        System.out.println("passwordEncoder.encode(userPwd) = " + passwordEncoder.encode(userPwd));
-        System.out.println("userIntro = " + userIntro);
-        System.out.println("userTag = " + userTag);
+    public void updateUser(int userId, String userImg, String userName, String userTags, String userIntro) {
+        System.out.println("userId = " + userId);
         System.out.println("userImg = " + userImg);
-        userDAO.updateUser(userName,userEmail,passwordEncoder.encode(userPwd),userIntro,userTag, userImg);
+        System.out.println("userName = " + userName);
+        System.out.println("userTags = " + userTags);
+        System.out.println("userIntro = " + userIntro);
+        userDAO.updateUser(userId, userImg, userName, userTags, userIntro);
     }
 
 
