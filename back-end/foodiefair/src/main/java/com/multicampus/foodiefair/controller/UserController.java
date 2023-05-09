@@ -33,7 +33,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
@@ -98,16 +97,6 @@ public class UserController {
             System.out.println("Authentication: " + authenticatedUser);
             System.out.println("Authorities: " + authenticatedUser.getAuthorities());
 
-            // Create a cookie
-            Cookie cookie = new Cookie("UserCookie", Integer.toString(userDto.getUserId()));
-            cookie.setMaxAge(60 * 60 * 24); // 1 day
-            cookie.setHttpOnly(true);
-            cookie.setPath("/");
-            System.out.println(cookie.getValue());
-
-            // Add the cookie to the response
-            response.addCookie(cookie);
-
             return ResponseEntity.ok(result);
         } else {
             session.invalidate();
@@ -120,15 +109,6 @@ public class UserController {
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpSession session, HttpServletResponse response) {
         session.invalidate();
-
-        // 쿠키 삭제
-        Cookie cookie = new Cookie("loginUser", "");
-        cookie.setMaxAge(0); // Expire the cookie immediately
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-
-        // 쿠키 삭제 후 클라이언트로 응답을 보내는 이유 : 웹 브라우저가 쿠키를 삭제하도록 지시하기 위함.
-        response.addCookie(cookie);
 
         return ResponseEntity.ok().build();
     }
@@ -270,14 +250,6 @@ public class UserController {
             userService.delete(userEmail);
 
             session.invalidate();
-
-            // Delete the cookie
-            Cookie cookie = new Cookie("loginUser", "");
-            cookie.setMaxAge(0); // Expire the cookie immediately
-            cookie.setHttpOnly(true);
-            cookie.setPath("/");
-
-            response.addCookie(cookie);
 
             return ResponseEntity.ok("success");
         } catch (IllegalArgumentException e) {
