@@ -8,6 +8,8 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.amazonaws.HttpMethod;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.net.URL;
 import java.util.Date;
 import java.io.File;

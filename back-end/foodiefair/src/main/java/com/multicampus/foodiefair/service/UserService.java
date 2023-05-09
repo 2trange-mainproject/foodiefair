@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -39,14 +37,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(String userName, String userEmail, String userPwd, String userIntro, String userImg, String userTag) {
+    public void updateUser(String userName, String userEmail, String userPwd, String userIntro, String userTag, String userImg) {
         System.out.println("userName = " + userName);
         System.out.println("userEmail = " + userEmail);
         System.out.println("passwordEncoder.encode(userPwd) = " + passwordEncoder.encode(userPwd));
         System.out.println("userIntro = " + userIntro);
-        System.out.println("userImg = " + userImg);
         System.out.println("userTag = " + userTag);
-        userDAO.updateUser(userName,userEmail,passwordEncoder.encode(userPwd),userIntro,userImg,userTag);
+        System.out.println("userImg = " + userImg);
+        userDAO.updateUser(userName,userEmail,passwordEncoder.encode(userPwd),userIntro,userTag, userImg);
     }
 
 

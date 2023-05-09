@@ -9,7 +9,7 @@ public interface IUserService {
     public UserDTO getUserByEmail(String userEmail);
     public UserDTO getUserById(int id);
     public void updateUser(String userName, String userEmail, String userPwd,
-                           String userIntro, String userImg, String userTag);
+                           String userIntro, String userTag, String userImg);
     public void deleteUser(int userId);
     public void updateUserPassword(String userEmail, String userPwd);
     public void delete(String userEmail) throws Exception;
