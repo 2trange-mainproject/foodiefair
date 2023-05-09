@@ -85,6 +85,13 @@ public class KeywordController {
             int reviewCount = reviewService.reviewCount(productId);
             resultMap.put("reviewCount", reviewCount);
 
+            //영수증 인증이 되어있다면 뱃지 얻을 때인지 확인하고 뱃지주기
+            if(receiptBoolean == 1){
+                String smallCategory =  reviewService.getSmallCategory(productId);
+                smallCategory = smallCategory.replace("#", "");
+                reviewService.updateUserBadge(productId, userId, smallCategory);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultMap);

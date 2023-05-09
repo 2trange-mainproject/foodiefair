@@ -20,8 +20,12 @@ public interface IReviewService {
     public int updatePlusReviewNum(String productId);
     public int updateMinusReviewNum(long reviewId);
 
-    int reviewCount(String productId);
-    int reviewDownCount(long reviewId);
+    public int reviewCount(String productId);
+    public int reviewDownCount(long reviewId);
+
+    //뱃지 얻기
+    public String getSmallCategory(String productId);
+    public void updateUserBadge(String productId, int userId, String smallCategory);
 
     //창환 오빠 부분
     int reviewDelete(long reviewId);

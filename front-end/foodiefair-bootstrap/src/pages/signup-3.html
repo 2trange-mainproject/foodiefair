@@ -110,13 +110,8 @@
       jsonData[key] = decodeURIComponent(value);
     });
 
-    const formData = $("#signup3-form").serializeArray();
-
-    // form 데이터를 객체로 변환
-    const formDataObj = {};
-    formData.forEach(function (input) {
-      formDataObj[input.name] = input.value;
-    });
+    const form = document.getElementById("signup3-form");
+    const formData = new FormData(form);
 
     //{"userTag": [{"tag":"안녕"}, {"tag":"초코"}, {"tag":"반가워"}]}
     const userTagsArray = tags.map(tag => {
@@ -128,17 +123,21 @@
     };
 
     // userTags를 JSON Array 형태로 만들기
-    formDataObj['userTags'] = JSON.stringify(userTagsObject);
+    formData.set('userTags', JSON.stringify(userTagsObject));
 
-    const mergedData = Object.assign({}, formDataObj, jsonData);
+    // jsonData 객체를 formData에 추가
+    for (let key in jsonData) {
+      formData.set(key, jsonData[key]);
+    }
 
-    console.log('Final form data:', mergedData);
+    console.log('Final form data:', formData);
 
     $.ajax({
       type: "POST",
       url: "http://localhost:8081/signup",
-      data: JSON.stringify(mergedData),
-      contentType: "application/json",
+      data: formData, // FormData 객체를 전송
+      contentType: false, // multipart/form-data 형식으로 전송하기 위해 contentType을 false로 설정
+      processData: false, // FormData를 쿼리 문자열로 변환하지 않도록 설정
       success: function (result) {
         if (result.success) {
           alert(result.message);

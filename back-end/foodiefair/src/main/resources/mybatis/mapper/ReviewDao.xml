@@ -51,4 +51,30 @@
     <select id="listDao" resultType="com.multicampus.foodiefair.dto.ReviewDTO">
         SELECT * FROM Keyword WHERE productId = #{productId}
     </select>
+
+    <select id="getSmallCategory" resultType="String">
+        SELECT JSON_UNQUOTE(JSON_EXTRACT(fixedTag, '$.smallCategory')) FROM Product WHERE productId = #{productId}
+    </select>
+
+    <update id="updateUserBadge">
+        UPDATE ReviewNum
+        SET reviewNum = JSON_SET(
+                COALESCE(reviewNum, JSON_OBJECT()),
+                '$."${smallCategory}"',
+                COALESCE(JSON_EXTRACT(reviewNum, '$.#{smallCategory}'), 0) + 1
+            ),
+            userBadge = JSON_SET(
+                    COALESCE(userBadge, JSON_OBJECT()),
+                    '$."${smallCategory}"',
+                    CASE
+                        WHEN JSON_EXTRACT(reviewNum, '$."${smallCategory}"') + 1 >= 100 THEN '다이아몬드'
+                        WHEN JSON_EXTRACT(reviewNum, '$."${smallCategory}"') + 1 >= 50 THEN '플래티넘'
+                        WHEN JSON_EXTRACT(reviewNum, '$."${smallCategory}"') + 1 >= 30 THEN '골드'
+                        WHEN JSON_EXTRACT(reviewNum, '$."${smallCategory}"') + 1 >= 20 THEN '실버'
+                        WHEN JSON_EXTRACT(reviewNum, '$."${smallCategory}"') + 1 >= 10 THEN '브론즈'
+                        ELSE JSON_EXTRACT(userBadge, '$."${smallCategory}"')
+                        END
+                )
+        WHERE userId = #{userId}
+    </update>
 </mapper>
