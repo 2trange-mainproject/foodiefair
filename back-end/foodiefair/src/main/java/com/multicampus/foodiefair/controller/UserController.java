@@ -9,6 +9,14 @@ import com.multicampus.foodiefair.service.RegisterMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
@@ -17,6 +25,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.security.Principal;
+import java.util.Collection;
+import java.util.Collections;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -36,10 +52,26 @@ public class UserController {
 
     public UserController(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
+
+    private Collection<? extends GrantedAuthority> getUserAuthorities(Principal principal) {
+        if (principal == null) {
+            return Collections.emptyList();
+        }
+        UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(principal.getName());
+        return userDetails.getAuthorities();
+    }
+
+    //MultipartFile을 File로 변환하는 메서드
+    public File convertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
+        Path tempDir = Files.createTempDirectory("");
+        File file = new File(tempDir.toFile(), multipartFile.getOriginalFilename());
+        multipartFile.transferTo(file);
+        return file;
+
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<Map<String, Object>> login(@RequestParam String userEmail, @RequestParam String userPwd, HttpSession session) {
+    public ResponseEntity<Map<String, Object>> login(Principal principal, @RequestParam String userEmail, @RequestParam String userPwd, HttpSession session) {
         Map<String, Object> result = new HashMap<>();
         UserDTO userDto = userService.getUserByEmail(userEmail);
         if (userDto != null && userDto.getUserPwd().equals(userPwd)) {
@@ -50,8 +82,31 @@ public class UserController {
 
             session.setAttribute("loginUser", userDto);
 
+
             result.put("success", true);
             result.put("user", userDto);
+
+            UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(userDto.getUserEmail());
+
+            Collection<? extends GrantedAuthority> authorities = getUserAuthorities(principal);
+            result.put("auth", authorities);
+
+            result.put("success", true);
+            result.put("user", userDto);
+            result.put("authorities", userDetails.getAuthorities());
+
+            Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            //인증된 사용자인지 확인..
+            Authentication authenticatedUser = SecurityContextHolder.getContext().getAuthentication();
+            System.out.println("Authentication: " + authenticatedUser);
+            System.out.println("Authorities: " + authenticatedUser.getAuthorities());
+            System.out.println("authentication.getPrincipal().toString() ==> " + authentication.getPrincipal().toString());
+            System.out.println("authentication.isAuthenticated() ==> " + authentication.isAuthenticated());
+
+
+
             return ResponseEntity.ok(result);
         } else {
             session.invalidate();
@@ -108,6 +163,15 @@ public class UserController {
         System.out.println(userDto.getUserTag());
 
         //이미지 파일 업로드 기능을 구현해주세요.
+
+        if (!userImg.isEmpty()) {
+            File file = convertMultipartFileToFile(userImg);
+            S3Client s3Client = new S3Client();
+            String objectKey = userImg.getOriginalFilename();
+            String imageurl = s3Client.uploadUserFile(file, objectKey);
+            System.out.println("objectKey : " + objectKey + ", imageurl : " + imageurl );
+        }
+
         System.out.println(userDto.getUserImg());
 
         UserDTO userByEmail = userService.getUserByEmail(userDto.getUserEmail());

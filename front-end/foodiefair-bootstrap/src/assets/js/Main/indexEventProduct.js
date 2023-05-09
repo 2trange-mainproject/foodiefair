@@ -105,13 +105,13 @@ function renderEventProducts(data) {
                         <small class="text-warning"><i class="bi bi-star-fill"></i></small>
                         <span class="text-muted small">리뷰(<span>${product.productReviews}</span>)</span>
                         <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-                        <span class="text-muted small">찜(<span>${product.productSaved}</span>)</span>
+                        <span class="text-muted small" id="product-saved-${product.productId}">찜(${product.productSaved})</span>
                       </div>
                       <div class="d-flex justify-content-between align-items-center mt-3">
                         <div></div>
                         <div>
                           <span class="text-dark">${product.productPrice.toLocaleString('ko-KR')}원</span>
-                          <a href="#" class="ms-2 btn-action" style="color: deeppink"><i class="bi bi-bookmark"></i></a>
+                          <a href="#" class="ms-2 btn-action" style="color: deeppink" id="product-save" data-product-id="${product.productId}"><i class="bi bi-bookmark"></i></a>
                         </div>
                       </div>
                     </div>
@@ -123,3 +123,49 @@ function renderEventProducts(data) {
     $eventProductContainer.append(productEventHtml);
 
 }
+
+$(document).on("click", "#product-save", function(e) {
+    productSaved.call(this, e);
+});
+
+// 상품 찜 토글
+async function productSaved(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const productId = $(this).data("product-id");
+
+    const sendData = { // 데이터 저장 및 삭제에 필요한 정보
+        userId: 35,
+        productId: productId
+    };
+
+    $(this).toggleClass('active'); // 토글 활성화
+    if ($(this).hasClass('active')) {  // 토글 활성화시 데이터 저장
+        $(this).find('i').removeClass('bi-bookmark').addClass('bi-bookmark-fill');
+        const response = await fetch('http://localhost:8081/products/'+sendData.productId+'/saved', {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(sendData)
+        });
+
+        const responseData = await response.json();
+        const savedCount = responseData.savedCount;
+        $(`#product-saved-${productId}`).text(`찜(${savedCount})`);
+
+        return responseData
+    } else { // 토글 비활성화시 데이터 삭제
+        $(this).find('i').removeClass('bi-bookmark-fill').addClass('bi-bookmark');
+        const response = await fetch('http://localhost:8081/products/'+sendData.productId+'/saved/'+sendData.userId, {
+            method:'DELETE'
+        });
+
+        const responseData = await response.json();
+        const savedCount = responseData.savedCount;
+        $(`#product-saved-${productId}`).text(`찜(${savedCount})`);
+
+        return responseData
+    }
+};
