@@ -1,110 +1,142 @@
-<!DOCTYPE html> <!--signin.html -->
+<!DOCTYPE html>
+<!--signin.html -->
 <html lang="en">
+  <head>
+    <title>FoodieFair</title>
+    @@include("../partials/head.html")
+  </head>
 
-<head>
-
-  <title>FoodieFair</title>
-  @@include("../partials/head.html")
-</head>
-
-<body>
-
-@@include("../partials/navbar-account.html")
-<main>
-  <!-- section -->
-  <section class="my-lg-14 my-8">
-    <div class="container">
-      <!-- row -->
-      <div class="row justify-content-center align-items-center">
-        <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
-          <!-- img -->
-          <img src="../assets/images/svg-graphics/none.jpg" alt="" class="img-fluid">
-        </div>
-        <!-- col -->
-        <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">
-          <!--<div class="mb-lg-9 mb-5">
+  <body>
+    @@include("../partials/navbar-account.html")
+    <main>
+      <!-- section -->
+      <section class="my-lg-14 my-8">
+        <div class="container">
+          <!-- row -->
+          <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
+              <!-- img -->
+              <img
+                src="../assets/images/svg-graphics/none.jpg"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <!-- col -->
+            <div
+              class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1"
+            >
+              <!--<div class="mb-lg-9 mb-5">
             <h1 class="mb-1 h2 fw-bold" style="color: deeppink">로그인</h1>
           </div>-->
-          <form id="login-form">
-            <div class="row g-3">
-              <div class="col-12">
-                <h5>이메일</h5>
-                <input type="email" class="form-control" id="email" name="userEmail" placeholder="이메일을 입력하세요." required>
-              </div>
-              <div class="col-12">
-                <h5>비밀번호</h5>
-                <div class="password-field position-relative">
-                  <input type="password" id="password" name="userPwd" placeholder="비밀번호를 입력하세요." class="form-control" required >
-                  <span><i id="passwordToggler"class="bi bi-eye-slash"></i></span>
+              <form id="login-form">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <h5>이메일</h5>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      name="userEmail"
+                      placeholder="이메일을 입력하세요."
+                      required
+                    />
+                  </div>
+                  <div class="col-12">
+                    <h5>비밀번호</h5>
+                    <div class="password-field position-relative">
+                      <input
+                        type="password"
+                        id="password"
+                        name="userPwd"
+                        placeholder="비밀번호를 입력하세요."
+                        class="form-control"
+                        required
+                      />
+                      <span
+                        ><i id="passwordToggler" class="bi bi-eye-slash"></i
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="rememberMe"
+                      />
+                      <label class="form-check-label" for="rememberMe">
+                        아이디 기억하기
+                      </label>
+                    </div>
+                    <div>
+                      <a href="../pages/forgot-password" style="color: deeppink"
+                        >아이디 찾기/비밀번호 찾기</a
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12 d-grid">
+                    <button type="submit" class="btn btn-primary">
+                      로그인
+                    </button>
+                  </div>
+                  <div>
+                    계정이 없나요?
+                    <a href="../pages/contract" style="color: deeppink"
+                      >회원가입 하러가기</a
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="d-flex justify-content-between">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="rememberMe">
-                  <label class="form-check-label" for="rememberMe">
-                    아이디 기억하기
-                  </label>
-                </div>
-                <div>
-                  <a href="../pages/forgot-password" style="color: deeppink">아이디 찾기/비밀번호 찾기</a>
-                </div>
-              </div>
-              <div class="col-12 d-grid">
-                <button type="submit" class="btn btn-primary">로그인</button>
-              </div>
-              <div>
-                계정이 없나요? <a href="../pages/contract" style="color: deeppink">회원가입 하러가기</a>
-              </div>
-            </div>
-          </form>
-          <script>
-            let script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
-            document.head.appendChild(script);
+              </form>
+              <script>
+                let script = document.createElement("script");
+                script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+                document.head.appendChild(script);
 
-            const form = document.querySelector('#login-form');
-            form.addEventListener('submit', async (event) => {
-              event.preventDefault();
-              const formData = new FormData(form);
-              const response = await fetch('http://localhost:8081/signin', {
-                method: 'POST',
-                body: formData,
-                mode: 'cors'
-              });
-              const result = await response.json();
-              if (result.success) {
-                alert('로그인이 완료되었습니다.');
-                localStorage.setItem('loginUser', JSON.stringify(result.user));
-                location.href = '/foodiefair';
-              } else {
-                if(result.locked) {
-                  Swal.fire({
-                    title: '로그인 불가',
-                    text: '로그인할 수 없는 회원입니다.',
-                    icon: 'warning',
-                    confirmButtonColor: "#d6335e",
-                    confirmButtonText: "확인"
+                const form = document.querySelector("#login-form");
+                form.addEventListener("submit", async (event) => {
+                  event.preventDefault();
+                  const formData = new FormData(form);
+                  const response = await fetch("http://localhost:8081/signin", {
+                    method: "POST",
+                    body: formData,
+                    mode: "cors",
+                    credentials: "include",
                   });
-                } else {
-                  alert('이메일과 비밀번호를 확인해주세요.');
-                }
-              }
-            });
-          </script>
-
+                  const result = await response.json();
+                  if (result.success) {
+                    alert("로그인이 완료되었습니다.");
+                    localStorage.setItem(
+                      "loginUser",
+                      JSON.stringify(result.user)
+                    );
+                    location.href = "/foodiefair";
+                  } else {
+                    if (result.locked) {
+                      Swal.fire({
+                        title: "로그인 불가",
+                        text: "로그인할 수 없는 회원입니다.",
+                        icon: "warning",
+                        confirmButtonColor: "#d6335e",
+                        confirmButtonText: "확인",
+                      });
+                    } else {
+                      alert("이메일과 비밀번호를 확인해주세요.");
+                    }
+                  }
+                });
+              </script>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    </main>
 
-</main>
-
-<!-- Footer -->
-@@include("../partials/footer.html")
-<!-- Javascript-->
-@@include("../partials/scripts.html")
-<script src="../assets/js/vendors/password.js"></script>
-
-</body>
-
+    <!-- Footer -->
+    @@include("../partials/footer.html")
+    <!-- Javascript-->
+    @@include("../partials/scripts.html")
+    <script src="../assets/js/vendors/password.js"></script>
+  </body>
 </html>
