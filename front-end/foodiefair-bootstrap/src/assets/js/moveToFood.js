@@ -7,7 +7,6 @@ document.getElementById('search-button').addEventListener('click', function () {
     redirectToShopFilterPage();
 });
 
-//merge Testing
 function redirectToShopFilterPage() {
     const searchInput = document.getElementById('search-input');
     const keyword = searchInput.value;
