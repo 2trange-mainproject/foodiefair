@@ -39,14 +39,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(String userName, String userEmail, String userPwd, String userIntro, String userImg, String userTag) {
-        System.out.println("userName = " + userName);
-        System.out.println("userEmail = " + userEmail);
-        System.out.println("passwordEncoder.encode(userPwd) = " + passwordEncoder.encode(userPwd));
-        System.out.println("userIntro = " + userIntro);
+    public void updateUser(int userId, String userImg, String userName, String userTags, String userIntro) {
+        System.out.println("userId = " + userId);
         System.out.println("userImg = " + userImg);
-        System.out.println("userTag = " + userTag);
-        userDAO.updateUser(userName,userEmail,passwordEncoder.encode(userPwd),userIntro,userImg,userTag);
+        System.out.println("userName = " + userName);
+        System.out.println("userTags = " + userTags);
+        System.out.println("userIntro = " + userIntro);
+        userDAO.updateUser(userId, userImg, userName, userTags, userIntro);
     }
 
 
@@ -68,10 +67,17 @@ public class UserService implements IUserService {
         userDAO.deleteDao(userEmail);
     }
 
-
     private void passwordEncode(UserDTO userDto) {
         String encodePwd = passwordEncoder.encode(userDto.getUserPwd());
         System.out.println("encodePwd = " + encodePwd);
         userDto.setUserPwd(encodePwd);
+    }
+
+    @Override
+    public UserDTO read(int selectedId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("selectedId", selectedId);
+
+        return userDAO.readDao(paramMap);
     }
 }

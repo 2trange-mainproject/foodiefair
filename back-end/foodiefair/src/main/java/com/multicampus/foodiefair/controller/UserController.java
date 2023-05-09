@@ -1,5 +1,6 @@
 package com.multicampus.foodiefair.controller; //TestController
 
+import com.amazonaws.services.dynamodbv2.xspec.S;
 import com.multicampus.foodiefair.dto.UserDTO;
 import com.multicampus.foodiefair.service.RegisterMail;
 import com.multicampus.foodiefair.service.UserService;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,8 +27,13 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.Principal;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,6 +44,14 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsServiceImpl;
 
+    private Collection<? extends GrantedAuthority> getUserAuthorities(Principal principal) {
+        if (principal == null) {
+            return Collections.emptyList();
+        }
+        UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(principal.getName());
+        return userDetails.getAuthorities();
+    }
+
     //MultipartFile을 File로 변환하는 메서드
     public File convertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
         Path tempDir = Files.createTempDirectory("");
@@ -46,10 +61,19 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<Map<String, Object>> login(@RequestParam String userEmail, @RequestParam String userPwd, HttpSession session) {
+    public ResponseEntity<Map<String, Object>> login(Principal principal, @RequestParam String userEmail, @RequestParam String userPwd, HttpSession session, HttpServletResponse response) {
         Map<String, Object> result = new HashMap<>();
         UserDTO userDto = userService.getUserByEmail(userEmail);
         System.out.println("passwordEncoder.matches(userPwd, userDto.getUserPwd()) = " + passwordEncoder.matches(userPwd, userDto.getUserPwd()));
+        
+        //Locked되어 있는 경우 로그인 불가능
+        if(userDto.getLocked() == 1){
+            session.invalidate();
+            result.put("success", false);
+            result.put("locked", true);
+            return ResponseEntity.badRequest().body(result);
+        }
+        
         if (userDto != null && passwordEncoder.matches(userPwd, userDto.getUserPwd())) {
             S3Client s3Client = new S3Client();
             String objectKey = userDto.getUserImg();
@@ -57,10 +81,14 @@ public class UserController {
             userDto.setUserImg(url);
 
             session.setAttribute("loginUser", userDto);
+
+            UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(userDto.getUserEmail());
+
+            Collection<? extends GrantedAuthority> authorities = getUserAuthorities(principal);
+            result.put("auth", authorities);
             result.put("success", true);
             result.put("user", userDto);
 
-            UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(userDto.getUserEmail());
             Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -69,18 +97,19 @@ public class UserController {
             System.out.println("Authentication: " + authenticatedUser);
             System.out.println("Authorities: " + authenticatedUser.getAuthorities());
 
-
             return ResponseEntity.ok(result);
         } else {
             session.invalidate();
             result.put("success", false);
+            result.put("locked", false);
             return ResponseEntity.badRequest().body(result);
         }
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<Void> logout(HttpSession session) {
+    public ResponseEntity<Void> logout(HttpSession session, HttpServletResponse response) {
         session.invalidate();
+
         return ResponseEntity.ok().build();
     }
 
@@ -179,38 +208,73 @@ public class UserController {
 
     //Modify
     @PutMapping("/modify")
-    public ResponseEntity<Map<String, Object>> userUpdate(
+    public ResponseEntity<Map<String, Object>> userUpdate( HttpSession session,
+            @RequestParam("userId") int userId,
+            @RequestParam("userImg") MultipartFile userImg,
             @RequestParam("userName") String userName,
-            @RequestParam("userPwd") String userPwd,
-            @RequestParam("userEmail") String userEmail,
+            @RequestParam("userTags") String userTags,
             @RequestParam("userIntro") String userIntro,
-            @RequestParam("userImg") String userImg,
-            @RequestParam("userTag") String userTag
+            @RequestParam("userEmail") String userEmail
     ) throws Exception{
-        System.out.println("userName = " + userName);
-        System.out.println("userPwd = " + userPwd);
-        System.out.println("userEmail = " + userEmail);
-        System.out.println("userIntro = " + userIntro);
-        System.out.println("userImg = " + userImg);
-        System.out.println("userTag = " + userTag);
-        userService.updateUser(userName, userPwd, userEmail, userIntro, userImg, userTag);
+
+        if (!userImg.isEmpty()) {
+            File file = convertMultipartFileToFile(userImg);
+            S3Client s3Client = new S3Client();
+            String objectKey = userImg.getOriginalFilename();
+            s3Client.uploadUserFile(file, objectKey);
+        }
+
+        System.out.println("userImg = " + userImg.getOriginalFilename());
+
+        userService.updateUser(userId, userImg.getOriginalFilename(), userName, userTags, userIntro);
+
+        UserDTO userDto = userService.getUserByEmail(userEmail);
+        S3Client s3Client = new S3Client();
+        String userImgUrl = userDto.getUserImg();
+        String url = s3Client.getUserUrl(userImgUrl, 3600);
+        userDto.setUserImg(url);
+
+        session.setAttribute("loginUser", userDto);
+
         Map<String, Object> result = new HashMap<>();
+        result.put("user", userDto);
         result.put("success", true);
         result.put("message", "회원정보 수정에 성공하였습니다.");
         return ResponseEntity.ok(result);
     }
 
 
-    @DeleteMapping("/user-delete/{userEmail}")
-    public ResponseEntity<String> deleteUser(@PathVariable("userEmail") String userEmail) {
+    @PutMapping("/user-delete/{userEmail}")
+    public ResponseEntity<String> deleteUser(@PathVariable("userEmail") String userEmail, HttpSession session, HttpServletResponse response) {
         try {
             userService.delete(userEmail);
+
+            session.invalidate();
+
             return ResponseEntity.ok("success");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/user-read/{userId}")
+    public ResponseEntity<Map<String, Object>> userRead(
+            @PathVariable("userId") int userId) {
+
+        UserDTO user = userService.read(userId);
+
+        // 파일 URL 생성
+        S3Client s3Client = new S3Client();
+        String objectKey = user.getUserImg();
+        String url = s3Client.getUserUrl(objectKey, 3600);
+        user.setUserImg(url);
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("userRead", user);
+
+        return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
 }

@@ -73,6 +73,9 @@ function deleteQuestion(questionId) {
     $.ajax({
         url: `http://localhost:8081/dashboard/question-delete/${questionId}`,
         type: "DELETE",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             alert("회원이 삭제되었습니다.");
             loadQuestions(1);
@@ -107,6 +110,9 @@ function loadQuestions(page, sortOrder) {
         url: `http://localhost:8081/dashboard/question-list${queryString}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             var data = response.dtoList;
             var total = response.total;

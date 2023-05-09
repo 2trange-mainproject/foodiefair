@@ -1,6 +1,8 @@
 package com.multicampus.foodiefair.service;
 
 import com.multicampus.foodiefair.dto.UserDTO;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface IUserService {
@@ -8,9 +10,9 @@ public interface IUserService {
     public void insertUser(UserDTO userDto);
     public UserDTO getUserByEmail(String userEmail);
     public UserDTO getUserById(int id);
-    public void updateUser(String userName, String userEmail, String userPwd,
-                           String userIntro, String userImg, String userTag);
+    public void updateUser(int userId, String userImg, String userName, String userTags, String userIntro);
     public void deleteUser(int userId);
     public void updateUserPassword(String userEmail, String userPwd);
     public void delete(String userEmail) throws Exception;
+    public UserDTO read(int selectedId);
 }

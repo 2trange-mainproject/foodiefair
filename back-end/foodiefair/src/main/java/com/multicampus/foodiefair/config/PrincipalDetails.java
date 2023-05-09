@@ -23,7 +23,7 @@ public class PrincipalDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         HashSet<GrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority("ROLE_" + user.getUserAuth()));
+        roles.add(new SimpleGrantedAuthority("ROLE_" + user.getUserAuth()));    //해당 멤버에게 role을 입혀야 함
         System.out.println("roles = " + roles);
         System.out.println("user = " + user);
         return roles;

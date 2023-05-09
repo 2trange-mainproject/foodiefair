@@ -92,7 +92,7 @@
               <span id="login-name"></span>
               <li class="dropdown ms-4" id="login-profile" style="display: none">
                 <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img id="login-image" src="" class="avatar avatar-md rounded-circle">
+                  <img id="login-image" src="" class="avatar avatar-md rounded-circle login-image">
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end p-0">
@@ -107,12 +107,12 @@
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="@@webRoot/pages/userUpdate">
+                      <a class="dropdown-item" id="update-link">
                         회원정보 수정
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#!">
+                      <a class="dropdown-item" href="#!" onclick="confirmDelete();">
                         회원탈퇴
                       </a>
                     </li>
@@ -136,6 +136,9 @@
 
                     const mypageLink = document.getElementById('mypage-link');
                     mypageLink.href = `@@webRoot/pages/mypage?userId=${loginUser.userId}`;
+
+                    const updateLink = document.getElementById('update-link');
+                    updateLink.href = `@@webRoot/pages/userUpdate?userId=${loginUser.userId}`;
 
                     document.getElementById('logout-link').style.display = 'inline';
                     document.getElementById('login-profile').style.display = 'inline';
@@ -565,3 +568,4 @@
 </div>
 
 <script src="@@webRoot/assets/js/moveToFood.js"></script>
+<script src="@@webRoot/assets/js/deleteUser.js"></script>
