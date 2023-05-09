@@ -31,12 +31,20 @@
     <!-- 회원정보 수정 -->
     <update id="updateUser">
         UPDATE User
-        SET userName = #{userName},
-            userPwd = #{userPwd},
-            userIntro = #{userIntro},
-            userTag = #{userTag},
-            userImg = #{userImg}
-        WHERE userEmail = #{userEmail}
+        SET
+        <if test="userImg != null and userImg != ''">
+            userImg = #{userImg},
+        </if>
+        <if test="userName != null">
+            userName = #{userName},
+        </if>
+        <if test="userTags != null">
+            userTag = #{userTags},
+        </if>
+        <if test="userIntro != null">
+            userIntro = #{userIntro}
+        </if>
+        WHERE userId = #{userId}
     </update>
 
     <!-- 탈퇴 -->

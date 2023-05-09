@@ -17,9 +17,9 @@ public interface IUserDAO {
 
     public UserDTO getUserById(int id);
 
-    public void updateUser(@Param("userName") String userName, @Param("userEmail") String userEmail,
-                           @Param("userPwd") String userPwd, @Param("userIntro") String userIntro,
-                           @Param("userTag") String userTag, @Param("userImg") String userImg);            // 회원 정보 수정
+    public void updateUser(@Param("userId") int userId, @Param("userImg") String userImg,
+                           @Param("userName") String userName, @Param("userTags") String userTags,
+                           @Param("userIntro") String userIntro);            // 회원 정보 수정
 
     public void deleteUser(int userId);                // 회원 탈퇴
 
