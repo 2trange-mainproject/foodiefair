@@ -59,9 +59,12 @@
         WHERE userEmail = #{userEmail}
     </update>
 
-
     <update id="updateDao">
         update User set userReport = #{userReport}, locked = #{locked}
         where userId = #{selectedId}
     </update>
+
+    <select id="readDao" resultType="com.multicampus.foodiefair.dto.UserDTO">
+        select * from User where userId = #{selectedId}
+    </select>
 </mapper>

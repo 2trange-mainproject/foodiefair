@@ -32,6 +32,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -58,7 +61,7 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<Map<String, Object>> login(Principal principal, @RequestParam String userEmail, @RequestParam String userPwd, HttpSession session) {
+    public ResponseEntity<Map<String, Object>> login(Principal principal, @RequestParam String userEmail, @RequestParam String userPwd, HttpSession session, HttpServletResponse response) {
         Map<String, Object> result = new HashMap<>();
         UserDTO userDto = userService.getUserByEmail(userEmail);
         System.out.println("passwordEncoder.matches(userPwd, userDto.getUserPwd()) = " + passwordEncoder.matches(userPwd, userDto.getUserPwd()));
@@ -74,10 +77,8 @@ public class UserController {
 
             Collection<? extends GrantedAuthority> authorities = getUserAuthorities(principal);
             result.put("auth", authorities);
-
             result.put("success", true);
             result.put("user", userDto);
-            result.put("authorities", userDetails.getAuthorities());
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -86,9 +87,16 @@ public class UserController {
             Authentication authenticatedUser = SecurityContextHolder.getContext().getAuthentication();
             System.out.println("Authentication: " + authenticatedUser);
             System.out.println("Authorities: " + authenticatedUser.getAuthorities());
-            System.out.println("authentication.getPrincipal().toString() ==> " + authentication.getPrincipal().toString());
-            System.out.println("authentication.isAuthenticated() ==> " + authentication.isAuthenticated());
 
+            // Create a cookie
+            Cookie cookie = new Cookie("UserCookie", Integer.toString(userDto.getUserId()));
+            cookie.setMaxAge(60 * 60 * 24); // 1 day
+            cookie.setHttpOnly(true);
+            cookie.setPath("/");
+            System.out.println(cookie.getValue());
+
+            // Add the cookie to the response
+            response.addCookie(cookie);
 
             return ResponseEntity.ok(result);
         } else {
@@ -99,8 +107,18 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<Void> logout(HttpSession session) {
+    public ResponseEntity<Void> logout(HttpSession session, HttpServletResponse response) {
         session.invalidate();
+
+        // Delete the cookie
+        Cookie cookie = new Cookie("loginUser", "");
+        cookie.setMaxAge(0); // Expire the cookie immediately
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+
+        // Add the cookie to the response
+        response.addCookie(cookie);
+
         return ResponseEntity.ok().build();
     }
 
@@ -221,8 +239,8 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/user-delete/{userEmail}")
-    public ResponseEntity<String> deleteUser(@PathVariable("userEmail") String userEmail) {
+    @PutMapping("/user-delete/{userEmail}")
+    public ResponseEntity<String> deleteUser(@PathVariable("userEmail") String userEmail, HttpSession session) {
         try {
             userService.delete(userEmail);
             return ResponseEntity.ok("success");
@@ -231,6 +249,24 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/user-read/{userId}")
+    public ResponseEntity<Map<String, Object>> userRead(
+            @PathVariable("userId") int userId) {
+
+        UserDTO user = userService.read(userId);
+
+        // 파일 URL 생성
+        S3Client s3Client = new S3Client();
+        String objectKey = user.getUserImg();
+        String url = s3Client.getUserUrl(objectKey, 3600);
+        user.setUserImg(url);
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("userRead", user);
+
+        return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
 }

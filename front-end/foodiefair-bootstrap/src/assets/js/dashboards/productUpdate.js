@@ -31,6 +31,9 @@ function loadProductDetails(productId) {
         url: `http://localhost:8081/dashboard/product-read/${productId}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             renderProductDetails(response.productRead);
         },
@@ -154,6 +157,9 @@ function updateProduct(productId){
             updatedProductPrice: updatedProductPrice,
             updatedProductFestival: updatedProductFestival,
             updatedProductTagJson: updatedProductTagJson
+        },
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
         },
         success: function (response) {
             alert('상품이 성공적으로 수정되었습니다.');

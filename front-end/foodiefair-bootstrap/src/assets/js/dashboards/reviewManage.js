@@ -73,6 +73,9 @@ function deleteReview(reviewId) {
     $.ajax({
         url: `http://localhost:8081/dashboard/review-delete/${reviewId}`,
         type: "DELETE",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             alert("리뷰가 삭제되었습니다.");
             loadReviews(1);
@@ -102,6 +105,9 @@ function loadReviews(page, sortOrder) {
         url: `http://localhost:8081/dashboard/review-list${queryString}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             var data = response.dtoList;
             var total = response.total;
