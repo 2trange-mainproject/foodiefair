@@ -146,6 +146,7 @@ public class UserController {
             S3Client s3Client = new S3Client();
             String objectKey = userImg.getOriginalFilename();
             String imageurl = s3Client.uploadUserFile(file, objectKey);
+            System.out.println("objectKey : " + objectKey + ", imageurl : " + imageurl );
         }
 
         System.out.println(userDto.getUserImg());
