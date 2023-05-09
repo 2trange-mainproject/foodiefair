@@ -85,6 +85,24 @@ public class ReviewService implements IReviewService {
         return dao.reviewDownCount(paramMap);
     }
 
+    @Override
+    public String getSmallCategory(String productId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("productId", productId);
+
+        return dao.getSmallCategory(paramMap);
+    }
+
+    @Override
+    public void updateUserBadge(String productId, int userId, String smallCategory) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("productId", productId);
+        paramMap.put("userId", userId);
+        paramMap.put("smallCategory", smallCategory);
+
+        dao.updateUserBadge(paramMap);
+    }
+
     //창환오빠 부분
     @Override
     public int reviewDelete(long reviewId) {

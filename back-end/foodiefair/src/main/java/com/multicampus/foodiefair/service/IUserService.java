@@ -7,8 +7,10 @@ public interface IUserService {
     public List<UserDTO> getUserList();
     public void insertUser(UserDTO userDto);
     public UserDTO getUserByEmail(String userEmail);
-    public UserDTO getUserById(Long id);
-    public void updateUser(UserDTO userDto);
+    public UserDTO getUserById(int id);
+    public void updateUser(String userName, String userEmail, String userPwd,
+                           String userIntro, String userImg, String userTag);
     public void deleteUser(int userId);
     public void updateUserPassword(String userEmail, String userPwd);
+    public void delete(String userEmail) throws Exception;
 }

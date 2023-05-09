@@ -42,6 +42,15 @@ public class S3Client {
         return (url != null) ? url.toString() : null;
     }
 
+    public String uploadUserFile(File file, String objectKey) {
+        String folderPath = "users/";
+        PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, folderPath + objectKey, file);
+        s3Client.putObject(putObjectRequest);
+
+        URL url = s3Client.getUrl(BUCKET_NAME, folderPath + objectKey);
+        return (url != null) ? url.toString() : null;
+    }
+
     //NPC Object Storage에 파일을 업로드하고 URL을 반환하는 메서드
     public String uploadReviewFile(File file, String objectKey) {
         String folderPath = "reviews/";
