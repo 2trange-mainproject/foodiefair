@@ -88,6 +88,7 @@ public class KeywordController {
             //영수증 인증이 되어있다면 뱃지 얻을 때인지 확인하고 뱃지주기
             if(receiptBoolean == 1){
                 String smallCategory =  reviewService.getSmallCategory(productId);
+                smallCategory = smallCategory.replace("#", "");
                 reviewService.updateUserBadge(productId, userId, smallCategory);
             }
 

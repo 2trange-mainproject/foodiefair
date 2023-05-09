@@ -22,6 +22,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
         UserDTO user = userRepository.getUserByEmail(userEmail);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with email: " + user.getUserName());
+        }
+        System.out.println("user : " + user.getUserName());
         return new PrincipalDetails(user);
     }
 }

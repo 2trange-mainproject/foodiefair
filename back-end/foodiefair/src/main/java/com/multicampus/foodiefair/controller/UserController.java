@@ -7,8 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -32,6 +35,7 @@ public class UserController {
     private final UserService userService;
     private final RegisterMail registerMail;
     private final PasswordEncoder passwordEncoder;
+    private final UserDetailsService userDetailsServiceImpl;
 
     //MultipartFile을 File로 변환하는 메서드
     public File convertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
@@ -45,7 +49,7 @@ public class UserController {
     public ResponseEntity<Map<String, Object>> login(@RequestParam String userEmail, @RequestParam String userPwd, HttpSession session) {
         Map<String, Object> result = new HashMap<>();
         UserDTO userDto = userService.getUserByEmail(userEmail);
-        System.out.println("passwordEncoder.matches(userDto.getUserPwd(), passwordEncoder.encode(userPwd) = " + passwordEncoder.matches(userPwd, userDto.getUserPwd()));
+        System.out.println("passwordEncoder.matches(userPwd, userDto.getUserPwd()) = " + passwordEncoder.matches(userPwd, userDto.getUserPwd()));
         if (userDto != null && passwordEncoder.matches(userPwd, userDto.getUserPwd())) {
             S3Client s3Client = new S3Client();
             String objectKey = userDto.getUserImg();
@@ -56,10 +60,15 @@ public class UserController {
             result.put("success", true);
             result.put("user", userDto);
 
+            UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(userDto.getUserEmail());
+            Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
             //인증된 사용자인지 확인..
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            System.out.println("Authentication: " + authentication);
-            System.out.println("Authorities: " + authentication.getAuthorities());
+            Authentication authenticatedUser = SecurityContextHolder.getContext().getAuthentication();
+            System.out.println("Authentication: " + authenticatedUser);
+            System.out.println("Authorities: " + authenticatedUser.getAuthorities());
+
 
             return ResponseEntity.ok(result);
         } else {
