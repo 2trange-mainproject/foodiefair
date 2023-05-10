@@ -35,7 +35,7 @@ public class ReceiptController {
         String base64Data = (String) requestData.get("image");
         String productId = (String) requestData.get("productId");
 
-        ProductDTO productDTO = productService.read(productId);
+        ProductDTO productDTO = productService.readRecipt(productId);
         productName = productDTO.getProductName();
         System.out.println("productName : " + productName);
 

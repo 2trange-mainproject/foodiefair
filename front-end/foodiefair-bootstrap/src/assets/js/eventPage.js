@@ -125,6 +125,8 @@ function renderProducts(data) {
 
         var fixedTag = JSON.parse(product.fixedTag).smallCategory;
 
+        var truncatedProductName = truncateString(product.productName, 15);
+
         var isActive = product.saved === 1 ? 'active' : '';
         var bookmarkIcon = product.saved === 1 ? 'bi-bookmark-fill' : 'bi-bookmark';
 

@@ -21,11 +21,20 @@ public class ProductService implements IProductService {
     private final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
     @Override
-    public ProductDTO read(String selectedId) {
+    public ProductDTO read(String selectedId, Integer userId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("selectedId", selectedId);
+        paramMap.put("userId", userId);
+
+        return dao.readDao(paramMap);
+    }
+
+    @Override
+    public ProductDTO readRecipt(String selectedId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("selectedId", selectedId);
 
-        return dao.readDao(paramMap);
+        return dao.readForRecipt(paramMap);
     }
 
     @Override

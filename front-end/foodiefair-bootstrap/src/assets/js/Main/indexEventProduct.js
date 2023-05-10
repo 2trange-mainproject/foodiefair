@@ -20,13 +20,20 @@ $(document).ready(function () {
 });
 
 
-function loadEventProducts(storeCode) {
+async function loadEventProducts(storeCode) {
+    const loginUser = await getUserInfo();
+    let userId = loginUser ? loginUser.userId : null;
+
     let filters = {
         stores: [storeCode],
         events: [2, 3]
     };
 
     let queryString = "?page=1&size=15";
+
+    if (userId) {
+        queryString += `&userId=${userId}`;
+    }
 
     if (filters.stores.length > 0) {
         queryString += `&stores=${encodeURIComponent(JSON.stringify(filters.stores))}`;
@@ -85,6 +92,11 @@ function renderEventProducts(data) {
         }
         let fixedTag = JSON.parse(product.fixedTag).smallCategory;
 
+        var truncatedProductName = truncateString(product.productName, 15);
+
+        var isActive = product.saved === 1 ? 'active' : '';
+        var bookmarkIcon = product.saved === 1 ? 'bi-bookmark-fill' : 'bi-bookmark';
+
         productEventHtml += `
                 <div class="item">
                   <div class="card card-product h-100 mb-4">
@@ -94,11 +106,11 @@ function renderEventProducts(data) {
                           <span class="badge bg-${festivalColor}">${festivalText}</span>
                         </div>
                         <a href="/pages/viewFood?productId=${product.productId}">
-                          <img class="mb-3 img-fluid" style="height: 220px;" src="${product.productImg}">
+                          <img class="mb-3 img-fluid" style="max-width: 220px; height: 220px;" src="${product.productImg}">
                         </a>
                       </div>
                       <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
-                      <h2 class="fs-6"><a href="viewFood?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
+                      <h2 class="fs-6" title="${product.productName}"><a href="viewFood?productId=${product.productId}" class="text-inherit text-decoration-none">${truncatedProductName}</a></h2>
                       <div>
                         <small class="text-warning"><i class="bi bi-star-fill"></i></small>
                         <span class="text-muted small">조회(<span>${product.productViews}</span>)</span>
@@ -111,7 +123,7 @@ function renderEventProducts(data) {
                         <div></div>
                         <div>
                           <span class="text-dark">${product.productPrice.toLocaleString('ko-KR')}원</span>
-                          <a href="#" class="ms-2 btn-action" style="color: deeppink" id="product-save" data-product-id="${product.productId}"><i class="bi bi-bookmark"></i></a>
+                          <a href="#" class="ms-2 btn-action ${isActive}" style="color: deeppink" id="product-save" data-product-id="${product.productId}"><i class="${bookmarkIcon}"></i></a>
                         </div>
                       </div>
                     </div>
@@ -133,10 +145,13 @@ async function productSaved(e) {
     e.preventDefault();
     e.stopPropagation();
 
+    const loginUser = await getUserInfo();
+    var userId = loginUser ? loginUser.userId : null;
+
     const productId = $(this).data("product-id");
 
     const sendData = { // 데이터 저장 및 삭제에 필요한 정보
-        userId: 35,
+        userId: userId,
         productId: productId
     };
 
