@@ -166,7 +166,6 @@
                     mode: 'cors',
                     credentials: 'include'
                   }).then(response => {
-                    localStorage.removeItem('loginUser');
                     alert('로그아웃 되었습니다.');
                     location.reload();
                   });
@@ -583,3 +582,4 @@
 
 <script src="@@webRoot/assets/js/moveToFood.js"></script>
 <script src="@@webRoot/assets/js/deleteUser.js"></script>
+<script src="@@webRoot/assets/js/ajax/getUserInfo.js"></script>
