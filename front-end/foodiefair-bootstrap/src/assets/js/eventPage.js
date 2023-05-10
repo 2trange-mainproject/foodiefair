@@ -36,10 +36,17 @@ $(".form-select").on("change", function() {
     loadProducts(1, $(this).val());
 });
 
-function loadProducts(page, sortOrder) {
+async function loadProducts(page, sortOrder) {
+    const loginUser = await getUserInfo();
+    var userId = loginUser ? loginUser.userId : null;
+
     var filters = getSelectedFilters();
 
     var queryString = `?page=${page}&size=15`;
+
+    if (userId) {
+        queryString += `&userId=${userId}`;
+    }
 
     if (filters.stores.length > 0) {
         queryString += `&stores=${encodeURIComponent(JSON.stringify(filters.stores))}`;
@@ -109,6 +116,9 @@ function renderProducts(data) {
 
         var fixedTag = JSON.parse(product.fixedTag).smallCategory;
 
+        var isActive = product.saved === 1 ? 'active' : '';
+        var bookmarkIcon = product.saved === 1 ? 'bi-bookmark-fill' : 'bi-bookmark';
+
         productHtml += `
             <div class="col">
               <div class="card card-product">
@@ -135,7 +145,7 @@ function renderProducts(data) {
                     <div></div>
                     <div>
                       <span class="text-dark">${product.productPrice.toLocaleString('ko-KR')}원</span>
-                      <a href="#" class="ms-2 btn-action" style="color: deeppink" id="product-save" data-product-id="${product.productId}"><i class="bi bi-bookmark"></i></a>
+                      <a href="#" class="ms-2 btn-action ${isActive}" style="color: deeppink" id="product-save" data-product-id="${product.productId}"><i class="${bookmarkIcon}"></i></a>
                     </div>
                   </div>
                 </div>
@@ -193,13 +203,13 @@ function renderPagination(currentPage, totalItems) {
         event.preventDefault();
         var pageNumber = parseInt($(this).data("page"));
         if (!isNaN(pageNumber)) {
-            loadProducts(pageNumber);
+            loadProducts(pageNumber, $(".form-select").val());
         }
     });
 }
 
 $(document).ready(function () {
-    loadProducts(1);
+    loadProducts(1, $(".form-select").val());
 });
 
 $(document).on("click", "#product-save", function(e) {
@@ -211,10 +221,13 @@ async function productSaved(e) {
     e.preventDefault();
     e.stopPropagation();
 
+    const loginUser = await getUserInfo();
+    var userId = loginUser ? loginUser.userId : null;
+
     const productId = $(this).data("product-id");
 
     const sendData = { // 데이터 저장 및 삭제에 필요한 정보
-        userId: 35,
+        userId: userId,
         productId: productId
     };
 
