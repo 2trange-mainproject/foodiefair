@@ -1,11 +1,9 @@
-let script = document.createElement('script');
-script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
-document.head.appendChild(script);
-
 function getKeywordIdFromUrl() {
     var urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("productId");
 }
+
+var productId = getKeywordIdFromUrl();
 
 let foodImage = null;
 let receiptImage = null;
@@ -46,8 +44,6 @@ function readURL(input) {
 }
 
 function loadKeywords(productId) {
-    var productId = getKeywordIdFromUrl();
-
     $.ajax({
         url: `http://localhost:8081/api/keyword/${productId}`,
         type: "GET",
@@ -272,6 +268,7 @@ async function requestWithBase64(base64Data) {
     const url = "http://localhost:8081/api/receipt/";
     const data = {
         image: base64Data,
+        productId: productId,
     };
     try {
         const response = await fetch(url, {

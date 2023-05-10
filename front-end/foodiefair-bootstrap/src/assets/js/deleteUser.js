@@ -2,8 +2,9 @@ let script = document.createElement('script');
 script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
 document.head.appendChild(script);
 
-const loginUser = JSON.parse(localStorage.getItem('loginUser'));
-const userEmail = loginUser.userEmail;
+//const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+//const userEmail = loginUser.userEmail;
+const userEmail = "";
 
 function confirmDelete() {
     Swal.fire({

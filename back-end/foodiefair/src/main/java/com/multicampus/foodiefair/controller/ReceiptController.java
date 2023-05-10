@@ -1,6 +1,8 @@
 package com.multicampus.foodiefair.controller;
 
+import com.multicampus.foodiefair.dto.ProductDTO;
 import com.multicampus.foodiefair.service.OCRService;
+import com.multicampus.foodiefair.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
@@ -31,12 +33,18 @@ public class ReceiptController {
         return file;
     }
 
-    public String productName = "무파마";
+    public String productName;
     private final OCRService ocrService;
+    private final ProductService productService;
 
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> processReceipt(@RequestBody HashMap<String, Object> requestData) {
         String base64Data = (String) requestData.get("image");
+        String productId = (String) requestData.get("productId");
+
+        ProductDTO productDTO = productService.read(productId);
+        productName = productDTO.getProductName();
+        System.out.println("productName : " + productName);
 
         // 네이버 CLOVA OCR API로 POST 요청 보내기
         Boolean ocrResponse = ocrService.sendOcrRequest(base64Data, productName);

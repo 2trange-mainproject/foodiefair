@@ -277,4 +277,15 @@ public class UserController {
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
+    @GetMapping("/get-user-info")
+    public ResponseEntity<?> getUserInfo(HttpSession session) {
+        UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
+        if (loginUser != null) {
+            // 사용자 정보를 가져오는 로직. 이 예에서는 세션에 저장된 UserDTO 객체를 사용합니다.
+            return ResponseEntity.ok(loginUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인되지 않은 사용자입니다.");
+        }
+    }
+
 }

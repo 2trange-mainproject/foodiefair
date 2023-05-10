@@ -107,10 +107,6 @@
                   const result = await response.json();
                   if (result.success) {
                     alert("로그인이 완료되었습니다.");
-                    localStorage.setItem(
-                      "loginUser",
-                      JSON.stringify(result.user)
-                    );
                     location.href = "/foodiefair";
                   } else {
                     if (result.locked) {

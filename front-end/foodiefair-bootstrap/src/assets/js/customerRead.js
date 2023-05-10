@@ -178,10 +178,11 @@ $(document).on("click", "#update-button", function (event) {
         data: formData, // FormData 객체를 전송
         contentType: false, // multipart/form-data 형식으로 전송하기 위해 contentType을 false로 설정
         processData: false, // FormData를 쿼리 문자열로 변환하지 않도록 설정
+        credentials: 'include',
         success: function (result) {
             if (result.success) {
                 alert(result.message);
-                localStorage.setItem('loginUser', JSON.stringify(result.user));
+                //localStorage.setItem('loginUser', JSON.stringify(result.user));
                 location.href = "/foodiefair"
             } else {
                 alert(result.message);
