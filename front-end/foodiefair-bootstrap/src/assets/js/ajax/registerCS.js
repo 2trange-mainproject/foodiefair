@@ -1,7 +1,3 @@
-var script = document.createElement('script');
-script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
-document.head.appendChild(script);
-
 $(document).ready(function () {
     $("#csSubmit").on("click", async function (e) {
         e.preventDefault();
@@ -12,7 +8,7 @@ $(document).ready(function () {
             return;
         }
 
-        let userId = loginUser.userId;
+        var userId = loginUser.userId;
 
         const formData = {
             userId: userId,
