@@ -40457,3 +40457,9 @@ span.flatpickr-weekday {
 #Cutefont_font{
   font-family: "Cutefont";
 }
+
+.login-image {
+  width: 50px; /* 원하는 너비로 설정 */
+  height: 50px; /* 원하는 높이로 설정 */
+  object-fit: cover; /* 이미지가 너비와 높이에 맞게 잘리도록 함 */
+}

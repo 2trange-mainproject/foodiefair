@@ -61,20 +61,20 @@
         SET reviewNum = JSON_SET(
                 COALESCE(reviewNum, JSON_OBJECT()),
                 '$."${smallCategory}"',
-                COALESCE(JSON_EXTRACT(reviewNum, '$.#{smallCategory}'), 0) + 1
+                COALESCE(CAST(JSON_EXTRACT(reviewNum, '$."${smallCategory}"') AS UNSIGNED), 0) + 1
             ),
             userBadge = JSON_SET(
                     COALESCE(userBadge, JSON_OBJECT()),
                     '$."${smallCategory}"',
                     CASE
-                        WHEN JSON_EXTRACT(reviewNum, '$."${smallCategory}"') + 1 >= 100 THEN '다이아몬드'
-                        WHEN JSON_EXTRACT(reviewNum, '$."${smallCategory}"') + 1 >= 50 THEN '플래티넘'
-                        WHEN JSON_EXTRACT(reviewNum, '$."${smallCategory}"') + 1 >= 30 THEN '골드'
-                        WHEN JSON_EXTRACT(reviewNum, '$."${smallCategory}"') + 1 >= 20 THEN '실버'
-                        WHEN JSON_EXTRACT(reviewNum, '$."${smallCategory}"') + 1 >= 10 THEN '브론즈'
-                        ELSE JSON_EXTRACT(userBadge, '$."${smallCategory}"')
+                        WHEN COALESCE(CAST(JSON_EXTRACT(reviewNum, '$."${smallCategory}"') AS UNSIGNED), 0) >= 100 THEN '다이아몬드'
+                        WHEN COALESCE(CAST(JSON_EXTRACT(reviewNum, '$."${smallCategory}"') AS UNSIGNED), 0) >= 50 THEN '플래티넘'
+                        WHEN COALESCE(CAST(JSON_EXTRACT(reviewNum, '$."${smallCategory}"') AS UNSIGNED), 0) >= 30 THEN '골드'
+                        WHEN COALESCE(CAST(JSON_EXTRACT(reviewNum, '$."${smallCategory}"') AS UNSIGNED), 0) >= 20 THEN '실버'
+                        WHEN COALESCE(CAST(JSON_EXTRACT(reviewNum, '$."${smallCategory}"') AS UNSIGNED), 0) >= 10 THEN '브론즈'
+                        ELSE NULL
                         END
                 )
-        WHERE userId = #{userId}
+        WHERE userId = #{userId};
     </update>
 </mapper>

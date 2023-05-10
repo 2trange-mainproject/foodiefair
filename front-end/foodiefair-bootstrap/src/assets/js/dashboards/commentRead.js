@@ -13,6 +13,9 @@ function loadCommentDetails(commentId) {
         url: `http://localhost:8081/dashboard/comment-read/${commentId}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             renderCommentDetails(response.commentRead);
         },

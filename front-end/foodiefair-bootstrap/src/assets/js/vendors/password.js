@@ -1,7 +1,6 @@
 // Password js
-
-var password = document.getElementById('userPass1');
-var password2 = document.getElementById('userPass2');
+var password = document.getElementById('password');
+var password2 = document.getElementById('password-confirm');
 var toggler = document.getElementById('passwordToggler');
 var toggler2 = document.getElementById('passwordToggler2');
 

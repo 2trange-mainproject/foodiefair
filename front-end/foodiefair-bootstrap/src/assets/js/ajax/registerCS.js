@@ -1,15 +1,17 @@
-var script = document.createElement('script');
-script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
-document.head.appendChild(script);
-
 $(document).ready(function () {
-    $("#csSubmit").on("click", function (e) {
+    $("#csSubmit").on("click", async function (e) {
         e.preventDefault();
 
-        let userId = 35;
+        const loginUser = await getUserInfo();
+        if (!loginUser) {
+            console.error('로그인되지 않은 사용자입니다.');
+            return;
+        }
+
+        var userId = loginUser.userId;
 
         const formData = {
-            userId: 35,
+            userId: userId,
             questionType: $("input[name='radioRegister']:checked").attr("id"),
             questionDate: new Date(),
             questionContent: $(".register-content").val(),

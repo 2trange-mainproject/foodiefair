@@ -73,6 +73,9 @@ function deleteProduct(productId) {
     $.ajax({
         url: `http://localhost:8081/dashboard/product-delete/${productId}`,
         type: "DELETE",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             alert("상품이 삭제되었습니다.");
             loadProducts(1);
@@ -102,6 +105,9 @@ function loadProducts(page, sortOrder) {
         url: `http://localhost:8081/dashboard/product-list${queryString}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             var data = response.dtoList;
             var total = response.total;

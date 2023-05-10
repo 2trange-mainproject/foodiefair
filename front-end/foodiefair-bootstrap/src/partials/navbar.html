@@ -92,7 +92,7 @@
               <span id="login-name"></span>
               <li class="dropdown ms-4" id="login-profile" style="display: none">
                 <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img id="login-image" src="" class="avatar avatar-md rounded-circle">
+                  <img id="login-image" src="" class="avatar avatar-md rounded-circle login-image">
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end p-0">
@@ -107,12 +107,12 @@
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="@@webRoot/pages/userUpdate">
+                      <a class="dropdown-item" id="update-link">
                         회원정보 수정
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#!">
+                      <a class="dropdown-item" href="#!" onclick="confirmDelete();">
                         회원탈퇴
                       </a>
                     </li>
@@ -126,30 +126,46 @@
               <a id="signup-link" style="color: #889397; display: none" href="@@webRoot/pages/contract">회원가입</a>
               <script>
                 window.onload = function() {
-                  const loginUser = JSON.parse(localStorage.getItem('loginUser'));
-                  if
-                  (loginUser != null) {
-                    document.getElementById('login-name').innerHTML = loginUser.userName + ' 님';
-                    document.getElementById('login-message').innerHTML = loginUser.userName + ' 님';
-                    document.getElementById('login-email').innerHTML = loginUser.userEmail;
-                    document.getElementById('login-image').src = loginUser.userImg;
+                  fetch('http://localhost:8081/get-user-info', {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'include'
+                  })
+                          .then(response => {
+                            if (response.ok) {
+                              return response.json();
+                            } else {
+                              throw new Error('로그인되지 않은 사용자입니다.');
+                            }
+                          })
+                          .then(loginUser => {
+                            // 로그인한 사용자의 정보를 처리하는 코드
+                            document.getElementById('login-name').innerHTML = loginUser.userName + ' 님';
+                            document.getElementById('login-message').innerHTML = loginUser.userName + ' 님';
+                            document.getElementById('login-email').innerHTML = loginUser.userEmail;
+                            document.getElementById('login-image').src = loginUser.userImg;
 
-                    const mypageLink = document.getElementById('mypage-link');
-                    mypageLink.href = `@@webRoot/pages/mypage?userId=${loginUser.userId}`;
+                            const mypageLink = document.getElementById('mypage-link');
+                            mypageLink.href = `@@webRoot/pages/mypage?userId=${loginUser.userId}`;
 
-                    document.getElementById('logout-link').style.display = 'inline';
-                    document.getElementById('login-profile').style.display = 'inline';
-                  } else {
-                    document.getElementById('signin-link').style.display = 'inline';
-                    document.getElementById('signup-link').style.display = 'inline';
-                  }
-                }
+                            const updateLink = document.getElementById('update-link');
+                            updateLink.href = `@@webRoot/pages/userUpdate?userId=${loginUser.userId}`;
+
+                            document.getElementById('logout-link').style.display = 'inline';
+                            document.getElementById('login-profile').style.display = 'inline';
+                          })
+                          .catch(error => {
+                            console.error(error);
+                            document.getElementById('signin-link').style.display = 'inline';
+                            document.getElementById('signup-link').style.display = 'inline';
+                          });
+                };
                 function logout() {
                   fetch('http://localhost:8081/logout', {
                     method: 'POST',
-                    mode: 'cors'
+                    mode: 'cors',
+                    credentials: 'include'
                   }).then(response => {
-                    localStorage.removeItem('loginUser');
                     alert('로그아웃 되었습니다.');
                     location.reload();
                   });
@@ -565,3 +581,5 @@
 </div>
 
 <script src="@@webRoot/assets/js/moveToFood.js"></script>
+<script src="@@webRoot/assets/js/deleteUser.js"></script>
+<script src="@@webRoot/assets/js/ajax/getUserInfo.js"></script>

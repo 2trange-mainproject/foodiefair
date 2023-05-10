@@ -1,6 +1,8 @@
 package com.multicampus.foodiefair.controller;
 
+import com.multicampus.foodiefair.dto.ProductDTO;
 import com.multicampus.foodiefair.service.OCRService;
+import com.multicampus.foodiefair.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
@@ -24,19 +26,18 @@ import java.util.HashMap;
 
 public class ReceiptController {
 
-    public File convertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
-        Path tempDir = Files.createTempDirectory("");
-        File file = new File(tempDir.toFile(), multipartFile.getOriginalFilename());
-        multipartFile.transferTo(file);
-        return file;
-    }
-
-    public String productName = "무파마";
+    public String productName;
     private final OCRService ocrService;
+    private final ProductService productService;
 
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> processReceipt(@RequestBody HashMap<String, Object> requestData) {
         String base64Data = (String) requestData.get("image");
+        String productId = (String) requestData.get("productId");
+
+        ProductDTO productDTO = productService.read(productId);
+        productName = productDTO.getProductName();
+        System.out.println("productName : " + productName);
 
         // 네이버 CLOVA OCR API로 POST 요청 보내기
         Boolean ocrResponse = ocrService.sendOcrRequest(base64Data, productName);
@@ -53,28 +54,4 @@ public class ReceiptController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonResponse.toString());
         }
     }
-
-    /*@PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> processReceipt(@RequestParam("reviewImg") MultipartFile reviewImg) throws IOException {
-        File requestData = convertMultipartFileToFile(reviewImg);
-
-        // 이미지 파일을 base64로 인코딩
-        byte[] fileContent = Files.readAllBytes(requestData.toPath());
-        String base64Data = Base64.getEncoder().encodeToString(fileContent);
-
-        // 네이버 CLOVA OCR API로 POST 요청 보내기
-        Boolean ocrResponse = ocrService.sendOcrRequest(base64Data, productName);
-
-        // 처리 결과에 따라 응답 생성
-        JSONObject jsonResponse = new JSONObject();
-        if (ocrResponse) {
-            jsonResponse.put("status", "success");
-            jsonResponse.put("message", "OK");
-            return ResponseEntity.ok().body(jsonResponse.toString());
-        } else {
-            jsonResponse.put("status", "failure");
-            jsonResponse.put("message", "영수증을 다시 첨부해주세요");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonResponse.toString());
-        }
-    }*/
 }

@@ -39,14 +39,15 @@
 </footer>
 
 <script>
-  const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+  //const loginUserAuth = JSON.parse(localStorage.getItem('loginUser'));
 
   document.addEventListener('DOMContentLoaded', function() {
     const adminPageLink = document.getElementById('admin-page-link');
 
-    adminPageLink.addEventListener('click', function(event) {
+    adminPageLink.addEventListener('click', async function(event) {
       event.preventDefault(); // 기본 클릭 동작을 중지합니다.
 
+      const loginUser = await getUserInfo();
       const userAuth = loginUser.userAuth;
 
       if(userAuth === "ADMIN"){

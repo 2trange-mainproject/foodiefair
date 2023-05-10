@@ -1,6 +1,7 @@
 package com.multicampus.foodiefair.dao;
 
 import com.multicampus.foodiefair.dto.ProductDTO;
+import com.multicampus.foodiefair.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
