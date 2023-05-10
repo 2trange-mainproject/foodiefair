@@ -119,12 +119,11 @@ $("#review-enroll").on('click', async function(e) {
 
     if(!loginUser){
         Swal.fire({
-            title: "등록 불가",
+            title: "등록 실패",
             html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
             icon: "warning",
-            confirmButtonColor: "#d6335e",
-            confirmButtonText: "확인",
-            timer: 3000,
+            showConfirmButton: false,
+            timer: 1200,
         });
         return;
     }

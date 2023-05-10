@@ -40463,3 +40463,22 @@ span.flatpickr-weekday {
   height: 50px; /* 원하는 높이로 설정 */
   object-fit: cover; /* 이미지가 너비와 높이에 맞게 잘리도록 함 */
 }
+
+/* 회원가입 에러 표시 */
+.error{
+  font-size: 1px;
+  height: 20px;
+  color:red;
+  font-weight: 700;
+}
+
+/* 툴팁 */
+.tooltip-inner{
+  white-space: pre-wrap;
+  background: #d43384;
+  max-width: 600px;
+  font-size: 15px;
+}
+
+
+
