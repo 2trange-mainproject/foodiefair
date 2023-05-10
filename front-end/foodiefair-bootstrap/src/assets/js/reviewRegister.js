@@ -8,21 +8,6 @@ var productId = getKeywordIdFromUrl();
 let foodImage = null;
 let receiptImage = null;
 
-function foodURL(input) {
-    if (input.files && input.files[0]) {
-        foodImage = input.files[0];
-        let reader = new FileReader();
-        reader.onload = async function (e) {
-            document.getElementById('food_preview').src = e.target.result;
-            $("#food_preview").css("display", "inline");
-        };
-        reader.readAsDataURL(input.files[0]);
-    } else {
-        document.getElementById('food_preview').src = "";
-        $("#food_preview").css("display", "none");
-    }
-}
-
 function loadKeywords(productId) {
     $.ajax({
         url: `http://localhost:8081/api/keyword/${productId}`,
@@ -118,8 +103,8 @@ $("#review-reset").on("click", function(e) {
     $("#OCR_preview").attr("src", "").css("display", "none");
 
     // 파일 input 값 초기화
-    $("#food_image_input").val('');
-    $("#receipt_image_input").val('');
+    $("#food_file").val('');
+    $("#OCR_file").val('');
 
     // 이미지 변수 초기화
     foodImage = null;
@@ -131,6 +116,18 @@ $("#review-enroll").on('click', async function(e) {
     e.preventDefault(); // 기본 이벤트 실행 막기
 
     const loginUser = await getUserInfo();
+
+    if(!loginUser){
+        Swal.fire({
+            title: "등록 불가",
+            html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+            icon: "warning",
+            confirmButtonColor: "#d6335e",
+            confirmButtonText: "확인",
+            timer: 3000,
+        });
+        return;
+    }
 
     var userId = loginUser.userId;
     // 입력된 정보 가져오기
@@ -172,8 +169,8 @@ $("#review-enroll").on('click', async function(e) {
             $("#OCR_preview").attr("src", "").css("display", "none");
 
             // 파일 input 값 초기화
-            $("#food_image_input").val('');
-            $("#receipt_image_input").val('');
+            $("#food_file").val('');
+            $("#OCR_file").val('');
 
             // 이미지 변수 초기화
             foodImage = null;
@@ -185,6 +182,22 @@ $("#review-enroll").on('click', async function(e) {
     });
 });
 
+//음식 사진
+function foodURL(input) {
+    if (input.files && input.files[0]) {
+        foodImage = input.files[0];
+        let reader = new FileReader();
+        reader.onload = async function (e) {
+            document.getElementById('food_preview').src = e.target.result;
+            $("#food_preview").css("display", "inline");
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        document.getElementById('food_preview').src = "";
+        $("#food_preview").css("display", "none");
+    }
+}
+
 //영수증
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -192,6 +205,7 @@ function readURL(input) {
         let reader = new FileReader();
         reader.onload = async function (e) {
             document.getElementById('OCR_preview').src = e.target.result;
+            $("#OCR_preview").css("display", "inline");
 
             const base64Data = e.target.result.split(',')[1];
             activateSpinner();

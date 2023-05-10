@@ -3,6 +3,10 @@ $(document).ready(function () {
     loadProductDetails(productId);
 
     productReviewsRead();
+
+    //두 줄 뜨는 보기 안 좋은 것을 가리기 위함
+    $("#food_preview").attr("src", "").css("display", "none");
+    $("#OCR_preview").attr("src", "").css("display", "none");
 });
 
 function getProductIdFromUrl() {
