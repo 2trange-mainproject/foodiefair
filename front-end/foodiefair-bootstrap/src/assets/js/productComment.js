@@ -6,6 +6,12 @@ $(document).ready(function () {
         $(e.target).empty();
     })
     $('#review-section').on('click', '.btn-comment-enroll', registerComment);
+    $('#review-section').on('keydown', function(e) { // 엔터 키로 리뷰 댓글 달기
+        if (e.keyCode === 13) {
+            $(e.target).closest('.row').find('.btn-comment-enroll').click();
+            e.preventDefault();
+        }
+    });
     $('#review-section').on('click', '.btn-comment-delete', commentDelete);
 });
 async function productReviewCommentRead(e) {
