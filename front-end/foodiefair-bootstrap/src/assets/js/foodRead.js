@@ -71,7 +71,7 @@ function renderProductDetails(product) {
         <div class="col-md-6">
           <!-- img slide -->
           <div class="product">
-          <img src="${product.productImg}" style="width: 546px; max-height: 546px; margin-left: 20px">
+          <img src="${product.productImg}" style="max-width: 546px; height: 546px; margin-left: 20px">
             
           </div>
         </div>
