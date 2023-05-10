@@ -1,5 +1,5 @@
-let userId = 1;
-let loggedUserId = 2;
+// const userId=1;
+// const loggedUserId=1;
 
 $(document).ready(async function () {
     try {
@@ -41,8 +41,6 @@ $(document).ready(async function () {
             }
         }
     }, 250));
-
-    getActiveTab();
 });
 
 async function fetchFollowData(userId, type, lastFollowId, perPage, loggedUserId) {
@@ -164,7 +162,6 @@ async function unfollowUser(userId, loggedUserId, followedId) {
         console.error('Failed to unfollow user');
     }
 }
-
 
 function debounce(func, wait) {
     let timeout;

@@ -39,7 +39,7 @@ async function fetchFollowCount(userId, type) {
     }
 }
 
-// localStorage에 active한 탭 Id를 담아 전달, 3초후 삭제
+// localStorage에 active한 탭 Id를 담아 전달
 function setActiveTab(activeTabId) {
     localStorage.setItem('activeTab', activeTabId);
 }

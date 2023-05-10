@@ -16,7 +16,7 @@
     </select>
 
     <select id="selectFollowingProfiles" resultType="java.util.HashMap" parameterType="map">
-        SELECT u.userId, u.userName, u.userImg, f.followId, f.followingId,
+        SELECT u.userId, u.userName, u.userImg, f.followId,
                EXISTS (SELECT 1 FROM Follow f2 WHERE f2.followingId = #{loggedUserId} AND f2.followedId = u.userId) AS isFollowed
         FROM User u
                  JOIN Follow f ON u.userId = f.followedId
