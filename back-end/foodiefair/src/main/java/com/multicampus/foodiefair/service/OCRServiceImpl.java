@@ -94,7 +94,7 @@ public class OCRServiceImpl implements OCRService {
             JSONObject item = items.getJSONObject(i);
             String nameText = item.getJSONObject("name").getString("text").replaceAll("\\s+", "");
 
-            if (nameText.contains(cleanedProductName)) {
+            if (cleanedProductName.contains(nameText)) {
                 productFound = true;
                 break;
             }
