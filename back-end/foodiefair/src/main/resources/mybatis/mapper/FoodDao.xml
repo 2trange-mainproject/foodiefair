@@ -13,7 +13,12 @@
     </update>
 
     <select id="selectFilteredList" resultType="com.multicampus.foodiefair.dto.ProductDTO">
-        SELECT *
+        SELECT *,
+        (
+        SELECT COUNT(*)
+        FROM Saved s
+        WHERE s.userId = #{userId} AND s.productId = t.productId
+        ) AS saved
         FROM (
         SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
             <choose>

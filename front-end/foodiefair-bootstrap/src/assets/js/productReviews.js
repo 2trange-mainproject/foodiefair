@@ -69,7 +69,7 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
 
         let reivewText = `<div class="d-flex border-bottom pb-6 mb-6">
                             <img src="${item.userImg}" alt=""
-                              class="rounded-circle avatar-lg">
+                              class="rounded-circle avatar-lg login-image">
                             <div class="ms-5 flex-grow-1">
                               <h6 class="mb-1">
                                 ${item.userName}

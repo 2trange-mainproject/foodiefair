@@ -117,7 +117,7 @@ document.getElementById('reset-search').addEventListener('click', function () {
     toggleResetSearchButton();
 
     // 페이지를 새로고침하거나 데이터를 다시 불러오기
-    loadProducts(1);
+    loadProducts(1, $(".form-select").val());
 });
 
 function toggleResetSearchButton() {
@@ -150,7 +150,11 @@ function updateSearchKeyword() {
 }
 
 
-function loadProducts(page, sortOrder) {
+async function loadProducts(page, sortOrder) {
+    //로그인한 유저 정보
+    const loginUser = await getUserInfo();
+    var userId = loginUser ? loginUser.userId : null;
+
     // food.html 페이지의 JavaScript 코드
     const searchKeyword = localStorage.getItem('searchKeyword');
     console.log('검색 키워드:', searchKeyword);
@@ -158,6 +162,10 @@ function loadProducts(page, sortOrder) {
     var filters = getSelectedFilters();
 
     var queryString = `?page=${page}&size=15`;
+
+    if (userId) {
+        queryString += `&userId=${userId}`;
+    }
 
     if (filters.stores.length > 0) {
         queryString += `&stores=${encodeURIComponent(JSON.stringify(filters.stores))}`;
@@ -223,6 +231,9 @@ function renderProducts(data) {
 
         var fixedTag = JSON.parse(product.fixedTag).smallCategory;
 
+        var isActive = product.saved === 1 ? 'active' : '';
+        var bookmarkIcon = product.saved === 1 ? 'bi-bookmark-fill' : 'bi-bookmark';
+
         productHtml += `
             <div class="col">
               <div class="card card-product">
@@ -232,7 +243,7 @@ function renderProducts(data) {
                       <span class="badge bg-${festivalColor}">${festivalText}</span>
                     </div>
                     <a href="viewFood?productId=${product.productId}">
-                        <img class="mb-3 img-fluid" style="height: 220px;" src="${product.productImg}">
+                        <img class="mb-3 img-fluid" style="max-width: 220px; height: 220px;" src="${product.productImg}">
                     </a>
                   </div>
                   <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
@@ -250,7 +261,7 @@ function renderProducts(data) {
                     <div>
                       <span class="text-dark">${product.productPrice.toLocaleString('ko-KR')}원</span>
                       
-                      <a href="#" class="ms-2 btn-action" style="color: deeppink" id="product-save" data-product-id="${product.productId}"><i class="bi bi-bookmark"></i></a>
+                      <a href="#" class="ms-2 btn-action ${isActive}" style="color: deeppink" id="product-save" data-product-id="${product.productId}"><i class="${bookmarkIcon}"></i></a>
                     </div>
                   </div>
                 </div>
@@ -308,13 +319,13 @@ function renderPagination(currentPage, totalItems) {
         event.preventDefault();
         var pageNumber = parseInt($(this).data("page"));
         if (!isNaN(pageNumber)) {
-            loadProducts(pageNumber);
+            loadProducts(pageNumber, $(".form-select").val());
         }
     });
 }
 
 $(document).ready(function () {
-    loadProducts(1);
+    loadProducts(1, $(".form-select").val());
 });
 
 $(document).on("click", "#product-save", function(e) {
@@ -326,10 +337,13 @@ async function productSaved(e) {
     e.preventDefault();
     e.stopPropagation();
 
+    const loginUser = await getUserInfo();
+    var userId = loginUser ? loginUser.userId : null;
+
     const productId = $(this).data("product-id");
 
     const sendData = { // 데이터 저장 및 삭제에 필요한 정보
-        userId: 35,
+        userId: userId,
         productId: productId
     };
 

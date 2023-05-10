@@ -127,10 +127,12 @@ $("#review-reset").on("click", function(e) {
 });
 
 //----------------등록 버튼------------------
-$("#review-enroll").on('click', function(e) {
+$("#review-enroll").on('click', async function(e) {
     e.preventDefault(); // 기본 이벤트 실행 막기
 
-    var userId = 35;
+    const loginUser = await getUserInfo();
+
+    var userId = loginUser.userId;
     // 입력된 정보 가져오기
     var productId = getProductIdFromUrl();
     var goodReviews = $("#good-review").val().trim();
