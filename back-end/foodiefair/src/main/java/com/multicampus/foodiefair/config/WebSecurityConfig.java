@@ -55,7 +55,7 @@ public class WebSecurityConfig {
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/dashboard/**").hasRole("ADMIN")
+                .antMatchers("/dashboard/**").access("hasRole('ADMIN')")
                 .antMatchers("/api/add-product/**").access("hasRole('ADMIN')")
                 .antMatchers("/api/edit-customer/**").access("hasRole('ADMIN')")
                 .antMatchers("/api/upload-image/**").access("hasRole('ADMIN')")
