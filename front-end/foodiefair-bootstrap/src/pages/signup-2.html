@@ -35,14 +35,14 @@
               <h5>*닉네임</h5>
               <div class="col-12 d-flex align-items-center" style="margin-top: 0.5px;">
                 <div class="col-12">
-                  <input type="text" class="form-control" id="userName" name="userName" placeholder="닉네임을 입력하세요." required>
+                  <input type="text" class="form-control" id="userName" name="userName" placeholder="닉네임을 입력하세요." pattern=".{3,10}" required>
                 </div>
               </div>
               <!-- 이메일 input -->
               <h5>*이메일</h5>
               <div class="col-12 d-flex align-items-center" style="margin-top: 0.5px;">
                 <div class="w-120">
-                  <input type="email" class="form-control" id="inputEmail4" name="userEmail" placeholder="Email" required>
+                  <input type="email" class="form-control" id="inputEmail4" name="userEmail" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                 </div>
                 <button type="button" class="btn btn-pink ms-3" style="font-size: 13px; width: 170px; padding: 8px 8px;" id="send-code-button">인증번호 보내기</button>
               </div>
@@ -56,14 +56,14 @@
               <div class="col-12">
                 <h5>*비밀번호</h5>
                 <div class="password-field position-relative">
-                  <input type="password" id="password" name="userPwd" placeholder="영문, 숫자 포함 8자 이상으로 입력해주세요." class="form-control" required>
+                  <input type="password" id="password" name="userPwd" placeholder="영문, 숫자 포함 8자 이상으로 입력해주세요." class="form-control" pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}" required>
                   <span><i id="passwordToggler"class="bi bi-eye-slash"></i></span>
                 </div>
               </div>
               <div class="col-12">
                 <h5>*비밀번호 확인</h5>
                 <div class="password-field position-relative">
-                  <input type="password" id="password-confirm" name="userPwdConfirm" placeholder="비밀번호를 다시 한번 입력해주세요." class="form-control" required>
+                  <input type="password" id="password-confirm" name="userPwdConfirm" placeholder="비밀번호를 다시 한번 입력해주세요." class="form-control" pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}" required>
                   <span><i id="passwordToggler2"class="bi bi-eye-slash"></i></span>
                 </div>
               </div>
