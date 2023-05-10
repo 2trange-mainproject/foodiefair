@@ -85,7 +85,7 @@ public class OCRServiceImpl implements OCRService {
             return false;
         }
 
-        // 2. "subResults"의 "items"의 "name"의 "text" 값이 productName 문자열을 포함하고 있는 지 (띄어쓰기는 무시하고)
+        // 2. productName 문자열이 "subResults"의 "items"의 "name"의 "text" 값을 포함하고 있는 지 (띄어쓰기는 무시하고)
         JSONArray items = jsonResponse.getJSONArray("subResults").getJSONObject(0).getJSONArray("items");
         boolean productFound = false;
         String cleanedProductName = productName.replaceAll("\\s+", "");
