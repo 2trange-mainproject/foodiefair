@@ -16,4 +16,6 @@ public class ProductDTO {
     private int productReviews;     // 리뷰개수
     private int productSaved;       // 찜개수
     private int productEvent;    // 행사정보
+
+    private int saved;
 }

@@ -9,7 +9,8 @@ async function getUserInfo() {
         if (response.ok) {
             return await response.json();
         } else {
-            throw new Error('로그인되지 않은 사용자입니다.');
+            console.log('로그인되지 않은 사용자입니다.');
+            return null;
         }
     } catch (error) {
         console.error(error);

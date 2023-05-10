@@ -70,15 +70,18 @@ public class ProductController {
         String sortOrder = requestParams.get("sortOrder");
         String searchKeyword = requestParams.get("searchKeyword");
         logger.info("searchKeyword : {}", searchKeyword);
+        Integer userId = requestParams.get("userId") != null ? Integer.parseInt(requestParams.get("userId")) : null;
+        logger.info("userId : {}", userId);
 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
                 .page(page)
                 .size(size)
                 .storeFilters(storeFilters)
                 .categoryFilters(categoryFilters)
+                .userId(userId)
                 .build();
 
-        PageResponseDTO<ProductDTO> pageResponseDTO = productService.getFilteredList(pageRequestDTO, storeFilters, categoryFilters, sortOrder, searchKeyword);
+        PageResponseDTO<ProductDTO> pageResponseDTO = productService.getFilteredList(pageRequestDTO, storeFilters, categoryFilters, sortOrder, searchKeyword, userId);
 
         // 파일 URL 생성
         S3Client s3Client = new S3Client();
