@@ -126,27 +126,40 @@
               <a id="signup-link" style="color: #889397; display: none" href="@@webRoot/pages/contract">회원가입</a>
               <script>
                 window.onload = function() {
-                  const loginUser = JSON.parse(localStorage.getItem('loginUser'));
-                  if
-                  (loginUser != null) {
-                    document.getElementById('login-name').innerHTML = loginUser.userName + ' 님';
-                    document.getElementById('login-message').innerHTML = loginUser.userName + ' 님';
-                    document.getElementById('login-email').innerHTML = loginUser.userEmail;
-                    document.getElementById('login-image').src = loginUser.userImg;
+                  fetch('http://localhost:8081/get-user-info', {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'include'
+                  })
+                          .then(response => {
+                            if (response.ok) {
+                              return response.json();
+                            } else {
+                              throw new Error('로그인되지 않은 사용자입니다.');
+                            }
+                          })
+                          .then(loginUser => {
+                            // 로그인한 사용자의 정보를 처리하는 코드
+                            document.getElementById('login-name').innerHTML = loginUser.userName + ' 님';
+                            document.getElementById('login-message').innerHTML = loginUser.userName + ' 님';
+                            document.getElementById('login-email').innerHTML = loginUser.userEmail;
+                            document.getElementById('login-image').src = loginUser.userImg;
 
-                    const mypageLink = document.getElementById('mypage-link');
-                    mypageLink.href = `@@webRoot/pages/mypage?userId=${loginUser.userId}`;
+                            const mypageLink = document.getElementById('mypage-link');
+                            mypageLink.href = `@@webRoot/pages/mypage?userId=${loginUser.userId}`;
 
-                    const updateLink = document.getElementById('update-link');
-                    updateLink.href = `@@webRoot/pages/userUpdate?userId=${loginUser.userId}`;
+                            const updateLink = document.getElementById('update-link');
+                            updateLink.href = `@@webRoot/pages/userUpdate?userId=${loginUser.userId}`;
 
-                    document.getElementById('logout-link').style.display = 'inline';
-                    document.getElementById('login-profile').style.display = 'inline';
-                  } else {
-                    document.getElementById('signin-link').style.display = 'inline';
-                    document.getElementById('signup-link').style.display = 'inline';
-                  }
-                }
+                            document.getElementById('logout-link').style.display = 'inline';
+                            document.getElementById('login-profile').style.display = 'inline';
+                          })
+                          .catch(error => {
+                            console.error(error);
+                            document.getElementById('signin-link').style.display = 'inline';
+                            document.getElementById('signup-link').style.display = 'inline';
+                          });
+                };
                 function logout() {
                   fetch('http://localhost:8081/logout', {
                     method: 'POST',
