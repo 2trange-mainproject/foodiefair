@@ -23,26 +23,6 @@ function foodURL(input) {
     }
 }
 
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        receiptImage = input.files[0];
-        let reader = new FileReader();
-        reader.onload = async function (e) {
-            document.getElementById('OCR_preview').src = e.target.result;
-            $("#OCR_preview").css("display", "inline");
-
-            const base64Data = e.target.result.split(',')[1];
-            activateSpinner();
-
-            await requestWithBase64(base64Data);
-        };
-        reader.readAsDataURL(input.files[0]);
-    } else {
-        document.getElementById('OCR_preview').src = "";
-        $("#OCR_preview").css("display", "none");
-    }
-}
-
 function loadKeywords(productId) {
     $.ajax({
         url: `http://localhost:8081/api/keyword/${productId}`,
