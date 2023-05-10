@@ -37,33 +37,35 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductDTO> selectFilteredList(PageRequestDTO pageRequestDto, List<String> storeFilters, List<String> categoryFilters, String sortOrder, String searchKeyword) {
+    public List<ProductDTO> selectFilteredList(PageRequestDTO pageRequestDto, List<String> storeFilters, List<String> categoryFilters, String sortOrder, String searchKeyword, Integer userId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("pageRequestDto", pageRequestDto);
         paramMap.put("storeFilters", storeFilters);
         paramMap.put("categoryFilters", categoryFilters);
         paramMap.put("sortOrder", sortOrder);
         paramMap.put("searchKeyword", searchKeyword);
+        paramMap.put("userId", userId);
 
         return dao.selectFilteredList(paramMap);
     }
 
     @Override
-    public int getFilteredCount(PageRequestDTO pageRequestDto, List<String> storeFilters, List<String> categoryFilters, String sortOrder, String searchKeyword) {
+    public int getFilteredCount(PageRequestDTO pageRequestDto, List<String> storeFilters, List<String> categoryFilters, String sortOrder, String searchKeyword, Integer userId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("pageRequestDto", pageRequestDto);
         paramMap.put("storeFilters", storeFilters);
         paramMap.put("categoryFilters", categoryFilters);
         paramMap.put("sortOrder", sortOrder);
         paramMap.put("searchKeyword", searchKeyword);
+        paramMap.put("userId", userId);
 
         return dao.getFilteredCount(paramMap);
     }
 
     @Override
-    public PageResponseDTO<ProductDTO> getFilteredList(PageRequestDTO pageRequestDto, List<String> storeFilters, List<String> categoryFilters, String sortOrder, String searchKeyword) {
-        List<ProductDTO> DtoList = selectFilteredList(pageRequestDto, storeFilters, categoryFilters, sortOrder, searchKeyword);
-        int total = getFilteredCount(pageRequestDto, storeFilters, categoryFilters, sortOrder, searchKeyword);
+    public PageResponseDTO<ProductDTO> getFilteredList(PageRequestDTO pageRequestDto, List<String> storeFilters, List<String> categoryFilters, String sortOrder, String searchKeyword, Integer userId) {
+        List<ProductDTO> DtoList = selectFilteredList(pageRequestDto, storeFilters, categoryFilters, sortOrder, searchKeyword, userId);
+        int total = getFilteredCount(pageRequestDto, storeFilters, categoryFilters, sortOrder, searchKeyword, userId);
 
         return PageResponseDTO.<ProductDTO>withAll()
                 .dtoList(DtoList)
