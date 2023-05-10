@@ -5,6 +5,15 @@
 
 <mapper namespace="com.multicampus.foodiefair.dao.IProductDAO">
     <select id="readDao" resultType="com.multicampus.foodiefair.dto.ProductDTO">
+        select *, (
+            SELECT COUNT(*)
+            FROM Saved s
+            WHERE s.userId = #{userId} AND s.productId = t.productId
+        ) AS saved
+        from Product t where productId = #{selectedId}
+    </select>
+
+    <select id="readForRecipt" resultType="com.multicampus.foodiefair.dto.ProductDTO">
         select * from Product where productId = #{selectedId}
     </select>
 

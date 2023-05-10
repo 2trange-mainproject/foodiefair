@@ -32,13 +32,16 @@ public class ProductController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // Read
-    @GetMapping("/product-read/{productId}")
+    @GetMapping("/product-read")
     public ResponseEntity<Map<String, Object>> ProductRead(
-            @PathVariable("productId") String productId) {
-        logger.info(productId);
+            @RequestParam Map<String, String> requestParams) {
+        String productId = requestParams.get("productId");
+        Integer userId = requestParams.get("userId") != null ? Integer.parseInt(requestParams.get("userId")) : null;
+
+        System.out.println("productId : " + productId + "userId" + userId);
 
         productService.update(productId);                       //해당 상품 조회수 1 올리기
-        ProductDTO product = productService.read(productId);    //상품 읽기
+        ProductDTO product = productService.read(productId, userId);    //상품 읽기
 
         // 파일 URL 생성
         S3Client s3Client = new S3Client();

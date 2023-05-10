@@ -10,9 +10,18 @@ function getProductIdFromUrl() {
     return urlParams.get("productId");
 }
 
-function loadProductDetails(productId) {
+async function loadProductDetails(productId) {
+    let queryString = `?productId=${productId}`;
+
+    const loginUser = await getUserInfo();
+    let userId = loginUser ? loginUser.userId : null;
+
+    if (userId) {
+        queryString += `&userId=${userId}`;
+    }
+
     $.ajax({
-        url: `http://localhost:8081/api/product-read/${productId}`,
+        url: `http://localhost:8081/api/product-read${queryString}`,
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -44,6 +53,9 @@ function renderProductDetails(product) {
     var fixedTagStore = JSON.parse(product.fixedTag).store;
     var fixedTagBig = JSON.parse(product.fixedTag).bigCategory;
     var fixedTagSmall = JSON.parse(product.fixedTag).smallCategory;
+
+    var isActive = product.saved === 1 ? 'active' : '';
+    var bookmarkIcon = product.saved === 1 ? 'bi-bookmark-fill' : 'bi-bookmark';
 
     productHtml += `
   <div class="mt-4">
@@ -80,7 +92,7 @@ function renderProductDetails(product) {
             <!-- content -->
             <a href="#!" style="color: deeppink" class="mb-4 d-block">${fixedTagBig}</a>
             <!-- heading -->
-            <h1 class="mb-1" id="product-name" data-productId="${product.productId}">${product.productName}<a href="#" class="ms-2" style="color: deeppink" id="product-save"><i class="bi bi-bookmark"></i></a></h1>
+            <h1 class="mb-1" id="product-name" data-productId="${product.productId}">${product.productName} <a href="#" class="ms-2 btn-action ${isActive}" style="color: deeppink" id="product-save" data-product-id="${product.productId}"><i class="${bookmarkIcon}"></i></a></h1>
             <div class="mb-4">
               <!-- rating -->
               <a href="#" class="ms-2" style="color: deeppink" id="product-review">(리뷰 개수 ${product.productReviews})</a>
@@ -134,8 +146,11 @@ async function productSaved(e) {
     e.preventDefault();
     e.stopPropagation();
 
+    const loginUser = await getUserInfo();
+    var userId = loginUser ? loginUser.userId : null;
+
     const sendData = { // 데이터 저장 및 삭제에 필요한 정보
-        userId: 35,
+        userId: userId,
         productId: await $('#product-name').attr('data-productId')
     };
 

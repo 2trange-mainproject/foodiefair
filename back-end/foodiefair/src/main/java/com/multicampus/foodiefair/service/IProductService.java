@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface IProductService {
     // 상품 읽기
-    public ProductDTO read(String selectedId);
+    public ProductDTO read(String selectedId, Integer userId);
+    public ProductDTO readRecipt(String selectedId);
 
     public int update(String selectedId);
     
