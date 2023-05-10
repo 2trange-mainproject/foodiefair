@@ -36,6 +36,15 @@ $(".form-select").on("change", function() {
     loadProducts(1, $(this).val());
 });
 
+//15글자 넘어가면 ...로 대체
+function truncateString(str, maxLength) {
+    if (str.length > maxLength) {
+        return str.substring(0, maxLength) + '...';
+    } else {
+        return str;
+    }
+}
+
 async function loadProducts(page, sortOrder) {
     const loginUser = await getUserInfo();
     var userId = loginUser ? loginUser.userId : null;
@@ -132,7 +141,7 @@ function renderProducts(data) {
                     </a>
                   </div>
                   <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>
-                  <h2 class="fs-6"><a href="viewFood?productId=${product.productId}" class="text-inherit text-decoration-none">${product.productName}</a></h2>
+                  <h2 class="fs-6" title="${product.productName}"><a href="viewFood?productId=${product.productId}" class="text-inherit text-decoration-none">${truncatedProductName}</a></h2>
                   <div>
                     <small class="text-warning"><i class="bi bi-star-fill"></i></small>
                     <span class="text-muted small">조회(<span>${product.productViews}</span>)</span>
