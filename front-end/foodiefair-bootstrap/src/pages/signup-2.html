@@ -32,44 +32,44 @@
             <h6>*은 필수 사항입니다.</h6>
             <div class="row g-3" style="margin-top: 2px;">
               <!-- col -->
-              <h5>*닉네임</h5>
+              <h5>*닉네임 <span id="nameError" class="error"></span></h5>
               <div class="col-12 d-flex align-items-center" style="margin-top: 0.5px;">
                 <div class="col-12">
-                  <input type="text" class="form-control" id="userName" name="userName" placeholder="닉네임을 입력하세요." pattern=".{3,10}" required>
+                  <input type="text" class="form-control" id="userName" name="userName" placeholder="닉네임을 입력하세요." required>
                 </div>
               </div>
               <!-- 이메일 input -->
-              <h5>*이메일</h5>
+              <h5>*이메일 <span id="emailError" class="error"></span></h5>
               <div class="col-12 d-flex align-items-center" style="margin-top: 0.5px;">
                 <div class="w-120">
-                  <input type="email" class="form-control" id="inputEmail4" name="userEmail" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                  <input type="email" class="form-control" id="inputEmail4" name="userEmail" placeholder="Email" required>
                 </div>
-                <button type="button" class="btn btn-pink ms-3" style="font-size: 13px; width: 170px; padding: 8px 8px;" id="send-code-button">인증번호 보내기</button>
+                <button type="button" class="btn btn-pink ms-3" style="font-size: 13px; width: 170px; padding: 8px 8px;" id="send-code-button" disabled>인증번호 보내기</button>
               </div>
-              <h5>인증번호</h5>
+              <h5>인증번호 <span id="certification" class="error"></span></h5>
               <div class="col-12 d-flex align-items-center" style="margin-top: 0.5px;">
                 <div class="w-120">
                   <input type="text" class="form-control" id="certificationNum" name="userCode" placeholder="인증번호를 입력하세요." required>
                 </div>
-                <button type="button" class="btn btn-pink ms-3 b" style="font-size: 13px; width: 170px; padding: 8px 8px;" id="check-code-button">인증번호 확인</button>
+                <button type="button" class="btn btn-pink ms-3 b" style="font-size: 13px; width: 170px; padding: 8px 8px;" id="check-code-button" disabled>인증번호 확인</button>
               </div>
               <div class="col-12">
-                <h5>*비밀번호</h5>
+                <h5>*비밀번호 <span id="passwordError" class="error"></span></h5>
                 <div class="password-field position-relative">
-                  <input type="password" id="password" name="userPwd" placeholder="영문, 숫자 포함 8자 이상으로 입력해주세요." class="form-control" pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}" required>
+                  <input type="password" id="password" name="userPwd" placeholder="영문, 숫자 포함 8자 이상으로 입력해주세요." class="form-control" required>
                   <span><i id="passwordToggler"class="bi bi-eye-slash"></i></span>
                 </div>
               </div>
               <div class="col-12">
-                <h5>*비밀번호 확인</h5>
+                <h5>*비밀번호 확인 <span id="passwordCheckError" class="error"></span></h5>
                 <div class="password-field position-relative">
-                  <input type="password" id="password-confirm" name="userPwdConfirm" placeholder="비밀번호를 다시 한번 입력해주세요." class="form-control" pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}" required>
+                  <input type="password" id="password-confirm" name="userPwdConfirm" placeholder="비밀번호를 다시 한번 입력해주세요." class="form-control" required>
                   <span><i id="passwordToggler2"class="bi bi-eye-slash"></i></span>
                 </div>
               </div>
               <!-- btn -->
               <div class="col-12 d-grid">
-                <button type="submit" class="btn btn-pink" id="submit-button">가입하기</button>
+                <button type="submit" class="btn btn-pink" id="submit-button" disabled>가입하기</button>
               </div>
               <!-- text -->
               <p><small>By continuing, you agree to our <a href="#!" style="color: hotpink;"> Terms of Service</a> & <a href="@@webRoot/pages/contract" style="color: hotpink;">Privacy Policy</a></small></p>
@@ -78,7 +78,9 @@
           <script>
             var code = "";
             var valid = false;
+
             document.getElementById("send-code-button").addEventListener("click", function() {
+              document.getElementById("certification").innerHTML="인증 이메일이 전송되면 버튼이 활성화됩니다. 잠시만 기다려주세요.";
               // 인증번호 보내기 처리
               $.ajax({
                 type: "POST",
@@ -88,8 +90,11 @@
                   if (result.success) {
                     alert("인증번호가 전송되었습니다.");
                     code = result.message;
+                    document.getElementById("check-code-button").disabled = false;
+                    document.getElementById("certification").innerHTML="";
                   } else {
                     alert(result.message);
+                    document.getElementById("check-code-button").disabled = true;
                   }
                 },
                 error: function (xhr, status, error) {
@@ -106,6 +111,7 @@
               console.log(certificationNum);
               if(code == certificationNum) {
                 alert("인증번호가 확인되었습니다.");
+                submitDisabled();
                 valid = true;
                 return;
               }
@@ -121,15 +127,86 @@
               $("#signup3-form").submit();
             });
 
+            document.getElementById("userName").addEventListener("input", function() {
+              var name = document.getElementById("userName").value;
+
+              var pattern = new RegExp("^.{3,10}$");
+
+              if(name === "") {  // 이름 필드가 비어있는지 확인
+                document.getElementById("nameError").innerHTML = "";
+              } else if(pattern.test(name)) {  // 이름 필드가 비어있지 않을 경우, 패턴 검사
+                document.getElementById("nameError").innerHTML = "";
+                submitDisabled();
+              } else {  // 패턴에 맞지 않는 경우
+                document.getElementById("nameError").innerHTML = "닉네임은 3글자 이상 10글자 이하만 가능합니다.";
+                submitDisabled();
+              }
+            });
+
+            document.getElementById("inputEmail4").addEventListener("input", function() {
+              var email = document.getElementById("inputEmail4").value;
+
+              // 이메일 검증을 위한 정규표현식
+              var pattern = new RegExp("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+
+              if(email === "") {
+                document.getElementById("emailError").innerHTML = "";
+                document.getElementById("send-code-button").disabled = true;
+              } else if(pattern.test(email)) {  // 입력한 이메일이 패턴에 맞는 경우
+                document.getElementById("emailError").innerHTML = "";  // 에러 메시지를 비운다.
+                document.getElementById("send-code-button").disabled = false;
+              } else {  // 입력한 이메일이 패턴에 맞지 않는 경우
+                document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다.";
+                document.getElementById("send-code-button").disabled = true;
+                submitDisabled();
+              }
+            });
+
+            document.getElementById("password").addEventListener("input", function() {
+              var password = document.getElementById("password").value;
+              var pattern = new RegExp("^(?=.*[a-zA-Z])(?=.*\\d).{8,}$");
+
+              if(password === "") {
+                document.getElementById("passwordError").innerHTML = "";
+              } else if(pattern.test(password)){
+                document.getElementById("passwordError").innerHTML = "";
+                submitDisabled();
+              } else {
+                document.getElementById("passwordError").innerHTML = "영문, 숫자 포함 8자 이상으로 입력해주세요.";
+                submitDisabled();
+              }
+            });
+
             document.getElementById("password-confirm").addEventListener("input", function() {
               var password = document.getElementById("password").value;
               var passwordConfirm = document.getElementById("password-confirm").value;
               if (password !== passwordConfirm) {
-                document.getElementById("password-confirm").setCustomValidity("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+                document.getElementById("passwordCheckError").innerHTML = "입력하신 비밀번호와 일치하지 않습니다.";
+                submitDisabled();
               } else {
-                document.getElementById("password-confirm").setCustomValidity("");
+                document.getElementById("passwordCheckError").innerHTML = "비밀번호가 일치합니다.";
+                submitDisabled();
               }
             });
+
+            function submitDisabled(){
+              var nameValue = document.getElementById("userName").value;
+              var emailValue = document.getElementById("inputEmail4").value;
+              var certificateValue = document.getElementById("certificationNum").value;
+              var pwdValue = document.getElementById("password").value;
+              var pwdCheckValue = document.getElementById("password-confirm").value;
+              var nameOK = document.getElementById("nameError").innerHTML;
+              var emailOK = document.getElementById("emailError").innerHTML;
+              var pwdOK = document.getElementById("passwordError").innerHTML;
+              var pwdCheckOK = document.getElementById("passwordCheckError").innerHTML;
+
+              if(nameValue !== "" && emailValue !== "" && certificateValue !== "" && pwdValue !== "" && pwdCheckValue !== "" && nameOK === "" && emailOK === "" && pwdOK === "" && pwdCheckOK === "비밀번호가 일치합니다."){
+                document.getElementById("submit-button").disabled = false;
+              }
+              else{
+                document.getElementById("submit-button").disabled = true;
+              }
+            }
           </script>
         </div>
       </div>
