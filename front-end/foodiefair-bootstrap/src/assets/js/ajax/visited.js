@@ -158,32 +158,18 @@ async function displayVisitedList(userId, page, pageSize) {
             <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="feather-icon icon-more-vertical fs-5"></i>
             </a>
-           <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-                <a id="deleteButton${visited.visitedId}" class="dropdown-item" href="#">
-                    <i class="bi bi-trash me-3"></i>삭제
-                </a>
-            </li>
-        </ul>
+            <ul class="dropdown-menu dropdown-menu-end">
+<li><a class="dropdown-item" href="#" onclick="deleteVisited(${visited.visitedId}, currentPage, pageSize); return false;"><i class="bi bi-trash me-3"></i>삭제</a></li>
+            </ul>
             </div>
             `;
-
         row.appendChild(dropdownCell);
 
         // 삭제 버튼 조건에 맞춰 활성화/비활성화
         const dropdownDiv = dropdownCell.querySelector(".dropdown");
-        console.log('visited.ownerId:', visited.ownerId);
-        console.log('visited.visitedId:', visited.visitedId);
-        console.log('visited.writerId:', visited.writerId);
-        console.log('loginUserId:', loginUserId);
         dropdownDiv.style.display = (visited.ownerId === loginUserId || visited.writerId === loginUserId) ? "block" : "none";
 
         visitedListElement.appendChild(row);
-        const deleteButton = document.getElementById(`deleteButton${visited.visitedId}`);
-        deleteButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            deleteVisited(visited.visitedId, currentPage, pageSize);
-        });
     });
 
     // 페이지 버튼 생성
@@ -243,3 +229,4 @@ async function handleDeleteClick(event) {
     const visitedId = parseInt(event.currentTarget.getAttribute("data-visited-id"));
     await deleteVisited(visitedId);
 }
+
