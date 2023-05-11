@@ -87,11 +87,11 @@
         <div class="row" style="margin-bottom: 10px">
           <div class="col-6">
             <h5 style="display: inline;">음식 사진</h5> &nbsp;
-            <span style="display: inline;">음식 사진을 업로드 해주세요.</span>
+            <span style="display: inline;" id="food-photograph">음식 사진을 업로드 해주세요.</span>
           </div>
           <div class="col-6">
             <h5 style="display: inline;">영수증 인증</h5> &nbsp;
-            <span style="display: inline;">영수증 사진을 업로드 해주세요.</span>
+            <span style="display: inline;" id="receipt-photograph">영수증 사진을 업로드 해주세요.</span>
           </div>
         </div>
         <!-- form -->
@@ -136,8 +136,14 @@
       </div>
       <!-- button -->
       <div class="d-flex justify-content-end" style="margin-bottom: 30px">
-        <div class="mx-3"><a href="#" id="review-reset" class="btn btn-secondary">취소</a></div>
-        <div><a href="#" id="review-enroll" class="btn btn-primary">등록</a></div>
+        <div class="mx-3">
+          <a href="#" id="review-reset" class="btn btn-secondary">취소</a>
+          <a href="#" id="review-update-reset" class="btn btn-secondary" style="display: none;">취소</a>
+        </div>
+        <div>
+          <a href="#" id="review-enroll" class="btn btn-primary">등록</a>
+          <a href="#" id="review-update" class="btn btn-primary" style="display: none;">수정</a>
+        </div>
       </div>
     </div>
   </section>

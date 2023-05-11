@@ -193,6 +193,11 @@ $("#review-enroll").on('click', async function(e) {
             // 이미지 변수 초기화
             foodImage = null;
             receiptImage = null;
+
+            $('#review-section').empty();
+            pageOffset.init();
+            productReviewsRead(e);
+            $(window).scrollTop($('#receipt-reviews-tab').position().top);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
