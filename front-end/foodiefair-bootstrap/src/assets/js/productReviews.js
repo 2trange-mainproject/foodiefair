@@ -30,6 +30,10 @@ $(document).ready(function (){
     $('.btn-reviewMore').click(productReviewMore); // 리뷰 더보기 버튼
     $('#select-review-type').change(productReviewType); // 정렬 선택
     $('#review-section').on('click', '.review-delete', productReviewRemove);
+    $('#review-section').on('click', '.review-modify', productReviewModify);
+
+    $('#review-update-reset').on('click', reviewUpdateReset);
+    $('#review-update').on('click', reviewUpDate);
 });
 
 async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
@@ -61,21 +65,27 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
     const response = await fetch('http://localhost:8081/products/review/reviewRead?'+$.param(queryString)); // 서버에 데이터 요청 후 응답 기다림. 반환 데이터는 Promise 객체
     const data = await response.json(); // 응답 Content-Type이 a// plication/json인 경우 응답 body가 JSON형태의 데이터로 변환이 되면 성공 메세지가 담긴 Promise객체 return -> await 연산자와 함께 처리(fullfilled) 되면 최종적으로 JavaScript 객체로 변환 및 return
     console.log(data);
-    const userInfo = await getUserInfo();
-    console.log(userInfo.userId);
+    const userInfo = await getUserInfo(); // 로그인 한 유저 정보 가져오기
     $.each(data.dtoList, function(index, item) {
         let releaseDate = new Date(item.reviewDate).toISOString().split('T')[0];
         let reviewImage = item.reviewImg ? `<img src="${item.reviewImg}" alt="" class="img-fluid">` : '';
         let reviewImageContainer = reviewImage ? `<div class="border icon-shape icon-lg border-2 ">${reviewImage}</div>` : '';
-
+        let btnDelete;
+        let btnModify;
+        if(userInfo!=null && userInfo.userId == `${item.userId}`) {
+            btnDelete = `<a href="#" class="text-muted review-delete" data-reviewId="${item.reviewId}"><i class="bi bi-trash me-1"></i>삭제하기</a>`
+            btnModify = `<a href="#" class="text-muted ms-3 review-modify" data-reviewId="${item.reviewId}"><i class="bi bi-pencil me-1"></i>수정하기</a>`;
+        } else {
+            btnDelete = `<a href="#" class="text-muted review-delete" data-reviewId="${item.reviewId}" hidden><i class="bi bi-trash me-1"></i>삭제하기</a>`
+            btnModify = `<a href="#" class="text-muted ms-3 review-modify" data-reviewId="${item.reviewId}" hidden><i class="bi bi-pencil me-1"></i>수정하기</a>`;
+        }
         let reivewText = `<div class="d-flex border-bottom pb-6 mb-6">
                             <img src="${item.userImg}" alt=""
                               class="rounded-circle avatar-lg login-image">
                             <div class="ms-5 flex-grow-1">
                               <h6 class="mb-1">
                                 ${item.userName}
-                                <a href="#" class="text-muted review-delete" data-reviewId="${item.reviewId}"><i class="bi bi-trash me-1"></i>삭제하기</a>
-                                <a href="#" class="text-muted ms-3 review-modify" data-reviewId="${item.reviewId}"><i class="bi bi-pencil me-1"></i>수정하기</a>
+                                ${btnDelete}${btnModify}
                               </h6>
                               <p class="small"> <span class="text-muted">${releaseDate}</span>
                                 ${receiptMark}
@@ -152,6 +162,108 @@ async function productReviewRemove (e) {
     pageOffset.init();
     productReviewsRead(e);
 }
+
+let event
+let reviewId
+
+async function productReviewModify(e) {
+    e.preventDefault();
+
+    event = e;
+    reviewId = $(this).closest('.review-modify').data('reviewid');
+    console.log((reviewId));
+    const response = await fetch('http://localhost:8081/products/review/reviewReadOne/' + reviewId, {
+        method: 'GET'
+    });
+    const data = await response.json();
+    console.log(data);
+    $('#good-review').val(data.goodReviews); // 좋았던 점 뿌리기
+    $('#bad-review').val(data.badReviews); // 아쉬운 점 뿌리기
+    $('#OCR_file').prop('disabled', true); // 영수증 인증 막기
+    $('#food-photograph').text('수정하실 음식 사진을 업로드 해주세요.'); // 사진 업로드 문구로 변경
+    $('#receipt-photograph').text('인증은 수정할 수 없습니다.'); // 인증 수정 불가능 문구로 변경
+    $('#good-review').focus(); // 해당 위치로 포커스
+
+    $('#review-reset').hide(); // 리뷰 취소 버튼 숨기기
+    $('#review-enroll').hide(); // 리뷰 등록 버튼 숨기기
+    $('#review-update-reset').show(); // 수정 취소 버튼 활성화
+    $('#review-update').show(); // 수정 버튼 활성화
+}
+
+function reviewUpdateReset (e) { // 취소 버튼 누르면, 전부 지워지고 리뷰 위치로 돌아감
+    e.preventDefault();
+    // 리뷰 정보 초기화
+    $("#good-review").val('');
+    $("#bad-review").val('');
+
+    //사진 초기화
+    $("#food_preview").attr("src", "").css("display", "none");
+    $("#OCR_preview").attr("src", "").css("display", "none");
+
+    // 파일 input 값 초기화
+    $("#food_file").val('');
+    $("#OCR_file").val('');
+
+    // 이미지 변수 초기화
+    foodImage = null;
+
+    $('#review-reset').show(); // 리뷰 취소 버튼 활성화
+    $('#review-enroll').show(); // 리뷰 등록 버튼 활성화
+    $('#review-update-reset').hide(); // 수정 취소 버튼 숨기기
+    $('#review-update').hide(); // 수정 버튼 숨기기
+
+    $('#OCR_file').prop('disabled', false); // 막은 영수증 인증 풀기
+    $('#food-photograph').text('음식 사진을 업로드 해주세요.'); // 문구 재변경
+    $('#receipt-photograph').text('영수증 사진을 업로드 해주세요.'); // 문구 재변경
+    $(window).scrollTop($(e.target).position().top); // 수정 버튼 클릭한 곳으로 이동
+};
+
+async function reviewUpDate (e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('reviewId', reviewId);
+    formData.append('goodReviews', $("#good-review").val().trim());
+    formData.append('badReviews', $("#bad-review").val().trim());
+    formData.append('reviewImg', foodImage);
+
+    console.log(formData);
+    await fetch('http://localhost:8081/products/review/reviewModify', {
+        method: 'PATCH',
+        body: formData
+    });
+    $('#review-section').empty();
+    pageOffset.init();
+    await productReviewsRead(e);
+
+    $('#review-enroll').show(); // 리뷰 등록 버튼 활성화
+    $('#review-reset').show(); // 리뷰 취소 버튼 활성화
+    $('#review-update-reset').hide(); // 수정 취소 버튼 숨기기
+    $('#review-update').hide(); // 수정 버튼 숨기기
+
+    $('#OCR_file').prop('disabled', false); // 막은 영수증 인증 풀기
+    $('#food-photograph').text('음식 사진을 업로드 해주세요.'); // 문구 재변경
+    $('#receipt-photograph').text('영수증 사진을 업로드 해주세요.'); // 문구 재변경
+
+
+    // 리뷰 정보 초기화
+    $("#good-review").val('');
+    $("#bad-review").val('');
+
+    //사진 초기화
+    $("#food_preview").attr("src", "").css("display", "none");
+    $("#OCR_preview").attr("src", "").css("display", "none");
+
+    // 파일 input 값 초기화
+    $("#food_file").val('');
+    $("#OCR_file").val('');
+
+    // 이미지 변수 초기화
+    foodImage = null;
+    receiptImage = null;
+
+    $(window).scrollTop($('#receipt-reviews-tab').position().top); // 리뷰 탭으로 이동
+};
 
 function productReviewMore(e) {
     pageOffset.increaseOffset();

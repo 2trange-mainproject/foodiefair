@@ -65,4 +65,20 @@ public class ReviewController {
 
         return ResponseEntity.ok(resultMap);
     }
+
+    @GetMapping("/reviewReadOne/{reviewId}")
+    public ResponseEntity<Map<String, Object>> reviewReadOne (@PathVariable long reviewId) {
+        Map<String, Object> reviewOne = iReviewService.reviewReadOne(reviewId);
+        return ResponseEntity.ok(reviewOne);
+    }
+
+    @PatchMapping("/reviewModify")
+    public ResponseEntity<String> reviewModify(@RequestParam long reviewId,
+                                               @RequestParam String goodReviews,
+                                               @RequestParam String badReviews,
+                                               @RequestParam(required = false) MultipartFile reviewImg) {
+        log.info(reviewImg);
+        iReviewService.reviewModify(reviewId, goodReviews, badReviews, reviewImg);
+        return ResponseEntity.ok("success");
+    }
 }

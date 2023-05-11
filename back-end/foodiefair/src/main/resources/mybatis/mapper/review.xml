@@ -38,4 +38,14 @@
     <delete id="commentDelete">
         DELETE FROM comment WHERE reviewId=#{reviewId};
     </delete>
+
+    <select id="reviewReadOne" resultType="java.util.Map">
+        SELECT goodReviews, badReviews FROM review WHERE reviewId=#{reviewId};
+    </select>
+
+    <update id="reviewModify">
+        UPDATE review set goodReviews=#{goodReviews}, badReviews=#{badReviews}
+        <if test="reviewImg != null">, reviewImg=#{reviewImg}</if>
+        WHERE reviewId=#{reviewId};
+    </update>
 </mapper>
