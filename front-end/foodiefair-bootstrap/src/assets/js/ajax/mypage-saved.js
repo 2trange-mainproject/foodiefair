@@ -22,7 +22,6 @@ async function displaySavedList(userId, loginUserId, page, pageSize) {
     // 이전 내용 지우기
     savedListElement.innerHTML = '';
 
-    // 야호
     // 저장된 항목 목록을 순회하기
     savedList.forEach((saved) => {
         const colDiv = document.createElement("div");
@@ -41,11 +40,29 @@ async function displaySavedList(userId, loginUserId, page, pageSize) {
         // 'saved' 객체의 데이터에 따라 이 요소들을 수정할 수 있습니다.
 
         // Position-absolute top-0 start-0 요소
+        var festivalText, festivalColor;
+
+        if (saved.productEvent === 1) {
+            festivalText = '신상품';
+            festivalColor = 'pink';
+        } else if (saved.productEvent === 2) {
+            festivalText = '1+1';
+            festivalColor = 'purple';
+        } else if (saved.productEvent === 3) {
+            festivalText = '2+1';
+            festivalColor = 'orange';
+        } else {
+            festivalText = '';
+            festivalColor = '';
+        }
+
+        var fixedTag = JSON.parse(saved.fixedTag).smallCategory;
+
         const positionAbsoluteDiv = document.createElement("div");
         positionAbsoluteDiv.className = "position-absolute top-0 start-0";
         const badgeSpan = document.createElement("span");
-        badgeSpan.className = `badge bg-${saved.festivalColor}`;
-        badgeSpan.textContent = saved.festivalText;
+        badgeSpan.className = `badge bg-${festivalColor}`;
+        badgeSpan.textContent = festivalText;
         positionAbsoluteDiv.appendChild(badgeSpan);
 
         // 제품 이미지 요소
@@ -53,8 +70,8 @@ async function displaySavedList(userId, loginUserId, page, pageSize) {
         productLink.href = `viewFood?productId=${saved.productId}`;
         const productImg = document.createElement("img");
         productImg.className = "mb-3 img-fluid";
-        productImg.style.maxWidth = "220px";
-        productImg.style.maxHeight = "220px";
+        productImg.style.maxWidth = "190px";
+        productImg.style.height = "190px";
         productImg.src = saved.productImg;
         productLink.appendChild(productImg);
 
@@ -64,7 +81,7 @@ async function displaySavedList(userId, loginUserId, page, pageSize) {
         const fixedTagLink = document.createElement("a");
         fixedTagLink.href = "javascript:void(0)";
         fixedTagLink.className = "text-decoration-none text-muted";
-        fixedTagLink.textContent = saved.fixedTag;
+        fixedTagLink.textContent = fixedTag;
         fixedTagDiv.appendChild(fixedTagLink);
 
 // Add the productName element
@@ -94,7 +111,7 @@ async function displaySavedList(userId, loginUserId, page, pageSize) {
         const priceInfoDiv = document.createElement("div");
         const priceSpan = document.createElement("span");
         priceSpan.className = "text-dark";
-        priceSpan.textContent = `${saved.productPrice}원`;
+        priceSpan.textContent = `${saved.productPrice.toLocaleString('ko-KR')}원`;
         const bookmarkLink = document.createElement("a");
         bookmarkLink.href = "javascript:void(0)";
         bookmarkLink.className = "ms-2 btn-action";

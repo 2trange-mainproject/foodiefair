@@ -1,5 +1,6 @@
 package com.multicampus.foodiefair.controller;
 
+import com.multicampus.foodiefair.dto.ProductDTO;
 import com.multicampus.foodiefair.dto.saved.SavedDTO;
 import com.multicampus.foodiefair.dto.saved.SavedPageRequestDTO;
 import com.multicampus.foodiefair.dto.saved.SavedPageResponseDTO;
@@ -69,6 +70,14 @@ public class SavedController {
                 .build();
 
         SavedPageResponseDTO savedList = savedService.getSavedList(savedDTO, pageRequestDTO);
+
+        S3Client s3Client = new S3Client();
+        for (HashMap<String, Object> product : savedList.getDataList()) {
+            String objectKey = (String) product.get("productImg");
+            String url = s3Client.getProductUrl(objectKey, 3600); // 이미지 파일에 대한 SignedUrl을 생성
+            product.put("productImg", url);
+        }
+
         return ResponseEntity.ok(savedList);
     }
 
