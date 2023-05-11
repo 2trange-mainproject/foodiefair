@@ -11,6 +11,7 @@
     </delete>
 
     <resultMap id="commentList" type="java.util.Map">
+        <result column="userId" property="userId"/>
         <result column="reviewId" property="reviewId"/>
         <result column="commentId" property="commentId"/>
         <result column="userName" property="userName"/>
@@ -18,7 +19,7 @@
         <result column="commentDate" property="commentDate"/>
     </resultMap>
     <select id="commentRead" resultMap="commentList">
-        SELECT user.userName, comment.commentContent, comment.commentDate, comment.commentId, comment.reviewId
+        SELECT user.userName, comment.commentContent, comment.commentDate, comment.commentId, comment.reviewId, comment.userId
         FROM comment INNER JOIN user ON user.userId = comment.userId
         WHERE reviewId=#{reviewId} order by commentId asc;
     </select>

@@ -15,13 +15,20 @@ $(document).ready(function () {
     $('#review-section').on('click', '.btn-comment-delete', commentDelete);
 });
 async function productReviewCommentRead(e) {
+    const loginUser = await getUserInfo();
     const response = await fetch('http://localhost:8081/products/comment/'+e.id);
     const data = await response.json();
-
+    let btnDelete;
     data.forEach(function (item, index) {
+        if(loginUser!=null && `${item.userId}` == loginUser.userId) {
+            btnDelete = `<a href="#" class="text-muted ms-3 btn-comment-delete" id="${item.commentId}"><i class="bi bi-trash me-1"></i>삭제하기</a>`;
+        } else {
+            btnDelete = `<a href="#" class="text-muted ms-3 btn-comment-delete" id="${item.commentId}" hidden><i class="bi bi-trash me-1"></i>삭제하기</a>`;
+        }
+
         let comment = `<div class="border-bottom pb-4 mb-4">
                         <h6>
-                          ${item.userName}<a href="#" class="text-muted ms-3 btn-comment-delete" id="${item.commentId}"><i class="bi bi-trash me-1"></i>삭제하기</a>
+                          ${item.userName}${btnDelete}
                         </h6>
                         <div>
                           <p class="text-dark mb-1">${item.commentContent}</p>
@@ -30,7 +37,8 @@ async function productReviewCommentRead(e) {
                       </div>`;
         $(e).append(comment);
     });
-    let commentEnroll = `<div class="row g-3">
+
+    let commentEnroll = `<div class="row g-3 mt-1">
                         <div class="col-sm-11 comment-area">
                           <input type="text" class="form-control" placeholder="댓글을 작성해주세요.">
                         </div>
@@ -42,9 +50,10 @@ async function productReviewCommentRead(e) {
 };
 
 async function registerComment (e) {
+    const loginUser = await getUserInfo();
     const sendData = {
         reviewId: await $(e.target).closest('.collapse').attr('id'),
-        userId: 2, // 로그인 구현되면 바꿔줘야 함
+        userId: loginUser.userId,
         commentContent: await $(e.target).closest('.row').find('input').val()
     }
     const response = await fetch('http://localhost:8081/products/comment/', {

@@ -69,7 +69,7 @@ function loadRankPageOne() {
                                       ${rankElement}
                                    </div>
                                    <div class="flex-grow-1">
-                                      <img class="mb-3 img-fluid d-inline user-img" style="max-width: 150px; padding-left: 10px;" src="${user.userImg}">
+                                      <img class="mb-3 img-fluid d-inline user-img" style="max-width: 150px;" src="${user.userImg}">
                                    </div>
                                  </a>
                              </div>

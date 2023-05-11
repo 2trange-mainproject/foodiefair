@@ -36,13 +36,13 @@ function renderKeywords(data) {
             <div class="col-4">
                 <div class="mb-2">
                     <h3 class="text-pink"><i class="bi-emoji-heart-eyes me-2"></i>Good</h3>
-                    <p>리뷰를 작성하시고 처음 키워드를 남겨보세요!</p>
+                    <p>앗, 아직 리뷰가 없네요!</p>
                 </div>
             </div>
             <div class="col-4">
                 <div class="mb-2">
                     <h3 class="text-warning"><i class="bi-emoji-frown me-2"></i>Bad</h3>
-                    <p>리뷰를 작성하시고 처음 키워드를 남겨보세요!</p>
+                    <p>첫 키워드의 주인공이 되어보세요!</p>
                 </div>
             </div>
         </div>
@@ -193,6 +193,11 @@ $("#review-enroll").on('click', async function(e) {
             // 이미지 변수 초기화
             foodImage = null;
             receiptImage = null;
+
+            $('#review-section').empty();
+            pageOffset.init();
+            productReviewsRead(e);
+            $(window).scrollTop($('#receipt-reviews-tab').position().top);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);

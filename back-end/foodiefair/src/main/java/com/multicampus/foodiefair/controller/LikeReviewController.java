@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -30,5 +31,11 @@ public class LikeReviewController {
     public ResponseEntity<Integer> removeLikeReview (@PathVariable long reviewId, @PathVariable int userId) {
         Integer result = iLikeReviewService.removeLikeReview(reviewId, userId);
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/likeReview/{userId}")
+    public ResponseEntity<List<Integer>> likeReviewList (@PathVariable int userId) {
+        List<Integer> likeReview = iLikeReviewService.likeReviewList(userId);
+        return ResponseEntity.ok(likeReview);
     }
 }
