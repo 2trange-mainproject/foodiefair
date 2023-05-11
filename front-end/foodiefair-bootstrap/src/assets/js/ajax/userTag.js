@@ -43,35 +43,8 @@ function displayUserTags(userTags) {
         tagSpan.style.cursor = 'pointer';
         tagSpan.style.fontSize = '2.0ex';
         tagSpan.style.marginRight = '10px !important';
-        tagSpan.textContent = tagObj.tag;
+        tagSpan.textContent = `#${tagObj.tag}`;
 
         row.appendChild(tagSpan);
     });
-
-    // Call the toggleUserTagRows function to hide the rows initially
-    // toggleUserTagRows();
 }
-
-// function toggleUserTagRows() {
-//     const userTagsDiv = document.getElementById('userTags');
-//     const rows = userTagsDiv.querySelectorAll('div');
-//     for (let i = 1; i < rows.length; i++) {
-//         if (rows[i].style.display === 'none') {
-//             rows[i].style.display = 'flex';
-//         } else {
-//             rows[i].style.display = 'none';
-//         }
-//     }
-//
-//     // Toggle the button icon between caret-down and caret-up
-//     const buttonIcon = document.querySelector('#hideTags svg');
-//     if (buttonIcon.classList.contains('bi-caret-down-square-fill')) {
-//         buttonIcon.classList.remove('bi-caret-down-square-fill');
-//         buttonIcon.classList.add('bi-caret-up-square-fill');
-//     } else {
-//         buttonIcon.classList.remove('bi-caret-up-square-fill');
-//         buttonIcon.classList.add('bi-caret-down-square-fill');
-//     }
-// }
-//
-// document.getElementById('hideTags').addEventListener('click', toggleUserTagRows);

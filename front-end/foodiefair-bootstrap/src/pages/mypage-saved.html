@@ -23,7 +23,7 @@
           <!-- breadcrumb -->
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0" style="font-size:23px;">
-              <li class="breadcrumb-item"><a href="mypage">마이페이지</a></li>
+              <li class="breadcrumb-item"><a href="mypage" id="myPage">마이페이지</a></li>
               <li class="breadcrumb-item active" aria-current="page">찜 목록</li>
             </ol>
           </nav>
@@ -42,16 +42,16 @@
           <div class="offcanvas offcanvas-start offcanvas-collapse w-md-50 " tabindex="-1" id="offcanvasCategory" aria-labelledby="offcanvasCategoryLabel">
             <div class="offcanvas-body ps-lg-2 pt-lg-0">
               <div class="mb-8 d-flex flex-column align-items-center text-center">
-                <!-- Banner Image -->
+                <!-- 유저 이미지 -->
                 <div class="position-relative mb-3" style="width: 150px; height: 150px; border: 1px solid black; border-radius: 50%; overflow: hidden;">
-                  <img src="@@webRoot/assets/images/products/love-1.jpg" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-circle">
+                  <img id="userImg" src="" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-circle">
                 </div>
-                <!-- Banner Image -->
-                <!-- Banner Content -->
+                <!-- 유저이미지 -->
+                <!-- 유저 닉네임 -->
                 <div>
-                  <h4 class="mb-0">아이유 콘서트 가고싶다</h4>
+                  <h4 class="mb-0" id="userName"></h4>
                 </div>
-                <!-- Banner Content -->
+                <!-- 유저 닉네임 -->
                 <!-- Follows Content -->
                 <div>
                   <ul class="nav nav-pills nav-lb-tab justify-content-center flex-nowrap" role="tablist">
@@ -136,11 +136,8 @@
   <!-- Footer -->
   @@include("../partials/footer.html")
 
-
-  <script>let userId = 35;</script>
-  <script>let loggedUserId = 35;</script>
-
   <!-- Javascript-->
+  <script src="@@webRoot/assets/js/ajax/sendUserIds.js"></script>
   <script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
   <script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
   @@include("../partials/scripts.html")
@@ -151,6 +148,10 @@
   <script src="@@webRoot/assets/js/ajax/mypage-saved.js"></script>
   <script src="@@webRoot/assets/js/ajax/mypage-follows.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  const myPage = document.getElementById('myPage');
+  myPage.href = `${myPage.href}?userId=${userId}`;
+</script>
 </body>
 
 </html>

@@ -1,12 +1,12 @@
 const savedListElement = document.getElementById("saved-list");
 
 document.addEventListener("DOMContentLoaded", () => {
-    displaySavedList(userId, loggedUserId);
+    displaySavedList(userId, loginUserId);
 });
 
 
 // 찜 상품 리스트 표시
-    async function displaySavedList(userId, loggedUserId) {
+    async function displaySavedList(userId, loginUserId) {
         const savedList = await fetchSavedList(userId);
 
     // 이전 내용 지우기
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 제품 이미지 요소
         const productLink = document.createElement("a");
-        productLink.href = `shop-single?productId=${saved.productId}`;
+        productLink.href = `viewFood?productId=${saved.productId}`;
         const productImg = document.createElement("img");
         productImg.className = "mb-3 img-fluid";
         productImg.style.maxWidth = "220px";
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const fixedTagDiv = document.createElement("div");
         fixedTagDiv.className = "text-small mb-1";
         const fixedTagLink = document.createElement("a");
-        fixedTagLink.href = "#";
+        fixedTagLink.href = "javascript:void(0)";
         fixedTagLink.className = "text-decoration-none text-muted";
         fixedTagLink.textContent = saved.fixedTag;
         fixedTagDiv.appendChild(fixedTagLink);
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const productNameH2 = document.createElement("h2");
         productNameH2.className = "fs-6";
         const productNameLink = document.createElement("a");
-        productNameLink.href = `shop-single?productId=${saved.productId}`;
+        productNameLink.href = `viewFood?productId=${saved.productId}`;
         productNameLink.className = "text-inherit text-decoration-none";
         productNameLink.textContent = saved.productName;
         productNameH2.appendChild(productNameLink);
@@ -85,12 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
         priceSpan.className = "text-dark";
         priceSpan.textContent = `${saved.productPrice}원`;
         const bookmarkLink = document.createElement("a");
-        bookmarkLink.href = "#";
+        bookmarkLink.href = "javascript:void(0)";
         bookmarkLink.className = "ms-2 btn-action";
         bookmarkLink.style.color = "deeppink";
 
 // Conditionally display the bookmark button
-        if (userId === loggedUserId) {
+        if (parseInt(userId) === parseInt(loginUserId)) {
             bookmarkLink.innerHTML = "<i class='bi bi-bookmark-fill'></i>";
         } else {
             bookmarkLink.style.display = "none";
