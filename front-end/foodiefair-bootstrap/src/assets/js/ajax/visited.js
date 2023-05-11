@@ -172,10 +172,13 @@ async function displayVisitedList(userId, page, pageSize) {
 
         // 삭제 버튼 조건에 맞춰 활성화/비활성화
         const dropdownDiv = dropdownCell.querySelector(".dropdown");
+<<<<<<< HEAD
+=======
         console.log('visited.ownerId:', visited.ownerId);
         console.log('visited.visitedId:', visited.visitedId);
         console.log('visited.writerId:', visited.writerId);
         console.log('loginUserId:', loginUserId);
+>>>>>>> 531a3b3e7d5b5b4015e9a7084305db13d463931f
         dropdownDiv.style.display = (visited.ownerId === loginUserId || visited.writerId === loginUserId) ? "block" : "none";
 
         visitedListElement.appendChild(row);
