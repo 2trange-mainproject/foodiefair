@@ -16,6 +16,9 @@ function loadUserDetails(userId) {
         url: `http://localhost:8081/user-read/${userId}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true
+        },
         success: function (response) {
             renderUserDetails(response.userRead);
         },
@@ -133,7 +136,7 @@ function displayTags() {
     });
 }
 
-$(document).on("click", "#update-button", function (event) {
+$(document).on("click", "#update-button", async function (event) {
     event.preventDefault();
 
     const userName = document.getElementById("userName").value;
@@ -172,27 +175,31 @@ $(document).on("click", "#update-button", function (event) {
     //formData.set("userName", document.getElementById("userName").value);
     console.log('Final form data:', formData);
 
-    $.ajax({
-        type: "PUT",
-        url: "http://localhost:8081/modify",
-        data: formData, // FormData 객체를 전송
-        contentType: false, // multipart/form-data 형식으로 전송하기 위해 contentType을 false로 설정
-        processData: false, // FormData를 쿼리 문자열로 변환하지 않도록 설정
-        credentials: 'include',
-        success: function (result) {
+    try {
+        const response = await fetch("http://localhost:8081/modify", {
+            method: "PUT",
+            body: formData,
+            mode: "cors",
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+            const result = await response.json();
             if (result.success) {
                 alert(result.message);
-                //localStorage.setItem('loginUser', JSON.stringify(result.user));
-                location.href = "/foodiefair"
+                location.href = "/foodiefair";
             } else {
                 alert(result.message);
             }
-        },
-        error: function (xhr, status, error) {
-            console.error(xhr.responseText);
-            alert(xhr.responseJSON.message);
+        } else {
+            const error = await response.json();
+            console.error(response.statusText);
+            alert(error.message);
         }
-    });
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
 });
 
 //프로필 업로드

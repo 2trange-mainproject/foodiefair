@@ -23,7 +23,7 @@
           <!-- breadcrumb -->
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0" style="font-size:23px;">
-              <li class="breadcrumb-item"><a href="mypage">마이페이지</a></li>
+              <li class="breadcrumb-item"><a href="mypage" id="myPage">마이페이지</a></li>
               <li class="breadcrumb-item active" aria-current="page">찜 목록</li>
             </ol>
           </nav>
@@ -42,16 +42,16 @@
           <div class="offcanvas offcanvas-start offcanvas-collapse w-md-50 " tabindex="-1" id="offcanvasCategory" aria-labelledby="offcanvasCategoryLabel">
             <div class="offcanvas-body ps-lg-2 pt-lg-0">
               <div class="mb-8 d-flex flex-column align-items-center text-center">
-                <!-- Banner Image -->
+                <!-- 유저 이미지 -->
                 <div class="position-relative mb-3" style="width: 150px; height: 150px; border: 1px solid black; border-radius: 50%; overflow: hidden;">
-                  <img src="@@webRoot/assets/images/products/love-1.jpg" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-circle">
+                  <img id="userImg" src="" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-circle">
                 </div>
-                <!-- Banner Image -->
-                <!-- Banner Content -->
+                <!-- 유저이미지 -->
+                <!-- 유저 닉네임 -->
                 <div>
-                  <h4 class="mb-0">아이유 콘서트 가고싶다</h4>
+                  <h4 class="mb-0" id="userName"></h4>
                 </div>
-                <!-- Banner Content -->
+                <!-- 유저 닉네임 -->
                 <!-- Follows Content -->
                 <div>
                   <ul class="nav nav-pills nav-lb-tab justify-content-center flex-nowrap" role="tablist">
@@ -104,19 +104,23 @@
                 <div>
                   <!-- select option -->
                   <select class="form-select">
-                    <option selected>Sort by: Featured</option>
-                    <option value="Low to High">Price: Low to High</option>
-                    <option value="High to Low"> Price: High to Low</option>
-                    <option value="Release Date"> Release Date</option>
-                    <option value="Avg. Rating"> Avg. Rating</option>
+                    <option value="popularity">인기순</option>
+                    <option value="view">조회순</option>
+                    <option value="saves">찜순</option>
+                    <option value="reviews">리뷰 많은순</option>
+                    <option value="releaseDate" selected>등록일순</option>
+                    <option value="lowPrice">낮은 가격순</option>
+                    <option value="highPrice">높은 가격순</option>
+                    <option value="highReviewNum">영수증인증 리뷰 개수순</option>
+                    <option value="positiveKeyword">긍정키워드 개수순</option>
+                    <option value="negativeKeyword">부정키워드 개수순</option>
                   </select>
                 </div>
               </div>
             </div>
           </div>
           <!-- 찜 상품  -->
-          <div id ="saved-list" class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
-          </div>
+          <div id ="saved-list" class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2"></div>
           <!-- 찜 상품  -->
           <div class="border-top d-md-flex justify-content-between align-items-center p-6">
             <nav class="mt-2 mt-md-0 ms-auto">
@@ -136,11 +140,8 @@
   <!-- Footer -->
   @@include("../partials/footer.html")
 
-
-  <script>let userId = 35;</script>
-  <script>let loggedUserId = 35;</script>
-
   <!-- Javascript-->
+  <script src="@@webRoot/assets/js/ajax/sendUserIds.js"></script>
   <script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
   <script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
   @@include("../partials/scripts.html")
@@ -151,6 +152,10 @@
   <script src="@@webRoot/assets/js/ajax/mypage-saved.js"></script>
   <script src="@@webRoot/assets/js/ajax/mypage-follows.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  const myPage = document.getElementById('myPage');
+  myPage.href = `${myPage.href}?userId=${userId}`;
+</script>
 </body>
 
 </html>

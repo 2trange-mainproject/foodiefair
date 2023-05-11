@@ -1,12 +1,12 @@
 const savedListElement = document.getElementById("saved-list");
 
 document.addEventListener("DOMContentLoaded", () => {
-    displaySavedList(userId, loggedUserId);
+    displaySavedList(userId, loginUserId);
 });
 
 
 // 찜 상품 리스트 표시
-    async function displaySavedList(userId, loggedUserId) {
+    async function displaySavedList(userId, loginUserId) {
         const savedList = await fetchSavedList(userId);
 
     // 이전 내용 지우기
@@ -30,20 +30,38 @@ document.addEventListener("DOMContentLoaded", () => {
         // 'saved' 객체의 데이터에 따라 이 요소들을 수정할 수 있습니다.
 
         // Position-absolute top-0 start-0 요소
+        var festivalText, festivalColor;
+
+        if (saved.productEvent === 1) {
+            festivalText = '신상품';
+            festivalColor = 'pink';
+        } else if (saved.productEvent === 2) {
+            festivalText = '1+1';
+            festivalColor = 'purple';
+        } else if (saved.productEvent === 3) {
+            festivalText = '2+1';
+            festivalColor = 'orange';
+        } else {
+            festivalText = '';
+            festivalColor = '';
+        }
+
+        var fixedTag = JSON.parse(saved.fixedTag).smallCategory;
+
         const positionAbsoluteDiv = document.createElement("div");
         positionAbsoluteDiv.className = "position-absolute top-0 start-0";
         const badgeSpan = document.createElement("span");
-        badgeSpan.className = `badge bg-${saved.festivalColor}`;
-        badgeSpan.textContent = saved.festivalText;
+        badgeSpan.className = `badge bg-${festivalColor}`;
+        badgeSpan.textContent = festivalText;
         positionAbsoluteDiv.appendChild(badgeSpan);
 
         // 제품 이미지 요소
         const productLink = document.createElement("a");
-        productLink.href = `shop-single?productId=${saved.productId}`;
+        productLink.href = `viewFood?productId=${saved.productId}`;
         const productImg = document.createElement("img");
         productImg.className = "mb-3 img-fluid";
-        productImg.style.maxWidth = "220px";
-        productImg.style.maxHeight = "220px";
+        productImg.style.maxWidth = "190px";
+        productImg.style.height = "190px";
         productImg.src = saved.productImg;
         productLink.appendChild(productImg);
 
@@ -51,16 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const fixedTagDiv = document.createElement("div");
         fixedTagDiv.className = "text-small mb-1";
         const fixedTagLink = document.createElement("a");
-        fixedTagLink.href = "#";
+        fixedTagLink.href = "javascript:void(0)";
         fixedTagLink.className = "text-decoration-none text-muted";
-        fixedTagLink.textContent = saved.fixedTag;
+        fixedTagLink.textContent = fixedTag;
         fixedTagDiv.appendChild(fixedTagLink);
 
 // Add the productName element
         const productNameH2 = document.createElement("h2");
         productNameH2.className = "fs-6";
         const productNameLink = document.createElement("a");
-        productNameLink.href = `shop-single?productId=${saved.productId}`;
+        productNameLink.href = `viewFood?productId=${saved.productId}`;
         productNameLink.className = "text-inherit text-decoration-none";
         productNameLink.textContent = saved.productName;
         productNameH2.appendChild(productNameLink);
@@ -83,14 +101,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const priceInfoDiv = document.createElement("div");
         const priceSpan = document.createElement("span");
         priceSpan.className = "text-dark";
-        priceSpan.textContent = `${saved.productPrice}원`;
+        priceSpan.textContent = `${saved.productPrice.toLocaleString('ko-KR')}원`;
         const bookmarkLink = document.createElement("a");
-        bookmarkLink.href = "#";
+        bookmarkLink.href = "javascript:void(0)";
         bookmarkLink.className = "ms-2 btn-action";
         bookmarkLink.style.color = "deeppink";
 
 // Conditionally display the bookmark button
-        if (userId === loggedUserId) {
+        if (parseInt(userId) === parseInt(loginUserId)) {
             bookmarkLink.innerHTML = "<i class='bi bi-bookmark-fill'></i>";
         } else {
             bookmarkLink.style.display = "none";
