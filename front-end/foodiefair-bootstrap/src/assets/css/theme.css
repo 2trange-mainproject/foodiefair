@@ -40485,4 +40485,40 @@ span.flatpickr-weekday {
   border-color: #d43384;
 }
 
+/* 리뷰어 랭킹 */
+.rank-1-img {
+  border: 6px solid gold;
+}
 
+.rank-2-img {
+  border: 6px solid silver;
+  /*border-radius: 50%;*/
+}
+
+.rank-3-img {
+  border: 6px solid #cd7f32;
+  /*border-radius: 50%;*/
+}
+
+/* main */
+.circle-img {
+  width: 150px; /* 이미지의 크기를 원하는 대로 설정 */
+  height: 150px;
+  border-radius: 50%; /* 이미지를 원형으로 만듭니다 */
+  object-fit: cover; /* 이미지가 div의 크기에 맞게 자동 조절됩니다 */
+  margin: 0 15px; /* 이미지 사이의 공간을 조절합니다 */
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
