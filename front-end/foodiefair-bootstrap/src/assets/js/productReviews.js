@@ -62,16 +62,21 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
         receiptImg:receiptImg,
         sort:sort
     }
-    const response = await fetch('http://localhost:8081/products/review/reviewRead?'+$.param(queryString)); // 서버에 데이터 요청 후 응답 기다림. 반환 데이터는 Promise 객체
-    const data = await response.json(); // 응답 Content-Type이 a// plication/json인 경우 응답 body가 JSON형태의 데이터로 변환이 되면 성공 메세지가 담긴 Promise객체 return -> await 연산자와 함께 처리(fullfilled) 되면 최종적으로 JavaScript 객체로 변환 및 return
-    console.log(data);
     const userInfo = await getUserInfo(); // 로그인 한 유저 정보 가져오기
+    const response = await fetch('http://localhost:8081/products/review/reviewRead?'+$.param(queryString)); // 서버에 데이터 요청 후 응답 기다림. 반환 데이터는 Promise 객체
+    const data = await response.json(); // 응답 Content-Type이 application/json인 경우 응답 body가 JSON형태의 데이터로 변환이 되면 성공 메세지가 담긴 Promise객체 return -> await 연산자와 함께 처리(fullfilled) 되면 최종적으로 JavaScript 객체로 변환 및 return
+    console.log(data);
+    const likeReviewResponse = await fetch('http://localhost:8081/products/review/likeReview/'+userInfo.userId);
+    const likeReviewList = await likeReviewResponse.json();
+    console.log(likeReviewList);
     $.each(data.dtoList, function(index, item) {
         let releaseDate = new Date(item.reviewDate).toISOString().split('T')[0];
         let reviewImage = item.reviewImg ? `<img src="${item.reviewImg}" alt="" class="img-fluid">` : '';
         let reviewImageContainer = reviewImage ? `<div class="border icon-shape icon-lg border-2 ">${reviewImage}</div>` : '';
         let btnDelete;
         let btnModify;
+        let likeReview;
+
         if(userInfo!=null && userInfo.userId == `${item.userId}`) {
             btnDelete = `<a href="#" class="text-muted review-delete" data-reviewId="${item.reviewId}"><i class="bi bi-trash me-1"></i>삭제하기</a>`
             btnModify = `<a href="#" class="text-muted ms-3 review-modify" data-reviewId="${item.reviewId}"><i class="bi bi-pencil me-1"></i>수정하기</a>`;
@@ -79,6 +84,17 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
             btnDelete = `<a href="#" class="text-muted review-delete" data-reviewId="${item.reviewId}" hidden><i class="bi bi-trash me-1"></i>삭제하기</a>`
             btnModify = `<a href="#" class="text-muted ms-3 review-modify" data-reviewId="${item.reviewId}" hidden><i class="bi bi-pencil me-1"></i>수정하기</a>`;
         }
+
+        if(likeReviewList.includes(item.reviewId)) {
+            likeReview = `<a href="#" class="text-muted ms-4 d-block btn-reviewLike active" data-reviewId="${item.reviewId}"><i class="bi bi-suit-heart-fill me-1"></i>좋아요
+                                  <span class="translate-middle-y badge rounded-pill bg-white text-muted">${item.reviewLikes}</span>
+                          </a>`;
+        } else {
+            likeReview = `<a href="#" class="text-muted ms-4 d-block btn-reviewLike" data-reviewId="${item.reviewId}"><i class="bi bi-suit-heart me-1"></i>좋아요
+                                  <span class="translate-middle-y badge rounded-pill bg-white text-muted">${item.reviewLikes}</span>
+                          </a>`;
+        }
+
         let reivewText = `<div class="d-flex border-bottom pb-6 mb-6">
                             <img src="${item.userImg}" alt=""
                               class="rounded-circle avatar-lg login-image">
@@ -101,12 +117,10 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
                               </div>
                               <!-- icon -->
                               <div class="d-flex justify-content-end mt-4">
-                                <a href="#" class="text-muted btn-reviewComment" data-bs-toggle="collapse" data-userId="${item.userId}" data-bs-target="#${item.reviewId}"><i class="bi bi-chat-dots me-1"></i>댓글
+                                <a href="#" class="text-muted btn-reviewComment" data-bs-toggle="collapse" data-bs-target="#${item.reviewId}"><i class="bi bi-chat-dots me-1"></i>댓글
                                   <span class="translate-middle-y badge rounded-pill bg-pink-300">${item.commentNum}</span>
                                 </a>
-                                <a href="#" class="text-muted ms-4 d-block btn-reviewLike" data-userId="${item.userId}" data-reviewId="${item.reviewId}"><i class="bi bi-suit-heart me-1"></i>좋아요
-                                  <span class="translate-middle-y badge rounded-pill bg-white text-muted">${item.reviewLikes}</span>
-                                </a>
+                                ${likeReview}
                               </div>
                               <div class="collapse" id="${item.reviewId}"></div>
                             </div>
@@ -118,10 +132,11 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
 async function productReviewLike(e) { // 상품 리뷰 좋아요 토글 버튼
     e.preventDefault();
     e.stopPropagation();
+    const loginUser = await getUserInfo();
 
     const sendData = {
         reviewId: await $(this).closest('.btn-reviewLike').data('reviewid'),
-        userId: await $(this).closest('.btn-reviewLike').data('userid') // 로그인 하면 로그인 한 사람 아이디로 바꾸기. html에 유저Id 지우기, DB resultMap 유저 Id 지우기,
+        userId: loginUser.userId // html에 유저Id 지우기, DB resultMap 유저 Id 지우기,
     };
     $(this).toggleClass('active'); // 토글 활성화
     if ($(this).hasClass('active')) {  // 토글 활성화시 데이터 저장

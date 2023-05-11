@@ -11,10 +11,14 @@
     </delete>
 
     <update id="updateLikeReview">
-        UPDATE review SET reviewLikes = reviewLikes + #{update} WHERE userId = #{userId} AND reviewId = #{reviewId};
+        UPDATE review SET reviewLikes = reviewLikes + #{update} WHERE reviewId = #{reviewId};
     </update>
 
     <select id="reviewLikeCount" resultType="int">
         SELECT reviewLikes FROM review WHERE reviewId=#{reviewId};
+    </select>
+
+    <select id="likeReviewList" resultType="int">
+        SELECT reviewId FROM likereview WHERE userId=#{userId};
     </select>
 </mapper>
