@@ -1,5 +1,5 @@
-let userId = 1;
-let loggedUserId = 2;
+// let userId = 1;
+// let loginUserId = 2;
 
 $(document).ready(async function () {
     try {
@@ -45,7 +45,7 @@ $(document).ready(async function () {
     getActiveTab();
 });
 
-async function fetchFollowData(userId, type, lastFollowId, perPage, loggedUserId) {
+async function fetchFollowData(userId, type, lastFollowId, perPage, loginUserId) {
     try {
         const response = await $.ajax({
             url: `http://localhost:8081/mypage/${userId}/${type}`,
@@ -54,7 +54,7 @@ async function fetchFollowData(userId, type, lastFollowId, perPage, loggedUserId
             data: {
                 lastFollowId: lastFollowId,
                 perPage: perPage,
-                loggedUserId: loggedUserId
+                loginUserId: loginUserId
             },
         });
         return response;
@@ -104,7 +104,7 @@ function createProfileCard(user) {
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <button class="btn ${user.isFollowed ? 'btn-light' : 'btn-pink'}" onclick="${user.isFollowed ? 'unfollowUser(' + user.userId + ',' + loggedUserId + ',' + user.userId + ')' : 'followUser(' + user.userId + ',' + loggedUserId + ',' + user.userId + ')'}">${user.isFollowed ? '언팔로우' : '팔로우'}</button>
+                                <button class="btn ${user.isFollowed ? 'btn-light' : 'btn-pink'}" onclick="${user.isFollowed ? 'unfollowUser(' + user.userId + ',' + loginUserId + ',' + user.userId + ')' : 'followUser(' + user.userId + ',' + loginUserId + ',' + user.userId + ')'}">${user.isFollowed ? '언팔로우' : '팔로우'}</button>
                                 </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@ async function loadMoreFollowData(containerSelector, userId, type) {
     let lastFollowId = lastItem.length ? lastItem.data('follow-id') : null;
 
     try {
-        const data = await fetchFollowData(userId, type, lastFollowId, 10, loggedUserId);
+        const data = await fetchFollowData(userId, type, lastFollowId, 10, loginUserId);
         console.log("Fetched data:", data);
         const html = data.map(createProfileCard).join('');
         $(containerSelector).append(html);
@@ -132,9 +132,9 @@ async function loadMoreFollowData(containerSelector, userId, type) {
     }
 }
 
-async function followUser(userId, loggedUserId, followedId) {
+async function followUser(userId, loginUserId, followedId) {
     const followDTO = {
-        followingId: loggedUserId,
+        followingId: loginUserId,
         followedId: followedId,
     };
 
@@ -153,8 +153,8 @@ async function followUser(userId, loggedUserId, followedId) {
     }
 }
 
-async function unfollowUser(userId, loggedUserId, followedId) {
-    const response = await fetch(`http://localhost:8081/mypage/${userId}/unfollow?loggedUserId=${loggedUserId}&followedId=${followedId}`, {
+async function unfollowUser(userId, loginUserId, followedId) {
+    const response = await fetch(`http://localhost:8081/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`, {
         method: 'DELETE',
     });
 
