@@ -41,33 +41,41 @@
           <div class="offcanvas offcanvas-start offcanvas-collapse w-md-50 " tabindex="-1" id="offcanvasCategory" aria-labelledby="offcanvasCategoryLabel">
             <div class="offcanvas-body ps-lg-2 pt-lg-0">
               <div class="mb-8 d-flex flex-column align-items-center text-center">
-                <!-- Banner Image -->
+                <!-- 유저 이미지 -->
                 <div class="position-relative mb-3" style="width: 150px; height: 150px; border: 1px solid black; border-radius: 50%; overflow: hidden;">
-                  <img src="@@webRoot/assets/images/products/love-1.jpg" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-circle">
+                  <img id="userImg" src="" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-circle">
                 </div>
-                <!-- Banner Image -->
-                <!-- Banner Content -->
+                <!-- 유저이미지 -->
+                <!-- 유저 닉네임 -->
                 <div>
-                  <h4 class="mb-0">아이유 콘서트 가고싶다</h4>
+                  <h4 class="mb-0" id="userName"></h4>
                 </div>
-                <!-- Banner Content -->
+                <!-- 유저 닉네임 -->
                 <!-- Follows Content -->
                 <div>
                   <ul class="nav nav-pills nav-lb-tab justify-content-center flex-nowrap" role="tablist">
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
-                      <a class="nav-link fs-6 text-nowrap" id="followers-tab" href="#" onclick="openPopup('follows?activeTab=followers-tab')" role="tab" aria-controls="followers-tab-pane" aria-selected="false">팔로워</a>
+                      <a class="nav-link fs-6 text-nowrap" id="followers-tab" href="" data-bs-toggle="modal" data-bs-target="#followsModal" role="tab" aria-controls="followers-tab-pane" aria-selected="true">팔로워</a>
                     </li>
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
-                      <a class="nav-link fs-6 text-nowrap" id="followings-tab" href="#" onclick="openPopup('follows?activeTab=followings-tab')" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉</a>
+                      <a class="nav-link fs-6 text-nowrap" id="followings-tab" href="" data-bs-toggle="modal" data-bs-target="#followsModal" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉</a>
                     </li>
                   </ul>
                 </div>
-
-                <script>
-                  function openPopup(url) {
-                    window.open(url, "popupWindow", "width=800,height=600");
-                  }
-                </script>
+                <!-- 팔로워 & 팔로잉 Modal -->
+                <div class="modal fade" id="followsModal" tabindex="-1" aria-labelledby="followsModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="followsModalLabel">팔로워 & 팔로잉</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        @@include("follows.html")
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <!-- Follows Content -->
               </div>
@@ -131,7 +139,7 @@
               </div>
             </div>
             <div class="mt-sm-5 mt-md-10">
-              <a href="mypage-saved" style="cursor:pointer">
+              <a href="mypage-saved" id="mypage-saved" style="cursor:pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#d63384" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                   <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                 </svg>
@@ -150,7 +158,7 @@
             </div>
           </div>
           <div class="mt-sm-5 mt-md-10">
-            <a href="mypage-reviews" style="cursor:pointer">
+            <a href="mypage-reviews" id="mypage-reviews" style="cursor:pointer">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#d63384" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                 <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
               </svg>
@@ -194,12 +202,12 @@
                         <div class="d-flex border-bottom pb-6 mb-6">
                           <!-- img -->
                           <!-- img -->
-                          <a href="#" target="_self" class="rounded-circle avatar-lg">
+                          <a href="" target="_self" class="rounded-circle avatar-lg">
                             <img src="../assets/images/profile/joon.png" alt="" class="rounded-circle avatar-lg">
                           </a>
                           <div class="ms-5">
                             <h6 class="mb-1">
-                              Joon<a href="#" class="text-muted ms-3"><i class="bi bi-trash me-1"></i>삭제하기</a>
+                              Joon<a href="" class="text-muted ms-3"><i class="bi bi-trash me-1"></i>삭제하기</a>
                             </h6>
                             <!-- select option -->
                             <!-- content -->
@@ -335,7 +343,7 @@
         </section>
     </div>
   </div>
-
+  </div>
 </main>
 
 
@@ -347,10 +355,8 @@
   @@include("../partials/footer.html")
 
   <!-- Javascript-->
-  <script>
-    const userId=35;
-    const loggedUserId=25;
-  </script>
+
+  <script src="@@webRoot/assets/js/ajax/sendUserIds.js"></script>
   <script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
   <script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
   @@include("../partials/scripts.html")

@@ -259,7 +259,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user-read/{userId}")
+        @GetMapping("/user-read/{userId}")
     public ResponseEntity<Map<String, Object>> userRead(
             @PathVariable("userId") int userId) {
 
