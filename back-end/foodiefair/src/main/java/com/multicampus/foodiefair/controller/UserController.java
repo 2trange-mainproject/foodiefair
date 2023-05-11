@@ -107,7 +107,7 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<Void> logout(HttpSession session, HttpServletResponse response) {
+    public ResponseEntity<Void> logout(HttpSession session) {
         session.invalidate();
 
         return ResponseEntity.ok().build();
@@ -216,15 +216,12 @@ public class UserController {
             @RequestParam("userIntro") String userIntro,
             @RequestParam("userEmail") String userEmail
     ) throws Exception{
-
         if (!userImg.isEmpty()) {
             File file = convertMultipartFileToFile(userImg);
             S3Client s3Client = new S3Client();
             String objectKey = userImg.getOriginalFilename();
             s3Client.uploadUserFile(file, objectKey);
         }
-
-        System.out.println("userImg = " + userImg.getOriginalFilename());
 
         userService.updateUser(userId, userImg.getOriginalFilename(), userName, userTags, userIntro);
 
@@ -282,6 +279,8 @@ public class UserController {
         UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
         if (loginUser != null) {
             // 사용자 정보를 가져오는 로직. 이 예에서는 세션에 저장된 UserDTO 객체를 사용합니다.
+            System.out.println("loginUser : " + loginUser.getUserName());
+            System.out.println("loginUser : " + loginUser.getUserImg());
             return ResponseEntity.ok(loginUser);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인되지 않은 사용자입니다.");

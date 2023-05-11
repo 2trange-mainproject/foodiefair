@@ -30,36 +30,54 @@ function renderKeywords(data) {
     $keywordContainer.empty();
     var keywordHtml = '';
 
-    $.each(data, function(index, keyword) {
-        var positiveKeywords = JSON.parse(keyword.positiveKeyword);
-        var negativeKeywords = JSON.parse(keyword.negativeKeyword);
+    if (data.length === 0) {
+        keywordHtml = `
+        <div class="row justify-content-evenly">
+            <div class="col-4">
+                <div class="mb-2">
+                    <h3 class="text-pink"><i class="bi-emoji-heart-eyes me-2"></i>Good</h3>
+                    <p>리뷰를 작성하시고 처음 키워드를 남겨보세요!</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="mb-2">
+                    <h3 class="text-warning"><i class="bi-emoji-frown me-2"></i>Bad</h3>
+                    <p>리뷰를 작성하시고 처음 키워드를 남겨보세요!</p>
+                </div>
+            </div>
+        </div>
+        `;
+    } else {
+        $.each(data, function(index, keyword) {
+            var positiveKeywords = JSON.parse(keyword.positiveKeyword);
+            var negativeKeywords = JSON.parse(keyword.negativeKeyword);
 
-        var positiveHtml = '';
-        var negativeHtml = '';
+            var positiveHtml = '';
+            var negativeHtml = '';
 
-        for (const key in positiveKeywords) {
-            if (positiveKeywords.hasOwnProperty(key)) {
-                positiveHtml += `
+            for (const key in positiveKeywords) {
+                if (positiveKeywords.hasOwnProperty(key)) {
+                    positiveHtml += `
                 <div class="row-4 d-flex justify-content-between">
                   <span class="fs-5 fw-bold">${key}</span>
                   <span>${positiveKeywords[key]}</span>
                 </div>
                 `;
+                }
             }
-        }
 
-        for (const key in negativeKeywords) {
-            if (negativeKeywords.hasOwnProperty(key)) {
-                negativeHtml += `
+            for (const key in negativeKeywords) {
+                if (negativeKeywords.hasOwnProperty(key)) {
+                    negativeHtml += `
                 <div class="row-4 d-flex justify-content-between">
                   <span class="fs-5 fw-bold">${key}</span>
                   <span>${negativeKeywords[key]}</span>
                 </div>
                 `;
+                }
             }
-        }
 
-        keywordHtml += `
+            keywordHtml += `
         <div class="row justify-content-evenly">
             <div class="col-4">
                 <div class="mb-2">
@@ -75,7 +93,8 @@ function renderKeywords(data) {
             </div>
         </div>
         `;
-    });
+        });
+    }
 
     var keywordListHtml = `
     <div class="container mt-12">
@@ -87,7 +106,7 @@ function renderKeywords(data) {
 }
 
 $(document).ready(function () {
-    loadKeywords(1);
+    loadKeywords(productId);
 });
 
 //----------------취소 버튼-------------------
