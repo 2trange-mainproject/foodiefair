@@ -120,7 +120,7 @@ function renderBestProducts(data) {
                       <span class="badge bg-${festivalColor}">${festivalText}</span>
                     </div>
                     <a href="/pages/viewFood?productId=${product.productId}">
-                        <img class="mb-3 img-fluid" style="max-width: 220px; height: 220px;" src="${product.productImg}">
+                        <img class="mb-3 img-fluid" style="max-width: 210px; height: 210px;" src="${product.productImg}">
                     </a>
                   </div>
                   <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>

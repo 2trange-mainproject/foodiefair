@@ -104,19 +104,23 @@
                 <div>
                   <!-- select option -->
                   <select class="form-select">
-                    <option selected>Sort by: Featured</option>
-                    <option value="Low to High">Price: Low to High</option>
-                    <option value="High to Low"> Price: High to Low</option>
-                    <option value="Release Date"> Release Date</option>
-                    <option value="Avg. Rating"> Avg. Rating</option>
+                    <option value="popularity">인기순</option>
+                    <option value="view">조회순</option>
+                    <option value="saves">찜순</option>
+                    <option value="reviews">리뷰 많은순</option>
+                    <option value="releaseDate" selected>등록일순</option>
+                    <option value="lowPrice">낮은 가격순</option>
+                    <option value="highPrice">높은 가격순</option>
+                    <option value="highReviewNum">영수증인증 리뷰 개수순</option>
+                    <option value="positiveKeyword">긍정키워드 개수순</option>
+                    <option value="negativeKeyword">부정키워드 개수순</option>
                   </select>
                 </div>
               </div>
             </div>
           </div>
           <!-- 찜 상품  -->
-          <div id ="saved-list" class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
-          </div>
+          <div id ="saved-list" class="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2"></div>
           <!-- 찜 상품  -->
           <div class="border-top d-md-flex justify-content-between align-items-center p-6">
             <nav class="mt-2 mt-md-0 ms-auto">
