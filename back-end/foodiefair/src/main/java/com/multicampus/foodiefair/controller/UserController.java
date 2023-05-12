@@ -65,7 +65,7 @@ public class UserController {
         Map<String, Object> result = new HashMap<>();
         UserDTO userDto = userService.getUserByEmail(userEmail);
         System.out.println("passwordEncoder.matches(userPwd, userDto.getUserPwd()) = " + passwordEncoder.matches(userPwd, userDto.getUserPwd()));
-        
+
         //Locked되어 있는 경우 로그인 불가능
         if(userDto.getLocked() == 1){
             session.invalidate();
@@ -73,7 +73,7 @@ public class UserController {
             result.put("locked", true);
             return ResponseEntity.badRequest().body(result);
         }
-        
+
         if (userDto != null && passwordEncoder.matches(userPwd, userDto.getUserPwd())) {
             S3Client s3Client = new S3Client();
             String objectKey = userDto.getUserImg();
@@ -209,12 +209,12 @@ public class UserController {
     //Modify
     @PutMapping("/modify")
     public ResponseEntity<Map<String, Object>> userUpdate( HttpSession session,
-            @RequestParam("userId") int userId,
-            @RequestParam("userImg") MultipartFile userImg,
-            @RequestParam("userName") String userName,
-            @RequestParam("userTags") String userTags,
-            @RequestParam("userIntro") String userIntro,
-            @RequestParam("userEmail") String userEmail
+                                                           @RequestParam("userId") int userId,
+                                                           @RequestParam("userImg") MultipartFile userImg,
+                                                           @RequestParam("userName") String userName,
+                                                           @RequestParam("userTags") String userTags,
+                                                           @RequestParam("userIntro") String userIntro,
+                                                           @RequestParam("userEmail") String userEmail
     ) throws Exception{
         if (!userImg.isEmpty()) {
             File file = convertMultipartFileToFile(userImg);
@@ -256,7 +256,7 @@ public class UserController {
         }
     }
 
-        @GetMapping("/user-read/{userId}")
+    @GetMapping("/user-read/{userId}")
     public ResponseEntity<Map<String, Object>> userRead(
             @PathVariable("userId") int userId) {
 
@@ -274,9 +274,6 @@ public class UserController {
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
-<<<<<<< HEAD
-}
-=======
     @GetMapping("/get-user-info")
     public ResponseEntity<?> getUserInfo(HttpSession session) {
         UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
@@ -291,4 +288,3 @@ public class UserController {
     }
 
 }
->>>>>>> 33e51f6d6538c8073cbe5e892a08729b2dc8613a
