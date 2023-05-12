@@ -1,7 +1,10 @@
 getUserInfo().then(data => {
-    loginUserId = data.userId;
+    if (data) {
+        loginUserId = data.userId;
+    } else {
+        loginUserId = null;
+    }
 });
-
 function renderUsers(data) {
     let $rankingContainer = $('#rankingContainer');
     $rankingContainer.addClass("d-flex gap-4");
@@ -56,9 +59,11 @@ function renderUsers(data) {
             data.forEach(user => {
                 let followButton = $(`[data-user-id="${user.userId}"]`);
 
-                fetchFollowStatus(loginUserId, user.userId).then(isFollowing => {
-                    updateFollowButton(followButton, isFollowing);
-                });
+                if (loginUserId) { // 로그인한 경우
+                    fetchFollowStatus(loginUserId, user.userId).then(isFollowing => {
+                        updateFollowButton(followButton, isFollowing);
+                    });
+                }
             });
 
         }
