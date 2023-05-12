@@ -101,8 +101,10 @@ function createProfileCard(user) {
                                 </div>
                             </div>
                             <div class="mt-2">
-<button class="followBtn btn ${user.isFollowed ? 'btn-light' : 'btn-pink'}" data-user-id="${user.userId}" style="width: 100px;" onclick="${user.isFollowed ? 'unfollowUser(' + user.userId + ',' + loginUserId + ',' + user.userId + ')' : 'followUser(' + user.userId + ',' + loginUserId + ',' + user.userId + ')'}">${user.isFollowed ? '언팔로우' : '팔로우'}</button>
-                                </div>
+ <button class="btn follow-btn ${user.isFollowed ? 'btn-light' : 'btn-pink'}" data-user-id="${user.userId}" style="width: ${user.isFollowed ? '120px' : '120px'};" onclick="${user.isFollowed ? 'unfollowUser(' + user.userId + ',' + loginUserId + ',' + user.userId + ')' : 'followUser(' + user.userId + ',' + loginUserId + ',' + user.userId + ')'}">
+                                    <i class="bi ${user.isFollowed ? 'bi-person-dash' : 'bi-person-plus'}" style="margin-right: 6px;"></i>
+                                    <span class="follow-text">${user.isFollowed ? '언팔로우' : '팔로우'}</span>
+                                </button>                                </div>
                         </div>
                     </div>
                 </div>
@@ -149,11 +151,22 @@ async function followUser(userId, loginUserId, followedId) {
 
     if (response.ok) {
         console.log('Follow success');
-        let followButton = document.querySelector(`.followBtn[data-user-id="${followedId}"]`);
-        followButton.innerText = "언팔로우";
+        let followButton = document.querySelector(`[data-user-id="${userId}"]`);
+        followButton.innerHTML = "";
         followButton.classList.remove("btn-pink");
         followButton.classList.add("btn-light");
+        followButton.style.width = "120px";
         followButton.setAttribute("onclick", `unfollowUser(${userId}, ${loginUserId}, ${followedId})`);
+
+        let unfollowIcon = document.createElement('i');
+        unfollowIcon.classList.add("bi", "bi-person-dash");
+        unfollowIcon.style.marginRight = "6px";
+        let unfollowText = document.createElement('span');
+        unfollowText.setAttribute('class', 'follow-text');
+        unfollowText.innerText = "언팔로우";
+
+        followButton.appendChild(unfollowIcon);
+        followButton.appendChild(unfollowText);
     } else {
         console.error('Failed to follow user');
     }
@@ -166,11 +179,22 @@ async function unfollowUser(userId, loginUserId, followedId) {
 
     if (response.ok) {
         console.log('Unfollow success');
-        let followButton = document.querySelector(`.followBtn[data-user-id="${followedId}"]`);
-        followButton.innerText = "팔로우";
+        let followButton = document.querySelector(`[data-user-id="${userId}"]`);
+        followButton.innerHTML = "";
         followButton.classList.remove("btn-light");
         followButton.classList.add("btn-pink");
+        followButton.style.width = "120px";
         followButton.setAttribute("onclick", `followUser(${userId}, ${loginUserId}, ${followedId})`);
+
+        let followIcon = document.createElement('i');
+        followIcon.classList.add("bi", "bi-person-plus");
+        followIcon.style.marginRight = "6px";
+        let followText = document.createElement('span');
+        followText.setAttribute('class', 'follow-text');
+        followText.innerText = "팔로우";
+
+        followButton.appendChild(followIcon);
+        followButton.appendChild(followText);
     } else {
         console.error('Failed to unfollow user');
     }
