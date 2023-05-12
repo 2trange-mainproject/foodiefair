@@ -51,6 +51,21 @@ function renderUserDetails(user) {
                 <input type="text" class="form-control" id="userName" value="${user.userName}" name="userName" required>
               </div>
               <div class="col-12">
+                <h5>대표칭호</h5>
+                <select class="form-select" id="selectedBadge" name="selectedBadge">
+                  <option value="popularity">인기순</option>
+                  <option value="view">조회순</option>
+                  <option value="saves">찜순</option>
+                  <option value="reviews">리뷰 많은순</option>
+                  <option value="releaseDate" selected>등록일순</option>
+                  <option value="lowPrice">낮은 가격순</option>
+                  <option value="highPrice">높은 가격순</option>
+                  <option value="highReviewNum">영수증인증 리뷰 개수순</option>
+                  <option value="positiveKeyword">긍정키워드 개수순</option>
+                  <option value="negativeKeyword">부정키워드 개수순</option>
+                </select>
+              </div>
+              <div class="col-12">
                 <h5>마이태그</h5>
                 <input type="text" class="form-control" id="mytag" placeholder="프로필에 넣고 싶은 태그를 적어주세요." name="userTag">
                 <div class="tags-container mt-2"></div>
