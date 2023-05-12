@@ -1,6 +1,6 @@
-function getProductIdFromUrl() {
+function getUserIdFromUrl() {
     var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("productId");
+    return urlParams.get("userId");
 }
 
 function pageStartNum() { // 클로저 정의. 리뷰 offset으로 사용할 예정
@@ -16,7 +16,7 @@ function pageStartNum() { // 클로저 정의. 리뷰 offset으로 사용할 예
             return offset;
         }
     }
-};
+}
 
 let pageOffset = pageStartNum();
 
@@ -43,7 +43,7 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
     }
 
     const sort = Number($('#select-review-type').val()); // 최신순, 좋아요순 가져오기
-    let productId = getProductIdFromUrl();
+    let userId = getUserIdFromUrl();
     let receiptImg; // 인증 리뷰 or 일반 리뷰
     let offset; // 리뷰를 어디까지 읽었는지 알려주는 변수
     let receiptMark; // 인증, 미인증 표기 변수
@@ -57,13 +57,13 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
         receiptMark='<span class="text-danger ms-3 fw-bold">미인증</span>';
     }
     const queryString = { // 쿼리 스트링으로 만들기 위함
-        productId:productId,
+        userId:userId,
         offset:offset,
         receiptImg:receiptImg,
         sort:sort
     }
     const userInfo = await getUserInfo(); // 로그인 한 유저 정보 가져오기
-    const response = await fetch('http://localhost:8081/products/review/reviewRead?'+$.param(queryString)); // 서버에 데이터 요청 후 응답 기다림. 반환 데이터는 Promise 객체
+    const response = await fetch('http://localhost:8081/mypage/{userId}/reviews?'+$.param(queryString)); // 서버에 데이터 요청 후 응답 기다림. 반환 데이터는 Promise 객체
     const data = await response.json(); // 응답 Content-Type이 application/json인 경우 응답 body가 JSON형태의 데이터로 변환이 되면 성공 메세지가 담긴 Promise객체 return -> await 연산자와 함께 처리(fullfilled) 되면 최종적으로 JavaScript 객체로 변환 및 return
     console.log(data);
     const likeReviewResponse = await fetch('http://localhost:8081/products/review/likeReview/'+userInfo.userId);
@@ -74,15 +74,14 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
         let reviewImage = item.reviewImg ? `<img src="${item.reviewImg}" alt="" class="img-fluid">` : '';
         let reviewImageContainer = reviewImage ? `<div class="border icon-shape icon-lg border-2 ">${reviewImage}</div>` : '';
         let btnDelete;
-        let btnModify;
         let likeReview;
 
+        // 이 부분 좋아요 0개면 no fill, 좋아요 1개라도 있으면 fill로 하는게 나을듯?
         if(userInfo!=null && userInfo.userId == `${item.userId}`) {
             btnDelete = `<a href="#" class="text-muted review-delete" data-reviewId="${item.reviewId}"><i class="bi bi-trash me-1"></i>삭제하기</a>`
-            btnModify = `<a href="#" class="text-muted ms-3 review-modify" data-reviewId="${item.reviewId}"><i class="bi bi-pencil me-1"></i>수정하기</a>`;
         } else {
+            // ????????????????? 왜 필요?
             btnDelete = `<a href="#" class="text-muted review-delete" data-reviewId="${item.reviewId}" hidden><i class="bi bi-trash me-1"></i>삭제하기</a>`
-            btnModify = `<a href="#" class="text-muted ms-3 review-modify" data-reviewId="${item.reviewId}" hidden><i class="bi bi-pencil me-1"></i>수정하기</a>`;
         }
 
         if(likeReviewList.includes(item.reviewId)) {
@@ -95,13 +94,13 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
                           </a>`;
         }
 
-        let reivewText = `<div class="d-flex border-bottom pb-6 mb-6">
+        let reviewText = `<div class="d-flex border-bottom pb-6 mb-6">
                             <img src="${item.userImg}" alt=""
                               class="rounded-circle avatar-lg login-image">
                             <div class="ms-5 flex-grow-1">
                               <h6 class="mb-1">
                                 ${item.userName}
-                                ${btnDelete}${btnModify}
+                                ${btnDelete}
                               </h6>
                               <p class="small"> <span class="text-muted">${releaseDate}</span>
                                 ${receiptMark}
@@ -125,40 +124,9 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
                               <div class="collapse" id="${item.reviewId}"></div>
                             </div>
                           </div>`;
-        $('#review-section').append(reivewText);
+        $('#review-section').append(reviewText);
     });
 }
-
-async function productReviewLike(e) { // 상품 리뷰 좋아요 토글 버튼
-    e.preventDefault();
-    e.stopPropagation();
-    const loginUser = await getUserInfo();
-
-    const sendData = {
-        reviewId: await $(this).closest('.btn-reviewLike').data('reviewid'),
-        userId: loginUser.userId // html에 유저Id 지우기, DB resultMap 유저 Id 지우기,
-    };
-    $(this).toggleClass('active'); // 토글 활성화
-    if ($(this).hasClass('active')) {  // 토글 활성화시 데이터 저장
-        $(this).find('i').removeClass('bi-suit-heart').addClass('bi-suit-heart-fill');
-        const response = await fetch('http://localhost:8081/products/review/likeReview', { // 좋아요 총 개수 Promise형태로 반환
-            method:'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(sendData)
-        });
-        const data = await response.json(); // Promise형태를 json으로, Integer 값이라 바로 사용 가능한듯
-        await $(this).find('.badge').text(data); // 하위 자식중에 badge를 찾아서 좋아요 개수 업데이트
-    } else { // 토글 비활성화시 데이터 삭제
-        $(this).find('i').removeClass('bi-suit-heart-fill').addClass('bi-suit-heart');
-        const response = await fetch('http://localhost:8081/products/review/likeReview/'+sendData.reviewId+'/'+sendData.userId, { // 좋아요 총 개수 Promise형태로 반환
-            method:'DELETE'
-        });
-        const data = await response.json(); // Promise형태를 json으로, Integer 값이라 바로 사용 가능한듯
-        await $(this).find('.badge').text(data); // 하위 자식중에 badge를 찾아서 좋아요 개수 업데이트
-    }
-};
 
 async function productReviewRemove (e) {
     e.preventDefault();
@@ -178,107 +146,8 @@ async function productReviewRemove (e) {
     productReviewsRead(e);
 }
 
-let event
-let reviewId
-
-async function productReviewModify(e) {
-    e.preventDefault();
-
-    event = e;
-    reviewId = $(this).closest('.review-modify').data('reviewid');
-    console.log((reviewId));
-    const response = await fetch('http://localhost:8081/products/review/reviewReadOne/' + reviewId, {
-        method: 'GET'
-    });
-    const data = await response.json();
-    console.log(data);
-    $('#good-review').val(data.goodReviews); // 좋았던 점 뿌리기
-    $('#bad-review').val(data.badReviews); // 아쉬운 점 뿌리기
-    $('#OCR_file').prop('disabled', true); // 영수증 인증 막기
-    $('#food-photograph').text('수정하실 음식 사진을 업로드 해주세요.'); // 사진 업로드 문구로 변경
-    $('#receipt-photograph').text('인증은 수정할 수 없습니다.'); // 인증 수정 불가능 문구로 변경
-    $('#good-review').focus(); // 해당 위치로 포커스
-
-    $('#review-reset').hide(); // 리뷰 취소 버튼 숨기기
-    $('#review-enroll').hide(); // 리뷰 등록 버튼 숨기기
-    $('#review-update-reset').show(); // 수정 취소 버튼 활성화
-    $('#review-update').show(); // 수정 버튼 활성화
-}
-
-function reviewUpdateReset (e) { // 취소 버튼 누르면, 전부 지워지고 리뷰 위치로 돌아감
-    e.preventDefault();
-    // 리뷰 정보 초기화
-    $("#good-review").val('');
-    $("#bad-review").val('');
-
-    //사진 초기화
-    $("#food_preview").attr("src", "").css("display", "none");
-    $("#OCR_preview").attr("src", "").css("display", "none");
-
-    // 파일 input 값 초기화
-    $("#food_file").val('');
-    $("#OCR_file").val('');
-
-    // 이미지 변수 초기화
-    foodImage = null;
-
-    $('#review-reset').show(); // 리뷰 취소 버튼 활성화
-    $('#review-enroll').show(); // 리뷰 등록 버튼 활성화
-    $('#review-update-reset').hide(); // 수정 취소 버튼 숨기기
-    $('#review-update').hide(); // 수정 버튼 숨기기
-
-    $('#OCR_file').prop('disabled', false); // 막은 영수증 인증 풀기
-    $('#food-photograph').text('음식 사진을 업로드 해주세요.'); // 문구 재변경
-    $('#receipt-photograph').text('영수증 사진을 업로드 해주세요.'); // 문구 재변경
-    $(window).scrollTop($(e.target).position().top); // 수정 버튼 클릭한 곳으로 이동
-};
-
-async function reviewUpDate (e) {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append('reviewId', reviewId);
-    formData.append('goodReviews', $("#good-review").val().trim());
-    formData.append('badReviews', $("#bad-review").val().trim());
-    formData.append('reviewImg', foodImage);
-
-    console.log(formData);
-    await fetch('http://localhost:8081/products/review/reviewModify', {
-        method: 'PATCH',
-        body: formData
-    });
-    $('#review-section').empty();
-    pageOffset.init();
-    await productReviewsRead(e);
-
-    $('#review-enroll').show(); // 리뷰 등록 버튼 활성화
-    $('#review-reset').show(); // 리뷰 취소 버튼 활성화
-    $('#review-update-reset').hide(); // 수정 취소 버튼 숨기기
-    $('#review-update').hide(); // 수정 버튼 숨기기
-
-    $('#OCR_file').prop('disabled', false); // 막은 영수증 인증 풀기
-    $('#food-photograph').text('음식 사진을 업로드 해주세요.'); // 문구 재변경
-    $('#receipt-photograph').text('영수증 사진을 업로드 해주세요.'); // 문구 재변경
-
-
-    // 리뷰 정보 초기화
-    $("#good-review").val('');
-    $("#bad-review").val('');
-
-    //사진 초기화
-    $("#food_preview").attr("src", "").css("display", "none");
-    $("#OCR_preview").attr("src", "").css("display", "none");
-
-    // 파일 input 값 초기화
-    $("#food_file").val('');
-    $("#OCR_file").val('');
-
-    // 이미지 변수 초기화
-    foodImage = null;
-    receiptImage = null;
-
-    $(window).scrollTop($('#receipt-reviews-tab').position().top); // 리뷰 탭으로 이동
-};
+let event;
+let reviewId;
 
 function productReviewMore(e) {
     pageOffset.increaseOffset();
