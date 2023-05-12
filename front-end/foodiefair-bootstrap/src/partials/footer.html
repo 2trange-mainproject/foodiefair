@@ -19,7 +19,7 @@
         </div>
         <br>
         <h6 class="mb-4">(주) 푸디페어</h6>
-        <h6 class="mb-4">임시 관리자 페이지 이동 경로 <a href="@@webRoot/dashboard/customers" id="admin-page-link" role="button" style="color: deeppink">관리자페이지</a> </h6>
+        <h6 class="mb-4" id="admin-link-container">관리자 페이지 이동 <a href="@@webRoot/dashboard/customers" id="admin-page-link" role="button" style="color: deeppink">관리자페이지</a> </h6>
         <div class="row p-4">
           멀티캠퍼스 본사 서울특별시 강남구 언주로 508 14층 (역삼동, 서울상록빌딩)<br>
           대표 2상한5 | 개인정보보호책임자 : 최수현 stranger@store.com<br>
@@ -39,21 +39,23 @@
 </footer>
 
 <script>
-  //const loginUserAuth = JSON.parse(localStorage.getItem('loginUser'));
-
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', async function() {
+    const adminLinkContainer = document.getElementById('admin-link-container');
     const adminPageLink = document.getElementById('admin-page-link');
 
-    adminPageLink.addEventListener('click', async function(event) {
+    const loginUser = await getUserInfo();
+
+    // 로그인하지 않았거나 ADMIN 권한이 아니면 관리자 링크를 숨깁니다.
+    if(!loginUser || loginUser.userAuth !== "ADMIN"){
+      adminLinkContainer.style.display = "none";
+    }
+
+    adminPageLink.addEventListener('click', function(event) {
       event.preventDefault(); // 기본 클릭 동작을 중지합니다.
 
-      const loginUser = await getUserInfo();
-      const userAuth = loginUser.userAuth;
-
-      if(userAuth === "ADMIN"){
+      if(loginUser && loginUser.userAuth === "ADMIN"){
         window.location.href = adminPageLink.href;
       }
-
     });
   });
 </script>
