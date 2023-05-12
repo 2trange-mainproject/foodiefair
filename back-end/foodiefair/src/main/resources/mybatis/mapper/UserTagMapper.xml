@@ -11,4 +11,5 @@
         SELECT userBadge FROM reviewnum
         WHERE userId = #{userId}
     </select>
+
 </mapper>

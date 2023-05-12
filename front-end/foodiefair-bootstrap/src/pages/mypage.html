@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>test</title>
+  <title>FoodieFair</title>
   <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
   <link href="@@webRoot/node_modules/nouislider/dist/nouislider.min.css" rel="stylesheet">
   @@include("../partials/head.html")
@@ -51,12 +51,18 @@
                   <h4 class="mb-0" id="userName"></h4>
                 </div>
                 <!-- 유저 닉네임 -->
+                <!-- 유저 대표 뱃지 -->
+                <div class="justify-content-start">
+                  <small class="text-warning" style="font-size: 14px;"> <i class="bi bi-star-fill"></i></small>
+                  <span class="text-muted small" style="font-size: 14px;">뉴비 푸디</span>
+                </div>
+                <!-- 유저 대표 뱃지 -->
                 <!-- 유저 팔로우 -->
-                <div id="userFollowDiv" class="mt-2">
+                <div id="userFollowDiv" class="mt-6">
                 </div>
                 <!-- 유저 팔로우 -->
                 <!-- Follows Content -->
-                <div class="mt-4">
+                <div>
                   <ul class="nav nav-pills nav-lb-tab justify-content-center flex-nowrap" role="tablist">
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
                       <a class="nav-link fs-6 text-nowrap" id="followers-tab" href="#" onclick="openPopup('follows', userId)" role="tab" aria-controls="followers-tab-pane" aria-selected="false">팔로워</a>

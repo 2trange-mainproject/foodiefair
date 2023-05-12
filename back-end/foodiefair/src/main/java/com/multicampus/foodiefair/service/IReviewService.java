@@ -35,4 +35,8 @@ public interface IReviewService {
 
     Map<String, Object> reviewReadOne(long reviewId);
     List<ReviewDTO> reviewRead(String productId, int offset, int receiptImg, int sort);
+
+    // 준우
+    List<ReviewDTO> mypageReviewRead(int userId, int offset, int receiptImg, int sort);
+
 }

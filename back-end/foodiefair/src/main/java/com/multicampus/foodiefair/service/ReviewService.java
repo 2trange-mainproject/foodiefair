@@ -161,4 +161,18 @@ public class ReviewService implements IReviewService {
             return dao.likeReviewRead(paramMap);
         }
     }
+
+    @Override
+    public List<ReviewDTO> mypageReviewRead(int userId, int offset, int receiptImg, int sort) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userId", userId);
+        paramMap.put("offset", offset);
+        paramMap.put("receiptImg", receiptImg);
+
+        if(sort==0) {
+            return dao.mypageDateReviewRead(paramMap);
+        } else {
+            return dao.mypageLikeReviewRead(paramMap);
+        }
+    }
 }
