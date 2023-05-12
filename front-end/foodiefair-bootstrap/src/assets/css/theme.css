@@ -40569,3 +40569,6 @@ span.flatpickr-weekday {
 .hero-slider .slick-next {
   right: 20px;
 }
+.hero-slider {
+  padding-left: 115px; /* 화살표 크기에 따라 조절해야 합니다 */
+}
