@@ -1,5 +1,6 @@
 package com.multicampus.foodiefair.service;
 
+import com.multicampus.foodiefair.dto.ReviewNumDTO;
 import com.multicampus.foodiefair.dto.UserDTO;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,4 +16,6 @@ public interface IUserService {
     public void updateUserPassword(String userEmail, String userPwd);
     public void delete(String userEmail) throws Exception;
     public UserDTO read(int selectedId);
+    public ReviewNumDTO readBadge(int selectedId);
+    public int updateBadge(int selectedId, String selectedBadge);
 }

@@ -1,5 +1,6 @@
 package com.multicampus.foodiefair.service; //UserService.
 
+import com.multicampus.foodiefair.dto.ReviewNumDTO;
 import com.multicampus.foodiefair.dto.UserDTO;
 import com.multicampus.foodiefair.dao.IUserDAO;
 
@@ -79,5 +80,22 @@ public class UserService implements IUserService {
         paramMap.put("selectedId", selectedId);
 
         return userDAO.readDao(paramMap);
+    }
+
+    @Override
+    public ReviewNumDTO readBadge(int selectedId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("selectedId", selectedId);
+
+        return userDAO.readBadge(paramMap);
+    }
+
+    @Override
+    public int updateBadge(int selectedId, String selectedBadge) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("selectedId", selectedId);
+        paramMap.put("selectedBadge", selectedBadge);
+
+        return userDAO.updateBadge(paramMap);
     }
 }
