@@ -75,4 +75,13 @@
     <select id="readDao" resultType="com.multicampus.foodiefair.dto.UserDTO">
         select * from User where userId = #{selectedId}
     </select>
+
+    <select id="readBadge" resultType="com.multicampus.foodiefair.dto.ReviewNumDTO">
+        select * from ReviewNum where userId = #{selectedId}
+    </select>
+
+    <update id="updateBadge">
+        update ReviewNum set selectedBadge = #{selectedBadge}
+        where userId = #{selectedId}
+    </update>
 </mapper>

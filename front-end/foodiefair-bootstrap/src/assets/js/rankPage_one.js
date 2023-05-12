@@ -36,6 +36,7 @@ function loadRankPageOne() {
         var productHtml = '';
 
         $.each(data, function(index, user) {
+            console.log('selectedBadge', user.selectedBadge);
             var myTag = JSON.parse(user.userTag).tag1;
 
             var rankElement;
@@ -81,7 +82,7 @@ function loadRankPageOne() {
 
                                  <!-- 칭호 -->
                                  <small class="text-warning star-icon"> <i class="bi bi-star-fill"></i></small>
-                                 <span class="text-muted small tag-text">${myTag}</span>
+                                 <span class="text-muted small tag-text">${user.selectedBadge}</span>
                              </div>
                              <div class="mt-6">
                                 <!-- btn -->

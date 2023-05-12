@@ -20,7 +20,7 @@ function renderUsers(data) {
                 <div class="d-flex justify-content-between align-items-center mt-3">
                   <div>
                     <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
-                    <span><small>${myTag}</small></span>
+                    <span><small>${user.selectedBadge}</small></span>
                   </div>
                 </div>
                 <div class="d-grid mt-2"><a href="#!" class="btn btn-primary ">
