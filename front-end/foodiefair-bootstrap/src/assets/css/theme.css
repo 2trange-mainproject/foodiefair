@@ -40557,18 +40557,18 @@ span.flatpickr-weekday {
 }
 
 /* 화살표 */
-.hero-slider .slick-prev,
-.hero-slider .slick-next {
+.method-slider .slick-prev,
+.method-slider .slick-next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
-.hero-slider .slick-prev {
+.method-slider .slick-prev {
   left: 20px;
 }
-.hero-slider .slick-next {
+.method-slider .slick-next {
   right: 20px;
 }
-.hero-slider {
+.method-slider {
   padding-left: 115px; /* 화살표 크기에 따라 조절해야 합니다 */
 }
