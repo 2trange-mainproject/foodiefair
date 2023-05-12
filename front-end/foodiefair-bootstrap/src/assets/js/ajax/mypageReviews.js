@@ -26,14 +26,9 @@ $(document).ready(function (){
     });
 
     $('.btn-reviews').click(productReviewTab) // 리뷰 탭 이동시 html 초기화 및 해당 탭  리뷰 목록 가져오기
-    $('#review-section').on('click', '.btn-reviewLike', productReviewLike); // 리뷰 좋아요 눌렀을 때 토글 및 DB저장, 숫자 반영
     $('.btn-reviewMore').click(productReviewMore); // 리뷰 더보기 버튼
     $('#select-review-type').change(productReviewType); // 정렬 선택
     $('#review-section').on('click', '.review-delete', productReviewRemove);
-    $('#review-section').on('click', '.review-modify', productReviewModify);
-
-    $('#review-update-reset').on('click', reviewUpdateReset);
-    $('#review-update').on('click', reviewUpDate);
 });
 
 async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
