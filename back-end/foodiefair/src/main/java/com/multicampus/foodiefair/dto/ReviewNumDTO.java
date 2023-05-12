@@ -13,6 +13,7 @@ import java.util.HashMap;
 @NoArgsConstructor
 public class ReviewNumDTO {
     private Long userId;
-    private HashMap<String, Object> reviewNum;
-    private HashMap<String, Object> userBadge;
+    private String reviewNum;
+    private String userBadge;
+    private String selectedBadge;
 }
