@@ -21,21 +21,19 @@ function renderUsers(data) {
                 <div class="text-center  position-relative "> <a href="./pages/mypage?userId=${user.userId}">
                     <img src="${user.userImg}" style="width: 250px; height: 250px; object-fit: cover;" alt="rank${user.user_rank}" class="mb-3 img-fluid"></a>
                 </div>
-                <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>리뷰어 ${user.user_rank}위</small></a></div>
-                <h2 class="fs-6"><a href="./pages/mypage?userId=${user.userId}" class="text-inherit text-decoration-none">${user.userName}</a></h2>
+                <h2 class="fs-6" style="margin-left: 15px"><a href="../pages/mypage?userId=${user.userId}" class="text-inherit text-decoration-none">${user.userName}</a></h2>
 
-                <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="d-flex justify-content-between align-items-center" style="margin-left: 15px">
                   <div>
                     <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
                     <span><small>${user.selectedBadge}</small></span>
                   </div>
                 </div>
-                <div class="d-grid mt-2">
-                    <a href="#!" class="btn btn-primary" data-user-id="${user.userId}">
+                <div class="d-grid mt-2 justify-content-center align-items-center" >
+                    <a href="#!" class="btn btn-primary" data-user-id="${user.userId}" style="width: 250px;">
                          <i class="bi bi-person-plus" style="width=16px; height=16px;"></i> 
                          <span class="follow-text">팔로우</span></a></div>
                 <div class="d-flex justify-content-start text-center mt-3">
-                  <div class="deals-countdown w-100" data-countdown="2028/11/11 00:00:00"></div>
                 </div>
               </div>
             </div>
