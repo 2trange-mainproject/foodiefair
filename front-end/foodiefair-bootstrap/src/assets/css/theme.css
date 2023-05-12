@@ -40555,3 +40555,17 @@ span.flatpickr-weekday {
   height: 100%;
   object-fit: cover;
 }
+
+/* 화살표 */
+.hero-slider .slick-prev,
+.hero-slider .slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.hero-slider .slick-prev {
+  left: 20px;
+}
+.hero-slider .slick-next {
+  right: 20px;
+}
