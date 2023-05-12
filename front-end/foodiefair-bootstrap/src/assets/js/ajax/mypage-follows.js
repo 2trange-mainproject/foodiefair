@@ -151,7 +151,7 @@ function updateFollowButton(isFollowing, loginUserId, userId) {
         followButton.setAttribute("onclick", `unfollowUser(${loginUserId}, ${userId}, ${loginUserId})`);
     } else {
         followButton.classList.add("btn-pink");
-        followButton.style.width = "220px";
+        followButton.style.width = "200px";
         followIcon.classList.add("bi-person-plus");
         followIcon.style.marginRight = "6px";
         followText.innerText = "팔로우";

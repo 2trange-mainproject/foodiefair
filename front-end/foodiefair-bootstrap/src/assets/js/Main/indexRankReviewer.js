@@ -1,7 +1,10 @@
 getUserInfo().then(data => {
-    loginUserId = data.userId;
+    if (data) {
+        loginUserId = data.userId;
+    } else {
+        loginUserId = null;
+    }
 });
-
 function renderUsers(data) {
     let $rankingContainer = $('#rankingContainer');
     $rankingContainer.addClass("d-flex gap-4");
@@ -27,11 +30,10 @@ function renderUsers(data) {
                     <span><small>${user.selectedBadge}</small></span>
                   </div>
                 </div>
-                <div class="d-grid mt-2"><a href="#!" class="btn btn-primary ">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
-                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                  </svg> 팔로우 </a></div>
+                <div class="d-grid mt-2">
+                    <a href="#!" class="btn btn-primary" data-user-id="${user.userId}">
+                         <i class="bi bi-person-plus" style="width=16px; height=16px;"></i> 
+                         <span class="follow-text">팔로우</span></a></div>
                 <div class="d-flex justify-content-start text-center mt-3">
                   <div class="deals-countdown w-100" data-countdown="2028/11/11 00:00:00"></div>
                 </div>
@@ -54,6 +56,16 @@ function renderUsers(data) {
                 });
             });
 
+            data.forEach(user => {
+                let followButton = $(`[data-user-id="${user.userId}"]`);
+
+                if (loginUserId) { // 로그인한 경우
+                    fetchFollowStatus(loginUserId, user.userId).then(isFollowing => {
+                        updateFollowButton(followButton, isFollowing);
+                    });
+                }
+            });
+
         }
     });
 }
@@ -74,3 +86,83 @@ $(document).ready(function () {
         },
     });
 });
+
+function followUser(userId, loginUserId, followedId) {
+    const followDTO = {
+        followingId: loginUserId,
+        followedId: followedId,
+    };
+
+    let followButton = $(`[data-user-id="${userId}"]`);
+
+    $.ajax({
+        url: `http://localhost:8081/mypage/${userId}/follow`,
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(followDTO),
+        success: function() {
+            console.log('Follow success');
+            updateFollowButton(followButton, true);
+        },
+        error: function() {
+            console.error('Failed to follow user');
+        }
+    });
+}
+
+function unfollowUser(userId, loginUserId, followedId) {
+    let followButton = $(`[data-user-id="${userId}"]`);
+
+    $.ajax({
+        url: `http://localhost:8081/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`,
+        type: "DELETE",
+        success: function() {
+            console.log('Unfollow success');
+            updateFollowButton(followButton, false);
+        },
+        error: function() {
+            console.error('Failed to unfollow user');
+        }
+    });
+}
+
+
+function fetchFollowStatus(loginUserId, userId) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `http://localhost:8081/mypage/${userId}/following-check?loginUserId=${loginUserId}`,
+            type: "GET",
+            success: function(response) {
+                resolve(response);
+            },
+            error: function() {
+                reject('Failed to fetch follow status');
+            }
+        });
+    });
+}
+
+function updateFollowButton(button, isFollowed) {
+    var followIcon = button.find('.bi');
+    var followText = button.find('.follow-text');
+
+    if (isFollowed) {
+        followIcon.removeClass('bi-person-plus').addClass('bi-person-dash');
+        followText.text('언팔로우');
+        button.removeClass('btn-primary').addClass('btn-light');
+
+        button.off('click');
+        button.on('click', function() {
+            unfollowUser(button.data('user-id'), loginUserId, button.data('user-id'));
+        });
+    } else {
+        followIcon.removeClass('bi-person-dash').addClass('bi-person-plus');
+        followText.text('팔로우');
+        button.removeClass('btn-light').addClass('btn-primary');
+
+        button.off('click');
+        button.on('click', function() {
+            followUser(button.data('user-id'), loginUserId, button.data('user-id'));
+        });
+    }
+}

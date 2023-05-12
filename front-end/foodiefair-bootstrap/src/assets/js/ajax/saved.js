@@ -1,11 +1,14 @@
 const savedListElement = document.getElementById("saved-list");
 
 document.addEventListener("DOMContentLoaded", () => {
-    displaySavedList(userId, loginUserId);
+    displaySavedList(userId);
 
 });
 
-async function displaySavedList(userId, loginUserId) {
+async function displaySavedList(userId) {
+    const loginUser = await getUserInfo();
+    var loginUserId = loginUser.userId;
+
     const savedList = await fetchSavedList(userId);
 
     // Clear previous content
@@ -69,9 +72,7 @@ async function displaySavedList(userId, loginUserId) {
                 </div>
             </div>
         `;
-
         savedListElement.innerHTML += productHtml;
-
     });
 }
 
@@ -98,7 +99,7 @@ async function fetchSavedList(userId) {
 }
 
 async function removeSavedProduct(productId, userId) {
-    const response = await fetch(`http://localhost:8081/products/${productId}/saved?userId=${userId}`, {
+    const response = await fetch(`http://localhost:8081/products/${productId}/saved/mypage?userId=${userId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
