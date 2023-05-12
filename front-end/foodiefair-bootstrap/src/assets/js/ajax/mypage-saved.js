@@ -6,14 +6,16 @@ const productNumElement = document.getElementById("productNum");
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    displaySavedList(userId, loginUserId, currentPage, pageSize);
+    displaySavedList(userId, currentPage, pageSize);
     displayProductNum(userId);
 
 });
 
 
 // 찜 상품 리스트 표시
-async function displaySavedList(userId, loginUserId, page, pageSize) {
+async function displaySavedList(userId, page, pageSize) {
+    const loginUser = await getUserInfo();
+    var loginUserId = loginUser.userId;
 
     const response = await fetchSavedList(userId, page, pageSize);
     const savedList = response.dataList;
@@ -84,7 +86,7 @@ async function displaySavedList(userId, loginUserId, page, pageSize) {
         fixedTagLink.textContent = fixedTag;
         fixedTagDiv.appendChild(fixedTagLink);
 
-// Add the productName element
+        // Add the productName element
         const productNameH2 = document.createElement("h2");
         productNameH2.className = "fs-6";
         const productNameLink = document.createElement("a");
@@ -93,18 +95,18 @@ async function displaySavedList(userId, loginUserId, page, pageSize) {
         productNameLink.textContent = saved.productName;
         productNameH2.appendChild(productNameLink);
 
-// Add the 조회 (views), 리뷰 (reviews), 찜 (saved) elements
+        // Add the 조회 (views), 리뷰 (reviews), 찜 (saved) elements
         const infoDiv = document.createElement("div");
         infoDiv.innerHTML = `
-    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-    <span class="text-muted small">조회(<span>${saved.productViews}</span>)</span>
-    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-    <span class="text-muted small">리뷰(<span>${saved.productReviews}</span>)</span>
-    <small class="text-warning"><i class="bi bi-star-fill"></i></small>
-    <span class="text-muted small">찜(<span>${saved.productSaved}</span>)</span>
-`;
+            <small class="text-warning"><i class="bi bi-star-fill"></i></small>
+            <span class="text-muted small">조회(<span>${saved.productViews}</span>)</span>
+            <small class="text-warning"><i class="bi bi-star-fill"></i></small>
+            <span class="text-muted small">리뷰(<span>${saved.productReviews}</span>)</span>
+            <small class="text-warning"><i class="bi bi-star-fill"></i></small>
+            <span class="text-muted small">찜(<span>${saved.productSaved}</span>)</span>
+        `;
 
-// Add the price and bookmark elements
+        // Add the price and bookmark elements
         const priceDiv = document.createElement("div");
         priceDiv.className = "d-flex justify-content-between align-items-center mt-3";
         const emptyDiv = document.createElement("div");
@@ -117,7 +119,7 @@ async function displaySavedList(userId, loginUserId, page, pageSize) {
         bookmarkLink.className = "ms-2 btn-action";
         bookmarkLink.style.color = "deeppink";
 
-// Conditionally display the bookmark button
+        // Conditionally display the bookmark button
         if (parseInt(userId) === parseInt(loginUserId)) {
             bookmarkLink.innerHTML = "<i class='bi bi-bookmark-fill'></i>";
         } else {
@@ -129,7 +131,7 @@ async function displaySavedList(userId, loginUserId, page, pageSize) {
         priceDiv.appendChild(emptyDiv);
         priceDiv.appendChild(priceInfoDiv);
 
-// Append all elements to the card body
+        // Append all elements to the card body
         cardBodyDiv.appendChild(textCenterDiv);
         cardBodyDiv.appendChild(fixedTagDiv);
         cardBodyDiv.appendChild(productNameH2);
@@ -242,7 +244,7 @@ function createPageButtons(currentPage, totalPages, pageSize) {
     prevPageButton.addEventListener("click", () => {
         if (currentPage > 1) {
             currentPage--;
-            displaySavedList(userId, loginUserId, currentPage, pageSize);
+            displaySavedList(userId, currentPage, pageSize);
         }
     });
 
@@ -255,7 +257,7 @@ function createPageButtons(currentPage, totalPages, pageSize) {
 
         // 페이지 버튼 클릭 이벤트 추가
         pageButton.addEventListener("click", () => {
-            displaySavedList(userId,loginUserId, i, pageSize);
+            displaySavedList(userId, i, pageSize);
             currentPage = i;
             createPageButtons(currentPage, totalPages, pageSize);
         });
@@ -278,7 +280,7 @@ function createPageButtons(currentPage, totalPages, pageSize) {
         } else if (currentPage === totalPages) {
             const lastPageButton = paginationElement.querySelector(`[data-page="${totalPages}"]`);
             lastPageButton.classList.add("active");
-            displaySavedList(userId, loginUserId, currentPage, pageSize);
+            displaySavedList(userId, currentPage, pageSize);
         }
     });
 
