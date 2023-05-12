@@ -104,7 +104,9 @@ function loadRankPageTwo() {
                 <div class="card-body">
                   <div class="text-center position-relative">
                     <a href="mypage?userId=${user.userId}">
-                        <img class="mb-3 img-fluid" style="max-width: 250px; max-height: 250px;" src="${user.userImg}">
+                        <div class="badge-wrapper">
+                            <img class="mb-3 img-fluid user-image" src="${user.userImg}">
+                        </div>
                     </a>
                   </div>
                   <div class="text-center">

@@ -11,11 +11,11 @@ function renderUsers(data) {
            <div class="col">
             <div class="card card-product" style="min-width: 310px">
               <div class="card-body">
-                <div class="text-center  position-relative "> <a href="./pages/mypage">
+                <div class="text-center  position-relative "> <a href="./pages/mypage?userId=${user.userId}">
                 <img src="${user.userImg}" style="max-width: 220px" alt="rank${user.user_rank}" class="mb-3 img-fluid"></a>
                 </div>
                 <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>리뷰어 ${user.user_rank}위</small></a></div>
-                <h2 class="fs-6"><a href="./pages/mypage" class="text-inherit text-decoration-none">${user.userName}</a></h2>
+                <h2 class="fs-6"><a href="./pages/mypage?userId=${user.userId}" class="text-inherit text-decoration-none">${user.userName}</a></h2>
 
                 <div class="d-flex justify-content-between align-items-center mt-3">
                   <div>
