@@ -1,11 +1,14 @@
 const savedListElement = document.getElementById("saved-list");
 
 document.addEventListener("DOMContentLoaded", () => {
-    displaySavedList(userId, loginUserId);
+    displaySavedList(userId);
 
 });
 
-async function displaySavedList(userId, loginUserId) {
+async function displaySavedList(userId) {
+    const loginUser = await getUserInfo();
+    var loginUserId = loginUser.userId;
+
     const savedList = await fetchSavedList(userId);
 
     // Clear previous content
