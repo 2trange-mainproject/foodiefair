@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 async function displaySavedList(userId, loginUserId) {
     const savedList = await fetchSavedList(userId);
 
-
     // Clear previous content
     savedListElement.innerHTML = '';
 
