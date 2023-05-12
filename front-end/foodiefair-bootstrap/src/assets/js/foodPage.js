@@ -153,6 +153,7 @@ function updateSearchKeyword() {
 function loadProducts(page, sortOrder) {
     // food.html 페이지의 JavaScript 코드
     const searchKeyword = localStorage.getItem('searchKeyword');
+    console.log('정렬: ', sortOrder);
     console.log('검색 키워드:', searchKeyword);
 
     var filters = getSelectedFilters();
@@ -203,6 +204,8 @@ function renderProducts(data) {
     var filteredProductCount = 0;
 
     $.each(data, function(index, product) {
+        console.log('index: ',index,'product:',product);
+
         var festivalText, festivalColor;
 
         filteredProductCount++;
@@ -232,7 +235,11 @@ function renderProducts(data) {
                       <span class="badge bg-${festivalColor}">${festivalText}</span>
                     </div>
                     <a href="viewFood?productId=${product.productId}">
+<<<<<<< HEAD
                         <img class="mb-3 img-fluid" style="height: 220px;" src="${product.productImg}">
+=======
+                        <img class="mb-3 img-fluid" style="max-width: 210px; height: 210px;" src="${product.productImg}">
+>>>>>>> 33e51f6d6538c8073cbe5e892a08729b2dc8613a
                     </a>
                   </div>
                   <div class="text-small mb-1"><a href="#" class="text-decoration-none text-muted">${fixedTag}</a></div>

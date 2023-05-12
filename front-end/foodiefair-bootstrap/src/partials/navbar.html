@@ -125,6 +125,7 @@
               <a id="signin-link" style="color: #889397; margin-right:10px; display: none" href="@@webRoot/pages/signin">로그인</a>
               <a id="signup-link" style="color: #889397; display: none" href="@@webRoot/pages/contract">회원가입</a>
               <script>
+<<<<<<< HEAD
                 window.onload = function() {
                   const loginUser = JSON.parse(localStorage.getItem('loginUser'));
                   if
@@ -140,6 +141,24 @@
                     const updateLink = document.getElementById('update-link');
                     updateLink.href = `@@webRoot/pages/userUpdate?userId=${loginUser.userId}`;
 
+=======
+                window.onload = async function() {
+                  const loginUser = await getUserInfo();
+
+                  if
+                  (loginUser) {
+                    document.getElementById('login-name').innerHTML = loginUser.userName + ' 님';
+                    document.getElementById('login-message').innerHTML = loginUser.userName + ' 님';
+                    document.getElementById('login-email').innerHTML = loginUser.userEmail;
+                    document.getElementById('login-image').src = loginUser.userImg;
+
+                    const mypageLink = document.getElementById('mypage-link');
+                    mypageLink.href = `@@webRoot/pages/mypage?userId=${loginUser.userId}`;
+
+                    const updateLink = document.getElementById('update-link');
+                    updateLink.href = `@@webRoot/pages/userUpdate?userId=${loginUser.userId}`;
+
+>>>>>>> 33e51f6d6538c8073cbe5e892a08729b2dc8613a
                     document.getElementById('logout-link').style.display = 'inline';
                     document.getElementById('login-profile').style.display = 'inline';
                   } else {

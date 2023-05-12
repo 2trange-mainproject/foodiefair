@@ -16,6 +16,9 @@ function loadUserDetails(userId) {
         url: `http://localhost:8081/user-read/${userId}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true
+        },
         success: function (response) {
             renderUserDetails(response.userRead);
         },
@@ -133,7 +136,7 @@ function displayTags() {
     });
 }
 
-$(document).on("click", "#update-button", function (event) {
+$(document).on("click", "#update-button", async function (event) {
     event.preventDefault();
 
     const userName = document.getElementById("userName").value;
@@ -172,6 +175,7 @@ $(document).on("click", "#update-button", function (event) {
     //formData.set("userName", document.getElementById("userName").value);
     console.log('Final form data:', formData);
 
+<<<<<<< HEAD
     $.ajax({
         type: "PUT",
         url: "http://localhost:8081/modify",
@@ -183,15 +187,33 @@ $(document).on("click", "#update-button", function (event) {
                 alert(result.message);
                 localStorage.setItem('loginUser', JSON.stringify(result.user));
                 location.href = "/foodiefair"
+=======
+    try {
+        const response = await fetch("http://localhost:8081/modify", {
+            method: "PUT",
+            body: formData,
+            mode: "cors",
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+                alert(result.message);
+                location.href = "/foodiefair";
+>>>>>>> 33e51f6d6538c8073cbe5e892a08729b2dc8613a
             } else {
                 alert(result.message);
             }
-        },
-        error: function (xhr, status, error) {
-            console.error(xhr.responseText);
-            alert(xhr.responseJSON.message);
+        } else {
+            const error = await response.json();
+            console.error(response.statusText);
+            alert(error.message);
         }
-    });
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
 });
 
 //프로필 업로드
