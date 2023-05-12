@@ -1,3 +1,7 @@
+getUserInfo().then(data => {
+    loginUserId = data.userId;
+});
+
 function renderUsers(data) {
     let $rankingContainer = $('#rankingContainer');
     $rankingContainer.addClass("d-flex gap-4");
