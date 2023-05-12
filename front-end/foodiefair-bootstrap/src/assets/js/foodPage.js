@@ -120,6 +120,7 @@ document.getElementById('reset-search').addEventListener('click', function () {
     loadProducts(1, $(".form-select").val());
 });
 
+//야호
 function toggleResetSearchButton() {
     const searchKeyword = localStorage.getItem('searchKeyword');
     const resetSearchButton = document.getElementById('reset-search');

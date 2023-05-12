@@ -1,6 +1,7 @@
 package com.multicampus.foodiefair.controller; //TestController
 
 import com.amazonaws.services.dynamodbv2.xspec.S;
+import com.multicampus.foodiefair.dto.ReviewNumDTO;
 import com.multicampus.foodiefair.dto.UserDTO;
 import com.multicampus.foodiefair.service.RegisterMail;
 import com.multicampus.foodiefair.service.UserService;
@@ -214,7 +215,8 @@ public class UserController {
             @RequestParam("userName") String userName,
             @RequestParam("userTags") String userTags,
             @RequestParam("userIntro") String userIntro,
-            @RequestParam("userEmail") String userEmail
+            @RequestParam("userEmail") String userEmail,
+            @RequestParam("selectedBadge") String selectedBadge
     ) throws Exception{
         if (!userImg.isEmpty()) {
             File file = convertMultipartFileToFile(userImg);
@@ -224,6 +226,8 @@ public class UserController {
         }
 
         userService.updateUser(userId, userImg.getOriginalFilename(), userName, userTags, userIntro);
+        System.out.println("selectedBadge : " + selectedBadge);
+        userService.updateBadge(userId, selectedBadge);
 
         UserDTO userDto = userService.getUserByEmail(userEmail);
         S3Client s3Client = new S3Client();
@@ -261,6 +265,7 @@ public class UserController {
             @PathVariable("userId") int userId) {
 
         UserDTO user = userService.read(userId);
+        ReviewNumDTO badge = userService.readBadge(userId);
 
         // 파일 URL 생성
         S3Client s3Client = new S3Client();
@@ -270,6 +275,7 @@ public class UserController {
 
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("userRead", user);
+        resultMap.put("badgeRead", badge);
 
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }

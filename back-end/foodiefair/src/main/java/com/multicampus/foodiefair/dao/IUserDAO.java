@@ -1,5 +1,6 @@
 package com.multicampus.foodiefair.dao; //IUserDAO
 
+import com.multicampus.foodiefair.dto.ReviewNumDTO;
 import com.multicampus.foodiefair.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -29,6 +30,9 @@ public interface IUserDAO {
 
     //회원 읽기
     public UserDTO readDao(Map<String, Object> paramMap);
+    //대표 칭호
+    public ReviewNumDTO readBadge(Map<String, Object> paramMap);
+    public int updateBadge(Map<String, Object> paramMap); //회원정보 수정하기
 
     public int updateDao(Map<String, Object> paramMap); //회원정보 수정하기
 }

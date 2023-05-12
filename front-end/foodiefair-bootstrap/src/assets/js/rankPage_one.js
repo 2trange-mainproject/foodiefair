@@ -36,6 +36,7 @@ function loadRankPageOne() {
         var productHtml = '';
 
         $.each(data, function(index, user) {
+            console.log('selectedBadge', user.selectedBadge);
             var myTag = JSON.parse(user.userTag).tag1;
 
             var rankElement;
@@ -65,11 +66,11 @@ function loadRankPageOne() {
                              <div class="text-center position-relative">
                                 <a href="mypage?userId=${user.userId}" class="d-flex">
                                    <!-- img -->
-                                   <div class="flex-grow-1">
+                                   <div class="flex-grow-1 img-container">
                                       ${rankElement}
                                    </div>
-                                   <div class="flex-grow-1">
-                                      <img class="mb-3 img-fluid d-inline user-img" style="max-width: 150px;" src="${user.userImg}">
+                                   <div class="flex-grow-1 img-container">
+                                      <img class="mb-3 user-img" style="max-width: 150px;" src="${user.userImg}">
                                    </div>
                                  </a>
                              </div>
@@ -81,7 +82,7 @@ function loadRankPageOne() {
 
                                  <!-- 칭호 -->
                                  <small class="text-warning star-icon"> <i class="bi bi-star-fill"></i></small>
-                                 <span class="text-muted small tag-text">${myTag}</span>
+                                 <span class="text-muted small tag-text">${user.selectedBadge}</span>
                              </div>
                              <div class="mt-6">
                                 <!-- btn -->

@@ -7,12 +7,13 @@
     <select id="listDao" resultType="com.multicampus.foodiefair.dto.UserDTO">
         SELECT t.*, t.row_num AS user_rank
         FROM (
-        SELECT U.*, ROW_NUMBER() OVER(ORDER BY SUM(R.reviewLikes) * 0.7 + COUNT(R.reviewId) * 0.3 DESC) row_num
+        SELECT U.*, RN.selectedBadge, ROW_NUMBER() OVER(ORDER BY SUM(R.reviewLikes) * 0.7 + COUNT(R.reviewId) * 0.3 DESC) row_num
         FROM User U
         JOIN Review R ON U.userId = R.userId
+        LEFT JOIN ReviewNum RN ON U.userId = RN.userId
         WHERE R.reviewDate BETWEEN DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH), '%Y-%m-01') AND LAST_DAY(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))
         AND R.receiptImg = 1
-        GROUP BY U.userId, U.userName
+        GROUP BY U.userId, U.userName, RN.selectedBadge
         ) t
         WHERE
         <choose>

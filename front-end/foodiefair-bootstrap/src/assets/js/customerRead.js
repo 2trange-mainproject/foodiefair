@@ -20,7 +20,7 @@ function loadUserDetails(userId) {
             withCredentials: true
         },
         success: function (response) {
-            renderUserDetails(response.userRead);
+            renderUserDetails(response.userRead, response.badgeRead);
         },
         error: function (error) {
             console.log(error);
@@ -28,10 +28,24 @@ function loadUserDetails(userId) {
     });
 }
 
-function renderUserDetails(user) {
+function renderUserDetails(user, badge) {
+    console.log('badge: ', badge)
+
     var $userContainer = $('#userContainer');
     $userContainer.empty();
     var userHtml = '';
+
+    // selectedBadge에서 키워드 추출
+    const selectedBadgeKeyword = badge.selectedBadge.split(" ")[0];
+
+    // userBadge를 객체로 파싱
+    const userBadgeObject = JSON.parse(badge.userBadge);
+
+    // 각 badge에 대해 option 생성
+    let badgeOptionsHtml = '';
+    for (const keyword in userBadgeObject) {
+        badgeOptionsHtml += `<option value="${keyword} ${userBadgeObject[keyword]}" ${keyword === selectedBadgeKeyword ? 'selected' : ''}>${keyword} ${userBadgeObject[keyword]}</option>`;
+    }
 
     userHtml += `
           <!-- form -->
@@ -49,6 +63,12 @@ function renderUserDetails(user) {
                 <h5>*닉네임</h5>
                 <!-- 닉네임 input -->
                 <input type="text" class="form-control" id="userName" value="${user.userName}" name="userName" required>
+              </div>
+              <div class="col-12">
+                <h5>대표칭호</h5>
+                <select class="form-select" id="selectedBadge" name="selectedBadge">
+                  ${badgeOptionsHtml}
+                </select>
               </div>
               <div class="col-12">
                 <h5>마이태그</h5>
@@ -166,6 +186,10 @@ $(document).on("click", "#update-button", async function (event) {
 
     // userTags를 JSON Array 형태로 만들기
     formData.set('userTags', JSON.stringify(userTagsObject));
+
+    // 대표 뱃지(칭호)
+    const selectedBadge = document.getElementById("selectedBadge").value;
+    formData.set("selectedBadge", selectedBadge);
 
     // jsonData 객체를 formData에 추가
     for (let key in jsonData) {
