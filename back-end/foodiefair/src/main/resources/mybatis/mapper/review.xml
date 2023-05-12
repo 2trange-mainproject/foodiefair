@@ -48,4 +48,21 @@
         <if test="reviewImg != null">, reviewImg=#{reviewImg}</if>
         WHERE reviewId=#{reviewId};
     </update>
+
+
+
+        <!-- 준우 부분    -->
+    <select id="mypageDateReviewRead" resultType="com.multicampus.foodiefair.dto.ReviewDTO">
+        SELECT user.userId, review.reviewId, IFNULL(comment.commentNum, 0) as commentNum, user.userName, user.userImg, review.reviewDate, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes
+        FROM user INNER JOIN (SELECT * FROM review WHERE userId=#{userId}) review ON user.userId = review.userId
+                  LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = review.reviewId
+        WHERE review.receiptImg = #{receiptImg} order by review.reviewId desc LIMIT 3 OFFSET #{offset};
+    </select>
+    <select id="mypageLikeReviewRead" resultType="com.multicampus.foodiefair.dto.ReviewDTO">
+        SELECT user.userId, review.reviewId, IFNULL(comment.commentNum, 0) as commentNum, user.userName, user.userImg, review.reviewDate, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes
+        FROM user INNER JOIN (SELECT * FROM review WHERE userId=#{userId}) review ON user.userId = review.userId
+                  LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = review.reviewId
+        WHERE review.receiptImg = #{receiptImg} order by review.reviewLikes desc LIMIT 3 OFFSET #{offset};
+    </select>
+
 </mapper>

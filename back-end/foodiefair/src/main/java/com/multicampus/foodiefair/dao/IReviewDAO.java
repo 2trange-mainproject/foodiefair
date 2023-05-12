@@ -42,4 +42,6 @@ public interface IReviewDAO {
     public int reviewModify(long reviewId, String goodReviews, String badReviews, String reviewImg);
     public List<ReviewDTO> dateReviewRead(Map<String, Object> paramMap);
     public List<ReviewDTO> likeReviewRead(Map<String, Object> paramMap);
+    public List<ReviewDTO> mypageDateReviewRead(Map<String, Object> paramMap);
+    public List<ReviewDTO> mypageLikeReviewRead(Map<String, Object> paramMap);
 }
