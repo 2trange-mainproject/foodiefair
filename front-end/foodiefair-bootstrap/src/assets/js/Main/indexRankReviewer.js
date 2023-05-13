@@ -1,10 +1,11 @@
 getUserInfo().then(data => {
-    if (data) {
+    if (data) { // 로그인 데이터가 있을 때
         loginUserId = data.userId;
-    } else {
+    } else { // 로그인 데이터가 없을 때
         loginUserId = null;
     }
 });
+
 function renderUsers(data) {
     let $rankingContainer = $('#rankingContainer');
     $rankingContainer.addClass("d-flex gap-4");
@@ -61,6 +62,18 @@ function renderUsers(data) {
                     fetchFollowStatus(loginUserId, user.userId).then(isFollowing => {
                         updateFollowButton(followButton, isFollowing);
                     });
+                } else { // 로그인하지 않은 경우
+                    followButton.on('click', function(e) {
+                        e.preventDefault();
+                        Swal.fire({
+                            title: "팔로우 실패",
+                            html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+                            icon: "warning",
+                            showConfirmButton: false,
+                            timer: 1200,
+                        });
+                        return;
+                    });
                 }
             });
 
@@ -86,6 +99,7 @@ $(document).ready(function () {
 });
 
 function followUser(userId, loginUserId, followedId) {
+
     const followDTO = {
         followingId: loginUserId,
         followedId: followedId,
@@ -143,6 +157,8 @@ function fetchFollowStatus(loginUserId, userId) {
 function updateFollowButton(button, isFollowed) {
     var followIcon = button.find('.bi');
     var followText = button.find('.follow-text');
+    console.log("loginUserId :", loginUserId);
+
 
     if (isFollowed) {
         followIcon.removeClass('bi-person-plus').addClass('bi-person-dash');

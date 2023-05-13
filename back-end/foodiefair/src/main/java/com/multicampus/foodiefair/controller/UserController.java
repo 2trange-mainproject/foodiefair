@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<Map<String, Object>> login(Principal principal, @RequestParam String userEmail, @RequestParam String userPwd, HttpSession session, HttpServletResponse response) {
+    public ResponseEntity<Map<String, Object>> login(Principal principal, @RequestParam String userEmail, @RequestParam String userPwd, HttpSession session) {
         Map<String, Object> result = new HashMap<>();
         UserDTO userDto = userService.getUserByEmail(userEmail);
         System.out.println("passwordEncoder.matches(userPwd, userDto.getUserPwd()) = " + passwordEncoder.matches(userPwd, userDto.getUserPwd()));
@@ -185,6 +185,7 @@ public class UserController {
         //이메일이 중복인 데이터 insert시 다른곳에서 오류 발생함, 이메일 중복X
         if(ObjectUtils.isEmpty(userByEmail)) {
             userService.insertUser(userDto);
+
 
             result.put("success", true);
             result.put("message", "회원가입에 성공하였습니다.");

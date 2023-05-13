@@ -55,7 +55,7 @@
                 <!-- 유저 대표 뱃지 -->
                 <div class="justify-content-start">
                   <small class="text-warning" style="font-size: 14px;"> <i class="bi bi-star-fill"></i></small>
-                  <span class="text-muted small" style="font-size: 14px;">뉴비 푸디</span>
+                  <span class="text-muted small" style="font-size: 14px;" id="userBadge"></span>
                 </div>
                 <!-- 유저 대표 뱃지 -->
                 <!-- 유저 팔로우 -->
@@ -69,7 +69,6 @@
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
                       <!-- btn -->
                       <a class="nav-link fs-6 text-nowrap" id="followers-tab" href="follows?activeTab=followers-tab" role="tab" aria-controls="followers-tab-pane" aria-selected="false">팔로워</a>
-
                     </li>
                     <!-- nav item -->
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
@@ -96,37 +95,6 @@
           <div class="d-lg-flex justify-content-between align-items-center">
             <div class="mb-3 mb-lg-0">
               <p class="mb-0"> <span class="text-dark" id="productNum"></span> 개의 찜 상품 </p>
-            </div>
-
-            <!-- icon -->
-            <div class="d-md-flex justify-content-between align-items-center">
-              <div class="d-flex align-items-center justify-content-between">
-              <div class="ms-2 d-lg-none">
-                <a class="btn btn-outline-gray-400 text-muted" data-bs-toggle="offcanvas" href="#offcanvasCategory" role="button" aria-controls="offcanvasCategory"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-filter me-2">
-                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                </svg> Filters</a>
-              </div>
-            </div>
-
-              <div class="d-flex mt-2 mt-lg-0">
-                <div>
-                  <!-- select option -->
-                  <select class="form-select">
-                    <option value="popularity">인기순</option>
-                    <option value="view">조회순</option>
-                    <option value="saves">찜순</option>
-                    <option value="reviews">리뷰 많은순</option>
-                    <option value="releaseDate" selected>등록일순</option>
-                    <option value="lowPrice">낮은 가격순</option>
-                    <option value="highPrice">높은 가격순</option>
-                    <option value="highReviewNum">영수증인증 리뷰 개수순</option>
-                    <option value="positiveKeyword">긍정키워드 개수순</option>
-                    <option value="negativeKeyword">부정키워드 개수순</option>
-                  </select>
-                </div>
-              </div>
             </div>
           </div>
           <!-- 찜 상품  -->

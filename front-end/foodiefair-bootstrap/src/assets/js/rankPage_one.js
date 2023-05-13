@@ -1,5 +1,9 @@
 getUserInfo().then(data => {
-    loginUserId = data.userId;
+    if (data) { // 로그인 데이터가 있을 때
+        loginUserId = data.userId;
+    } else { // 로그인 데이터가 없을 때
+        loginUserId = null;
+    }
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -115,10 +119,25 @@ function loadRankPageOne() {
 
         data.forEach(user => {
             let followButton = $(`[data-user-id="${user.userId}"]`);
+            if(loginUserId) { // 로그인한 경우
+                fetchFollowStatus(loginUserId, user.userId).then(isFollowing => {
+                    updateFollowButton(followButton, isFollowing);
+                });
+            } else { // 로그인하지 않은 경우
+                followButton.on('click', function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: "팔로우 실패",
+                        html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+                        icon: "warning",
+                        showConfirmButton: false,
+                        timer: 1200,
+                    });
+                    return;
+                });
+            }
 
-            fetchFollowStatus(loginUserId, user.userId).then(isFollowing => {
-                updateFollowButton(followButton, isFollowing);
-            });
+
         });
     }
 
