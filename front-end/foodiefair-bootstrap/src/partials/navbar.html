@@ -127,6 +127,7 @@
               <script>
                 window.onload = async function() {
                   const loginUser = await getUserInfo();
+                  if(loginUser) console.log('loginUser : ', loginUser.userName);
 
                   if
                   (loginUser) {
