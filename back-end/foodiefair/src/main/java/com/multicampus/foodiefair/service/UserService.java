@@ -27,6 +27,8 @@ public class UserService implements IUserService {
     public void insertUser(UserDTO userDto) {
         passwordEncode(userDto);
         userDAO.insertUser(userDto);
+        // 회원가입 시, 생성된 이메일을 통해 userId를 찾고 기본뱃지 부여
+        userDAO.insertDefaultBadge(userDto.getUserEmail());
     }
 
     @Override
