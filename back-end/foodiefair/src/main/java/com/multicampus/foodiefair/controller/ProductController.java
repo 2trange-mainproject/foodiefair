@@ -68,13 +68,9 @@ public class ProductController {
         List<String> categoryFilters = Arrays.stream(requestParams.getOrDefault("categories", "").replaceAll("\\[|\\]", "").split(","))
                 .map(s -> s.replaceAll("\"", ""))
                 .collect(Collectors.toList());
-        logger.info("storeFilters : {}", storeFilters);
-        logger.info("categoryFilters : {}", categoryFilters);
         String sortOrder = requestParams.get("sortOrder");
         String searchKeyword = requestParams.get("searchKeyword");
-        logger.info("searchKeyword : {}", searchKeyword);
         Integer userId = requestParams.get("userId") != null ? Integer.parseInt(requestParams.get("userId")) : null;
-        logger.info("userId : {}", userId);
 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
                 .page(page)
