@@ -36,6 +36,17 @@ function renderUserDetails(user) {
 
     var lockedChecked = user.locked == 1 ? "checked" : "";
 
+    // userTag 추출
+    var tagRegexp = /"tag": "([^"]*)"/g;
+    var userTagString = "";
+    var match;
+    while ((match = tagRegexp.exec(user.userTag)) !== null) {
+        if (userTagString !== "") {
+            userTagString += ", ";
+        }
+        userTagString += "#" + match[1];
+    }
+
     userHtml += `
           <div class="col-lg-8 col-12">
             <!-- card -->
@@ -70,7 +81,7 @@ function renderUserDetails(user) {
                   </div>
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">마이태그</label>
-                    <textarea style="height: auto; max-height: 500px;" class="form-control" disabled>${user.userTag}</textarea>
+                    <textarea style="height: auto; max-height: 500px;" class="form-control" disabled>${userTagString}</textarea>
                   </div>
                   <label class="form-label">프로필 사진</label>
                   <div class="mb-3 col-lg-6">
