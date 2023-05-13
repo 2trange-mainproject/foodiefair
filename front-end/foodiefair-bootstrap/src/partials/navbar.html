@@ -198,10 +198,10 @@
             </div>
             <div class="d-none d-lg-block">
               <div class="nav-links" style="display: flex; justify-content: center;">
-                <a class="nav-link" href="@@webRoot/pages/food" role="button" style="font-size: 25px; margin: 0 85px;">음식</a>
-                <a class="nav-link" href="@@webRoot/pages/event" role="button" style="font-size: 25px; margin: 0 85px;">신상품/행사</a>
-                <a class="nav-link" href="@@webRoot/pages/reviewer" role="button" style="font-size: 25px; margin: 0 85px;">리뷰어</a>
-                <a class="nav-link" href="@@webRoot/pages/find-store" role="button" style="font-size: 25px; margin: 0 85px;">내 주변 편의점</a>
+                <a class="nav-link" href="@@webRoot/pages/food" role="button" style="font-size: 25px; margin: 0 85px;" id="food-tab">음식</a>
+                <a class="nav-link" href="@@webRoot/pages/event" role="button" style="font-size: 25px; margin: 0 85px;" id="festival-tab">신상품/행사</a>
+                <a class="nav-link" href="@@webRoot/pages/reviewer" role="button" style="font-size: 25px; margin: 0 85px;" id="reviewer-tab">리뷰어</a>
+                <a class="nav-link" href="@@webRoot/pages/find-store" role="button" style="font-size: 25px; margin: 0 85px;" id="store-tab">내 주변 편의점</a>
               </div>
             </div>
           </div>
@@ -210,10 +210,16 @@
     </div>
 <!-- btn-nav 이벤트 스크립트-->
 <script>
-  $('.nav-link').on('click', function (e) {
-    $('.nav-links a').removeClass();
-    $('.nav-links a').not($(this)).addClass('nav-link');
-    $(this).addClass('nav-link:force');
+  $(document).ready(function() {
+    if (window.location.pathname === '/pages/food') {
+      $('#food-tab').addClass('nav-link:force').removeClass('nav-link');
+    } else if (window.location.pathname === '/pages/event') {
+      $('#festival-tab').addClass('nav-link:force').removeClass('nav-link');
+    } else if (window.location.pathname === '/pages/reviewer') {
+      $('#reviewer-tab').addClass('nav-link:force').removeClass('nav-link');
+    } else if (window.location.pathname === '/pages/find-store') {
+      $('#store-tab').addClass('nav-link:force').removeClass('nav-link');
+    }
   });
 </script>
 <!--</div>-->

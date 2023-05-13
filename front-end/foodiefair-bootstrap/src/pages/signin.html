@@ -88,16 +88,6 @@
                 form.addEventListener("submit", async (event) => {
                   event.preventDefault();
                   const formData = new FormData(form);
-<<<<<<< HEAD
-                  for (const [key, value] of formData.entries()) {
-                    console.log(`${key}: ${value}`);
-                  }
-=======
-
-                  const rememberMe = formData.get("rememberMe");
-                  console.log('rememberMe : ', rememberMe); // 출력해보기
-
->>>>>>> 412ff739f07b8fc9edd2db391756349d6246bc3b
                   const response = await fetch("http://localhost:8081/signin", {
                     method: "POST",
                     body: formData,
