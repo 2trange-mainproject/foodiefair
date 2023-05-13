@@ -1,19 +1,18 @@
-$(document).ready(function () {
-    $('#review-section').on('show.bs.collapse', function (e) { // 리뷰 댓글 열기 전 댓글 목록 가져오기
-        productReviewCommentRead(e.target);
-    })
-    $('#review-section').on('hide.bs.collapse', function (e) { // 리뷰 댓글 닫기 전 댓글 목록 지우기
-        $(e.target).empty();
-    })
-    $('#review-section').on('click', '.btn-comment-enroll', registerComment);
-    $('#review-section').on('keydown', function(e) { // 엔터 키로 리뷰 댓글 달기
-        if (e.keyCode === 13) {
-            $(e.target).closest('.row').find('.btn-comment-enroll').click();
-            e.preventDefault();
-        }
-    });
-    $('#review-section').on('click', '.btn-comment-delete', commentDelete);
+$('#review-section').on('show.bs.collapse', function (e) { // 리뷰 댓글 열기 전 댓글 목록 가져오기
+    productReviewCommentRead(e.target);
+})
+$('#review-section').on('hide.bs.collapse', function (e) { // 리뷰 댓글 닫기 전 댓글 목록 지우기
+    $(e.target).empty();
+})
+$('#review-section').on('click', '.btn-comment-enroll', registerComment);
+$('#review-section').on('keydown', function(e) { // 엔터 키로 리뷰 댓글 달기
+    if (e.keyCode === 13) {
+        $(e.target).closest('.row').find('.btn-comment-enroll').click();
+        e.preventDefault();
+    }
 });
+$('#review-section').on('click', '.btn-comment-delete', commentDelete);
+
 async function productReviewCommentRead(e) {
     const loginUser = await getUserInfo();
     const response = await fetch('http://localhost:8081/products/comment/'+e.id);
