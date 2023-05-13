@@ -3,8 +3,14 @@ $(document).ready(function () {
         e.preventDefault();
 
         const loginUser = await getUserInfo();
-        if (!loginUser) {
-            console.error('로그인되지 않은 사용자입니다.');
+        if(!loginUser){
+            Swal.fire({
+                title: "문의 실패",
+                html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+                icon: "warning",
+                showConfirmButton: false,
+                timer: 1200,
+            });
             return;
         }
 
@@ -25,6 +31,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log("Success:", response);
                 if (response === "ok") {
+                    $(".register-content").val('');
                     Swal.fire({
                         icon: "success",
                         html:
