@@ -19,10 +19,10 @@ function renderUsers(data) {
            <div class="col">
             <div class="card card-product" style="min-width: 310px">
               <div class="card-body">
-                <div class="text-center  position-relative "> <a href="./pages/mypage?userId=${user.userId}">
+                <div class="text-center  position-relative "> <a href="../pages/mypage?userId=${user.userId}" onclick="preventClick(event)">
                     <img src="${user.userImg}" style="width: 250px; height: 250px; object-fit: cover;" alt="rank${user.user_rank}" class="mb-3 img-fluid"></a>
                 </div>
-                <h2 class="fs-6" style="margin-left: 15px"><a href="../pages/mypage?userId=${user.userId}" class="text-inherit text-decoration-none">${user.userName}</a></h2>
+                <h2 class="fs-6" style="margin-left: 15px"><a href="../pages/mypage?userId=${user.userId}" class="text-inherit text-decoration-none" onclick="preventClick(event)">${user.userName}</a></h2>
 
                 <div class="d-flex justify-content-between align-items-center" style="margin-left: 15px">
                   <div>
@@ -31,7 +31,7 @@ function renderUsers(data) {
                   </div>
                 </div>
                 <div class="d-grid mt-2 justify-content-center align-items-center" >
-                    <a href="#!" class="btn btn-primary" data-user-id="${user.userId}" style="width: 250px;">
+                    <a href="#!" class="btn btn-primary" data-user-id="${user.userId}" style="width: 250px;" >
                          <i class="bi bi-person-plus" style="width=16px; height=16px;"></i> 
                          <span class="follow-text">팔로우</span></a></div>
                 <div class="d-flex justify-content-start text-center mt-3">
@@ -177,6 +177,19 @@ function updateFollowButton(button, isFollowed) {
         button.off('click');
         button.on('click', function() {
             followUser(button.data('user-id'), loginUserId, button.data('user-id'));
+        });
+    }
+}
+
+function preventClick(event) {
+    if (!loginUserId) {
+        event.preventDefault();
+        Swal.fire({
+            title: "마이페이지 이동 실패",
+            html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1200,
         });
     }
 }
