@@ -62,9 +62,10 @@
                     <div class="form-check">
                       <input
                         class="form-check-input"
+                        value="true"
                         type="checkbox"
-                        value=""
                         id="rememberMe"
+                        name="rememberMe"
                       />
                       <label class="form-check-label" for="rememberMe">
                         아이디 기억하기
@@ -98,6 +99,9 @@
                 form.addEventListener("submit", async (event) => {
                   event.preventDefault();
                   const formData = new FormData(form);
+                  for (const [key, value] of formData.entries()) {
+                    console.log(`${key}: ${value}`);
+                  }
                   const response = await fetch("http://localhost:8081/signin", {
                     method: "POST",
                     body: formData,

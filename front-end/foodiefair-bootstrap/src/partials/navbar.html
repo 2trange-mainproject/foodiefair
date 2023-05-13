@@ -207,6 +207,14 @@
         </div>
       </nav>
     </div>
+<!-- btn-nav 이벤트 스크립트-->
+<script>
+  $('.nav-link').on('click', function (e) {
+    $('.nav-links a').removeClass();
+    $('.nav-links a').not($(this)).addClass('nav-link');
+    $(this).addClass('nav-link:force');
+  });
+</script>
 <!--</div>-->
 
 <!-- Modal -->
