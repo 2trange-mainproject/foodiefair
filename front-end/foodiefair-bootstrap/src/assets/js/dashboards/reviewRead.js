@@ -85,7 +85,7 @@ function renderReviewDetails(review) {
                       <h4 class="mb-3 h5">음식 사진</h4>
 
                       <!-- input -->
-                      <img src="#{review.reviewImg}" class="mb-3 img-fluid">
+                      <img src="${review.reviewImg}" class="mb-3 img-fluid">
                     </div>
                   </div>
                 </div>
