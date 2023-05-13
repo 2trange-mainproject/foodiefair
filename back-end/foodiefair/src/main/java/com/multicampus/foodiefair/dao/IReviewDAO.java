@@ -2,6 +2,7 @@ package com.multicampus.foodiefair.dao;
 
 import com.multicampus.foodiefair.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -28,13 +29,19 @@ public interface IReviewDAO {
     public int reviewCount(Map<String, Object> paramMap);
     public int reviewDownCount(Map<String, Object> paramMap);
 
+    //뱃지 부여
+    public String getSmallCategory(Map<String, Object> paramMap);
+    public void updateUserBadge(Map<String, Object> paramMap);
+
     //창환 오빠 부분
     public int findReviewId(String productId, int userId);
     public int reviewInsert(ReviewDTO reviewDTO);
     public int reviewDelete(long reviewId);
-    int commentDelete(long reviewId);
-
-    //int reviewModify(); 시간 나면 하기
+    public int commentDelete(long reviewId);
+    public Map<String, Object> reviewReadOne(long reviewId);
+    public int reviewModify(long reviewId, String goodReviews, String badReviews, String reviewImg);
     public List<ReviewDTO> dateReviewRead(Map<String, Object> paramMap);
     public List<ReviewDTO> likeReviewRead(Map<String, Object> paramMap);
+    public List<ReviewDTO> mypageDateReviewRead(Map<String, Object> paramMap);
+    public List<ReviewDTO> mypageLikeReviewRead(Map<String, Object> paramMap);
 }

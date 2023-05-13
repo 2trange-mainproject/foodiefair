@@ -25,4 +25,6 @@ public class UserDTO {
     private Integer totalReviewCount;
     //여러 개 받아오는 거
     private String userTags;
+    //대표 칭호
+    private String selectedBadge;
 }

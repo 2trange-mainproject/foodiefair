@@ -8,6 +8,8 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.amazonaws.HttpMethod;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.net.URL;
 import java.util.Date;
 import java.io.File;
@@ -35,6 +37,15 @@ public class S3Client {
     //NPC Object Storage에 파일을 업로드하고 URL을 반환하는 메서드
     public String uploadFile(File file, String objectKey) {
         String folderPath = "products/";
+        PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, folderPath + objectKey, file);
+        s3Client.putObject(putObjectRequest);
+
+        URL url = s3Client.getUrl(BUCKET_NAME, folderPath + objectKey);
+        return (url != null) ? url.toString() : null;
+    }
+
+    public String uploadUserFile(File file, String objectKey) {
+        String folderPath = "users/";
         PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, folderPath + objectKey, file);
         s3Client.putObject(putObjectRequest);
 

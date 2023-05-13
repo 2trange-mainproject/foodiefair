@@ -28,6 +28,7 @@ public class PageRequestDTO {
     private List<String> storeFilters;
     private List<Integer> eventFilters;
     private List<String> categoryFilters;
+    Integer userId;
 
     // 페이징에 finished를 위해 추가한 부분
     @Builder.Default

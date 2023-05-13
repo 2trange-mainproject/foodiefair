@@ -1,10 +1,18 @@
 package com.multicampus.foodiefair.service;
 
+import com.multicampus.foodiefair.controller.S3Client;
 import com.multicampus.foodiefair.dao.IReviewDAO;
 import com.multicampus.foodiefair.dto.ReviewDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,6 +93,24 @@ public class ReviewService implements IReviewService {
         return dao.reviewDownCount(paramMap);
     }
 
+    @Override
+    public String getSmallCategory(String productId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("productId", productId);
+
+        return dao.getSmallCategory(paramMap);
+    }
+
+    @Override
+    public void updateUserBadge(String productId, int userId, String smallCategory) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("productId", productId);
+        paramMap.put("userId", userId);
+        paramMap.put("smallCategory", smallCategory);
+
+        dao.updateUserBadge(paramMap);
+    }
+
     //창환오빠 부분
     @Override
     public int reviewDelete(long reviewId) {
@@ -92,9 +118,34 @@ public class ReviewService implements IReviewService {
         return dao.reviewDelete(reviewId);
     }
 
+    public File convertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
+        Path tempDir = Files.createTempDirectory("");
+        File file = new File(tempDir.toFile(), multipartFile.getOriginalFilename());
+        multipartFile.transferTo(file);
+        return file;
+    }
+
     @Override
-    public int reviewModify() {
-        return 0;
+    public int reviewModify(long reviewId, String goodReviews, String badReviews, MultipartFile reviewImg) {
+        String reviewKey=null;
+        try {
+            if (reviewImg != null) {
+                // 이미지를 네이버 클라우드 플랫폼 버킷에 올림.
+                File reviewFile = convertMultipartFileToFile(reviewImg);
+
+                S3Client s3Client = new S3Client();
+                reviewKey = reviewImg.getOriginalFilename();
+                s3Client.uploadReviewFile(reviewFile, reviewKey);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return dao.reviewModify(reviewId, goodReviews, badReviews, reviewKey);
+    }
+
+    @Override
+    public Map<String, Object> reviewReadOne(long reviewId) {
+        return dao.reviewReadOne(reviewId);
     }
 
     @Override
@@ -108,6 +159,20 @@ public class ReviewService implements IReviewService {
             return dao.dateReviewRead(paramMap);
         } else {
             return dao.likeReviewRead(paramMap);
+        }
+    }
+
+    @Override
+    public List<ReviewDTO> mypageReviewRead(int userId, int offset, int receiptImg, int sort) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userId", userId);
+        paramMap.put("offset", offset);
+        paramMap.put("receiptImg", receiptImg);
+
+        if(sort==0) {
+            return dao.mypageDateReviewRead(paramMap);
+        } else {
+            return dao.mypageLikeReviewRead(paramMap);
         }
     }
 }

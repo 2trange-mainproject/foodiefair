@@ -1,6 +1,8 @@
 package com.multicampus.foodiefair.service;
 
 import com.multicampus.foodiefair.dto.*;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -20,12 +22,21 @@ public interface IReviewService {
     public int updatePlusReviewNum(String productId);
     public int updateMinusReviewNum(long reviewId);
 
-    int reviewCount(String productId);
-    int reviewDownCount(long reviewId);
+    public int reviewCount(String productId);
+    public int reviewDownCount(long reviewId);
+
+    //뱃지 얻기
+    public String getSmallCategory(String productId);
+    public void updateUserBadge(String productId, int userId, String smallCategory);
 
     //창환 오빠 부분
     int reviewDelete(long reviewId);
-    int reviewModify();
+    int reviewModify(long reviewId, String goodReviews, String badReviews, MultipartFile reviewImg);
 
+    Map<String, Object> reviewReadOne(long reviewId);
     List<ReviewDTO> reviewRead(String productId, int offset, int receiptImg, int sort);
+
+    // 준우
+    List<ReviewDTO> mypageReviewRead(int userId, int offset, int receiptImg, int sort);
+
 }

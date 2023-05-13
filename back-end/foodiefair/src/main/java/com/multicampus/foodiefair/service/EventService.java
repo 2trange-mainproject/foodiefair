@@ -21,31 +21,33 @@ public class EventService implements IEventService {
     private final Logger logger = LoggerFactory.getLogger(EventService.class);
 
     @Override
-    public List<ProductDTO> selectEventList(PageRequestDTO pageRequestDto, List<String> storeFilters, List<Integer> eventFilters, String sortOrder) {
+    public List<ProductDTO> selectEventList(PageRequestDTO pageRequestDto, List<String> storeFilters, List<Integer> eventFilters, String sortOrder, Integer userId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("pageRequestDto", pageRequestDto);
         paramMap.put("storeFilters", storeFilters);
         paramMap.put("eventFilters", eventFilters);
         paramMap.put("sortOrder", sortOrder);
+        paramMap.put("userId", userId);
 
         return dao.selectEventList(paramMap);
     }
 
     @Override
-    public int getEventCount(PageRequestDTO pageRequestDto, List<String> storeFilters, List<Integer> eventFilters, String sortOrder) {
+    public int getEventCount(PageRequestDTO pageRequestDto, List<String> storeFilters, List<Integer> eventFilters, String sortOrder, Integer userId) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("pageRequestDto", pageRequestDto);
         paramMap.put("storeFilters", storeFilters);
         paramMap.put("eventFilters", eventFilters);
         paramMap.put("sortOrder", sortOrder);
+        paramMap.put("userId", userId);
 
         return dao.getEventCount(paramMap);
     }
 
     @Override
-    public PageResponseDTO<ProductDTO> getEventList(PageRequestDTO pageRequestDto, List<String> storeFilters, List<Integer> eventFilters, String sortOrder) {
-        List<ProductDTO> DtoList = selectEventList(pageRequestDto, storeFilters, eventFilters, sortOrder);
-        int total = getEventCount(pageRequestDto, storeFilters, eventFilters, sortOrder);
+    public PageResponseDTO<ProductDTO> getEventList(PageRequestDTO pageRequestDto, List<String> storeFilters, List<Integer> eventFilters, String sortOrder, Integer userId) {
+        List<ProductDTO> DtoList = selectEventList(pageRequestDto, storeFilters, eventFilters, sortOrder, userId);
+        int total = getEventCount(pageRequestDto, storeFilters, eventFilters, sortOrder, userId);
 
         return PageResponseDTO.<ProductDTO>withAll()
                 .dtoList(DtoList)

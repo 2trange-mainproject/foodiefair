@@ -5,6 +5,15 @@
 
 <mapper namespace="com.multicampus.foodiefair.dao.IProductDAO">
     <select id="readDao" resultType="com.multicampus.foodiefair.dto.ProductDTO">
+        select *, (
+            SELECT COUNT(*)
+            FROM Saved s
+            WHERE s.userId = #{userId} AND s.productId = t.productId
+        ) AS saved
+        from Product t where productId = #{selectedId}
+    </select>
+
+    <select id="readForRecipt" resultType="com.multicampus.foodiefair.dto.ProductDTO">
         select * from Product where productId = #{selectedId}
     </select>
 
@@ -13,7 +22,12 @@
     </update>
 
     <select id="selectFilteredList" resultType="com.multicampus.foodiefair.dto.ProductDTO">
-        SELECT *
+        SELECT *,
+        (
+        SELECT COUNT(*)
+        FROM Saved s
+        WHERE s.userId = #{userId} AND s.productId = t.productId
+        ) AS saved
         FROM (
         SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
             <choose>
@@ -37,6 +51,25 @@
                 </when>
                 <when test="sortOrder == 'highPrice'">
                     tt.productPrice DESC
+                </when>
+                <when test="sortOrder == 'highReviewNum'">
+                    (SELECT COUNT(r.productId) FROM Review r WHERE r.productId = tt.productId AND r.receiptImg = 1) DESC
+                </when>
+                <when test="sortOrder == 'positiveKeyword'">
+                    (
+                    SELECT SUM(value)
+                    FROM Keyword k
+                    JOIN JSON_TABLE(k.positiveKeyword, '$.*' COLUMNS (value INT PATH '$')) AS json_values
+                    WHERE k.productId = tt.productId
+                    ) DESC
+                </when>
+                <when test="sortOrder == 'negativeKeyword'">
+                    (
+                    SELECT SUM(value)
+                    FROM Keyword k
+                    JOIN JSON_TABLE(k.negativeKeyword, '$.*' COLUMNS (value INT PATH '$')) AS json_values
+                    WHERE k.productId = tt.productId
+                    ) DESC
                 </when>
                 <otherwise>
                     tt.releaseDate DESC

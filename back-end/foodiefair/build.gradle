@@ -44,10 +44,9 @@ dependencies {
     //한국어 형태소 분석기
     implementation 'org.openkoreantext:open-korean-text:2.3.1'
 
-    //단어 임베딩
-    implementation 'org.deeplearning4j:deeplearning4j-core:1.0.0-beta7'
-    implementation 'org.deeplearning4j:deeplearning4j-nlp:1.0.0-beta7'
-    implementation 'org.nd4j:nd4j-native-platform:1.0.0-beta7'
+    //시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'com.google.code.gson:gson:2.8.9'
 }
 
 tasks.named('test') {

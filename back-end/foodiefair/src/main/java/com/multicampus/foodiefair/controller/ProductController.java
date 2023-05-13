@@ -32,13 +32,16 @@ public class ProductController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // Read
-    @GetMapping("/product-read/{productId}")
+    @GetMapping("/product-read")
     public ResponseEntity<Map<String, Object>> ProductRead(
-            @PathVariable("productId") String productId) {
-        logger.info(productId);
+            @RequestParam Map<String, String> requestParams) {
+        String productId = requestParams.get("productId");
+        Integer userId = requestParams.get("userId") != null ? Integer.parseInt(requestParams.get("userId")) : null;
+
+        System.out.println("productId : " + productId + "userId" + userId);
 
         productService.update(productId);                       //해당 상품 조회수 1 올리기
-        ProductDTO product = productService.read(productId);    //상품 읽기
+        ProductDTO product = productService.read(productId, userId);    //상품 읽기
 
         // 파일 URL 생성
         S3Client s3Client = new S3Client();
@@ -70,15 +73,18 @@ public class ProductController {
         String sortOrder = requestParams.get("sortOrder");
         String searchKeyword = requestParams.get("searchKeyword");
         logger.info("searchKeyword : {}", searchKeyword);
+        Integer userId = requestParams.get("userId") != null ? Integer.parseInt(requestParams.get("userId")) : null;
+        logger.info("userId : {}", userId);
 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
                 .page(page)
                 .size(size)
                 .storeFilters(storeFilters)
                 .categoryFilters(categoryFilters)
+                .userId(userId)
                 .build();
 
-        PageResponseDTO<ProductDTO> pageResponseDTO = productService.getFilteredList(pageRequestDTO, storeFilters, categoryFilters, sortOrder, searchKeyword);
+        PageResponseDTO<ProductDTO> pageResponseDTO = productService.getFilteredList(pageRequestDTO, storeFilters, categoryFilters, sortOrder, searchKeyword, userId);
 
         // 파일 URL 생성
         S3Client s3Client = new S3Client();
@@ -110,15 +116,18 @@ public class ProductController {
         List<String> eventFiltersStrings = Arrays.asList(requestParams.getOrDefault("events", "").split(","));
         List<Integer> eventFilters = eventFiltersStrings.stream().map(s -> s.replaceAll("\\[|\\]", "")).map(Integer::parseInt).collect(Collectors.toList());
         String sortOrder = requestParams.get("sortOrder");
+        Integer userId = requestParams.get("userId") != null ? Integer.parseInt(requestParams.get("userId")) : null;
+        logger.info("userId : {}", userId);
 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
                 .page(page)
                 .size(size)
                 .storeFilters(storeFilters)
                 .eventFilters(eventFilters)
+                .userId(userId)
                 .build();
 
-        PageResponseDTO<ProductDTO> pageResponseDTO = eventService.getEventList(pageRequestDTO, storeFilters, eventFilters, sortOrder);
+        PageResponseDTO<ProductDTO> pageResponseDTO = eventService.getEventList(pageRequestDTO, storeFilters, eventFilters, sortOrder, userId);
 
         // 파일 URL 생성
         S3Client s3Client = new S3Client();
