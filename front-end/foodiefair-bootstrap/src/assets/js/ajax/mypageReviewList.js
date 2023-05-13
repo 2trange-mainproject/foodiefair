@@ -29,6 +29,8 @@ $(document).ready(function (){
     $('.btn-reviewMore').click(productReviewMore); // 리뷰 더보기 버튼
     $('#select-review-type').change(productReviewType); // 정렬 선택
     $('#review-section').on('click', '.review-delete', productReviewRemove);
+
+    productReviewsRead();
 });
 
 async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
