@@ -138,6 +138,8 @@ let event;
 let reviewId;
 
 function productReviewMore(e) {
+    console.log("더보기 버튼");
+    console.log(e);
     pageOffset.increaseOffset();
     productReviewsRead(e);
 }

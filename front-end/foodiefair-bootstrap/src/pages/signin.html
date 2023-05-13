@@ -88,10 +88,6 @@
                 form.addEventListener("submit", async (event) => {
                   event.preventDefault();
                   const formData = new FormData(form);
-
-                  const rememberMe = formData.get("rememberMe");
-                  console.log('rememberMe : ', rememberMe); // 출력해보기
-
                   const response = await fetch("http://localhost:8081/signin", {
                     method: "POST",
                     body: formData,
