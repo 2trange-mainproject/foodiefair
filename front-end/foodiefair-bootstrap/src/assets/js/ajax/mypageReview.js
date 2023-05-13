@@ -11,6 +11,8 @@ $(document).ready(function (){
     $('.btn-reviews').click(productReviewTab) // 리뷰 탭 이동시 html 초기화 및 해당 탭  리뷰 목록 가져오기
     $('#select-review-type').change(productReviewType); // 정렬 선택
     $('#review-section').on('click', '.review-delete', productReviewRemove);
+
+    productReviewsRead();
 });
 
 async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
