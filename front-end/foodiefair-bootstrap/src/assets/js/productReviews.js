@@ -131,10 +131,12 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
     });
 }
 
-function preventClick(event) {
+async function preventClick(event) {
     event.preventDefault();
 
-    if (false) {
+    const loginUser = await getUserInfo();
+
+    if (!loginUser) {
         event.preventDefault();
         Swal.fire({
             title: "마이페이지 이동 실패",
@@ -145,6 +147,15 @@ function preventClick(event) {
         });
         return;
     }
+
+    // 로그인이 확인되면 원래의 페이지 이동을 수행합니다.
+    let href;
+    if (event.target.tagName.toLowerCase() === 'img') {
+        href = event.target.parentElement.getAttribute('href');
+    } else {
+        href = event.target.getAttribute('href');
+    }
+    window.location.href = href;
 }
 
 async function productReviewLike(e) { // 상품 리뷰 좋아요 토글 버튼
