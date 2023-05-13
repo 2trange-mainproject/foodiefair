@@ -186,6 +186,7 @@ public class UserController {
         if(ObjectUtils.isEmpty(userByEmail)) {
             userService.insertUser(userDto);
 
+
             result.put("success", true);
             result.put("message", "회원가입에 성공하였습니다.");
             return ResponseEntity.ok(result);

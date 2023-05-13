@@ -35,4 +35,7 @@ public interface IUserDAO {
     public int updateBadge(Map<String, Object> paramMap); //회원정보 수정하기
 
     public int updateDao(Map<String, Object> paramMap); //회원정보 수정하기
+
+    // 기본 뱃지 insert 추가
+    public int insertDefaultBadge(String userEmail);
 }
