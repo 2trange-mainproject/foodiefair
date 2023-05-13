@@ -151,6 +151,18 @@ async function productSaved(e) {
     e.stopPropagation();
 
     const loginUser = await getUserInfo();
+
+    if(!loginUser){
+        Swal.fire({
+            title: "찜 실패",
+            html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1300,
+        });
+        return;
+    }
+
     var userId = loginUser ? loginUser.userId : null;
 
     const sendData = { // 데이터 저장 및 삭제에 필요한 정보
