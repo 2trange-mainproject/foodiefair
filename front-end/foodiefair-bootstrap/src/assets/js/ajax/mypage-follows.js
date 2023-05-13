@@ -1,7 +1,6 @@
-getUserInfo().then(data => {
-    loginUserId = data.userId;
-});
+
 $(document).ready(async function () {
+
     try {
         const followerCount = await fetchFollowCount(userId, 'followers');
         $('#follower-count').text(followerCount);
@@ -165,4 +164,3 @@ function updateFollowButton(isFollowing, loginUserId, userId) {
     container.innerHTML = '';  // Clear previous button
     container.appendChild(followButton);
 }
-

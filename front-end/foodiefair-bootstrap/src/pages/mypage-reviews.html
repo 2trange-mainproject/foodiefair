@@ -65,20 +65,21 @@
                 <!-- Follows Content -->
                 <div>
                   <ul class="nav nav-pills nav-lb-tab justify-content-center flex-nowrap" role="tablist">
-                    <!-- nav item -->
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
-                      <!-- btn -->
-                      <a class="nav-link fs-6 text-nowrap" id="followers-tab" href="follows?activeTab=followers-tab" role="tab" aria-controls="followers-tab-pane" aria-selected="false">팔로워</a>
-
+                      <a class="nav-link fs-6 text-nowrap" id="followers-tab" href="#" onclick="openPopup('follows', userId)" role="tab" aria-controls="followers-tab-pane" aria-selected="false">팔로워</a>
                     </li>
-                    <!-- nav item -->
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
-                      <!-- btn -->
-                      <a class="nav-link fs-6 text-nowrap" id="followings-tab" href="follows?activeTab=followings-tab" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉
-                      </a>
+                      <a class="nav-link fs-6 text-nowrap" id="followings-tab" href="#" onclick="openPopup('follows', userId)" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉</a>
                     </li>
                   </ul>
                 </div>
+                <!-- 팔로워 & 팔로잉 팝업 -->
+                <script>
+                  function openPopup(url, userId) {
+                    const urlWithUserId = `${url}?userId=${userId}`;
+                    window.open(urlWithUserId, "popupWindow", "width=800,height=600");
+                  }
+                </script>
                 <!-- Follows Content -->
               </div>
             </div>
