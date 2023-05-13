@@ -109,6 +109,23 @@ $(document).ready(function () {
     loadKeywords(productId);
 });
 
+// 등록 버튼을 비활성화
+$("#review-enroll").addClass("disabled");
+
+// textarea 값이 변경될 때마다 검사하는 이벤트 핸들러
+$("#good-review, #bad-review").on('input', function() {
+    var goodReview = $("#good-review").val().trim();
+    var badReview = $("#bad-review").val().trim();
+
+    // 두 textarea 필드가 모두 채워져 있고, 각각의 길이가 20자 이상인 경우 등록 버튼을 활성화
+    if(goodReview.length >= 20 && badReview.length >= 20) {
+        $("#review-enroll").removeClass("disabled");
+    } else {
+        // 둘 중 하나라도 내용이 없거나, 20자 미만일 경우 등록 버튼을 비활성화
+        $("#review-enroll").addClass("disabled");
+    }
+});
+
 //----------------취소 버튼-------------------
 $("#review-reset").on("click", function(e) {
     e.preventDefault(); // 기본 이벤트 실행 막기
@@ -131,8 +148,19 @@ $("#review-reset").on("click", function(e) {
 });
 
 //----------------등록 버튼------------------
-$("#review-enroll").on('click', async function(e) {
+//등록 버튼 클릭 이벤트 함수 정의
+async function clickHandler(e) {
+    // 버튼이 비활성화된 경우 클릭 이벤트를 중지
+    if ($("#review-enroll").hasClass("disabled")) {
+        e.preventDefault(); // 기본 이벤트 실행 막기
+        return;
+    }
+
     e.preventDefault(); // 기본 이벤트 실행 막기
+
+    // 버튼 비활성화
+    $(this).addClass("disabled");
+    $(this).off('click');
 
     const loginUser = await getUserInfo();
 
@@ -198,12 +226,23 @@ $("#review-enroll").on('click', async function(e) {
             pageOffset.init();
             productReviewsRead(e);
             $(window).scrollTop($('#receipt-reviews-tab').position().top);
+
+            // 버튼 다시 활성화
+            $("#review-enroll").removeClass("disabled");
+            $("#review-enroll").on('click', clickHandler);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
+
+            // 버튼 다시 활성화
+            $("#review-enroll").removeClass("disabled");
+            $("#review-enroll").on('click', clickHandler);
         },
     });
-});
+}
+
+// 클릭 이벤트 핸들러 초기 설정
+$("#review-enroll").on('click', clickHandler);
 
 //음식 사진
 function foodURL(input) {

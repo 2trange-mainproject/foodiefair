@@ -138,6 +138,19 @@ function renderUsers(data) {
     $.each(data, function(index, user) {
         var locked = user.locked ? "TRUE" : "FALSE";
 
+        // userTag 추출
+        var tagRegexp = /"tag": "([^"]*)"/g;
+        var userTagString = "";
+        var match;
+        while ((match = tagRegexp.exec(user.userTag)) !== null) {
+            if (userTagString !== "") {
+                userTagString += ", ";
+            }
+            userTagString += "#" + match[1];
+        }
+
+        console.log(user.userTag);
+
         userHtml += `
                       <tr>
                           <td class="pe-0">
@@ -159,7 +172,7 @@ function renderUsers(data) {
                             </div>
                           </td>
                           <td><a href="read-customer?userId=${user.userId}" style="color: black">${user.userEmail}</a></td>
-                          <td><a href="read-customer?userId=${user.userId}" style="color: black">${user.userTag}</a></td>
+                          <td><a href="read-customer?userId=${user.userId}" style="color: black">${userTagString}</a></td>
                           <td><a href="read-customer?userId=${user.userId}" style="color: black">${user.userReport}</a></td>
                           <td><a href="read-customer?userId=${user.userId}" style="color: black">${locked}</a></td>
                           <td>

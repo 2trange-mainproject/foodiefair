@@ -1,5 +1,5 @@
 let userId;
-let loginUserId;
+let loginUserId = null;
 
 function getUserIdFromUrl() {
     var urlParams = new URLSearchParams(window.location.search);
@@ -7,9 +7,13 @@ function getUserIdFromUrl() {
 }
 userId = getUserIdFromUrl();
 getUserInfo().then(data => {
-    loginUserId = data.userId;
+    if (data) { // 로그인 데이터가 있을 때
+        loginUserId = data.userId;
+    } else { // 로그인 데이터가 없을 때
+        loginUserId = null;
+    }
 });
-console.log(loginUserId);
+
 
 fetch(`http://localhost:8081/user-read/${userId}`)
     .then(response => response.json())

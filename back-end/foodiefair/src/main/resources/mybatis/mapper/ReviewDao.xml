@@ -72,7 +72,7 @@
                         WHEN COALESCE(CAST(JSON_EXTRACT(reviewNum, '$."${smallCategory}"') AS UNSIGNED), 0) >= 30 THEN '골드'
                         WHEN COALESCE(CAST(JSON_EXTRACT(reviewNum, '$."${smallCategory}"') AS UNSIGNED), 0) >= 20 THEN '실버'
                         WHEN COALESCE(CAST(JSON_EXTRACT(reviewNum, '$."${smallCategory}"') AS UNSIGNED), 0) >= 10 THEN '브론즈'
-                        ELSE NULL
+                        ELSE '비기너'
                         END
                 )
         WHERE userId = #{userId};

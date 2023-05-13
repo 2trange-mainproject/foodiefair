@@ -71,8 +71,8 @@ function renderProductDetails(product) {
           <!-- breadcrumb -->
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><a href="#" style="color: deeppink">Home</a></li>
-              <li class="breadcrumb-item"><a href="#" style="color: deeppink">${fixedTagBig}</a></li>
+              <li class="breadcrumb-item"><a href="javascript:void(0);" onclick="window.history.back();" style="color: deeppink">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">${fixedTagBig}</li>
               <li class="breadcrumb-item active" aria-current="page">${fixedTagSmall}</li>
             </ol>
           </nav>

@@ -8,7 +8,9 @@ getUserInfo().then(data => {
 
 document.addEventListener("DOMContentLoaded", function () {
     loadRankPageOne();
+
 });
+
 
 // 이벤트를 처리하는 함수를 분리하여 다른 탭에서 이벤트를 추가할 수 있도록 합니다.
 function loadRankPageOne() {
@@ -72,7 +74,7 @@ function loadRankPageOne() {
                           <div class="col-md-4 col-12">
 
                              <div class="text-center position-relative">
-                                <a href="mypage?userId=${user.userId}" class="d-flex">
+                                <a href="mypage?userId=${user.userId}" class="d-flex" onclick="preventClick(event)">
                                    <!-- img -->
                                    <div class="flex-grow-1 img-container">
                                       ${rankElement}
@@ -85,7 +87,7 @@ function loadRankPageOne() {
                           </div>
                           <div class="col-md-8 col-12 flex-grow-1">
                              <!-- heading -->
-                             <h2 class="fs-2"><a href="mypage?userId=${user.userId}" class="text-inherit text-decoration-none">${user.userName}</a></h2>
+                             <h2 class="fs-2"><a href="mypage?userId=${user.userId}" class="text-inherit text-decoration-none" onclick="preventClick(event)">${user.userName}</a></h2>
                              <div>
 
                                  <!-- 칭호 -->
@@ -223,6 +225,19 @@ function updateFollowButton(button, isFollowed) {
         button.off('click');
         button.on('click', function() {
             followUser(button.data('user-id'), loginUserId, button.data('user-id'));
+        });
+    }
+}
+
+function preventClick(event) {
+    if (!loginUserId) {
+        event.preventDefault();
+        Swal.fire({
+            title: "마이페이지 이동 실패",
+            html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1200,
         });
     }
 }
