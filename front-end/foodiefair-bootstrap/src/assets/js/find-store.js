@@ -1,6 +1,5 @@
 // 마커를 담을 배열
 let markers = [];
-
 // 마커를 클릭하면 장소명을 표출할 인포윈도우
 let infowindow = new kakao.maps.InfoWindow({zIndex: 1});
 
@@ -179,9 +178,19 @@ function successLocation(position) {
 
 // 위치 정보를 가져오는데 실패했을 때 호출되는 함수
 function errorLocation(err) {
-    alert('위치 정보를 가져올 수 없습니다');
+    alert('위치 정보를 가져올 수 없습니다\n기본 위치로 설정됩니다\n위치 재권한을 원하시면 수동으로 설정해주세요.');
     console.warn(`ERROR(${err.code}): ${err.message}`);
+    const defaultLatitude = 37.5665;
+    const defaultLongitude = 126.9780;
+
+    successLocation({
+        coords: {
+            latitude: defaultLatitude,
+            longitude: defaultLongitude
+        }
+    });
 }
+
 
 // 현재 위치 정보를 가져오는 함수
 function getCurrentLocation() {

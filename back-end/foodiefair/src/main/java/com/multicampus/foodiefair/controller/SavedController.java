@@ -84,6 +84,14 @@ public class SavedController {
     @GetMapping("/mypage/{userId}/saved-examples")
     public ResponseEntity<ArrayList<HashMap<String, Object>>> getSavedFour(@PathVariable int userId) {
         ArrayList<HashMap<String, Object>> savedExamples = savedService.getSavedFour(userId);
+
+        S3Client s3Client = new S3Client();
+        for (HashMap<String, Object> product : savedExamples) {
+            String objectKey = (String) product.get("productImg");
+            String url = s3Client.getProductUrl(objectKey, 3600); // 이미지 파일에 대한 SignedUrl을 생성
+            product.put("productImg", url);
+        }
+
         System.out.println(savedExamples);
         return ResponseEntity.ok(savedExamples);
     }

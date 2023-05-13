@@ -127,6 +127,7 @@
               <script>
                 window.onload = async function() {
                   const loginUser = await getUserInfo();
+                  if(loginUser) console.log('loginUser : ', loginUser.userName);
 
                   if
                   (loginUser) {
@@ -155,7 +156,7 @@
                     credentials: 'include'
                   }).then(response => {
                     alert('로그아웃 되었습니다.');
-                    location.reload();
+                    location.href = '@@webRoot/foodiefair';
                   });
                 }
               </script>

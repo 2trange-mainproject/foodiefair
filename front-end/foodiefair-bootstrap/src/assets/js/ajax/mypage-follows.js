@@ -67,10 +67,20 @@ async function followUser(userId, loginUserId, followedId) {
     if (response.ok) {
         console.log('Follow success');
         let followButton = document.getElementById("userFollow");
-        followButton.innerText = "언팔로우";
+        followButton.innerText = "";
         followButton.classList.remove("btn-pink");
         followButton.classList.add("btn-light");
         followButton.setAttribute("onclick", `unfollowUser(${userId}, ${loginUserId}, ${followedId})`);
+
+        let unfollowIcon = document.createElement('i');
+        unfollowIcon.classList.add("bi", "bi-person-dash");
+        unfollowIcon.style.marginRight = "6px";
+        let unfollowText = document.createElement('span');
+        unfollowText.setAttribute('class', 'follow-text');
+        unfollowText.innerText = "언팔로우";
+
+        followButton.appendChild(unfollowIcon);
+        followButton.appendChild(unfollowText);
     } else {
         console.error('Failed to follow user');
     }
@@ -84,10 +94,20 @@ async function unfollowUser(userId, loginUserId, followedId) {
     if (response.ok) {
         console.log('Unfollow success');
         let followButton = document.getElementById("userFollow");
-        followButton.innerText = "팔로우";
+        followButton.innerText = "";
         followButton.classList.remove("btn-light");
         followButton.classList.add("btn-pink");
         followButton.setAttribute("onclick", `followUser(${userId}, ${loginUserId}, ${followedId})`);
+
+        let followIcon = document.createElement('i');
+        followIcon.classList.add("bi", "bi-person-plus");
+        followIcon.style.marginRight = "6px";
+        let followText = document.createElement('span');
+        followText.setAttribute('class', 'follow-text');
+        followText.innerText = "팔로우";
+
+        followButton.appendChild(followIcon);
+        followButton.appendChild(followText);
     } else {
         console.error('Failed to unfollow user');
     }
@@ -106,24 +126,40 @@ async function unfollowUser(userId, loginUserId, followedId) {
         }
     }
 
+
 function updateFollowButton(isFollowing, loginUserId, userId) {
     if (parseInt(userId) === parseInt(loginUserId)) {
         return;
     }
 
-    let followButton = document.createElement('button');
+    let followButton = document.createElement('a');
     followButton.setAttribute('id', 'userFollow');
-    followButton.setAttribute('class', 'followBtn btn');
+    followButton.setAttribute('class', 'btn follow-btn');
+    followButton.setAttribute('href', '#!');
+
+    let followIcon = document.createElement('i');
+    followIcon.setAttribute('class', 'bi');
+    let followText = document.createElement('span');
+    followText.setAttribute('class', 'follow-text');
 
     if (isFollowing) {
-        followButton.innerText = "언팔로우";
         followButton.classList.add("btn-light");
+        followButton.style.width = "200px";
+        followIcon.classList.add("bi-person-dash");
+        followIcon.style.marginRight = "6px";
+        followText.innerText = "언팔로우";
         followButton.setAttribute("onclick", `unfollowUser(${loginUserId}, ${userId}, ${loginUserId})`);
     } else {
-        followButton.innerText = "팔로우";
         followButton.classList.add("btn-pink");
+        followButton.style.width = "200px";
+        followIcon.classList.add("bi-person-plus");
+        followIcon.style.marginRight = "6px";
+        followText.innerText = "팔로우";
         followButton.setAttribute("onclick", `followUser(${loginUserId}, ${userId}, ${loginUserId})`);
     }
+
+    followButton.appendChild(followIcon);
+    followButton.appendChild(followText);
 
     let container = document.getElementById('userFollowDiv');
     container.innerHTML = '';  // Clear previous button
