@@ -17,6 +17,7 @@ public interface IReviewDAO {
     public int updateNegativeDao(Map<String, Object> paramMap);
 
     //리뷰 추가
+    public int reviewSearch(int userId, String productId);
     public int insertDao(Map<String, Object> paramMap);
 
     //리뷰 추가 시 리뷰 개수 1개 올리기
