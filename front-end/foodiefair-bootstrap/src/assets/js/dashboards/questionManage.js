@@ -127,6 +127,21 @@ function loadQuestions(page, sortOrder) {
     });
 }
 
+function getQuestionTypeText(questionType) {
+    switch (questionType) {
+        case 'csEtc':
+            return '기타 문의';
+        case 'csDB':
+            return 'DB 문의';
+        case 'csService':
+            return '서비스 문의';
+        case 'csReport':
+            return '신고 문의';
+        default:
+            return '';
+    }
+}
+
 function renderQuestions(data) {
     var $questionContainer = $('#questionContainer');
     $questionContainer.empty();
@@ -134,6 +149,7 @@ function renderQuestions(data) {
 
     $.each(data, function(index, question) {
         var releaseDate = new Date(question.questionDate).toISOString().split('T')[0];
+        var questionTypeText = getQuestionTypeText(question.questionType);
 
         questionHtml += `
                       <tr>
@@ -148,7 +164,7 @@ function renderQuestions(data) {
 
                           <td><a href="read-question?questionId=${question.questionId}" style="color: black">${question.questionId}</a></td>
                           <td><a href="read-question?questionId=${question.questionId}" style="color: black">${question.userId}</a></td>
-                          <td><a href="read-question?questionId=${question.questionId}" style="color: black">${question.questionType}</a></td>
+                          <td><a href="read-question?questionId=${question.questionId}" style="color: black">${questionTypeText}</a></td>
                           <td><a href="read-question?questionId=${question.questionId}" style="color: black">${truncateString(question.questionContent, 30)}</a></td>
                           <td><a href="read-question?questionId=${question.questionId}" style="color: black">${releaseDate}</a></td>
                           <td>
@@ -157,7 +173,7 @@ function renderQuestions(data) {
                                 <i class="feather-icon icon-more-vertical fs-5"></i>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a class="dropdown-item delete-question" href="#" data-question-id="${question.questionId}"><i class="bi bi-trash me-3"></i>Delete</a></li>
+                                <li><a class="dropdown-item delete-question" href="#" data-question-id="${question.questionId}"><i class="bi bi-trash me-3"></i>삭제하기</a></li>
                               </ul>
                             </div>
                           </td>

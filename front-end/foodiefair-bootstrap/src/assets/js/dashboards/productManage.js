@@ -178,8 +178,8 @@ function renderProducts(data) {
                               <i class="feather-icon icon-more-vertical fs-5"></i>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item delete-product" href="#" data-product-id="${product.productId}"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product?productId=${product.productId}"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                              <li><a class="dropdown-item delete-product" href="#" data-product-id="${product.productId}"><i class="bi bi-trash me-3"></i>삭제하기</a></li>
+                              <li><a class="dropdown-item" href="edit-product?productId=${product.productId}"><i class="bi bi-pencil-square me-3 "></i>수정하기</a>
                               </li>
                             </ul>
                           </div>

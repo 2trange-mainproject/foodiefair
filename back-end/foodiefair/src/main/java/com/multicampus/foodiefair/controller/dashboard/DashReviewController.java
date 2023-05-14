@@ -44,8 +44,11 @@ public class DashReviewController {
         // 파일 URL 생성
         S3Client s3Client = new S3Client();
         String objectKey = review.getReviewImg();
-        String url = s3Client.getReviewUrl(objectKey, 3600);
-        review.setReviewImg(url);
+
+        if(objectKey != null){
+            String url = s3Client.getReviewUrl(objectKey, 3600);
+            review.setReviewImg(url);
+        }
 
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("reviewRead", review);
