@@ -19,5 +19,6 @@ public interface IUserService {
     public ReviewNumDTO readBadge(int selectedId);
     public int updateBadge(int selectedId, String selectedBadge);
     public int checkName(String userName);
+    public int updateCheckName(int userId, String userName);
     public int checkEmail(String userEmail);
 }
