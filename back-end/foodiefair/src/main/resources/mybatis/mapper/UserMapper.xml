@@ -97,6 +97,10 @@
         SELECT COUNT(*) FROM User WHERE userName = #{userName}
     </select>
 
+    <select id="updateCheckName" resultType="int">
+        SELECT COUNT(*) FROM User WHERE userId != #{userId} AND userName = #{userName}
+    </select>
+
     <select id="checkEmail" parameterType="string" resultType="int">
         SELECT COUNT(*) FROM User WHERE userEmail = #{userEmail}
     </select>

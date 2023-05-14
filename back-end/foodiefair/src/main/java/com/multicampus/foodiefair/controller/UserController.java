@@ -254,7 +254,7 @@ public class UserController {
             s3Client.uploadUserFile(file, objectKey);
         }
 
-        int checkName = userService.checkName(userName);
+        int checkName = userService.updateCheckName(userId, userName);
         if(checkName > 0){
             result.put("success", false);
             result.put("message", "이미 있는 닉네임입니다.");

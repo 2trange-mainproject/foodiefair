@@ -110,6 +110,15 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public int updateCheckName(int userId, String userName) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userId", userId);
+        paramMap.put("userName", userName);
+
+        return userDAO.updateCheckName(paramMap);
+    }
+
+    @Override
     public int checkEmail(String userEmail) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("userEmail", userEmail);

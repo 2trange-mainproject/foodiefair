@@ -41,5 +41,6 @@ public interface IUserDAO {
 
     //닉네임 중복 확인
     public int checkName(Map<String, Object> paramMap);
+    public int updateCheckName(Map<String, Object> paramMap);
     public int checkEmail(Map<String, Object> paramMap);
 }
