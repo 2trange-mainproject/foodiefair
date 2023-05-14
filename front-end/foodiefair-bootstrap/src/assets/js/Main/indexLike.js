@@ -3,8 +3,6 @@ async function loadLikes(page, sortOrder) {
 
     // food.html 페이지의 JavaScript 코드
     const searchKeyword = localStorage.getItem('searchKeyword');
-    console.log('검색 키워드:', searchKeyword);
-
 
     var queryString = `?page=${page}&size=15&sortOrder=popularity`;
 
