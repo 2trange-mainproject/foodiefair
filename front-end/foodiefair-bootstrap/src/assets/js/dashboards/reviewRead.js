@@ -33,8 +33,6 @@ function renderReviewDetails(review) {
     var releaseDate = new Date(review.reviewDate).toISOString().split('T')[0];
     var receipt = review.receiptImg ? "TRUE" : "FALSE";
 
-    console.log('reviewImg : ', review.reviewImg);
-
     var imageHtml = '';
     if (review.reviewImg) {
         imageHtml = `
