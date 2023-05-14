@@ -54,14 +54,15 @@
                     </div>
                   </div>
                   <div class="d-flex justify-content-between">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="true" id="rememberMe" name="rememberMe"/>
+                    <!--<div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="true" id="rememberMe" name="remember-me"/>
                       <label class="form-check-label" for="rememberMe">
                         아이디 기억하기
                       </label>
-                    </div>
+                    </div>-->
+                    <div>비밀번호가 기억나지 않는다면? </div>
                     <div>
-                      <a href="../pages/forgot-password" style="color: deeppink">아이디 찾기/비밀번호 찾기</a>
+                      <a href="../pages/forgot-password" style="color: deeppink">비밀번호 찾기</a>
                     </div>
                   </div>
                   <div class="col-12 d-grid">
@@ -85,7 +86,10 @@
                 const form = document.querySelector("#login-form");
                 form.addEventListener("submit", async (event) => {
                   event.preventDefault();
+
                   const formData = new FormData(form);
+                  /*formData.append('rememberMe', document.querySelector('#rememberMe').checked);*/
+
                   const response = await fetch("http://localhost:8081/signin", {
                     method: "POST",
                     body: formData,
@@ -95,7 +99,7 @@
                   const result = await response.json();
                   if (result.success) {
                     alert("로그인이 완료되었습니다.");
-                    location.href = "/foodiefair";
+                    location.href = "/";
                   } else {
                     if (result.locked) {
                       Swal.fire({

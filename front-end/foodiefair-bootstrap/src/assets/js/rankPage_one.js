@@ -90,7 +90,7 @@ function loadRankPageOne() {
                              <h2 class="fs-2"><a href="mypage?userId=${user.userId}" class="text-inherit text-decoration-none" onclick="preventClick(event)">${user.userName}</a></h2>
                              <div>
 
-                                 <!-- 칭호 -->
+                                 <!-- 뱃지 -->
                                  <small class="text-warning star-icon"> <i class="bi bi-star-fill"></i></small>
                                  <span class="text-muted small tag-text">${user.selectedBadge}</span>
                              </div>
