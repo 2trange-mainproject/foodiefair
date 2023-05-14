@@ -6,4 +6,5 @@ import org.json.JSONObject;
 public interface UserTagService {
     String getUserTags(int userId);
     String getUserBadges(int userId);
+    String getUserSelectedBadge(int userId);
 }
