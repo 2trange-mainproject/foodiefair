@@ -11,6 +11,10 @@
         <if test="reviewImg != null">, #{reviewImg}</if>)
     </insert>
 
+    <select id="reviewSearch" resultType="int">
+        SELECT COUNT(*) FROM review WHERE userId=#{userId} and productId=#{productId};
+    </select>
+
     <update id="updatePlusReviewNum">
         update Product set productReviews = productReviews + 1 where productId = #{productId}
     </update>

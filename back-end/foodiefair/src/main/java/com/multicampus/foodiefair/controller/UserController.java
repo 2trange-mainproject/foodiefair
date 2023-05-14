@@ -132,10 +132,37 @@ public class UserController {
         }
     }
 
+    //닉네임 중복 확인
+    @PostMapping("/name-check")
+    public ResponseEntity<Map<String, Object>> nameCheck(@RequestParam String userName) throws Exception {
+        System.out.println("닉네임 : " + userName);
+        Map<String, Object> result = new HashMap<>();
+
+        int checkName = userService.checkName(userName);
+
+        System.out.println("중복개수 : " + checkName);
+        if(checkName == 0) {
+            result.put("success", true);
+            result.put("message", "사용 가능한 닉네임입니다.");
+            return ResponseEntity.ok(result);
+        }
+        result.put("success", false);
+        result.put("message", "이미 있는 닉네임입니다.");
+        return ResponseEntity.badRequest().body(result);
+    }
+
     @PostMapping("/mail-confirm")
     public ResponseEntity<Map<String, Object>> mailConfirm(@RequestParam String userEmail) throws Exception {
         System.out.println("이메일 : " + userEmail);
         Map<String, Object> result = new HashMap<>();
+
+        int checkEmail = userService.checkEmail(userEmail);
+        if(checkEmail > 0){
+            result.put("success", false);
+            result.put("message", "이미 가입된 회원입니다.");
+            return ResponseEntity.badRequest().body(result);
+        }
+
         String code = registerMail.sendSimpleMessage(userEmail);
 
         System.out.println("인증코드 : " + code);
@@ -216,9 +243,10 @@ public class UserController {
             @RequestParam("userName") String userName,
             @RequestParam("userTags") String userTags,
             @RequestParam("userIntro") String userIntro,
-            @RequestParam("userEmail") String userEmail,
             @RequestParam("selectedBadge") String selectedBadge
     ) throws Exception{
+        Map<String, Object> result = new HashMap<>();
+
         if (!userImg.isEmpty()) {
             File file = convertMultipartFileToFile(userImg);
             S3Client s3Client = new S3Client();
@@ -226,11 +254,18 @@ public class UserController {
             s3Client.uploadUserFile(file, objectKey);
         }
 
+        int checkName = userService.updateCheckName(userId, userName);
+        if(checkName > 0){
+            result.put("success", false);
+            result.put("message", "이미 있는 닉네임입니다.");
+            return ResponseEntity.badRequest().body(result);
+        }
+
         userService.updateUser(userId, userImg.getOriginalFilename(), userName, userTags, userIntro);
-        System.out.println("selectedBadge : " + selectedBadge);
+        System.out.println("userName : " + userName);
         userService.updateBadge(userId, selectedBadge);
 
-        UserDTO userDto = userService.getUserByEmail(userEmail);
+        UserDTO userDto = userService.getUserById(userId);
         S3Client s3Client = new S3Client();
         String userImgUrl = userDto.getUserImg();
         String url = s3Client.getUserUrl(userImgUrl, 3600);
@@ -238,7 +273,6 @@ public class UserController {
 
         session.setAttribute("loginUser", userDto);
 
-        Map<String, Object> result = new HashMap<>();
         result.put("user", userDto);
         result.put("success", true);
         result.put("message", "회원정보 수정에 성공하였습니다.");
