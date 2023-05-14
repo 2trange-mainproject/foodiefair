@@ -18,23 +18,24 @@ function pageStartNum() { // 클로저 정의. 리뷰 offset으로 사용할 예
     }
 };
 
+let loginUserId = getUserInfo();
 let pageOffset = pageStartNum();
 
 $(document).ready(function (){
     $(window).on('unload', function (){ // 페이지 이동시 null로 바꿔줌으로써 가비지 컬렉터가 수거
         pageOffset = null;
     });
-
-    $('.btn-reviews').click(productReviewTab) // 리뷰 탭 이동시 html 초기화 및 해당 탭  리뷰 목록 가져오기
-    $('#review-section').on('click', '.btn-reviewLike', productReviewLike); // 리뷰 좋아요 눌렀을 때 토글 및 DB저장, 숫자 반영
-    $('.btn-reviewMore').click(productReviewMore); // 리뷰 더보기 버튼
-    $('#select-review-type').change(productReviewType); // 정렬 선택
-    $('#review-section').on('click', '.review-delete', productReviewRemove);
-    $('#review-section').on('click', '.review-modify', productReviewModify);
-
-    $('#review-update-reset').on('click', reviewUpdateReset);
-    $('#review-update').on('click', reviewUpDate);
 });
+
+$('.btn-reviews').click(productReviewTab) // 리뷰 탭 이동시 html 초기화 및 해당 탭  리뷰 목록 가져오기
+$('#review-section').on('click', '.btn-reviewLike', productReviewLike); // 리뷰 좋아요 눌렀을 때 토글 및 DB저장, 숫자 반영
+$('.btn-reviewMore').click(productReviewMore); // 리뷰 더보기 버튼
+$('#select-review-type').change(productReviewType); // 정렬 선택
+$('#review-section').on('click', '.review-delete', productReviewRemove);
+$('#review-section').on('click', '.review-modify', productReviewModify);
+
+$('#review-update-reset').on('click', reviewUpdateReset);
+$('#review-update').on('click', reviewUpDate);
 
 async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
     if (typeof e === 'object' && e.hasOwnProperty('type')) { // 매개변수 e가 이벤트인지 아닌지, 이벤트면 true (productInfo에서 productReviewRead()를 호출하고 있으므로 if문 필요)
@@ -78,16 +79,13 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
         let releaseDate = new Date(item.reviewDate).toISOString().split('T')[0];
         let reviewImage = item.reviewImg ? `<img src="${item.reviewImg}" alt="" class="img-fluid">` : '';
         let reviewImageContainer = reviewImage ? `<div class="border icon-shape icon-lg border-2 ">${reviewImage}</div>` : '';
-        let btnDelete;
-        let btnModify;
-        let likeReview;
+        let btnDelete="";
+        let btnModify="";
+        let likeReview="";
 
         if(userInfo!=null && userInfo.userId == `${item.userId}`) {
             btnDelete = `<a href="#" class="text-muted review-delete" data-reviewId="${item.reviewId}"><i class="bi bi-trash me-1"></i>삭제하기</a>`
             btnModify = `<a href="#" class="text-muted ms-3 review-modify" data-reviewId="${item.reviewId}"><i class="bi bi-pencil me-1"></i>수정하기</a>`;
-        } else {
-            btnDelete = `<a href="#" class="text-muted review-delete" data-reviewId="${item.reviewId}" hidden><i class="bi bi-trash me-1"></i>삭제하기</a>`
-            btnModify = `<a href="#" class="text-muted ms-3 review-modify" data-reviewId="${item.reviewId}" hidden><i class="bi bi-pencil me-1"></i>수정하기</a>`;
         }
 
         if(likeReviewList.includes(item.reviewId)) {
@@ -101,8 +99,7 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
         }
 
         let reivewText = `<div class="d-flex border-bottom pb-6 mb-6">
-                            <img src="${item.userImg}" alt=""
-                              class="rounded-circle avatar-lg login-image">
+                            <a href="../pages/mypage?userId=${item.userId}" onclick="preventClick(event)"><img src="${item.userImg}" class="rounded-circle avatar-lg login-image"/></a>
                             <div class="ms-5 flex-grow-1">
                               <h6 class="mb-1">
                                 ${item.userName}
@@ -132,6 +129,33 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
                           </div>`;
         $('#review-section').append(reivewText);
     });
+}
+
+async function preventClick(event) {
+    event.preventDefault();
+
+    const loginUser = await getUserInfo();
+
+    if (!loginUser) {
+        event.preventDefault();
+        Swal.fire({
+            title: "마이페이지 이동 실패",
+            html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1200,
+        });
+        return;
+    }
+
+    // 로그인이 확인되면 원래의 페이지 이동을 수행합니다.
+    let href;
+    if (event.target.tagName.toLowerCase() === 'img') {
+        href = event.target.parentElement.getAttribute('href');
+    } else {
+        href = event.target.getAttribute('href');
+    }
+    window.location.href = href;
 }
 
 async function productReviewLike(e) { // 상품 리뷰 좋아요 토글 버튼
