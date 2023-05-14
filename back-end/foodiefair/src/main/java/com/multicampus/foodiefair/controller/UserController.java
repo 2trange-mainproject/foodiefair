@@ -22,6 +22,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -62,7 +63,7 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<Map<String, Object>> login(Principal principal, @RequestParam String userEmail, @RequestParam String userPwd, HttpSession session) {
+    public ResponseEntity<Map<String, Object>> login(Principal principal, @RequestParam String userEmail, @RequestParam String userPwd, @RequestParam(required = false) boolean rememberMe, HttpSession session, HttpServletResponse response) {
         Map<String, Object> result = new HashMap<>();
         UserDTO userDto = userService.getUserByEmail(userEmail);
         System.out.println("passwordEncoder.matches(userPwd, userDto.getUserPwd()) = " + passwordEncoder.matches(userPwd, userDto.getUserPwd()));
@@ -73,6 +74,13 @@ public class UserController {
             result.put("success", false);
             result.put("locked", true);
             return ResponseEntity.badRequest().body(result);
+        }
+
+        if (rememberMe) {
+            Cookie rememberMeCookie = new Cookie("rememberMe", "true");
+            rememberMeCookie.setMaxAge(30 * 24 * 60 * 60); // 예: 30일 동안 유지
+            rememberMeCookie.setPath("/"); // 쿠키의 유효 경로 설정
+            response.addCookie(rememberMeCookie);
         }
         
         if (userDto != null && passwordEncoder.matches(userPwd, userDto.getUserPwd())) {
