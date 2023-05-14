@@ -130,19 +130,20 @@ function successLocation(position) {
 
         // 기존에 추가된 페이지번호를 삭제
         while (paginationEl.hasChildNodes()) {
-            paginationEl.removeChild (paginationEl.lastChild);
+            paginationEl.removeChild(paginationEl.lastChild);
         }
 
-        for (i=1; i<=pagination.last; i++) {
+        for (i = 1; i <= pagination.last; i++) {
             let el = document.createElement('a');
             el.href = "#";
             el.innerHTML = i;
 
-            if (i===pagination.current) {
+            if (i === pagination.current) {
                 el.className = 'on';
             } else {
-                el.onclick = (function(i) {
-                    return function() {
+                el.onclick = (function (i) {
+                    return function (e) {
+                        e.preventDefault();
                         pagination.gotoPage(i);
                     }
                 })(i);
@@ -153,9 +154,9 @@ function successLocation(position) {
     }
 
     function displayMarker(place) {
-        const imageSrc ="../assets/images/stores-logo/location-icon.png",
+        const imageSrc = "../assets/images/stores-logo/location-icon.png",
             imageSize = new kakao.maps.Size(58, 61), // 마커이미지의 크기입니다
-            imageOption = { offset: new kakao.maps.Point(27, 69) };
+            imageOption = {offset: new kakao.maps.Point(27, 69)};
 
         const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
             markerPosition = position;
