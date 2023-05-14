@@ -28,7 +28,7 @@ function tagsToJson(tagString) {
 
 function loadProductDetails(productId) {
     $.ajax({
-        url: `http://localhost:8081/dashboard/product-read/${productId}`,
+        url: `http://115.85.182.117:8081/dashboard/product-read/${productId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {
@@ -149,7 +149,7 @@ function updateProduct(productId){
     var updatedProductTagJson = tagsToJson(updatedProductTag);
 
     $.ajax({
-        url: `http://localhost:8081/dashboard/product-update/${productId}`,
+        url: `http://115.85.182.117:8081/dashboard/product-update/${productId}`,
         type: "PUT",
         dataType: "text",
         data: {
