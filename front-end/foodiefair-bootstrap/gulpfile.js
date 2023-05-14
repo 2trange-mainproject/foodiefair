@@ -26,10 +26,17 @@ const express = require('express');
 // -------------- ---------------------------------------------------------------
 
 // Paths to project folders
+<<<<<<< Updated upstream
 const paths = {
     base:{
         base: './',
         node: './node_modules'
+=======
+ const paths = {
+  base:{
+    base: './',
+    node: './node_modules'
+>>>>>>> Stashed changes
     },
     src:{
         basesrc: './src',
@@ -153,6 +160,7 @@ function cleanDist(callback) {
 
 const serveStatic = require('serve-static');
 
+<<<<<<< Updated upstream
 // Express 서버를 설정하고 HTML 확장명을 제거하는 미들웨어를 사용하여 로컬 서버를 실행
 function browsersyncServe(callback) {
     const app = express();
@@ -179,12 +187,44 @@ function browsersyncServe(callback) {
 }
 
 //  BrowserSync를 사용하여 브라우저를 새로 고침
+=======
+// Browser Sync Serve
+function browsersyncServe(callback) {
+    const app = express();
+
+    // Middleware to remove .html extension
+    app.use(function (req, res, next) {
+        if (req.path.indexOf('.') === -1) {
+            const file = req.path.split('/').pop();
+            const fileExt = '.html';
+            req.url = req.url.replace(file, file + fileExt);
+        }
+        next();
+    });
+
+    app.use(serveStatic(paths.temp.basetemp));
+    app.use(serveStatic(paths.src.basesrc));
+    app.use('/node_modules', serveStatic('node_modules'));
+
+    app.listen(3000, function () {
+        console.log('Server is running on port 3000');
+    });
+
+    callback();
+}
+
+// SyncReload
+>>>>>>> Stashed changes
 function syncReload(callback){
     browsersync.reload();
     callback();
 }
 
+<<<<<<< Updated upstream
 // 파일 변경을 감지하고 관련 작업을 실행
+=======
+// Watch Task
+>>>>>>> Stashed changes
 function watchTask(){
     watch(paths.src.html, series( fileincludeTask, syncReload));
     watch([paths.src.images, paths.src.fonts, paths.src.vendorJs], series(images, fonts, vendorJs));

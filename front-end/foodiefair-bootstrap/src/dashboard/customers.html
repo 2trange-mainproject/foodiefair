@@ -67,30 +67,66 @@
                 <div class="card-body p-0 ">
 
                   <div class="table-responsive">
-                    <table
-                      class="table table-centered table-hover table-borderless mb-0 table-with-checkbox text-nowrap">
+                    <table class="table table-centered table-hover table-borderless mb-0 table-with-checkbox text-nowrap">
                       <thead style="background-color: #f7f9fa">
-                        <tr>
-                          <th>
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="checkAll">
-                              <label class="form-check-label" for="checkAll">
-
-                              </label>
-                            </div>
-                          </th>
-                          <th>닉네임</th>
-                          <th>이메일</th>
-                          <th>마이태그</th>
-                          <th>신고횟수</th>
-                          <th>locked</th>
-
-                          <th></th>
-                        </tr>
+                      <tr>
+                        <th>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                            <label class="form-check-label" for="checkAll"></label>
+                          </div>
+                        </th>
+                        <th>닉네임</th>
+                        <th>이메일</th>
+                        <th>마이태그</th>
+                        <th>신고횟수</th>
+                        <th>locked</th>
+                        <th></th>
+                      </tr>
                       </thead>
                       <tbody id="userContainer"></tbody>
                     </table>
 
+                    <script>
+                      $(document).ready(function() {
+                        $.ajax({
+                          url: "/dashboard/user-list",
+                          type: "GET",
+                          data: {
+                            page: 1, // 페이지 번호
+                            size: 10000, // 페이지당 출력할 항목 수
+                            sortOrder: "userReportDESC", // 정렬 기준
+                            searchKeyword: "" // 검색어
+                          },
+                          success: function(response) {
+                            var users = response.userList;
+                            var html = "";
+                            for (var i = 0; i < users.length; i++) {
+                              var user = users[i];
+                              html += "<tr>";
+                              html += "<td>";
+                              html += "<div class='form-check'>";
+                              html += "<input class='form-check-input' type='checkbox' value='' id='userCheck" + i + "'>";
+                              html += "<label class='form-check-label' for='userCheck" + i + "'></label>";
+                              html += "</div>";
+                              html += "</td>";
+                              html += "<td>" + user.userName + "</td>";
+                              html += "<td>" + user.userEmail + "</td>";
+                              html += "<td>" + user.userTag + "</td>";
+                              html += "<td>" + user.userReport + "</td>";
+                              html += "<td>" + user.locked + "</td>";
+                              html += "<td><a href='/dashboard/user-read/" + user.userId + "'><i class='fas fa-info-circle'></i></a></td>";
+                              html += "</tr>";
+                            }
+                            $("#userContainer").html(html);
+                          },
+                          error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(textStatus, errorThrown);
+                          }
+                        });
+                      });
+                    </script>
+                    </table>
                   </div>
 
                   <div class=" border-top d-md-flex justify-content-between align-items-center px-6 py-6">

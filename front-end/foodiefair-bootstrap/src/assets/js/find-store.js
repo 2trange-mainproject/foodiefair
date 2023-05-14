@@ -154,7 +154,11 @@ function successLocation(position) {
     }
 
     function displayMarker(place) {
+<<<<<<< Updated upstream
         const imageSrc ="../assets/images/stores-logo/location-icon.png",
+=======
+        const imageSrc ="../src/assets/images/stores-logo/location-icon.png",
+>>>>>>> Stashed changes
             imageSize = new kakao.maps.Size(58, 61), // 마커이미지의 크기입니다
             imageOption = { offset: new kakao.maps.Point(27, 69) };
 

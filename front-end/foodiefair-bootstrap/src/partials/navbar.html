@@ -81,7 +81,11 @@
             </div>
             <div class="col-md-2 col-xxl-3 d-none d-lg-block">
               <!-- Button trigger modal -->
+<<<<<<< Updated upstream
               <!--<button type="button" class="btn btn-outline-gray-400 text-muted">
+=======
+              <button type="button" class="btn btn-outline-gray-400 text-muted">
+>>>>>>> Stashed changes
                 <a href="@@webRoot/pages/find-store" style="color: #889397">
                   <i class="feather-icon icon-map-pin me-2"></i>내 주변 편의점 찾기
                 </a>
@@ -89,6 +93,7 @@
             </div>
             <!--<div class="col-md-2 col-xxl-1 text-end d-none d-lg-block">-->
             <div class="col-md-2 col-xxl-1 text-end d-none d-lg-block" style="white-space: nowrap;">
+<<<<<<< Updated upstream
               <span id="login-name"></span>
               <li class="dropdown ms-4" id="login-profile" style="display: none">
                 <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -139,6 +144,22 @@
 
                     document.getElementById('logout-link').style.display = 'inline';
                     document.getElementById('login-profile').style.display = 'inline';
+=======
+              <span id="login-message"></span>
+              <a id="logout-link" style="color: #889397; display: none" href="#" onclick="logout()">로그아웃</a>
+              <a id="signin-link" style="color: #889397; display: none" href="@@webRoot/pages/signin">로그인</a>
+              <a id="signup-link" style="color: #889397; displa: none" href="@@webRoot/pages/contract">회원가입</a>
+              <a id="update-link" style="color: #889397; display: none" href="@@webRoot/pages/edit-user">회원수정</a>
+              <a id="delete-link" style="color: #889397; display: none" href="#" onclick="deleteUser()">회원삭제</a>
+              <script>
+                window.onload = function() {
+                  const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+                  if (loginUser != null) {
+                    document.getElementById('login-message').innerHTML = loginUser.userName + '님, 안녕하세요!';
+                    document.getElementById('logout-link').style.display = 'inline';
+                    document.getElementById('update-link').style.display = 'inline';
+                    document.getElementById('delete-link').style.display = 'inline';
+>>>>>>> Stashed changes
                   } else {
                     document.getElementById('signin-link').style.display = 'inline';
                     document.getElementById('signup-link').style.display = 'inline';
@@ -154,7 +175,29 @@
                     location.reload();
                   });
                 }
+<<<<<<< Updated upstream
               </script>
+=======
+                function deleteUser() {
+                  const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+                  if (loginUser != null) {
+                    const userEmail = loginUser.userEmail;
+                    fetch(`http://localhost:8081/user-delete/${userEmail}`, {
+                      method: 'DELETE',
+                      mode: 'cors'
+                    }).then(response => {
+                      localStorage.removeItem('loginUser');
+                      alert('회원탈퇴가 완료되었습니다.');
+                      location.reload();
+                    }).catch(error => {
+                      console.error(error);
+                      alert('회원탈퇴를 실패했습니다.');
+                    });
+                  }
+                }
+              </script>
+
+>>>>>>> Stashed changes
             </div>
           </div>
         </div>
@@ -193,10 +236,17 @@
             </div>
             <div class="d-none d-lg-block">
               <div class="nav-links" style="display: flex; justify-content: center;">
+<<<<<<< Updated upstream
                 <a class="nav-link" href="@@webRoot/pages/food" role="button" style="font-size: 25px; margin: 0 85px;">음식</a>
                 <a class="nav-link" href="@@webRoot/pages/event" role="button" style="font-size: 25px; margin: 0 85px;">신상품/행사</a>
                 <a class="nav-link" href="@@webRoot/pages/reviewer" role="button" style="font-size: 25px; margin: 0 85px;">리뷰어</a>
                 <a class="nav-link" href="@@webRoot/pages/find-store" role="button" style="font-size: 25px; margin: 0 85px;">내 주변 편의점</a>
+=======
+                <a class="nav-link" href="@@webRoot/pages/food" role="button" style="font-size: 25px; margin: 0 90px;">음식</a>
+                <a class="nav-link" href="@@webRoot/pages/event" role="button" style="font-size: 25px; margin: 0 90px;">신상품/행사</a>
+                <a class="nav-link" href="@@webRoot/pages/reviewer" role="button" style="font-size: 25px; margin: 0 90px;">리뷰어</a>
+                <a class="nav-link" href="@@webRoot/pages/mypage" role="button" style="font-size: 25px; margin: 0 90px;">마이페이지</a>
+>>>>>>> Stashed changes
               </div>
             </div>
           </div>

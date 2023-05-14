@@ -40436,6 +40436,7 @@ span.flatpickr-weekday {
   border-radius: 10px;
   box-shadow : none;
   padding: 9px 25px;  /* 위아래 여백 9px, 좌우 여백 25px */
+<<<<<<< Updated upstream
 }
 
 /* 아이콘 색상 변경 */
@@ -40456,4 +40457,6 @@ span.flatpickr-weekday {
 
 #Cutefont_font{
   font-family: "Cutefont";
+=======
+>>>>>>> Stashed changes
 }
