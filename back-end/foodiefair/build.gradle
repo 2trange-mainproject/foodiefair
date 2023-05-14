@@ -30,7 +30,6 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-<<<<<<< Updated upstream
     implementation 'org.json:json:20230227'
 
     //이메일
@@ -48,10 +47,6 @@ dependencies {
     //시큐리티
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'com.google.code.gson:gson:2.8.9'
-=======
-    //네이버 스토리지 : aws랑 호환됨
-    implementation 'com.amazonaws:aws-java-sdk:1.12.154'
->>>>>>> Stashed changes
 }
 
 tasks.named('test') {

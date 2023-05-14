@@ -3,7 +3,7 @@
 
 <head>
 
-  <title>test</title>
+  <title>FoodieFair</title>
   <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
   <link href="@@webRoot/node_modules/nouislider/dist/nouislider.min.css" rel="stylesheet">
   @@include("../partials/head.html")
@@ -22,13 +22,9 @@
         <div class="col-12">
           <!-- breadcrumb -->
           <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0" style="font-size:23px;">
-<<<<<<< Updated upstream
-              <li class="breadcrumb-item"><a href="mypage">마이페이지</a></li>
-=======
-              <li class="breadcrumb-item"><a href="http://localhost:3000/pages/mypage">마이페이지</a></li>
->>>>>>> Stashed changes
-              <li class="breadcrumb-item active" aria-current="page">작성 리뷰 목록</li>
+            <ol class="breadcrumb mb-0" style="font-size:20px;">
+              <li class="breadcrumb-item"><a href="mypage" id="myPage">마이페이지</a></li>
+              <li class="breadcrumb-item active" aria-current="page">작성 리뷰</li>
             </ol>
           </nav>
         </div>
@@ -46,33 +42,44 @@
           <div class="offcanvas offcanvas-start offcanvas-collapse w-md-50 " tabindex="-1" id="offcanvasCategory" aria-labelledby="offcanvasCategoryLabel">
             <div class="offcanvas-body ps-lg-2 pt-lg-0">
               <div class="mb-8 d-flex flex-column align-items-center text-center">
-                <!-- Banner Image -->
+                <!-- 유저 이미지 -->
                 <div class="position-relative mb-3" style="width: 150px; height: 150px; border: 1px solid black; border-radius: 50%; overflow: hidden;">
-                  <img src="@@webRoot/assets/images/products/love-1.jpg" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-circle">
+                  <img id="userImg" src="" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-circle">
                 </div>
-                <!-- Banner Image -->
-                <!-- Banner Content -->
+                <!-- 유저이미지 -->
+                <!-- 유저 닉네임 -->
                 <div>
-                  <h4 class="mb-0">아이유 콘서트 가고싶다</h4>
+                  <h4 class="mb-0" id="userName"></h4>
                 </div>
-                <!-- Banner Content -->
+                <!-- 유저 닉네임 -->
+                <!-- 유저 대표 뱃지 -->
+                <div class="justify-content-start">
+                  <small class="text-warning" style="font-size: 14px;"> <i class="bi bi-star-fill"></i></small>
+                  <span class="text-muted small" style="font-size: 14px;">뉴비 푸디</span>
+                </div>
+                <!-- 유저 대표 뱃지 -->
+                <!-- 유저 팔로우 -->
+                <div id="userFollowDiv" class="mt-6">
+                </div>
+                <!-- 유저 팔로우 -->
                 <!-- Follows Content -->
                 <div>
                   <ul class="nav nav-pills nav-lb-tab justify-content-center flex-nowrap" role="tablist">
-                    <!-- nav item -->
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
-                      <!-- btn -->
-                      <a class="nav-link fs-6 text-nowrap" id="followers-tab" href="follows?activeTab=followers-tab" role="tab" aria-controls="followers-tab-pane" aria-selected="false">팔로워</a>
-
+                      <a class="nav-link fs-6 text-nowrap" id="followers-tab" href="#" onclick="openPopup('follows', userId)" role="tab" aria-controls="followers-tab-pane" aria-selected="false">팔로워</a>
                     </li>
-                    <!-- nav item -->
                     <li class="nav-item d-flex align-items-center flex-fill" role="presentation">
-                      <!-- btn -->
-                      <a class="nav-link fs-6 text-nowrap" id="followings-tab" href="follows?activeTab=followings-tab" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉
-                      </a>
+                      <a class="nav-link fs-6 text-nowrap" id="followings-tab" href="#" onclick="openPopup('follows', userId)" role="tab" aria-controls="followings-tab-pane" aria-selected="false">팔로잉</a>
                     </li>
                   </ul>
                 </div>
+                <!-- 팔로워 & 팔로잉 팝업 -->
+                <script>
+                  function openPopup(url, userId) {
+                    const urlWithUserId = `${url}?userId=${userId}`;
+                    window.open(urlWithUserId, "popupWindow", "width=800,height=600");
+                  }
+                </script>
                 <!-- Follows Content -->
               </div>
             </div>
@@ -83,7 +90,7 @@
           <div class="card mb-4 bg-light border-0">
             <!-- card body -->
             <div class=" card-body p-6">
-              <h2 class="mb-0 fs-3">작성 리뷰 목록</h2>
+              <h2 class="mb-0 fs-3">작성 리뷰</h2>
             </div>
           </div>
           <div class="container">
@@ -91,139 +98,44 @@
               <div class="col-md-12">
                 <ul class="nav nav-pills nav-lb-tab" id="myTab" role="tablist">
                   <!-- nav item -->
-                  <!-- nav item -->
                   <li class="nav-item" role="presentation">
-                    <!-- btn --> <button class="nav-link active" id="certified-tab" data-bs-toggle="tab"
-                                         data-bs-target="#certified-tab-pane" type="button" role="tab" aria-controls="certified-tab-pane"
-                                         aria-selected="true">인증 리뷰</button>
+                    <button class="nav-link active btn-reviews" id="receipt-reviews-tab" data-bs-toggle="tab"
+                            data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane"
+                            aria-selected="true">인증 리뷰
+                    </button>
                   </li>
                   <!-- nav item -->
                   <li class="nav-item" role="presentation">
-                    <!-- btn --> <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
-                                         data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane"
-                                         aria-selected="false">일반 리뷰</button>
+                    <button class="nav-link btn-reviews" id="common-reviews-tab" data-bs-toggle="tab"
+                            data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane"
+                            aria-selected="false">일반 리뷰
+                    </button>
                   </li>
-                  <!-- nav item -->
                 </ul>
                 <!-- tab content -->
                 <div class="tab-content" id="myTabContent">
                   <!-- tab pane -->
-                  <div class="tab-pane fade show active" id="certified-tab-pane" role="tabpanel" aria-labelledby="certified-tab-tab" tabindex="0">
-                    <!-- col -->
+                  <div class="tab-pane fade show active" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
                     <div class="my-8">
-                      <div class="mb-10">
-                        <div class="d-flex justify-content-between align-items-center mb-8">
-                          <div>
-                            <!-- heading -->
-                            <h4>Reviews</h4>
-                          </div>
-                          <div>
-                            <select class="form-select">
-                              <option selected>날짜순</option>
-                              <option value="1">좋아요순</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="d-flex border-bottom pb-6 mb-6">
-                          <!-- img -->
-                          <!-- img -->
-                          <a href="#" target="_self" class="rounded-circle avatar-lg">
-                            <img src="../assets/images/profile/joon.png" alt="" class="rounded-circle avatar-lg">
-                          </a>
-                          <div class="ms-5">
-                            <h6 class="mb-1">
-                              Joon<a href="#" class="text-muted ms-3"><i class="bi bi-trash me-1"></i>삭제하기</a>
-                            </h6>
-                            <!-- select option -->
-                            <!-- content -->
-                            <p class="small"> <span class="text-muted">30 December 2022</span>
-                              <span class="text-primary ms-3 fw-bold">Verified Purchase</span></p>
-                            <!-- rating -->
-                            <div class=" mb-2">
-                              <span class="text-dark fw-bold">Need to recheck the weight at delivery point</span>
+                      <!-- row -->
+                      <div class="row">
+                        <!-- col -->
+                        <div class="col-md-12">
+                          <div class="mb-10">
+                            <div class="d-flex justify-content-between align-items-center mb-8">
+                              <div>
+                              </div>
+                              <div>
+                                <select class="form-select" id="select-review-type">
+                                  <option value="0" selected>최신순</option>
+                                  <option value="1">좋아요순</option>
+                                </select>
+                              </div>
+                              <!--                       인증 리뷰 예시-->
                             </div>
-                            <!-- text-->
-                            <p>Product quality is good. But, weight seemed less than 1kg. Since it is being sent in open
-                              package, there is a possibility of pilferage in between. FreshCart sends the veggies and
-                              fruits through sealed plastic covers and Barcode on the weight etc. .</p>
+                            <section id="review-section"></section>
                             <div>
-                              <div class="border icon-shape icon-lg border-2 ">
-                                <!-- img --><img src="../assets/images/products/product-img-1.jpg" alt=""
-                                                 class="img-fluid ">
-                              </div>
-                              <div class="border icon-shape icon-lg border-2 ms-1 ">
-                                <!-- img --><img src="../assets/images/products/product-img-2.jpg" alt=""
-                                                 class="img-fluid ">
-                              </div>
-                              <div class="border icon-shape icon-lg border-2 ms-1 ">
-                                <!-- img --><img src="../assets/images/products/product-img-3.jpg" alt=""
-                                                 class="img-fluid ">
-                              </div>
-                            </div>
-                            <!-- icon -->
-                            <div class="d-flex justify-content-end mt-4">
-                              <a href="#" class="text-muted"><i class="bi bi-chat-left-text me-1"></i>더보기</a>
-                              <div class="mx-4">
-                                <a href="#" class="text-muted" data-bs-toggle="collapse" data-bs-target="#comment-collapse"><i class="bi bi-chat-dots me-1"></i>댓글</a>
-                              </div>
-                              <a href="#" class="text-muted btn-like"><i class="bi bi-suit-heart me-1"></i>Like</a>
-                            </div>
-                            <div class="collapse" id="comment-collapse">
-                              <div>
-
-                              </div>
-
-                              <div>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- tab pane -->
-                  <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
-                    <!-- col -->
-                    <div class="my-8">
-                      <div class="mb-10">
-                        <div class="d-flex justify-content-between align-items-center mb-8">
-                          <div>
-                            <!-- heading -->
-                            <h4>Reviews</h4>
-                          </div>
-                          <div>
-                            <select class="form-select">
-                              <option selected>날짜순</option>
-                              <option value="1">좋아요순</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="d-flex border-bottom pb-6 mb-6 pt-4">
-                          <!-- img -->
-                          <a href="#" target="_self" class="rounded-circle avatar-lg">
-                            <img src="../assets/images/profile/joon.png" alt="" class="rounded-circle avatar-lg">
-                          </a>
-                          <div class="ms-5 flex-grow-1">
-                            <h6 class="mb-1">
-                              Joon<a href="#" class="text-muted ms-3"><i class="bi bi-trash me-1"></i>삭제하기</a>
-                            </h6>
-                            <!-- content -->
-                            <p class="small"> <span class="text-muted">8 December 2022</span>
-                              <span class="text-danger ms-3 fw-bold">Unverified Purchase</span></p>
-                            <!-- rating -->
-                            <div class=" mb-2">
-                              <span class="text-dark fw-bold">Great product</span>
-                            </div>
-
-                            <p>Great product & package. Delivery can be expedited. </p>
-
-                            <!-- icon -->
-                            <div class="d-flex justify-content-end mt-4">
-                              <a href="#" class="text-muted"><i class="bi bi-chat-left-text me-1"></i>더보기</a>
-                              <div class="mx-4">
-                                <a href="#" class="text-muted"><i class="bi bi-chat-dots me-1"></i>댓글</a>
-                              </div>
+                              <a href="#" class="btn btn-outline-gray-400 text-muted btn-reviewMore">리뷰 더보기</a>
                             </div>
                           </div>
                         </div>
@@ -232,30 +144,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row mt-8">
-            <div class="col">
-              <!-- nav -->
-              <nav>
-                <ul class="pagination justify-content-end">
-                  <li class="page-item disabled">
-                    <a class="page-link  mx-1 " href="#" aria-label="Previous">
-                      <i class="feather-icon icon-chevron-left"></i>
-                    </a>
-                  </li>
-                  <li class="page-item "><a class="page-link  mx-1 active" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link mx-1 text-body" href="#">2</a></li>
-
-                  <li class="page-item"><a class="page-link mx-1 text-body" href="#">...</a></li>
-                  <li class="page-item"><a class="page-link mx-1 text-body" href="#">12</a></li>
-                  <li class="page-item">
-                    <a class="page-link mx-1 text-body" href="#" aria-label="Next">
-                      <i class="feather-icon icon-chevron-right"></i>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
             </div>
           </div>
         </section>
@@ -274,10 +162,7 @@
   @@include("../partials/footer.html")
 
   <!-- Javascript-->
-  <script>
-    const userId=1;
-    const loggedUserId=13;
-  </script>
+  <script src="@@webRoot/assets/js/ajax/sendUserIds.js"></script>
   <script src="@@webRoot/node_modules/nouislider/dist/nouislider.min.js"></script>
   <script src="@@webRoot/node_modules/wnumb/wNumb.min.js"></script>
   @@include("../partials/scripts.html")
@@ -286,10 +171,12 @@
   <script src="@@webRoot/assets/js/vendors/zoom.js"></script>
   <script src="@@webRoot/assets/js/vendors/increment-value.js"></script>
   <script src="@@webRoot/assets/js/ajax/mypage-follows.js"></script>
-
-
-
-
+  <script>
+    const myPage = document.getElementById('myPage');
+    myPage.href = `${myPage.href}?userId=${userId}`;
+  </script>
+  <script src="@@webRoot/assets/js/ajax/mypageReviewList.js"></script>
+  <script src="@@webRoot/assets/js/ajax/mypageReviewComments.js"></script>
 </body>
 
 </html>

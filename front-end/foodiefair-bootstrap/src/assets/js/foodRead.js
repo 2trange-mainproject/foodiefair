@@ -3,6 +3,10 @@ $(document).ready(function () {
     loadProductDetails(productId);
 
     productReviewsRead();
+
+    //두 줄 뜨는 보기 안 좋은 것을 가리기 위함
+    $("#food_preview").attr("src", "").css("display", "none");
+    $("#OCR_preview").attr("src", "").css("display", "none");
 });
 
 function getProductIdFromUrl() {
@@ -10,9 +14,18 @@ function getProductIdFromUrl() {
     return urlParams.get("productId");
 }
 
-function loadProductDetails(productId) {
+async function loadProductDetails(productId) {
+    let queryString = `?productId=${productId}`;
+
+    const loginUser = await getUserInfo();
+    let userId = loginUser ? loginUser.userId : null;
+
+    if (userId) {
+        queryString += `&userId=${userId}`;
+    }
+
     $.ajax({
-        url: `http://localhost:8081/api/product-read/${productId}`,
+        url: `http://localhost:8081/api/product-read${queryString}`,
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -45,6 +58,9 @@ function renderProductDetails(product) {
     var fixedTagBig = JSON.parse(product.fixedTag).bigCategory;
     var fixedTagSmall = JSON.parse(product.fixedTag).smallCategory;
 
+    var isActive = product.saved === 1 ? 'active' : '';
+    var bookmarkIcon = product.saved === 1 ? 'bi-bookmark-fill' : 'bi-bookmark';
+
     productHtml += `
   <div class="mt-4">
     <div class="container">
@@ -55,8 +71,8 @@ function renderProductDetails(product) {
           <!-- breadcrumb -->
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><a href="#" style="color: deeppink">Home</a></li>
-              <li class="breadcrumb-item"><a href="#" style="color: deeppink">${fixedTagBig}</a></li>
+              <li class="breadcrumb-item"><a href="javascript:void(0);" onclick="window.history.back();" style="color: deeppink">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">${fixedTagBig}</li>
               <li class="breadcrumb-item active" aria-current="page">${fixedTagSmall}</li>
             </ol>
           </nav>
@@ -71,7 +87,7 @@ function renderProductDetails(product) {
         <div class="col-md-6">
           <!-- img slide -->
           <div class="product">
-          <img src="${product.productImg}" style="width: 546px; max-height: 546px; margin-left: 20px">
+          <img src="${product.productImg}" style="max-width: 546px; height: 546px; margin-left: 20px">
             
           </div>
         </div>
@@ -80,7 +96,7 @@ function renderProductDetails(product) {
             <!-- content -->
             <a href="#!" style="color: deeppink" class="mb-4 d-block">${fixedTagBig}</a>
             <!-- heading -->
-            <h1 class="mb-1" id="product-name" data-productId="${product.productId}">${product.productName}<a href="#" class="ms-2" style="color: deeppink" id="product-save"><i class="bi bi-bookmark"></i></a></h1>
+            <h1 class="mb-1" id="product-name" data-productId="${product.productId}">${product.productName} <a href="#" class="ms-2 btn-action ${isActive}" style="color: deeppink" id="product-save" data-product-id="${product.productId}"><i class="${bookmarkIcon}"></i></a></h1>
             <div class="mb-4">
               <!-- rating -->
               <a href="#" class="ms-2" style="color: deeppink" id="product-review">(리뷰 개수 ${product.productReviews})</a>
@@ -134,8 +150,23 @@ async function productSaved(e) {
     e.preventDefault();
     e.stopPropagation();
 
+    const loginUser = await getUserInfo();
+
+    if(!loginUser){
+        Swal.fire({
+            title: "찜 실패",
+            html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1300,
+        });
+        return;
+    }
+
+    var userId = loginUser ? loginUser.userId : null;
+
     const sendData = { // 데이터 저장 및 삭제에 필요한 정보
-        userId: 35,
+        userId: userId,
         productId: await $('#product-name').attr('data-productId')
     };
 

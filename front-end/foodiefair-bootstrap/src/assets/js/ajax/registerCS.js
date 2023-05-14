@@ -1,15 +1,23 @@
-var script = document.createElement('script');
-script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
-document.head.appendChild(script);
-
 $(document).ready(function () {
-    $("#csSubmit").on("click", function (e) {
+    $("#csSubmit").on("click", async function (e) {
         e.preventDefault();
 
-        let userId = 35;
+        const loginUser = await getUserInfo();
+        if(!loginUser){
+            Swal.fire({
+                title: "문의 실패",
+                html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+                icon: "warning",
+                showConfirmButton: false,
+                timer: 1200,
+            });
+            return;
+        }
+
+        var userId = loginUser.userId;
 
         const formData = {
-            userId: 35,
+            userId: userId,
             questionType: $("input[name='radioRegister']:checked").attr("id"),
             questionDate: new Date(),
             questionContent: $(".register-content").val(),
@@ -23,6 +31,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log("Success:", response);
                 if (response === "ok") {
+                    $(".register-content").val('');
                     Swal.fire({
                         icon: "success",
                         html:

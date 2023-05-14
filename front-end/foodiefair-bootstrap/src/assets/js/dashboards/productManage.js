@@ -73,6 +73,9 @@ function deleteProduct(productId) {
     $.ajax({
         url: `http://localhost:8081/dashboard/product-delete/${productId}`,
         type: "DELETE",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             alert("상품이 삭제되었습니다.");
             loadProducts(1);
@@ -102,6 +105,9 @@ function loadProducts(page, sortOrder) {
         url: `http://localhost:8081/dashboard/product-list${queryString}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             var data = response.dtoList;
             var total = response.total;
@@ -172,8 +178,8 @@ function renderProducts(data) {
                               <i class="feather-icon icon-more-vertical fs-5"></i>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item delete-product" href="#" data-product-id="${product.productId}"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                              <li><a class="dropdown-item" href="edit-product?productId=${product.productId}"><i class="bi bi-pencil-square me-3 "></i>Edit</a>
+                              <li><a class="dropdown-item delete-product" href="#" data-product-id="${product.productId}"><i class="bi bi-trash me-3"></i>삭제하기</a></li>
+                              <li><a class="dropdown-item" href="edit-product?productId=${product.productId}"><i class="bi bi-pencil-square me-3 "></i>수정하기</a>
                               </li>
                             </ul>
                           </div>

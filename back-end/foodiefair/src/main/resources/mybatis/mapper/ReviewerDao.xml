@@ -11,7 +11,7 @@
         FROM User U
         JOIN Review R ON U.userId = R.userId
         LEFT JOIN ReviewNum RN ON U.userId = RN.userId
-        WHERE R.reviewDate BETWEEN DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH), '%Y-%m-01') AND LAST_DAY(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))
+        WHERE R.reviewDate BETWEEN DATE_FORMAT(CURRENT_DATE, '%Y-%m-01') AND LAST_DAY(CURRENT_DATE)
         AND R.receiptImg = 1
         GROUP BY U.userId, U.userName, RN.selectedBadge
         ) t

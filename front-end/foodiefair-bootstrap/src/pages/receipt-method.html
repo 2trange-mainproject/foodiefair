@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>FoodieFair</title>
+    <link href="@@webRoot/node_modules/slick-carousel/slick/slick.css" rel="stylesheet"/>
+    <link href="@@webRoot/node_modules/slick-carousel/slick/slick-theme.css" rel="stylesheet"/>
+    <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    @@include("@@webRoot/partials/head.html")
+</head>
+
+<body>
+
+@@include("../partials/navbar.html")
+<main>
+    <section class="mt-8">
+        <div class="container">
+            <!-- row -->
+            <div class="row justify-content-center align-items-center">
+                <div class="col-xxl-8 col-xl-7">
+                    <!-- hero slider -->
+                    <div class="method-slider">
+                        <div>
+                            <div style="background: url(../assets/images/method/receipt-1.png) no-repeat center center; background-size: contain; border-radius: .5rem; height: 600px; width: 600px;">
+                                <div class="ps-lg-12 py-lg-16 col-xxl-7 col-lg-9 py-14 px-8 text-xs-center"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="background: url(../assets/images/method/receipt-2.png) no-repeat center center; background-size: contain; border-radius: .5rem; height: 600px; width: 600px;">
+                                <div class="image-wrapper d-flex flex-column justify-content-end ps-lg-12 py-lg-16 col-xxl-7 col-lg-9 py-14 ps-8 text-xs-center">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="background: url(../assets/images/method/receipt-3.png) no-repeat center center; background-size: contain; border-radius: .5rem; height: 600px; width: 600px;">
+                                <div class="image-wrapper d-flex flex-column justify-content-end ps-lg-12 py-lg-16 col-xxl-7 col-lg-9 py-14 ps-8 text-xs-center">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="background: url(../assets/images/method/receipt-4.png) no-repeat center center; background-size: contain; border-radius: .5rem; height: 600px; width: 600px;">
+                                <div class="image-wrapper d-flex flex-column justify-content-end ps-lg-12 py-lg-16 col-xxl-7 col-lg-9 py-14 ps-8 text-xs-center">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="background: url(../assets/images/method/receipt-5.png) no-repeat center center; background-size: contain; border-radius: .5rem; height: 600px; width: 600px;">
+                                <div class="image-wrapper d-flex flex-column justify-content-end ps-lg-12 py-lg-16 col-xxl-7 col-lg-9 py-14 ps-8 text-xs-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+@@include("../partials/modal-product.html")
+
+@@include("../partials/footer.html")
+
+<!-- Javascript-->
+
+@@include("../partials/scripts.html")
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="@@webRoot/node_modules/slick-carousel/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.method-slider').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true,
+            prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa fa-angle-left' aria-hidden='true'></i></button>",
+            nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
+        });
+    });
+</script>
+
+</body>
+
+</html>

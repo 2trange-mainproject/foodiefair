@@ -73,6 +73,9 @@ function deleteComment(commentId) {
     $.ajax({
         url: `http://localhost:8081/dashboard/comment-delete/${commentId}`,
         type: "DELETE",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             alert("댓글이 삭제되었습니다.");
             loadComments(1);
@@ -102,6 +105,9 @@ function loadComments(page, sortOrder) {
         url: `http://localhost:8081/dashboard/comment-list${queryString}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             var data = response.dtoList;
             var total = response.total;
@@ -152,7 +158,7 @@ function renderComments(data) {
                               <i class="feather-icon icon-more-vertical fs-5"></i>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item delete-comment" href="#" data-comment-id="${comment.commentId}"><i class="bi bi-trash me-3"></i>Delete</a></li>
+                              <li><a class="dropdown-item delete-comment" href="#" data-comment-id="${comment.commentId}"><i class="bi bi-trash me-3"></i>삭제하기</a></li>
                             </ul>
                           </div>
                         </td>

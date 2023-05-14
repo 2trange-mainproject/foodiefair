@@ -73,6 +73,9 @@ function deleteReview(reviewId) {
     $.ajax({
         url: `http://localhost:8081/dashboard/review-delete/${reviewId}`,
         type: "DELETE",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             alert("리뷰가 삭제되었습니다.");
             loadReviews(1);
@@ -102,6 +105,9 @@ function loadReviews(page, sortOrder) {
         url: `http://localhost:8081/dashboard/review-list${queryString}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             var data = response.dtoList;
             var total = response.total;
@@ -141,14 +147,14 @@ function renderReviews(data) {
                         <td><a href="read-review?reviewId=${review.reviewId}" class="text-reset">${review.userId}</a></td>
                         <td><a href="read-review?reviewId=${review.reviewId}" class="text-reset">${review.productId}</a></td>
                         <td><a href="read-review?reviewId=${review.reviewId}" class="text-reset">${releaseDate}</a></td>
-                        <td><a href="read-review?reviewId=${review.reviewId}" class="text-reset">${receipt}</a></td>
+                        <td><a href="read-review?reviewId=${review.reviewId}" class="${receipt === 'TRUE' ? 'text-danger' : 'text-reset'}">${receipt}</a></td>
                         <td>
                           <div class="dropdown">
                             <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
                               <i class="feather-icon icon-more-vertical fs-5"></i>
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item delete-review" href="#" data-review-id="${review.reviewId}"><i class="bi bi-trash me-3"></i>Delete</a></li>
+                              <li><a class="dropdown-item delete-review" href="#" data-review-id="${review.reviewId}"><i class="bi bi-trash me-3"></i>삭제하기</a></li>
                             </ul>
                           </div>
                         </td>

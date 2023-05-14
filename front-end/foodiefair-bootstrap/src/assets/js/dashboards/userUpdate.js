@@ -17,6 +17,9 @@ function loadUserDetails(userId) {
         url: `http://localhost:8081/dashboard/user-read/${userId}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             renderUserDetails(response.userRead);
         },
@@ -32,6 +35,17 @@ function renderUserDetails(user) {
     var userHtml = '';
 
     var lockedChecked = user.locked == 1 ? "checked" : "";
+
+    // userTag 추출
+    var tagRegexp = /"tag": "([^"]*)"/g;
+    var userTagString = "";
+    var match;
+    while ((match = tagRegexp.exec(user.userTag)) !== null) {
+        if (userTagString !== "") {
+            userTagString += ", ";
+        }
+        userTagString += "#" + match[1];
+    }
 
     userHtml += `
           <div class="col-lg-8 col-12">
@@ -67,7 +81,7 @@ function renderUserDetails(user) {
                   </div>
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">마이태그</label>
-                    <textarea style="height: auto; max-height: 500px;" class="form-control" disabled>${user.userTag}</textarea>
+                    <textarea style="height: auto; max-height: 500px;" class="form-control" disabled>${userTagString}</textarea>
                   </div>
                   <label class="form-label">프로필 사진</label>
                   <div class="mb-3 col-lg-6">
@@ -127,6 +141,9 @@ function updateUser(userId){
         data: {
             updatedUserLocked: updatedUserLocked,
             updatedUserReport: updatedUserReport,
+        },
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
         },
         success: function (response) {
             alert('상품이 성공적으로 수정되었습니다.');

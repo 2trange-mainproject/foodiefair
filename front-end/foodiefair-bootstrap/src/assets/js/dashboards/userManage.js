@@ -1,3 +1,5 @@
+const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+
 document.addEventListener('DOMContentLoaded', function () {
     // LocalStorage에서 저장된 검색 키워드 값을 가져옵니다.
     const searchKeyword = localStorage.getItem('searchKeyword');
@@ -73,6 +75,9 @@ function deleteUser(userId) {
     $.ajax({
         url: `http://localhost:8081/dashboard/user-delete/${userId}`,
         type: "DELETE",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             alert("회원이 삭제되었습니다.");
             loadUsers(1);
@@ -102,6 +107,9 @@ function loadUsers(page, sortOrder) {
         url: `http://localhost:8081/dashboard/user-list${queryString}`,
         type: "GET",
         dataType: "json",
+        xhrFields: {
+            withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+        },
         success: function (response) {
             var data = response.dtoList;
             var total = response.total;
@@ -111,7 +119,13 @@ function loadUsers(page, sortOrder) {
             renderPagination(currentPage, total);
         },
         error: function (error) {
-            console.log(error);
+            if(error.status === 403){
+                console.log("Access Denied");
+                //window.location.href = "http"
+            }
+            else{
+                console.log(error);
+            }
         },
     });
 }
@@ -123,6 +137,19 @@ function renderUsers(data) {
 
     $.each(data, function(index, user) {
         var locked = user.locked ? "TRUE" : "FALSE";
+
+        // userTag 추출
+        var tagRegexp = /"tag": "([^"]*)"/g;
+        var userTagString = "";
+        var match;
+        while ((match = tagRegexp.exec(user.userTag)) !== null) {
+            if (userTagString !== "") {
+                userTagString += ", ";
+            }
+            userTagString += "#" + match[1];
+        }
+
+        console.log(user.userTag);
 
         userHtml += `
                       <tr>
@@ -145,17 +172,18 @@ function renderUsers(data) {
                             </div>
                           </td>
                           <td><a href="read-customer?userId=${user.userId}" style="color: black">${user.userEmail}</a></td>
-                          <td><a href="read-customer?userId=${user.userId}" style="color: black">${user.userTag}</a></td>
+                          <td><a href="read-customer?userId=${user.userId}" style="color: black">${userTagString}</a></td>
                           <td><a href="read-customer?userId=${user.userId}" style="color: black">${user.userReport}</a></td>
-                          <td><a href="read-customer?userId=${user.userId}" style="color: black">${locked}</a></td>
+                          <td>
+        <a href="read-customer?userId=${user.userId}" class="${locked === 'TRUE' ? 'text-danger' : 'text-reset'}">${locked}</a>
+    </td>
                           <td>
                             <div class="dropdown ">
                               <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="feather-icon icon-more-vertical fs-5"></i>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a class="dropdown-item delete-user" href="#" data-user-id="${user.userId}"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="edit-user?userId=${user.userId}"><i class="bi bi-pencil-square me-3 "></i>Edit</a></li>
+                                <li><a class="dropdown-item delete-user" href="#" data-user-id="${user.userId}"><i class="bi bi-trash me-3"></i>삭제하기</a></li>
                               </ul>
                             </div>
                           </td>

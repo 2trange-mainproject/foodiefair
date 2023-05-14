@@ -1,53 +1,14 @@
-let script = document.createElement('script');
-script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
-document.head.appendChild(script);
-
 function getKeywordIdFromUrl() {
     var urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("productId");
 }
 
+var productId = getKeywordIdFromUrl();
+
 let foodImage = null;
 let receiptImage = null;
 
-function foodURL(input) {
-    if (input.files && input.files[0]) {
-        foodImage = input.files[0];
-        let reader = new FileReader();
-        reader.onload = async function (e) {
-            document.getElementById('food_preview').src = e.target.result;
-            $("#food_preview").css("display", "inline");
-        };
-        reader.readAsDataURL(input.files[0]);
-    } else {
-        document.getElementById('food_preview').src = "";
-        $("#food_preview").css("display", "none");
-    }
-}
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        receiptImage = input.files[0];
-        let reader = new FileReader();
-        reader.onload = async function (e) {
-            document.getElementById('OCR_preview').src = e.target.result;
-            $("#OCR_preview").css("display", "inline");
-
-            const base64Data = e.target.result.split(',')[1];
-            activateSpinner();
-
-            await requestWithBase64(base64Data);
-        };
-        reader.readAsDataURL(input.files[0]);
-    } else {
-        document.getElementById('OCR_preview').src = "";
-        $("#OCR_preview").css("display", "none");
-    }
-}
-
 function loadKeywords(productId) {
-    var productId = getKeywordIdFromUrl();
-
     $.ajax({
         url: `http://localhost:8081/api/keyword/${productId}`,
         type: "GET",
@@ -69,36 +30,54 @@ function renderKeywords(data) {
     $keywordContainer.empty();
     var keywordHtml = '';
 
-    $.each(data, function(index, keyword) {
-        var positiveKeywords = JSON.parse(keyword.positiveKeyword);
-        var negativeKeywords = JSON.parse(keyword.negativeKeyword);
+    if (data.length === 0) {
+        keywordHtml = `
+        <div class="row justify-content-evenly">
+            <div class="col-4">
+                <div class="mb-2">
+                    <h3 class="text-pink"><i class="bi-emoji-heart-eyes me-2"></i>Good</h3>
+                    <p>앗, 아직 리뷰가 없네요!</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="mb-2">
+                    <h3 class="text-warning"><i class="bi-emoji-frown me-2"></i>Bad</h3>
+                    <p>첫 키워드의 주인공이 되어보세요!</p>
+                </div>
+            </div>
+        </div>
+        `;
+    } else {
+        $.each(data, function(index, keyword) {
+            var positiveKeywords = JSON.parse(keyword.positiveKeyword);
+            var negativeKeywords = JSON.parse(keyword.negativeKeyword);
 
-        var positiveHtml = '';
-        var negativeHtml = '';
+            var positiveHtml = '';
+            var negativeHtml = '';
 
-        for (const key in positiveKeywords) {
-            if (positiveKeywords.hasOwnProperty(key)) {
-                positiveHtml += `
+            for (const key in positiveKeywords) {
+                if (positiveKeywords.hasOwnProperty(key)) {
+                    positiveHtml += `
                 <div class="row-4 d-flex justify-content-between">
                   <span class="fs-5 fw-bold">${key}</span>
                   <span>${positiveKeywords[key]}</span>
                 </div>
                 `;
+                }
             }
-        }
 
-        for (const key in negativeKeywords) {
-            if (negativeKeywords.hasOwnProperty(key)) {
-                negativeHtml += `
+            for (const key in negativeKeywords) {
+                if (negativeKeywords.hasOwnProperty(key)) {
+                    negativeHtml += `
                 <div class="row-4 d-flex justify-content-between">
                   <span class="fs-5 fw-bold">${key}</span>
                   <span>${negativeKeywords[key]}</span>
                 </div>
                 `;
+                }
             }
-        }
 
-        keywordHtml += `
+            keywordHtml += `
         <div class="row justify-content-evenly">
             <div class="col-4">
                 <div class="mb-2">
@@ -114,7 +93,8 @@ function renderKeywords(data) {
             </div>
         </div>
         `;
-    });
+        });
+    }
 
     var keywordListHtml = `
     <div class="container mt-12">
@@ -126,7 +106,24 @@ function renderKeywords(data) {
 }
 
 $(document).ready(function () {
-    loadKeywords(1);
+    loadKeywords(productId);
+});
+
+// 등록 버튼을 비활성화
+$("#review-enroll").addClass("disabled");
+
+// textarea 값이 변경될 때마다 검사하는 이벤트 핸들러
+$("#good-review, #bad-review").on('input', function() {
+    var goodReview = $("#good-review").val().trim();
+    var badReview = $("#bad-review").val().trim();
+
+    // 두 textarea 필드가 모두 채워져 있고, 각각의 길이가 20자 이상인 경우 등록 버튼을 활성화
+    if(goodReview.length >= 20 && badReview.length >= 20) {
+        $("#review-enroll").removeClass("disabled");
+    } else {
+        // 둘 중 하나라도 내용이 없거나, 20자 미만일 경우 등록 버튼을 비활성화
+        $("#review-enroll").addClass("disabled");
+    }
 });
 
 //----------------취소 버튼-------------------
@@ -142,8 +139,8 @@ $("#review-reset").on("click", function(e) {
     $("#OCR_preview").attr("src", "").css("display", "none");
 
     // 파일 input 값 초기화
-    $("#food_image_input").val('');
-    $("#receipt_image_input").val('');
+    $("#food_file").val('');
+    $("#OCR_file").val('');
 
     // 이미지 변수 초기화
     foodImage = null;
@@ -151,10 +148,34 @@ $("#review-reset").on("click", function(e) {
 });
 
 //----------------등록 버튼------------------
-$("#review-enroll").on('click', function(e) {
+//등록 버튼 클릭 이벤트 함수 정의
+async function clickHandler(e) {
+    // 버튼이 비활성화된 경우 클릭 이벤트를 중지
+    if ($("#review-enroll").hasClass("disabled")) {
+        e.preventDefault(); // 기본 이벤트 실행 막기
+        return;
+    }
+
     e.preventDefault(); // 기본 이벤트 실행 막기
 
-    var userId = 35;
+    // 버튼 비활성화
+    $(this).addClass("disabled");
+    $(this).off('click');
+
+    const loginUser = await getUserInfo();
+
+    if(!loginUser){
+        Swal.fire({
+            title: "등록 실패",
+            html: `로그인이 필요한 기능입니다.<br> 로그인 후 다시 시도해주세요.`,
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1200,
+        });
+        return;
+    }
+
+    var userId = loginUser.userId;
     // 입력된 정보 가져오기
     var productId = getProductIdFromUrl();
     var goodReviews = $("#good-review").val().trim();
@@ -194,18 +215,50 @@ $("#review-enroll").on('click', function(e) {
             $("#OCR_preview").attr("src", "").css("display", "none");
 
             // 파일 input 값 초기화
-            $("#food_image_input").val('');
-            $("#receipt_image_input").val('');
+            $("#food_file").val('');
+            $("#OCR_file").val('');
 
             // 이미지 변수 초기화
             foodImage = null;
             receiptImage = null;
+
+            $('#review-section').empty();
+            pageOffset.init();
+            productReviewsRead(e);
+            $(window).scrollTop($('#receipt-reviews-tab').position().top);
+
+            // 버튼 다시 활성화
+            $("#review-enroll").removeClass("disabled");
+            $("#review-enroll").on('click', clickHandler);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
+
+            // 버튼 다시 활성화
+            $("#review-enroll").removeClass("disabled");
+            $("#review-enroll").on('click', clickHandler);
         },
     });
-});
+}
+
+// 클릭 이벤트 핸들러 초기 설정
+$("#review-enroll").on('click', clickHandler);
+
+//음식 사진
+function foodURL(input) {
+    if (input.files && input.files[0]) {
+        foodImage = input.files[0];
+        let reader = new FileReader();
+        reader.onload = async function (e) {
+            document.getElementById('food_preview').src = e.target.result;
+            $("#food_preview").css("display", "inline");
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        document.getElementById('food_preview').src = "";
+        $("#food_preview").css("display", "none");
+    }
+}
 
 //영수증
 function readURL(input) {
@@ -214,6 +267,7 @@ function readURL(input) {
         let reader = new FileReader();
         reader.onload = async function (e) {
             document.getElementById('OCR_preview').src = e.target.result;
+            $("#OCR_preview").css("display", "inline");
 
             const base64Data = e.target.result.split(',')[1];
             activateSpinner();
@@ -272,6 +326,7 @@ async function requestWithBase64(base64Data) {
     const url = "http://localhost:8081/api/receipt/";
     const data = {
         image: base64Data,
+        productId: productId,
     };
     try {
         const response = await fetch(url, {

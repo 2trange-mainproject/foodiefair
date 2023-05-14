@@ -39,6 +39,9 @@ $(document).ready(function() {
             processData: false, // 필수: FormData 사용 시 false로 설정
             contentType: false, // 필수: FormData 사용 시 false로 설정
             data: formData,
+            xhrFields: {
+                withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
+            },
             success: function(response) {
                 console.log(response);
                 window.location.href = 'products';
