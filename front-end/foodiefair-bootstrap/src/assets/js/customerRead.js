@@ -64,7 +64,7 @@ function renderUserDetails(user, badge) {
                 <input type="text" class="form-control" id="userName" value="${user.userName}" name="userName" required>
               </div>
               <div class="col-12 mt-sm-2 mt-md-4">
-                <h5>대표칭호</h5>
+                <h5>대표뱃지</h5>
                 <select class="form-select" id="selectedBadge" name="selectedBadge">
                   ${badgeOptionsHtml}
                 </select>
@@ -181,7 +181,7 @@ $(document).on("click", "#update-button", async function (event) {
     // userTags를 JSON Array 형태로 만들기
     formData.set('userTags', JSON.stringify(userTagsObject));
 
-    // 대표 뱃지(칭호)
+    // 대표 뱃지(뱃지)
     const selectedBadge = document.getElementById("selectedBadge").value;
     formData.set("selectedBadge", selectedBadge);
 
@@ -205,7 +205,7 @@ $(document).on("click", "#update-button", async function (event) {
             const result = await response.json();
             if (result.success) {
                 alert(result.message);
-                location.href = "/foodiefair";
+                location.href = "/";
             } else {
                 alert(result.message);
             }
