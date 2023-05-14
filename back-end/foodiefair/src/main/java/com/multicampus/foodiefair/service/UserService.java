@@ -100,4 +100,29 @@ public class UserService implements IUserService {
 
         return userDAO.updateBadge(paramMap);
     }
+
+    @Override
+    public int checkName(String userName) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userName", userName);
+
+        return userDAO.checkName(paramMap);
+    }
+
+    @Override
+    public int updateCheckName(int userId, String userName) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userId", userId);
+        paramMap.put("userName", userName);
+
+        return userDAO.updateCheckName(paramMap);
+    }
+
+    @Override
+    public int checkEmail(String userEmail) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userEmail", userEmail);
+
+        return userDAO.checkEmail(paramMap);
+    }
 }

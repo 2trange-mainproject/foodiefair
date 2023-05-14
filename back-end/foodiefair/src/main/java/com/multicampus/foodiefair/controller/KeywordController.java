@@ -78,7 +78,9 @@ public class KeywordController {
             logger.info("영수증 : " + receiptBoolean);
 
             // imageUrl을 데이터베이스에 저장. (ProductDTO와 IDashProductService 사용)
-            reviewService.insert(productId, userId, goodReviews, badReviews, receiptBoolean, reviewKey);
+            if(reviewService.insert(productId, userId, goodReviews, badReviews, receiptBoolean, reviewKey)==-1) {
+                return ResponseEntity.badRequest().body(resultMap);
+            }
             
             // 해당 상품의 리뷰 개수 1개 올리기
             reviewService.updatePlusReviewNum(productId);
