@@ -8,4 +8,6 @@ import java.util.Map;
 public interface UserTagDAO {
     String selectUserTagList(Map<String, Object> paramMap);
     String selectUserBadgeList(Map<String, Object> paramMap);
+    String selectUserSelectedBadge(int userId);
+
 }

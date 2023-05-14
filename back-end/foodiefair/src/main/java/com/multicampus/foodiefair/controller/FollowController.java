@@ -26,6 +26,14 @@ public class FollowController {
             @RequestParam(defaultValue = "10") int perPage,
             @RequestParam("loginUserId") int loginUserId) {
         ArrayList<HashMap<String, Object>> profiles = followService.getFollowerProfiles(userId, lastFollowId, perPage, loginUserId);
+
+        S3Client s3Client = new S3Client();
+        for (HashMap<String, Object> user : profiles) {
+            String objectKey = (String) user.get("userImg");
+            String url = s3Client.getUserUrl(objectKey, 3600); // 이미지 파일에 대한 SignedUrl을 생성
+            user.put("userImg", url);
+        }
+
         return new ResponseEntity<>(profiles, HttpStatus.OK);
     }
 
@@ -37,6 +45,14 @@ public class FollowController {
             @RequestParam(defaultValue = "10") int perPage,
             @RequestParam("loginUserId") int loginUserId) {
         ArrayList<HashMap<String, Object>> profiles = followService.getFollowingProfiles(userId, lastFollowId, perPage, loginUserId);
+
+        S3Client s3Client = new S3Client();
+        for (HashMap<String, Object> user : profiles) {
+            String objectKey = (String) user.get("userImg");
+            String url = s3Client.getUserUrl(objectKey, 3600); // 이미지 파일에 대한 SignedUrl을 생성
+            user.put("userImg", url);
+        }
+
         return new ResponseEntity<>(profiles, HttpStatus.OK);
     }
 
