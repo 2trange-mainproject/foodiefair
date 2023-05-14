@@ -120,9 +120,11 @@ $("#good-review, #bad-review").on('input', function() {
     // 두 textarea 필드가 모두 채워져 있고, 각각의 길이가 20자 이상인 경우 등록 버튼을 활성화
     if(goodReview.length >= 20 && badReview.length >= 20) {
         $("#review-enroll").removeClass("disabled");
+        $('#review-update').removeClass('disabled');
     } else {
         // 둘 중 하나라도 내용이 없거나, 20자 미만일 경우 등록 버튼을 비활성화
         $("#review-enroll").addClass("disabled");
+        $('#review-update').addClass('disabled');
     }
 });
 
@@ -232,11 +234,32 @@ async function clickHandler(e) {
             $("#review-enroll").on('click', clickHandler);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-
+            Swal.fire({
+                title: "등록 실패",
+                html: `이미 리뷰를 작성하셨습니다.`,
+                icon: "warning",
+                showConfirmButton: false,
+                timer: 1200,
+            });
             // 버튼 다시 활성화
             $("#review-enroll").removeClass("disabled");
             $("#review-enroll").on('click', clickHandler);
+
+            // 리뷰 정보 초기화
+            $("#good-review").val('');
+            $("#bad-review").val('');
+
+            //사진 초기화
+            $("#food_preview").attr("src", "").css("display", "none");
+            $("#OCR_preview").attr("src", "").css("display", "none");
+
+            // 파일 input 값 초기화
+            $("#food_file").val('');
+            $("#OCR_file").val('');
+
+            // 이미지 변수 초기화
+            foodImage = null;
+            receiptImage = null;
         },
     });
 }

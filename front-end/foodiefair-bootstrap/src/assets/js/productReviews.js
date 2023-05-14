@@ -77,7 +77,7 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
     console.log(likeReviewList);
     $.each(data.dtoList, function(index, item) {
         let releaseDate = new Date(item.reviewDate).toISOString().split('T')[0];
-        let reviewImage = item.reviewImg ? `<img src="${item.reviewImg}" alt="" class="img-fluid">` : '';
+        let reviewImage = item.reviewImg ? `<a href="${item.reviewImg}" data-lightbox="image-1"><img src="${item.reviewImg}" alt="" class="img-fluid"></a>` : '';
         let reviewImageContainer = reviewImage ? `<div class="border icon-shape icon-lg border-2 ">${reviewImage}</div>` : '';
         let btnDelete="";
         let btnModify="";
