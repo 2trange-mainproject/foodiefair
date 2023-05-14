@@ -121,10 +121,23 @@ function loadRankPageOne() {
 
         data.forEach(user => {
             let followButton = $(`[data-user-id="${user.userId}"]`);
-            if(loginUserId) { // 로그인한 경우
+            if (loginUserId && (parseInt(user.userId) !== parseInt(loginUserId))) { // 로그인한 경우
                 fetchFollowStatus(loginUserId, user.userId).then(isFollowing => {
                     updateFollowButton(followButton, isFollowing);
                 });
+            } else if (parseInt(user.userId) === parseInt(loginUserId)) {
+                followButton.on('click', function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: "팔로우 실패",
+                        html: `자기 자신은 팔로우 할 수 없습니다.`,
+                        icon: "warning",
+                        showConfirmButton: false,
+                        timer: 1200,
+                    });
+                    return;
+                });
+
             } else { // 로그인하지 않은 경우
                 followButton.on('click', function(e) {
                     e.preventDefault();
