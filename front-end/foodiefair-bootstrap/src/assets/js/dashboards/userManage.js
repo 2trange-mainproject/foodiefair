@@ -174,15 +174,16 @@ function renderUsers(data) {
                           <td><a href="read-customer?userId=${user.userId}" style="color: black">${user.userEmail}</a></td>
                           <td><a href="read-customer?userId=${user.userId}" style="color: black">${userTagString}</a></td>
                           <td><a href="read-customer?userId=${user.userId}" style="color: black">${user.userReport}</a></td>
-                          <td><a href="read-customer?userId=${user.userId}" style="color: black">${locked}</a></td>
+                          <td>
+        <a href="read-customer?userId=${user.userId}" class="${locked === 'TRUE' ? 'text-danger' : 'text-reset'}">${locked}</a>
+    </td>
                           <td>
                             <div class="dropdown ">
                               <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="feather-icon icon-more-vertical fs-5"></i>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a class="dropdown-item delete-user" href="#" data-user-id="${user.userId}"><i class="bi bi-trash me-3"></i>Delete</a></li>
-                                <li><a class="dropdown-item" href="edit-user?userId=${user.userId}"><i class="bi bi-pencil-square me-3 "></i>Edit</a></li>
+                                <li><a class="dropdown-item delete-user" href="#" data-user-id="${user.userId}"><i class="bi bi-trash me-3"></i>삭제하기</a></li>
                               </ul>
                             </div>
                           </td>
