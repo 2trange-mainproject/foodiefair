@@ -12,4 +12,9 @@
         WHERE userId = #{userId}
     </select>
 
+    <select id="selectUserSelectedBadge" resultType="java.lang.String">
+        SELECT selectedBadge FROM reviewnum
+        WHERE userId = #{userId}
+    </select>
+
 </mapper>
