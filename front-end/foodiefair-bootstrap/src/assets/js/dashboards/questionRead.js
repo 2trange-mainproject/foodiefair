@@ -25,12 +25,28 @@ function loadQuestionDetails(questionId) {
     });
 }
 
+function getQuestionTypeText(questionType) {
+    switch (questionType) {
+        case 'csEtc':
+            return '기타 문의';
+        case 'csDB':
+            return 'DB 문의';
+        case 'csService':
+            return '서비스 문의';
+        case 'csReport':
+            return '신고 문의';
+        default:
+            return '';
+    }
+}
+
 function renderQuestionDetails(question) {
     var $questionContainer = $('#questionContainer');
     $questionContainer.empty();
     var questionHtml = '';
 
     var releaseDate = new Date(question.questionDate).toISOString().split('T')[0];
+    var questionTypeText = getQuestionTypeText(question.questionType);
 
     questionHtml += `
           <div class="col-12">
@@ -52,7 +68,7 @@ function renderQuestionDetails(question) {
                   <!-- input -->
                   <div class="mb-3 col-lg-6">
                     <label class="form-label">문의 종류</label>
-                    <input type="text" class="form-control" value="${question.questionType}" disabled>
+                    <input type="text" class="form-control" value="${questionTypeText}" disabled>
                   </div>
                   <!-- input -->
                   <div class="mb-3 col-lg-6">

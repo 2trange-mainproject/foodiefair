@@ -33,6 +33,22 @@ function renderReviewDetails(review) {
     var releaseDate = new Date(review.reviewDate).toISOString().split('T')[0];
     var receipt = review.receiptImg ? "TRUE" : "FALSE";
 
+    console.log('reviewImg : ', review.reviewImg);
+
+    var imageHtml = '';
+    if (review.reviewImg) {
+        imageHtml = `
+    <div>
+        <div class="mb-3 col-lg-12 mt-5">
+            <!-- heading -->
+            <h4 class="mb-3 h5">음식 사진</h4>
+            <!-- input -->
+            <img src="${review.reviewImg}" class="mb-3 img-fluid">
+        </div>
+    </div>
+    `;
+    }
+
     reviewHtml += `
           <div class="col-12">
             <!-- card -->
@@ -79,15 +95,7 @@ function renderReviewDetails(review) {
                     <label class="form-label">아쉬웠던 점</label>
                     <textarea style="height: auto; max-height: 500px;" class="form-control" disabled>${review.badReviews}</textarea>
                   </div>
-                  <div>
-                    <div class="mb-3 col-lg-12 mt-5">
-                      <!-- heading -->
-                      <h4 class="mb-3 h5">음식 사진</h4>
-
-                      <!-- input -->
-                      <img src="${review.reviewImg}" class="mb-3 img-fluid">
-                    </div>
-                  </div>
+                   ${imageHtml}  <!-- 음식 사진 있으면 넣고 없으면 제외 -->
                 </div>
               </div>
             </div>

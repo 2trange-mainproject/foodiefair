@@ -19,6 +19,8 @@ async function productReviewCommentRead(e) {
     const data = await response.json();
     let btnDelete;
     data.forEach(function (item, index) {
+        let releaseDate = new Date(item.commentDate).toISOString().split('T')[0];
+
         if(loginUser!=null && `${item.userId}` == loginUser.userId) {
             btnDelete = `<a href="#" class="text-muted ms-3 btn-comment-delete" id="${item.commentId}"><i class="bi bi-trash me-1"></i>삭제하기</a>`;
         } else {
@@ -32,7 +34,7 @@ async function productReviewCommentRead(e) {
                         <div>
                           <p class="text-dark mb-1">${item.commentContent}</p>
                         </div>
-                        <div class="small text-muted">${item.commentDate}</div>
+                        <div class="small text-muted">${releaseDate}</div>
                       </div>`;
         $(e).append(comment);
     });
