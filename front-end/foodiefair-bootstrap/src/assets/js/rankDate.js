@@ -1,6 +1,6 @@
 const now = new Date();
 const thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-const thisMonthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+const thisMonthEnd = new Date();
 
 const thisMonthStartFormatted = `${thisMonthStart.getFullYear()}-${String(thisMonthStart.getMonth() + 1).padStart(2, '0')}-${String(thisMonthStart.getDate()).padStart(2, '0')}`;
 const thisMonthEndFormatted = `${thisMonthEnd.getFullYear()}-${String(thisMonthEnd.getMonth() + 1).padStart(2, '0')}-${String(thisMonthEnd.getDate()).padStart(2, '0')}`;
