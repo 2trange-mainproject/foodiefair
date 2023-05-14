@@ -57,7 +57,7 @@ public class ReviewService implements IReviewService {
         paramMap.put("badReviews", badReviews);
         paramMap.put("receiptImg", receiptImg);
         paramMap.put("reviewImg", reviewImg);
-        if(dao.reviewSearch(userId, productId)==0) {
+        if(dao.reviewSearch(paramMap)==0) {
             return dao.insertDao(paramMap);
         } else {
             return -1;
