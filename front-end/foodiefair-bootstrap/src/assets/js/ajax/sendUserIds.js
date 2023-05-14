@@ -15,7 +15,7 @@ getUserInfo().then(data => {
 });
 
 
-fetch(`http://localhost:8081/user-read/${userId}`)
+fetch(`http://115.85.182.117:8081/user-read/${userId}`)
     .then(response => response.json())
     .then(data => {
         document.getElementById('userImg').src = data.userRead.userImg;

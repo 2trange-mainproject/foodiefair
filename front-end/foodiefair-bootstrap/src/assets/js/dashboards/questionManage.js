@@ -71,7 +71,7 @@ function deleteQuestion(questionId) {
     }
 
     $.ajax({
-        url: `http://localhost:8081/dashboard/question-delete/${questionId}`,
+        url: `http://115.85.182.117:8081/dashboard/question-delete/${questionId}`,
         type: "DELETE",
         xhrFields: {
             withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
@@ -107,7 +107,7 @@ function loadQuestions(page, sortOrder) {
     }
 
     $.ajax({
-        url: `http://localhost:8081/dashboard/question-list${queryString}`,
+        url: `http://115.85.182.117:8081/dashboard/question-list${queryString}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

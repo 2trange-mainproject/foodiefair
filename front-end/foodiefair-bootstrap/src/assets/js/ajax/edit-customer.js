@@ -5,7 +5,7 @@ $(document).ready(function() {
     const id = urlParams.get('id');
 
     // GET 요청을 보내기 위한 URL 생성
-    const url = `/http://localhost:8081/api/edit-customer/${id}`;
+    const url = `/http://115.85.182.117:8081/api/edit-customer/${id}`;
 
     // GET 요청 보내기
     $.get(url, function(data) {

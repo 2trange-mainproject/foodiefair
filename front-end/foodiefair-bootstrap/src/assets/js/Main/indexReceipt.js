@@ -15,7 +15,7 @@ async function loadReceipts(page, sortOrder) {
     }
 
     $.ajax({
-        url: `http://localhost:8081/api/food-list${queryString}`,
+        url: `http://115.85.182.117:8081/api/food-list${queryString}`,
         type: "GET",
         dataType: "json",
         success: function (response) {
