@@ -59,33 +59,28 @@ function renderUserDetails(user, badge) {
               </div>
 
               <!-- col -->
-              <div class="col-12">
+              <div class="col-12 mt-sm-2 mt-md-4">
                 <h5>*닉네임</h5>
                 <!-- 닉네임 input -->
                 <input type="text" class="form-control" id="userName" value="${user.userName}" name="userName" required>
               </div>
-              <div class="col-12">
+              <div class="col-12 mt-sm-2 mt-md-4">
                 <h5>대표칭호</h5>
                 <select class="form-select" id="selectedBadge" name="selectedBadge">
                   ${badgeOptionsHtml}
                 </select>
               </div>
-              <div class="col-12">
+              <div class="col-12 mt-sm-2 mt-md-4">
                 <h5>마이태그</h5>
                 <input type="text" class="form-control" id="mytag" placeholder="프로필에 넣고 싶은 태그를 적어주세요." name="userTag">
                 <div class="tags-container mt-2"></div>
               </div>
-              <div class="col-12">
-                <div class="col-12">
+              <div class="col-12 mt-sm-2 mt-md-3">
                   <form>
                     <h5>자기 소개</h5>
-                    <p><textarea cols="50" rows="10" placeholder="프로필에 넣고 싶은 자기소개를 적어주세요." name="userIntro">${user.userIntro}</textarea></p>
+                    <p><textarea cols="50" rows="6" placeholder="프로필에 넣고 싶은 자기소개를 적어주세요." name="userIntro">${user.userIntro}</textarea></p>
                   </form>
-                </div>
               </div>
-
-
-              <div class="col-12">
               <!-- btn -->
               <div class="col-12 d-grid"> <button type="submit" class="btn btn-pink" id="update-button">수정하기</button>
               </div>
