@@ -34,9 +34,10 @@
               <!-- col -->
               <h5>*닉네임 <span id="nameError" class="error"></span></h5>
               <div class="col-12 d-flex align-items-center" style="margin-top: 0.5px;">
-                <div class="col-12">
+                <div class="w-120">
                   <input type="text" class="form-control" id="userName" name="userName" placeholder="닉네임을 입력하세요." required>
                 </div>
+                <button type="button" class="btn btn-pink ms-3" style="font-size: 13px; width: 170px; padding: 8px 8px;" id="name-check-button" disabled>닉네임 중복확인</button>
               </div>
               <!-- 이메일 input -->
               <h5>*이메일 <span id="emailError" class="error"></span></h5>
@@ -79,6 +80,31 @@
             var code = "";
             var valid = false;
 
+            //닉네임 중복확인
+            document.getElementById("name-check-button").addEventListener("click", function() {
+              $.ajax({
+                type: "POST",
+                url: "http://localhost:8081/name-check", // 계정 찾기 요청을 처리하는 URL 주소를 입력합니다.
+                data: {"userName": $("#userName").val()}, // form 데이터를 서버로 전송합니다.
+                success: function (result) {
+                  if (result.success) {
+                    document.getElementById("nameError").innerHTML = "사용 가능한 닉네임입니다.";
+                    submitDisabled();
+                  } else {
+                    document.getElementById("nameError").innerHTML = "이미 존재하는 닉네임입니다.";
+                    document.getElementById("name-check-button").disabled = true;
+                  }
+                },
+                error: function (xhr, status, error) {
+                  console.error(xhr.responseText);
+                  //alert(xhr.responseJSON.message);
+                  document.getElementById("nameError").innerHTML = "이미 존재하는 닉네임입니다.";
+                  document.getElementById("name-check-button").disabled = true;
+                }
+              });
+            });
+
+            //인증번호 보내기
             document.getElementById("send-code-button").addEventListener("click", function() {
               document.getElementById("certification").innerHTML="인증 이메일이 전송되면 버튼이 활성화됩니다. 잠시만 기다려주세요.";
               // 인증번호 보내기 처리
@@ -100,6 +126,8 @@
                 error: function (xhr, status, error) {
                   console.error(xhr.responseText);
                   alert(xhr.responseJSON.message);
+                  document.getElementById("certification").innerHTML="";
+                  document.getElementById("check-code-button").disabled = true;
                 }
               });
             });
@@ -134,11 +162,14 @@
 
               if(name === "") {  // 이름 필드가 비어있는지 확인
                 document.getElementById("nameError").innerHTML = "";
+                document.getElementById("name-check-button").disabled = true;
               } else if(pattern.test(name)) {  // 이름 필드가 비어있지 않을 경우, 패턴 검사
                 document.getElementById("nameError").innerHTML = "";
+                document.getElementById("name-check-button").disabled = false;
                 submitDisabled();
               } else {  // 패턴에 맞지 않는 경우
                 document.getElementById("nameError").innerHTML = "닉네임은 3글자 이상 10글자 이하만 가능합니다.";
+                document.getElementById("name-check-button").disabled = true;
                 submitDisabled();
               }
             });
@@ -200,7 +231,7 @@
               var pwdOK = document.getElementById("passwordError").innerHTML;
               var pwdCheckOK = document.getElementById("passwordCheckError").innerHTML;
 
-              if(nameValue !== "" && emailValue !== "" && certificateValue !== "" && pwdValue !== "" && pwdCheckValue !== "" && nameOK === "" && emailOK === "" && pwdOK === "" && pwdCheckOK === "비밀번호가 일치합니다."){
+              if(nameValue !== "" && emailValue !== "" && certificateValue !== "" && pwdValue !== "" && pwdCheckValue !== "" && nameOK === "사용 가능한 닉네임입니다." && emailOK === "" && pwdOK === "" && pwdCheckOK === "비밀번호가 일치합니다."){
                 document.getElementById("submit-button").disabled = false;
               }
               else{
