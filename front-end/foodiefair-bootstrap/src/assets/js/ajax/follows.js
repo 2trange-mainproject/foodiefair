@@ -76,7 +76,8 @@ async function fetchFollowCount(userId, type) {
 }
 
 // 팔로워와 팔로잉 프로필 카드를 생성하는 함수
-function createProfileCard(user) {
+function createProfileCard(user, selectedBadge) {
+
     return `
     <div class="col" data-follow-id="${user.followId}">
         <div class="card card-followers">
@@ -97,7 +98,7 @@ function createProfileCard(user) {
                                 <h2 class="fs-2"><a href="#" class="d-flex user-profile-link" onclick="goToUserProfile(${user.userId})" class="text-inherit text-decoration-none">${user.userName}</a></h2>
                                 <div>
                                     <small class="text-warning"> <i class="bi bi-star-fill"></i></small>
-                                    <span class="text-muted small">임시 칭호</span>
+                                   <span class="text-muted small tag-text">${selectedBadge}</span>
                                 </div>
                             </div>
                             <div class="mt-2">
@@ -124,7 +125,14 @@ async function loadMoreFollowData(containerSelector, userId, type) {
         console.log("loginUserId : ", loginUserId);
         const data = await fetchFollowData(userId, type, lastFollowId, 10, loginUserId);
         console.log("Fetched data:", data);
-        const html = data.map(createProfileCard).join('');
+
+        const html = await Promise.all(
+            data.map(async user => {
+                let selectedBadge = await fetchUserBadges(user.userId);
+                console.log('selectedBadge : ', selectedBadge);
+                return createProfileCard(user, selectedBadge);
+            })
+        ).then(cards => cards.join(''));
         $(containerSelector).append(html);
 
         if (data.length < 10) {
@@ -237,6 +245,18 @@ function switchActiveTab(newActiveTabId) {
 }
 
 function goToUserProfile(userId) {
-    window.opener.location.href = `http://localhost:3000/pages/mypage?userId=${userId}`;
+    window.opener.location.href = `mypage?userId=${userId}`;
     window.close();
+}
+
+
+async function fetchUserBadges(userId) {
+    try {
+        const response = await fetch(`http://localhost:8081/mypage/${userId}/userSelectedBadge`);
+        const selectedBadge = await response.text(); // Get the JSON object directly
+        return selectedBadge;
+    } catch (error) {
+        console.error('Error fetching user badges:', error);
+        return "";
+    }
 }

@@ -26,4 +26,10 @@ public class UserTagController {
         String userBadges = userTagService.getUserBadges(userId);
         return new ResponseEntity<>(userBadges, HttpStatus.OK);
     }
+
+    @GetMapping("/userSelectedBadge")
+    public ResponseEntity<String> getUserSelectedBadge(@PathVariable int userId) {
+        String selectedBadge = userTagService.getUserSelectedBadge(userId);
+        return new ResponseEntity<>(selectedBadge, HttpStatus.OK);
+    }
 }

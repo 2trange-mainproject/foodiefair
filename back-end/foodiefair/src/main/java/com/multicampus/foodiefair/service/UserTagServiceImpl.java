@@ -31,4 +31,9 @@ public class UserTagServiceImpl implements UserTagService{
 
         return userTagDAO.selectUserBadgeList(paramMap);
     }
+
+    @Override
+    public String getUserSelectedBadge(int userId) {
+        return userTagDAO.selectUserSelectedBadge(userId);
+    }
 }
