@@ -41,7 +41,8 @@ public class WebSecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        config.setAllowedOrigins(Arrays.asList("http://localhost"));
+        //config.setAllowedOrigins(Arrays.asList("https://www.foodiefair.store"));
         config.setAllowedMethods(Arrays.asList("HEAD","POST","GET","DELETE","PUT","PATCH"));
         config.setAllowedHeaders(Arrays.asList("*"));
 
