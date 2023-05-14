@@ -85,7 +85,6 @@
         where userId = #{selectedId}
     </update>
 
-
     <!-- 가입 시 기본 뱃지 부어    -->
     <insert id="insertDefaultBadge">
         INSERT INTO reviewnum (userId, userBadge, selectedBadge)
@@ -93,4 +92,12 @@
         FROM user
         WHERE userEmail = #{userEmail}
     </insert>
+
+    <select id="checkName" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM User WHERE userName = #{userName}
+    </select>
+
+    <select id="checkEmail" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM User WHERE userEmail = #{userEmail}
+    </select>
 </mapper>

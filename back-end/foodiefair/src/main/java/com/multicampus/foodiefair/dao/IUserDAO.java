@@ -38,4 +38,8 @@ public interface IUserDAO {
 
     // 기본 뱃지 insert 추가
     public int insertDefaultBadge(String userEmail);
+
+    //닉네임 중복 확인
+    public int checkName(Map<String, Object> paramMap);
+    public int checkEmail(Map<String, Object> paramMap);
 }

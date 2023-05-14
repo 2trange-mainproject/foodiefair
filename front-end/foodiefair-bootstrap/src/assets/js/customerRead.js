@@ -57,7 +57,6 @@ function renderUserDetails(user, badge) {
               <div class="col-12" style="margin-top: 4px; text-align: center;">
                 <img src="${user.userImg}" id="preview" style="max-width: 220px; max-height: 220px;"/>
               </div>
-
               <!-- col -->
               <div class="col-12 mt-sm-2 mt-md-4">
                 <h5>*닉네임</h5>
