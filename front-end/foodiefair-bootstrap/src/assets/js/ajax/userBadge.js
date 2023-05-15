@@ -8,7 +8,7 @@ fetchUserBadges(userId)
 
 async function fetchUserBadges(userId) {
     try {
-        const response = await fetch(`https://115.85.182.117/mypage/${userId}/userBadges`);
+        const response = await fetch(`https://www.foodiefair.shop/mypage/${userId}/userBadges`);
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);

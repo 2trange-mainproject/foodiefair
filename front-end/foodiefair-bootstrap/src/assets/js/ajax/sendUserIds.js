@@ -15,7 +15,7 @@ getUserInfo().then(data => {
 });
 
 
-fetch(`https://115.85.182.117/user-read/${userId}`)
+fetch(`https://www.foodiefair.shop/user-read/${userId}`)
     .then(response => response.json())
     .then(data => {
         document.getElementById('userImg').src = data.userRead.userImg;

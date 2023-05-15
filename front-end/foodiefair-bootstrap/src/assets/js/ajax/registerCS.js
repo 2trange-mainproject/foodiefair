@@ -24,7 +24,7 @@ $(document).ready(function () {
         };
 
         $.ajax({
-            url: "https://115.85.182.117/api/cscenter/registercs",
+            url: "https://www.foodiefair.shop/api/cscenter/registercs",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(formData),

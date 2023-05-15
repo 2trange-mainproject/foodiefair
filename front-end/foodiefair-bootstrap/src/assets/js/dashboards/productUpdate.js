@@ -28,7 +28,7 @@ function tagsToJson(tagString) {
 
 function loadProductDetails(productId) {
     $.ajax({
-        url: `https://115.85.182.117/dashboard/product-read/${productId}`,
+        url: `https://www.foodiefair.shop/dashboard/product-read/${productId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {
@@ -149,7 +149,7 @@ function updateProduct(productId){
     var updatedProductTagJson = tagsToJson(updatedProductTag);
 
     $.ajax({
-        url: `https://115.85.182.117/dashboard/product-update/${productId}`,
+        url: `https://www.foodiefair.shop/dashboard/product-update/${productId}`,
         type: "PUT",
         dataType: "text",
         data: {
