@@ -23,43 +23,43 @@
     </update>
 
     <select id="selectDashProductList" resultType="com.multicampus.foodiefair.dto.ProductDTO">
-        SELECT *
+        SELECT *,
         FROM (
-        SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
-            <choose>
-                <when test="sortOrder == 'dateDESC'">
-                    tt.releaseDate DESC
-                </when>
-                <when test="sortOrder == 'productIdASC'">
-                    tt.productId ASC
-                </when>
-                <when test="sortOrder == 'productIdDESC'">
-                    tt.productId DESC
-                </when>
-                <when test="sortOrder == 'priceASC'">
-                    tt.productPrice ASC
-                </when>
-                <when test="sortOrder == 'priceDESC'">
-                    tt.productPrice DESC
-                </when>
-                <otherwise>
-                    tt.releaseDate DESC
-                </otherwise>
-            </choose>
-        ) row_num
-        FROM product tt
+        SELECT tt.*, @rownum := @rownum + 1 AS row_num
+        FROM Product tt, (SELECT @rownum := 0) r
         <where>
             <if test="searchKeyword != null">
                 AND tt.productName LIKE CONCAT('%', #{searchKeyword}, '%')
             </if>
         </where>
+        ORDER BY
+        <choose>
+            <when test="sortOrder == 'dateDESC'">
+                tt.releaseDate DESC
+            </when>
+            <when test="sortOrder == 'productIdASC'">
+                tt.productId ASC
+            </when>
+            <when test="sortOrder == 'productIdDESC'">
+                tt.productId DESC
+            </when>
+            <when test="sortOrder == 'priceASC'">
+                tt.productPrice ASC
+            </when>
+            <when test="sortOrder == 'priceDESC'">
+                tt.productPrice DESC
+            </when>
+            <otherwise>
+                tt.releaseDate DESC
+            </otherwise>
+        </choose>
         ) t
         WHERE row_num BETWEEN #{pageReviewerRequestDto.skip} + 1 AND #{pageReviewerRequestDto.page} * #{pageReviewerRequestDto.size}
     </select>
 
     <select id="getDashProductCount" resultType="int">
         SELECT count(*) FROM (
-        SELECT productId FROM product
+        SELECT productId FROM Product
         <where>
             <if test="searchKeyword != null">
                 AND productName LIKE CONCAT('%', #{searchKeyword}, '%')
