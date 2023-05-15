@@ -176,6 +176,31 @@ public class UserController {
         return ResponseEntity.badRequest().body(result);
     }
 
+    @PostMapping("/find-mail-confirm")
+    public ResponseEntity<Map<String, Object>> findMailConfirm(@RequestParam String userEmail) throws Exception {
+        System.out.println("이메일 : " + userEmail);
+        Map<String, Object> result = new HashMap<>();
+
+        int checkEmail = userService.checkEmail(userEmail);
+        if(checkEmail == 0){
+            result.put("success", false);
+            result.put("message", "회원 정보가 없습니다. 회원가입을 해주세요.");
+            return ResponseEntity.badRequest().body(result);
+        }
+
+        String code = registerMail.sendSimpleMessage(userEmail);
+
+        System.out.println("인증코드 : " + code);
+        if(StringUtils.hasText(code)) {
+            result.put("success", true);
+            result.put("message", code);
+            return ResponseEntity.ok(result);
+        }
+        result.put("success", false);
+        result.put("message", "인증코드 전송에 실패 하였습니다.");
+        return ResponseEntity.badRequest().body(result);
+    }
+
     @PostMapping("/signup")
     public ResponseEntity<Map<String, Object>> signup(@RequestParam("userName") String userName,
                                                       @RequestParam("userEmail") String userEmail,
