@@ -13,7 +13,7 @@ function getUserIdFromUrl() {
 
 function loadUserDetails(userId) {
     $.ajax({
-        url: `https://www.foodiefair.shop/user-read/${userId}`,
+        url: `http://localhost:8081/user-read/${userId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {
@@ -194,7 +194,7 @@ $(document).on("click", "#update-button", async function (event) {
     console.log('Final form data:', formData);
 
     try {
-        const response = await fetch("https://www.foodiefair.shop/modify", {
+        const response = await fetch("http://localhost:8081/modify", {
             method: "PUT",
             body: formData,
             mode: "cors",

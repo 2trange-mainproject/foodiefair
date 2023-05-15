@@ -32,7 +32,7 @@ $(document).ready(async function () {
 async function fetchFollowCount(userId, type) {
     try {
         const response = await $.ajax({
-            url: `https://www.foodiefair.shop/mypage/${userId}/${type}/count`,
+            url: `http://localhost:8081/mypage/${userId}/${type}/count`,
             method: 'GET',
             dataType: 'json',
         });
@@ -55,7 +55,7 @@ async function followUser(userId, loginUserId, followedId) {
         followedId: followedId,
     };
 
-    const response = await fetch(`https://www.foodiefair.shop/mypage/${userId}/follow`, {
+    const response = await fetch(`http://localhost:8081/mypage/${userId}/follow`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ async function followUser(userId, loginUserId, followedId) {
 }
 
 async function unfollowUser(userId, loginUserId, followedId) {
-    const response = await fetch(`https://www.foodiefair.shop/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`, {
+    const response = await fetch(`http://localhost:8081/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`, {
         method: 'DELETE',
     });
 
@@ -115,7 +115,7 @@ async function unfollowUser(userId, loginUserId, followedId) {
     async function fetchFollowStatus(loginUserId, userId) {
         try {
             const response = await $.ajax({
-                url: `https://www.foodiefair.shop/mypage/${userId}/following-check?loginUserId=${loginUserId}`,
+                url: `http://localhost:8081/mypage/${userId}/following-check?loginUserId=${loginUserId}`,
                 method: 'GET',
                 dataType: 'json',
             });

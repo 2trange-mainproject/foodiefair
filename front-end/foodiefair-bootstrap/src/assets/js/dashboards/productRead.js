@@ -10,7 +10,7 @@ function getProductIdFromUrl() {
 
 function loadProductDetails(productId) {
     $.ajax({
-        url: `https://www.foodiefair.shop/dashboard/product-read/${productId}`,
+        url: `http://localhost:8081/dashboard/product-read/${productId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {
