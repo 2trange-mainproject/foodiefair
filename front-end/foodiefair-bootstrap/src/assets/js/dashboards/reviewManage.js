@@ -71,7 +71,7 @@ function deleteReview(reviewId) {
     }
 
     $.ajax({
-        url: `https://115.85.183.196:8081/dashboard/review-delete/${reviewId}`,
+        url: `https://115.85.183.196/dashboard/review-delete/${reviewId}`,
         type: "DELETE",
         xhrFields: {
             withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
@@ -102,7 +102,7 @@ function loadReviews(page, sortOrder) {
     }
 
     $.ajax({
-        url: `https://115.85.183.196:8081/dashboard/review-list${queryString}`,
+        url: `https://115.85.183.196/dashboard/review-list${queryString}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

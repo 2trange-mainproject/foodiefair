@@ -24,7 +24,7 @@ $(document).ready(function () {
         };
 
         $.ajax({
-            url: "https://115.85.183.196:8081/api/cscenter/registercs",
+            url: "https://115.85.183.196/api/cscenter/registercs",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(formData),
