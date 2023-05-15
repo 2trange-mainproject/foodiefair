@@ -12,7 +12,7 @@
     </insert>
 
     <select id="reviewSearch" resultType="int">
-        SELECT COUNT(*) FROM review WHERE userId=#{userId} and productId=#{productId};
+        SELECT COUNT(*) FROM Review WHERE userId=#{userId} and productId=#{productId};
     </select>
 
     <update id="updatePlusReviewNum">

@@ -88,7 +88,7 @@
     </select>
 
     <select id="getReviewerCount" resultType="int">
-        SELECT count(*) FROM (
+        SELECT COUNT(*) FROM (
         SELECT u.*, @rownum := @rownum + 1 AS row_num,
         (
         <foreach item="filter" collection="categoryFilters" separator="+" open="(" close=")">
