@@ -62,7 +62,7 @@
     </update>
 
     <update id="deleteDao">
-        update USER
+        update User
         SET locked=1
         WHERE userEmail = #{userEmail}
     </update>
@@ -87,7 +87,7 @@
 
     <!-- 가입 시 기본 뱃지 부어    -->
     <insert id="insertDefaultBadge">
-        INSERT INTO reviewnum (userId, userBadge, selectedBadge)
+        INSERT INTO ReviewNum (userId, userBadge, selectedBadge)
         SELECT userId, '{"뉴비" : "푸디"}', '뉴비 푸디'
         FROM user
         WHERE userEmail = #{userEmail}

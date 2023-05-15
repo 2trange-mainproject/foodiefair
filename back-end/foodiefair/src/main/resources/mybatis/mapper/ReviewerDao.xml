@@ -5,35 +5,37 @@
 
 <mapper namespace="com.multicampus.foodiefair.dao.IReviewerDAO">
     <select id="listDao" resultType="com.multicampus.foodiefair.dto.UserDTO">
-        SELECT t.*, t.row_num AS user_rank
+        SELECT t.*, @rownum := @rownum + 1 AS user_rank
         FROM (
-        SELECT U.*, RN.selectedBadge, ROW_NUMBER() OVER(ORDER BY SUM(R.reviewLikes) * 0.7 + COUNT(R.reviewId) * 0.3 DESC) row_num
+        SELECT U.*, RN.selectedBadge
         FROM User U
         JOIN Review R ON U.userId = R.userId
         LEFT JOIN ReviewNum RN ON U.userId = RN.userId
         WHERE R.reviewDate BETWEEN DATE_FORMAT(CURRENT_DATE, '%Y-%m-01') AND LAST_DAY(CURRENT_DATE)
         AND R.receiptImg = 1
         GROUP BY U.userId, U.userName, RN.selectedBadge
+        ORDER BY SUM(R.reviewLikes) * 0.7 + COUNT(R.reviewId) * 0.3 DESC
         ) t
+        CROSS JOIN (SELECT @rownum := 0) r
         WHERE
         <choose>
             <when test="topRank == 'top10'">
-                row_num BETWEEN 1 AND 10
+                @rownum BETWEEN 1 AND 10
             </when>
             <when test="topRank == 'top20'">
-                row_num BETWEEN 11 AND 20
+                @rownum BETWEEN 11 AND 20
             </when>
             <when test="topRank == 'top30'">
-                row_num BETWEEN 21 AND 30
+                @rownum BETWEEN 21 AND 30
             </when>
             <when test="topRank == 'top40'">
-                row_num BETWEEN 31 AND 40
+                @rownum BETWEEN 31 AND 40
             </when>
             <when test="topRank == 'top50'">
-                row_num BETWEEN 41 AND 50
+                @rownum BETWEEN 41 AND 50
             </when>
             <otherwise>
-                row_num BETWEEN 1 AND 10
+                @rownum BETWEEN 1 AND 10
             </otherwise>
         </choose>
     </select>
@@ -41,7 +43,7 @@
     <select id="selectReviewerList" resultType="com.multicampus.foodiefair.dto.UserDTO">
         SELECT *
         FROM (
-        SELECT u.*, ROW_NUMBER() OVER(ORDER BY u.userName ASC) row_num,
+        SELECT u.*, @rownum := @rownum + 1 AS row_num,
         (
         <foreach item="filter" collection="categoryFilters" separator="+" open="(" close=")">
             COALESCE(JSON_EXTRACT(ub.reviewNum, '$."${filter}"'), 0)
@@ -49,6 +51,7 @@
         ) as totalReviewCount
         FROM User u
         JOIN ReviewNum AS ub ON u.userId = ub.userId
+        CROSS JOIN (SELECT @rownum := 0) r
         <where>
             <if test="categoryFilters != null and categoryFilters.size() > 0">
                 AND (
@@ -78,13 +81,15 @@
                 )
             </if>
         </where>
+        ORDER BY u.userName ASC
         ) t
+        CROSS JOIN (SELECT @rownum := 0) r
         WHERE row_num BETWEEN #{pageReviewerRequestDto.skip} + 1 AND #{pageReviewerRequestDto.page} * #{pageReviewerRequestDto.size}
     </select>
 
     <select id="getReviewerCount" resultType="int">
         SELECT count(*) FROM (
-        SELECT u.*, ROW_NUMBER() OVER(ORDER BY u.userName ASC) row_num,
+        SELECT u.*, @rownum := @rownum + 1 AS row_num,
         (
         <foreach item="filter" collection="categoryFilters" separator="+" open="(" close=")">
             COALESCE(JSON_EXTRACT(ub.reviewNum, '$."${filter}"'), 0)
@@ -92,6 +97,7 @@
         ) as totalReviewCount
         FROM User u
         JOIN ReviewNum AS ub ON u.userId = ub.userId
+        CROSS JOIN (SELECT @rownum := 0) r
         <where>
             <if test="categoryFilters != null and categoryFilters.size() > 0">
                 AND (
