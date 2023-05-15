@@ -50,6 +50,7 @@ function loadRankPageOne() {
             var myTag = JSON.parse(user.userTag).tag1;
 
             var rankElement;
+            console.log('user_rank : ', user.user_rank);
 
             if (user.user_rank == 1) {
                 rankElement = `<img src="../assets/images/profile/one.jpg" class="mb-3 img-fluid d-inline" style="max-width: 150px;">`;

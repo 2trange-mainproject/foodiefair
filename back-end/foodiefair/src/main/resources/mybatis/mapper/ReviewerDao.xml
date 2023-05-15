@@ -5,37 +5,38 @@
 
 <mapper namespace="com.multicampus.foodiefair.dao.IReviewerDAO">
     <select id="listDao" resultType="com.multicampus.foodiefair.dto.UserDTO">
-        SELECT t.*, @rownum := @rownum + 1 AS user_rank
+        SELECT t.*
         FROM (
-        SELECT U.*, RN.selectedBadge
+        SELECT u.*,
+        @rownum := @rownum + 1 AS user_rank,
+        SUM(R.reviewLikes) * 0.7 + COUNT(R.reviewId) * 0.3 as review_score
         FROM User U
         JOIN Review R ON U.userId = R.userId
-        LEFT JOIN ReviewNum RN ON U.userId = RN.userId
+        LEFT JOIN ReviewNum RN ON U.userId = RN.userId,
+        (SELECT @rownum := 0) r
         WHERE R.reviewDate BETWEEN DATE_FORMAT(CURRENT_DATE, '%Y-%m-01') AND LAST_DAY(CURRENT_DATE)
         AND R.receiptImg = 1
         GROUP BY U.userId, U.userName, RN.selectedBadge
-        ORDER BY SUM(R.reviewLikes) * 0.7 + COUNT(R.reviewId) * 0.3 DESC
+        ORDER BY review_score DESC
         ) t
-        CROSS JOIN (SELECT @rownum := 0) r
-        WHERE
         <choose>
             <when test="topRank == 'top10'">
-                @rownum BETWEEN 1 AND 10
+                WHERE user_rank BETWEEN 1 AND 10
             </when>
             <when test="topRank == 'top20'">
-                @rownum BETWEEN 11 AND 20
+                WHERE user_rank BETWEEN 11 AND 20
             </when>
             <when test="topRank == 'top30'">
-                @rownum BETWEEN 21 AND 30
+                WHERE user_rank BETWEEN 21 AND 30
             </when>
             <when test="topRank == 'top40'">
-                @rownum BETWEEN 31 AND 40
+                WHERE user_rank BETWEEN 31 AND 40
             </when>
             <when test="topRank == 'top50'">
-                @rownum BETWEEN 41 AND 50
+                WHERE user_rank BETWEEN 41 AND 50
             </when>
             <otherwise>
-                @rownum BETWEEN 1 AND 10
+                WHERE user_rank BETWEEN 1 AND 10
             </otherwise>
         </choose>
     </select>
