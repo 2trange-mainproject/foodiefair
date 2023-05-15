@@ -69,7 +69,7 @@ function loadRankPageTwo() {
         queryString += `&selectedBadge=${filters.selectedBadge}`;
 
         $.ajax({
-            url: `https://115.85.182.117/api/reviewer-badge${queryString}`,
+            url: `https://www.foodiefair.shop/api/reviewer-badge${queryString}`,
             type: "GET",
             dataType: "json",
             success: function (response) {

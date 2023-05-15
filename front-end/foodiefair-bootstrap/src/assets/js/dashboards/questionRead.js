@@ -10,7 +10,7 @@ function getQuestionIdFromUrl() {
 
 function loadQuestionDetails(questionId) {
     $.ajax({
-        url: `https://115.85.182.117/dashboard/question-read/${questionId}`,
+        url: `https://www.foodiefair.shop/dashboard/question-read/${questionId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

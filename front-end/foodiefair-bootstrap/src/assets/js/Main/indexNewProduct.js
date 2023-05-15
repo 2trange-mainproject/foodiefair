@@ -43,7 +43,7 @@ async function loadProducts(storeCode) {
     }
 
     $.ajax({
-        url: `https://115.85.182.117/api/event-list${queryString}`,
+        url: `https://www.foodiefair.shop/api/event-list${queryString}`,
         type: "GET",
         dataType: "json",
         success: function (response) {

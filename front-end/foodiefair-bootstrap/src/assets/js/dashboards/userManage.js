@@ -73,7 +73,7 @@ function deleteUser(userId) {
     }
 
     $.ajax({
-        url: `https://115.85.182.117/dashboard/user-delete/${userId}`,
+        url: `https://www.foodiefair.shop/dashboard/user-delete/${userId}`,
         type: "DELETE",
         xhrFields: {
             withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
@@ -104,7 +104,7 @@ function loadUsers(page, sortOrder) {
     }
 
     $.ajax({
-        url: `https://115.85.182.117/dashboard/user-list${queryString}`,
+        url: `https://www.foodiefair.shop/dashboard/user-list${queryString}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

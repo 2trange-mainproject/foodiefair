@@ -52,7 +52,7 @@ async function loadBestProducts(storeCode, sortOrder) {
 
 
     $.ajax({
-        url: `https://115.85.182.117/api/food-list${queryString}`,
+        url: `https://www.foodiefair.shop/api/food-list${queryString}`,
         type: "GET",
         dataType: "json",
         success: function (response) {
