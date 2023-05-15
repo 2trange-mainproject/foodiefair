@@ -3,22 +3,22 @@
 
 <mapper namespace="com.multicampus.foodiefair.dao.ILikeReviewDAO">
     <insert id="registerLikeReview">
-        INSERT INTO likereview (userId, reviewId) values (#{userId}, #{reviewId});
+        INSERT INTO LikeReview (userId, reviewId) values (#{userId}, #{reviewId});
     </insert>
 
     <delete id="removeLikeReview">
-        DELETE FROM likereview WHERE userId = #{userId} AND reviewId = #{reviewId};
+        DELETE FROM LikeReview WHERE userId = #{userId} AND reviewId = #{reviewId};
     </delete>
 
     <update id="updateLikeReview">
-        UPDATE review SET reviewLikes = reviewLikes + #{update} WHERE reviewId = #{reviewId};
+        UPDATE Review SET reviewLikes = reviewLikes + #{update} WHERE reviewId = #{reviewId};
     </update>
 
     <select id="reviewLikeCount" resultType="int">
-        SELECT reviewLikes FROM review WHERE reviewId=#{reviewId};
+        SELECT reviewLikes FROM Review WHERE reviewId=#{reviewId};
     </select>
 
     <select id="likeReviewList" resultType="int">
-        SELECT reviewId FROM likereview WHERE userId=#{userId};
+        SELECT reviewId FROM LikeReview WHERE userId=#{userId};
     </select>
 </mapper>
