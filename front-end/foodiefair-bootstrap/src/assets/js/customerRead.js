@@ -13,7 +13,7 @@ function getUserIdFromUrl() {
 
 function loadUserDetails(userId) {
     $.ajax({
-        url: `https://115.85.183.196/user-read/${userId}`,
+        url: `https://115.85.182.117/user-read/${userId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {
@@ -194,7 +194,7 @@ $(document).on("click", "#update-button", async function (event) {
     console.log('Final form data:', formData);
 
     try {
-        const response = await fetch("https://115.85.183.196/modify", {
+        const response = await fetch("https://115.85.182.117/modify", {
             method: "PUT",
             body: formData,
             mode: "cors",

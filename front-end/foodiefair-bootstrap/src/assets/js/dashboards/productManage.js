@@ -71,7 +71,7 @@ function deleteProduct(productId) {
     }
 
     $.ajax({
-        url: `https://115.85.183.196/dashboard/product-delete/${productId}`,
+        url: `https://115.85.182.117/dashboard/product-delete/${productId}`,
         type: "DELETE",
         xhrFields: {
             withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
@@ -102,7 +102,7 @@ function loadProducts(page, sortOrder) {
     }
 
     $.ajax({
-        url: `https://115.85.183.196/dashboard/product-list${queryString}`,
+        url: `https://115.85.182.117/dashboard/product-list${queryString}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

@@ -29,7 +29,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "https://115.85.183.196/user/modify",
+            url: "https://115.85.182.117/user/modify",
             data: formData,
             contentType: false,
             processData: false,
@@ -93,7 +93,7 @@ function displayTags() {
 // function getUserInfo() {
 //     $.ajax({
 //         type: "GET",
-//         url: "https://115.85.183.196/signup",
+//         url: "https://115.85.182.117/signup",
 //         dataType: "json",
 //         success: function (result) {
 //             if (result.success) {
