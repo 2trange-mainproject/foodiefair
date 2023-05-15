@@ -4,8 +4,8 @@
 <mapper namespace="com.multicampus.foodiefair.dao.VisitedDAO">
     <select id="selectVisitedList" parameterType="map" resultType="hashmap">
         SELECT v.visitedId, v.writerId, v.ownerId, v.visitedDate, v.visitedContent, u.userName
-        FROM visited v
-                 JOIN user u ON v.writerId = u.userId
+        FROM Visited v
+                 JOIN User u ON v.writerId = u.userId
         WHERE v.ownerId = #{ownerId}
         ORDER BY v.visitedId DESC
         LIMIT #{offset}, #{limit}

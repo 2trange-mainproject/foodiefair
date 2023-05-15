@@ -89,7 +89,7 @@
     <insert id="insertDefaultBadge">
         INSERT INTO ReviewNum (userId, userBadge, selectedBadge)
         SELECT userId, '{"뉴비" : "푸디"}', '뉴비 푸디'
-        FROM user
+        FROM User
         WHERE userEmail = #{userEmail}
     </insert>
 

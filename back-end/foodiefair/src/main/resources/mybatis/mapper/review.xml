@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multicampus.foodiefair.dao.IReviewDAO">
     <select id="findReviewId" resultType="int">
         SELECT reviewId FROM Review WHERE productId=#{productId} AND userId=#{userId};
@@ -20,20 +23,20 @@
         <result column="reviewLikes" property="reviewLikes"/>
     </resultMap>
     <select id="dateReviewRead" resultType="com.multicampus.foodiefair.dto.ReviewDTO">
-        SELECT User.userId, Review.reviewId, IFNULL(comment.commentNum, 0) AS commentNum, User.userName, User.userImg, Review.reviewDate, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes
+        SELECT User.userId, Review.reviewId, IFNULL(Comment.commentNum, 0) AS commentNum, User.userName, User.userImg, Review.reviewDate, Review.goodReviews, Review.badReviews, Review.reviewImg, Review.reviewLikes
         FROM User INNER JOIN (SELECT * FROM Review WHERE productId=#{productId}) Review ON User.userId = Review.userId
-        LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = Review.reviewId
+        LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM Comment GROUP BY reviewId) Comment ON Comment.reviewId = Review.reviewId
         WHERE Review.receiptImg = #{receiptImg} ORDER BY Review.reviewId DESC LIMIT 3 OFFSET #{offset};
     </select>
     <select id="likeReviewRead" resultType="com.multicampus.foodiefair.dto.ReviewDTO">
-        SELECT User.userId, Review.reviewId, IFNULL(comment.commentNum, 0) AS commentNum, User.userName, User.userImg, Review.reviewDate, review.goodReviews, review.badReviews, review.reviewImg, review.reviewLikes
+        SELECT User.userId, Review.reviewId, IFNULL(Comment.commentNum, 0) AS commentNum, User.userName, User.userImg, Review.reviewDate, Review.goodReviews, Review.badReviews, Review.reviewImg, Review.reviewLikes
         FROM User INNER JOIN (SELECT * FROM Review WHERE productId=#{productId}) Review ON User.userId = Review.userId
-        LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = Review.reviewId
+        LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM Comment GROUP BY reviewId) Comment ON Comment.reviewId = Review.reviewId
         WHERE Review.receiptImg = #{receiptImg} ORDER BY Review.reviewLikes DESC LIMIT 3 OFFSET #{offset};
     </select>
 
     <delete id="commentDelete">
-        DELETE FROM comment WHERE reviewId=#{reviewId};
+        DELETE FROM Comment WHERE reviewId=#{reviewId};
     </delete>
 
     <select id="reviewReadOne" resultType="java.util.Map">
@@ -48,16 +51,16 @@
 
     <!-- 준우 부분 -->
     <select id="mypageDateReviewRead" resultType="com.multicampus.foodiefair.dto.ReviewDTO">
-        SELECT User.userId, Review.reviewId, IFNULL(comment.commentNum, 0)
+        SELECT User.userId, Review.reviewId, IFNULL(Comment.commentNum, 0)
         AS commentNum, User.userName, User.userImg, Review.reviewDate, Review.goodReviews, Review.badReviews, Review.reviewImg, Review.reviewLikes
         FROM User INNER JOIN (SELECT * FROM Review WHERE userId=#{userId}) Review ON User.userId = Review.userId
-        LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = Review.reviewId
+        LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM Comment GROUP BY reviewId) Comment ON Comment.reviewId = Review.reviewId
         WHERE Review.receiptImg = #{receiptImg} ORDER BY Review.reviewId DESC LIMIT 3 OFFSET #{offset};
     </select>
     <select id="mypageLikeReviewRead" resultType="com.multicampus.foodiefair.dto.ReviewDTO">
-        SELECT User.userId, Review.reviewId, IFNULL(comment.commentNum, 0) AS commentNum, User.userName, User.userImg, Review.reviewDate, Review.goodReviews, Review.badReviews, Review.reviewImg, Review.reviewLikes
+        SELECT User.userId, Review.reviewId, IFNULL(Comment.commentNum, 0) AS commentNum, User.userName, User.userImg, Review.reviewDate, Review.goodReviews, Review.badReviews, Review.reviewImg, Review.reviewLikes
         FROM User INNER JOIN (SELECT * FROM Review WHERE userId=#{userId}) Review ON User.userId = Review.userId
-        LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM comment GROUP BY reviewId) comment ON comment.reviewId = Review.reviewId
+        LEFT JOIN (SELECT COUNT(userId) commentNum, reviewId FROM Comment GROUP BY reviewId) Comment ON Comment.reviewId = Review.reviewId
         WHERE Review.receiptImg = #{receiptImg} ORDER BY Review.reviewLikes DESC LIMIT 3 OFFSET #{offset};
     </select>
 </mapper>

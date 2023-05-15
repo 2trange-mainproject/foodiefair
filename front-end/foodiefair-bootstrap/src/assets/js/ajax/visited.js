@@ -145,9 +145,10 @@ async function displayVisitedList(userId, page, pageSize) {
         row.appendChild(contentCell);
 
         // 날짜 열 생성
+        var releaseDate = new Date(visited.visitedDate).toISOString().split('T')[0];
         const dateCell = document.createElement("td");
         dateCell.className = "text-end";
-        dateCell.textContent = visited.visitedDate;
+        dateCell.textContent = releaseDate;
         row.appendChild(dateCell);
 
         // 삭제 버튼 dropdown 추가
