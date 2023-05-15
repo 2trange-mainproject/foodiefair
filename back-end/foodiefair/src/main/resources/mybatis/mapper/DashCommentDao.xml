@@ -13,7 +13,7 @@
     </delete>
 
     <select id="selectDashCommentList" resultType="com.multicampus.foodiefair.dto.CommentDTO">
-        SELECT *,
+        SELECT *
         FROM (
         SELECT tt.*, @rownum := @rownum + 1 AS row_num
         FROM Comment tt, (SELECT @rownum := 0) r

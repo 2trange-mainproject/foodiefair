@@ -25,7 +25,7 @@ async function confirmDelete() {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: `http://localhost:8081/user-delete/${userEmail}`,
+                url: `https://www.foodiefair.shop/user-delete/${userEmail}`,
                 type: "PUT",
                 xhrFields: {
                     withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.

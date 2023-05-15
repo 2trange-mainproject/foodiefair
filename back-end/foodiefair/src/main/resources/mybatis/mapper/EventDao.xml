@@ -5,7 +5,7 @@
 
 <mapper namespace="com.multicampus.foodiefair.dao.IEventDAO">
     <select id="selectEventList" resultType="com.multicampus.foodiefair.dto.ProductDTO">
-        SELECT *,
+        SELECT *
         (
         SELECT COUNT(*)
         FROM Saved s

@@ -23,7 +23,7 @@
     </update>
 
     <select id="selectDashProductList" resultType="com.multicampus.foodiefair.dto.ProductDTO">
-        SELECT *,
+        SELECT *
         FROM (
         SELECT tt.*, @rownum := @rownum + 1 AS row_num
         FROM Product tt, (SELECT @rownum := 0) r

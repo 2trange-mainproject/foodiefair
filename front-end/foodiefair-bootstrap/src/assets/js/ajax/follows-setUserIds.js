@@ -8,7 +8,7 @@ function getUserIdFromUrl() {
 
 async function getUserInfo() {
     try {
-        const response = await fetch('http://localhost:8081/get-user-info', {
+        const response = await fetch('https://www.foodiefair.shop/get-user-info', {
             method: 'GET',
             mode: 'cors',
             credentials: 'include'
