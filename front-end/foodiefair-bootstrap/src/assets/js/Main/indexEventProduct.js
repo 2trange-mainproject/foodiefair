@@ -44,7 +44,7 @@ async function loadEventProducts(storeCode) {
     }
 
     $.ajax({
-        url: `https://115.85.183.196/api/event-list${queryString}`,
+        url: `https://115.85.182.117/api/event-list${queryString}`,
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -170,7 +170,7 @@ async function productSaved(e) {
     $(this).toggleClass('active'); // 토글 활성화
     if ($(this).hasClass('active')) {  // 토글 활성화시 데이터 저장
         $(this).find('i').removeClass('bi-bookmark').addClass('bi-bookmark-fill');
-        const response = await fetch('https://115.85.183.196/products/'+sendData.productId+'/saved', {
+        const response = await fetch('https://115.85.182.117/products/'+sendData.productId+'/saved', {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -185,7 +185,7 @@ async function productSaved(e) {
         return responseData
     } else { // 토글 비활성화시 데이터 삭제
         $(this).find('i').removeClass('bi-bookmark-fill').addClass('bi-bookmark');
-        const response = await fetch('https://115.85.183.196/products/'+sendData.productId+'/saved/'+sendData.userId, {
+        const response = await fetch('https://115.85.182.117/products/'+sendData.productId+'/saved/'+sendData.userId, {
             method:'DELETE'
         });
 

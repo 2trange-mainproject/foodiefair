@@ -84,7 +84,7 @@
             document.getElementById("name-check-button").addEventListener("click", function() {
               $.ajax({
                 type: "POST",
-                url: "https://115.85.183.196/name-check", // 계정 찾기 요청을 처리하는 URL 주소를 입력합니다.
+                url: "https://115.85.182.117/name-check", // 계정 찾기 요청을 처리하는 URL 주소를 입력합니다.
                 data: {"userName": $("#userName").val()}, // form 데이터를 서버로 전송합니다.
                 success: function (result) {
                   if (result.success) {
@@ -110,7 +110,7 @@
               // 인증번호 보내기 처리
               $.ajax({
                 type: "POST",
-                url: "https://115.85.183.196/mail-confirm", // 계정 찾기 요청을 처리하는 URL 주소를 입력합니다.
+                url: "https://115.85.182.117/mail-confirm", // 계정 찾기 요청을 처리하는 URL 주소를 입력합니다.
                 data: {"userEmail": $("#inputEmail4").val()}, // form 데이터를 서버로 전송합니다.
                 success: function (result) {
                   if (result.success) {

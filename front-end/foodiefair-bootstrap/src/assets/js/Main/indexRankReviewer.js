@@ -96,7 +96,7 @@ function renderUsers(data) {
 
 $(document).ready(function () {
     $.ajax({
-        url: `https://115.85.183.196/api/reviewer-rank`,
+        url: `https://115.85.182.117/api/reviewer-rank`,
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -121,7 +121,7 @@ function followUser(userId, loginUserId, followedId) {
     let followButton = $(`[data-user-id="${userId}"]`);
 
     $.ajax({
-        url: `https://115.85.183.196/mypage/${userId}/follow`,
+        url: `https://115.85.182.117/mypage/${userId}/follow`,
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(followDTO),
@@ -139,7 +139,7 @@ function unfollowUser(userId, loginUserId, followedId) {
     let followButton = $(`[data-user-id="${userId}"]`);
 
     $.ajax({
-        url: `https://115.85.183.196/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`,
+        url: `https://115.85.182.117/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`,
         type: "DELETE",
         success: function() {
             console.log('Unfollow success');
@@ -155,7 +155,7 @@ function unfollowUser(userId, loginUserId, followedId) {
 function fetchFollowStatus(loginUserId, userId) {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: `https://115.85.183.196/mypage/${userId}/following-check?loginUserId=${loginUserId}`,
+            url: `https://115.85.182.117/mypage/${userId}/following-check?loginUserId=${loginUserId}`,
             type: "GET",
             success: function(response) {
                 resolve(response);

@@ -10,7 +10,7 @@ function getReviewIdFromUrl() {
 
 function loadReviewDetails(reviewId) {
     $.ajax({
-        url: `https://115.85.183.196/dashboard/review-read/${reviewId}`,
+        url: `https://115.85.182.117/dashboard/review-read/${reviewId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

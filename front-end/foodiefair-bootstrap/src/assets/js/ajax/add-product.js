@@ -17,7 +17,7 @@ $(document).ready(function() {
         // Ajax를 이용해 서버로 정보 전송
         $.ajax({
             type: "POST",
-            url: "https://115.85.183.196/api/add-product",
+            url: "https://115.85.182.117/api/add-product",
             data: formData,
             contentType: false,
             processData: false,

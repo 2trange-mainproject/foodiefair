@@ -10,7 +10,7 @@ let receiptImage = null;
 
 function loadKeywords(productId) {
     $.ajax({
-        url: `https://115.85.183.196/api/keyword/${productId}`,
+        url: `https://115.85.182.117/api/keyword/${productId}`,
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -198,7 +198,7 @@ async function clickHandler(e) {
     // Ajax를 이용해 서버로 정보 전송
     $.ajax({
         type: "POST",
-        url: "https://115.85.183.196/api/review-add",
+        url: "https://115.85.182.117/api/review-add",
         processData: false, // 필수: FormData 사용 시 false로 설정
         contentType: false, // 필수: FormData 사용 시 false로 설정
         data: formData,
@@ -346,7 +346,7 @@ function handleSuccess(jsonResponse) {
 }
 
 async function requestWithBase64(base64Data) {
-    const url = "https://115.85.183.196/api/receipt/";
+    const url = "https://115.85.182.117/api/receipt/";
     const data = {
         image: base64Data,
         productId: productId,
