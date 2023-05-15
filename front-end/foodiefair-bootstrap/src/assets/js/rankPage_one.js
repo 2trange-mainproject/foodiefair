@@ -26,7 +26,7 @@ function loadRankPageOne() {
         }
 
         $.ajax({
-            url: `http://localhost:8081/api/reviewer-rank${queryString}`,
+            url: `https://www.foodiefair.shop/api/reviewer-rank${queryString}`,
             type: "GET",
             dataType: "json",
             success: function (response) {
@@ -46,11 +46,9 @@ function loadRankPageOne() {
         var productHtml = '';
 
         $.each(data, function (index, user) {
-            console.log('selectedBadge', user.selectedBadge);
             var myTag = JSON.parse(user.userTag).tag1;
 
             var rankElement;
-            console.log('user_rank : ', user.user_rank);
 
             if (user.user_rank == 1) {
                 rankElement = `<img src="../assets/images/profile/one.jpg" class="mb-3 img-fluid d-inline" style="max-width: 150px;">`;
@@ -172,7 +170,7 @@ function followUser(userId, loginUserId, followedId) {
     let followButton = $(`[data-user-id="${userId}"]`);
 
     $.ajax({
-        url: `http://localhost:8081/mypage/${userId}/follow`,
+        url: `https://www.foodiefair.shop/mypage/${userId}/follow`,
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(followDTO),
@@ -190,7 +188,7 @@ function unfollowUser(userId, loginUserId, followedId) {
     let followButton = $(`[data-user-id="${userId}"]`);
 
     $.ajax({
-        url: `http://localhost:8081/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`,
+        url: `https://www.foodiefair.shop/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`,
         type: "DELETE",
         success: function() {
             console.log('Unfollow success');
@@ -206,7 +204,7 @@ function unfollowUser(userId, loginUserId, followedId) {
 function fetchFollowStatus(loginUserId, userId) {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: `http://localhost:8081/mypage/${userId}/following-check?loginUserId=${loginUserId}`,
+            url: `https://www.foodiefair.shop/mypage/${userId}/following-check?loginUserId=${loginUserId}`,
             type: "GET",
             success: function(response) {
                 resolve(response);
