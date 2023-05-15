@@ -8,7 +8,7 @@ fetchUserBadges(userId)
 
 async function fetchUserBadges(userId) {
     try {
-        const response = await fetch(`http://localhost:8081/mypage/${userId}/userBadges`);
+        const response = await fetch(`https://115.85.183.196:8081/mypage/${userId}/userBadges`);
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);

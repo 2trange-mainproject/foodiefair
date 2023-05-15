@@ -71,7 +71,7 @@ function deleteComment(commentId) {
     }
 
     $.ajax({
-        url: `http://localhost:8081/dashboard/comment-delete/${commentId}`,
+        url: `https://115.85.183.196:8081/dashboard/comment-delete/${commentId}`,
         type: "DELETE",
         xhrFields: {
             withCredentials: true // 쿠키를 전송하려면 이 옵션을 설정해야 합니다.
@@ -102,7 +102,7 @@ function loadComments(page, sortOrder) {
     }
 
     $.ajax({
-        url: `http://localhost:8081/dashboard/comment-list${queryString}`,
+        url: `https://115.85.183.196:8081/dashboard/comment-list${queryString}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

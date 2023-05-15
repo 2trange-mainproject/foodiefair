@@ -45,7 +45,7 @@ $(document).ready(async function () {
 async function fetchFollowData(userId, type, lastFollowId, perPage, loginUserId) {
     try {
         const response = await $.ajax({
-            url: `http://localhost:8081/mypage/${userId}/${type}`,
+            url: `https://115.85.183.196:8081/mypage/${userId}/${type}`,
             method: 'GET',
             dataType: 'json',
             data: {
@@ -63,7 +63,7 @@ async function fetchFollowData(userId, type, lastFollowId, perPage, loginUserId)
 async function fetchFollowCount(userId, type) {
     try {
         const response = await $.ajax({
-            url: `http://localhost:8081/mypage/${userId}/${type}/count`,
+            url: `https://115.85.183.196:8081/mypage/${userId}/${type}/count`,
             method: 'GET',
             dataType: 'json',
         });
@@ -149,7 +149,7 @@ async function followUser(userId, loginUserId, followedId) {
         followedId: followedId,
     };
 
-    const response = await fetch(`http://localhost:8081/mypage/${userId}/follow`, {
+    const response = await fetch(`https://115.85.183.196:8081/mypage/${userId}/follow`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ async function followUser(userId, loginUserId, followedId) {
 }
 
 async function unfollowUser(userId, loginUserId, followedId) {
-    const response = await fetch(`http://localhost:8081/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`, {
+    const response = await fetch(`https://115.85.183.196:8081/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`, {
         method: 'DELETE',
     });
 
@@ -252,7 +252,7 @@ function goToUserProfile(userId) {
 
 async function fetchUserBadges(userId) {
     try {
-        const response = await fetch(`http://localhost:8081/mypage/${userId}/userSelectedBadge`);
+        const response = await fetch(`https://115.85.183.196:8081/mypage/${userId}/userSelectedBadge`);
         const selectedBadge = await response.text(); // Get the JSON object directly
         return selectedBadge;
     } catch (error) {

@@ -69,7 +69,7 @@ function loadRankPageTwo() {
         queryString += `&selectedBadge=${filters.selectedBadge}`;
 
         $.ajax({
-            url: `http://localhost:8081/api/reviewer-badge${queryString}`,
+            url: `https://115.85.183.196:8081/api/reviewer-badge${queryString}`,
             type: "GET",
             dataType: "json",
             success: function (response) {
