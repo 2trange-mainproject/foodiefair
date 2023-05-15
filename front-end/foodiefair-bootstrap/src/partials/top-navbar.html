@@ -63,7 +63,7 @@
 
 <script>
     function logout() {
-        fetch('http://115.85.182.117:8081/logout', {
+        fetch('https://115.85.183.196:8081/logout', {
             method: 'POST',
             mode: 'cors',
             credentials: 'include'
@@ -75,7 +75,7 @@
 
     async function getUserInfo() {
         try {
-            const response = await fetch('http://115.85.182.117:8081/get-user-info', {
+            const response = await fetch('https://115.85.183.196:8081/get-user-info', {
                 method: 'GET',
                 mode: 'cors',
                 credentials: 'include'

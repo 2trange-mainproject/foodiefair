@@ -65,12 +65,12 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
     }
     const userInfo = await getUserInfo(); // 로그인 한 유저 정보 가져오기
 
-    const response = await fetch('http://115.85.182.117:8081/products/review/reviewRead?'+$.param(queryString)); // 서버에 데이터 요청 후 응답 기다림. 반환 데이터는 Promise 객체
+    const response = await fetch('https://115.85.183.196:8081/products/review/reviewRead?'+$.param(queryString)); // 서버에 데이터 요청 후 응답 기다림. 반환 데이터는 Promise 객체
     const data = await response.json(); // 응답 Content-Type이 application/json인 경우 응답 body가 JSON형태의 데이터로 변환이 되면 성공 메세지가 담긴 Promise객체 return -> await 연산자와 함께 처리(fullfilled) 되면 최종적으로 JavaScript 객체로 변환 및 return
     console.log(data);
     let likeReviewList = [];
     if (userInfo) {
-        const likeReviewResponse = await fetch('http://115.85.182.117:8081/products/review/likeReview/'+userInfo.userId);
+        const likeReviewResponse = await fetch('https://115.85.183.196:8081/products/review/likeReview/'+userInfo.userId);
         likeReviewList = await likeReviewResponse.json();
     }
 
@@ -182,7 +182,7 @@ async function productReviewLike(e) { // 상품 리뷰 좋아요 토글 버튼
     $(this).toggleClass('active'); // 토글 활성화
     if ($(this).hasClass('active')) {  // 토글 활성화시 데이터 저장
         $(this).find('i').removeClass('bi-suit-heart').addClass('bi-suit-heart-fill');
-        const response = await fetch('http://115.85.182.117:8081/products/review/likeReview', { // 좋아요 총 개수 Promise형태로 반환
+        const response = await fetch('https://115.85.183.196:8081/products/review/likeReview', { // 좋아요 총 개수 Promise형태로 반환
             method:'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -193,7 +193,7 @@ async function productReviewLike(e) { // 상품 리뷰 좋아요 토글 버튼
         await $(this).find('.badge').text(data); // 하위 자식중에 badge를 찾아서 좋아요 개수 업데이트
     } else { // 토글 비활성화시 데이터 삭제
         $(this).find('i').removeClass('bi-suit-heart-fill').addClass('bi-suit-heart');
-        const response = await fetch('http://115.85.182.117:8081/products/review/likeReview/'+sendData.reviewId+'/'+sendData.userId, { // 좋아요 총 개수 Promise형태로 반환
+        const response = await fetch('https://115.85.183.196:8081/products/review/likeReview/'+sendData.reviewId+'/'+sendData.userId, { // 좋아요 총 개수 Promise형태로 반환
             method:'DELETE'
         });
         const data = await response.json(); // Promise형태를 json으로, Integer 값이라 바로 사용 가능한듯
@@ -206,7 +206,7 @@ async function productReviewRemove (e) {
     e.stopPropagation();
 
     const reviewId = $(this).closest('.review-delete').data('reviewid');
-    const response = await fetch('http://115.85.182.117:8081/products/review/reviewDelete/'+reviewId, {
+    const response = await fetch('https://115.85.183.196:8081/products/review/reviewDelete/'+reviewId, {
         method:'DELETE'
     });
 
@@ -228,7 +228,7 @@ async function productReviewModify(e) {
     event = e;
     reviewId = $(this).closest('.review-modify').data('reviewid');
     console.log((reviewId));
-    const response = await fetch('http://115.85.182.117:8081/products/review/reviewReadOne/' + reviewId, {
+    const response = await fetch('https://115.85.183.196:8081/products/review/reviewReadOne/' + reviewId, {
         method: 'GET'
     });
     const data = await response.json();
@@ -284,7 +284,7 @@ async function reviewUpDate (e) {
     formData.append('reviewImg', foodImage);
 
     console.log(formData);
-    await fetch('http://115.85.182.117:8081/products/review/reviewModify', {
+    await fetch('https://115.85.183.196:8081/products/review/reviewModify', {
         method: 'PATCH',
         body: formData
     });

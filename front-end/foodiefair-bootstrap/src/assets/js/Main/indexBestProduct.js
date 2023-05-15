@@ -52,7 +52,7 @@ async function loadBestProducts(storeCode, sortOrder) {
 
 
     $.ajax({
-        url: `http://115.85.182.117:8081/api/food-list${queryString}`,
+        url: `https://115.85.183.196:8081/api/food-list${queryString}`,
         type: "GET",
         dataType: "json",
         success: function (response) {

@@ -35,7 +35,7 @@ $(document).ready(function() {
         // Ajax를 이용해 서버로 정보 전송
         $.ajax({
             type: "POST",
-            url: "http://115.85.182.117:8081/dashboard/product-add",
+            url: "https://115.85.183.196:8081/dashboard/product-add",
             processData: false, // 필수: FormData 사용 시 false로 설정
             contentType: false, // 필수: FormData 사용 시 false로 설정
             data: formData,

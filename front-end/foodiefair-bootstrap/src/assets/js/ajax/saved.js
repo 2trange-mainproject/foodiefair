@@ -94,12 +94,12 @@ async function toggleBookmark(event, productId, userId, loginUserId) {
 
 
 async function fetchSavedList(userId) {
-    const response = await fetch(`http://115.85.182.117:8081/mypage/${userId}/saved-examples`);
+    const response = await fetch(`https://115.85.183.196:8081/mypage/${userId}/saved-examples`);
     return await response.json();
 }
 
 async function removeSavedProduct(productId, userId) {
-    const response = await fetch(`http://115.85.182.117:8081/products/${productId}/saved/mypage?userId=${userId}`, {
+    const response = await fetch(`https://115.85.183.196:8081/products/${productId}/saved/mypage?userId=${userId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ async function registerSavedProduct(productId, userId) {
         userId: userId,
     };
 
-    const response = await fetch(`http://115.85.182.117:8081/products/${productId}/saved`, {
+    const response = await fetch(`https://115.85.183.196:8081/products/${productId}/saved`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

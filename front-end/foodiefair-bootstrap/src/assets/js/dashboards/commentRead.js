@@ -10,7 +10,7 @@ function getCommentIdFromUrl() {
 
 function loadCommentDetails(commentId) {
     $.ajax({
-        url: `http://115.85.182.117:8081/dashboard/comment-read/${commentId}`,
+        url: `https://115.85.183.196:8081/dashboard/comment-read/${commentId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

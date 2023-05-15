@@ -8,7 +8,7 @@ fetchUserTags(userId)
 
 async function fetchUserTags(userId) {
     try {
-        const response = await fetch(`http://115.85.182.117:8081/mypage/${userId}/userTags`);
+        const response = await fetch(`https://115.85.183.196:8081/mypage/${userId}/userTags`);
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
