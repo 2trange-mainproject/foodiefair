@@ -12,54 +12,8 @@
         WHERE s.userId = #{userId} AND s.productId = t.productId
         ) AS saved
         FROM (
-        SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
-            <choose>
-                <when test="sortOrder == 'popularity'">
-                    (tt.productSaved * 0.7 + tt.productViews * 0.3) DESC
-                </when>
-                <when test="sortOrder == 'view'">
-                    tt.productViews DESC
-                </when>
-                <when test="sortOrder == 'saves'">
-                    tt.productSaved DESC
-                </when>
-                <when test="sortOrder == 'reviews'">
-                    tt.productReviews DESC
-                </when>
-                <when test="sortOrder == 'releaseDate'">
-                    tt.releaseDate DESC
-                </when>
-                <when test="sortOrder == 'lowPrice'">
-                    tt.productPrice ASC
-                </when>
-                <when test="sortOrder == 'highPrice'">
-                    tt.productPrice DESC
-                </when>
-                <when test="sortOrder == 'highReviewNum'">
-                    (SELECT COUNT(r.productId) FROM Review r WHERE r.productId = tt.productId AND r.receiptImg = 1) DESC
-                </when>
-                <when test="sortOrder == 'positiveKeyword'">
-                    (
-                    SELECT SUM(value)
-                    FROM Keyword k
-                    JOIN JSON_TABLE(k.positiveKeyword, '$.*' COLUMNS (value INT PATH '$')) AS json_values
-                    WHERE k.productId = tt.productId
-                    ) DESC
-                </when>
-                <when test="sortOrder == 'negativeKeyword'">
-                    (
-                    SELECT SUM(value)
-                    FROM Keyword k
-                    JOIN JSON_TABLE(k.negativeKeyword, '$.*' COLUMNS (value INT PATH '$')) AS json_values
-                    WHERE k.productId = tt.productId
-                    ) DESC
-                </when>
-                <otherwise>
-                    tt.releaseDate DESC
-                </otherwise>
-            </choose>
-        ) row_num
-        FROM product tt
+        SELECT tt.*, @rownum := @rownum + 1 AS row_num
+        FROM Product tt, (SELECT @rownum := 0) r
         <where>
             <if test="storeFilters != null and storeFilters.size() > 0">
                 AND (
@@ -76,13 +30,59 @@
                 )
             </if>
         </where>
+        ORDER BY
+        <choose>
+            <when test="sortOrder == 'popularity'">
+                (tt.productSaved * 0.7 + tt.productViews * 0.3) DESC
+            </when>
+            <when test="sortOrder == 'view'">
+                tt.productViews DESC
+            </when>
+            <when test="sortOrder == 'saves'">
+                tt.productSaved DESC
+            </when>
+            <when test="sortOrder == 'reviews'">
+                tt.productReviews DESC
+            </when>
+            <when test="sortOrder == 'releaseDate'">
+                tt.releaseDate DESC
+            </when>
+            <when test="sortOrder == 'lowPrice'">
+                tt.productPrice ASC
+            </when>
+            <when test="sortOrder == 'highPrice'">
+                tt.productPrice DESC
+            </when>
+            <when test="sortOrder == 'highReviewNum'">
+                (SELECT COUNT(r.productId) FROM Review r WHERE r.productId = tt.productId AND r.receiptImg = 1) DESC
+            </when>
+            <when test="sortOrder == 'positiveKeyword'">
+                (
+                SELECT SUM(value)
+                FROM Keyword k
+                JOIN JSON_TABLE(k.positiveKeyword, '$.*' COLUMNS (value INT PATH '$')) AS json_values
+                WHERE k.productId = tt.productId
+                ) DESC
+            </when>
+            <when test="sortOrder == 'negativeKeyword'">
+                (
+                SELECT SUM(value)
+                FROM Keyword k
+                JOIN JSON_TABLE(k.negativeKeyword, '$.*' COLUMNS (value INT PATH '$')) AS json_values
+                WHERE k.productId = tt.productId
+                ) DESC
+            </when>
+            <otherwise>
+                tt.releaseDate DESC
+            </otherwise>
+        </choose>
         ) t
         WHERE row_num BETWEEN #{pageRequestDto.skip} + 1 AND #{pageRequestDto.page} * #{pageRequestDto.size}
     </select>
 
     <select id="getEventCount" resultType="int">
         SELECT count(*) FROM (
-        SELECT productId FROM product
+        SELECT productId FROM Product
         <where>
             <if test="storeFilters != null and storeFilters.size() > 0">
                 (
