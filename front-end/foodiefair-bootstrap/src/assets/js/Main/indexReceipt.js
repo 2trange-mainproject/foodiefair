@@ -15,7 +15,7 @@ async function loadReceipts(page, sortOrder) {
     }
 
     $.ajax({
-        url: `https://www.foodiefair.shop/api/food-list${queryString}`,
+        url: `http://localhost:8081/api/food-list${queryString}`,
         type: "GET",
         dataType: "json",
         success: function (response) {
