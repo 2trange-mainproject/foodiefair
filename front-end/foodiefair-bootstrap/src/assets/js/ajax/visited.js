@@ -187,14 +187,14 @@ async function displayVisitedList(userId, page, pageSize) {
 }
 
 async function fetchVisitedList(userId, page = 1, size = 5) {
-    const response = await fetch(`https://115.85.183.196:8081/mypage/${userId}/visited?page=${page}&size=${size}`);
+    const response = await fetch(`https://115.85.183.196/mypage/${userId}/visited?page=${page}&size=${size}`);
     return await response.json();
 }
 
 async function registerVisited(ownerId, visitedContent) {
     try {
         const visitedDate = new Date().toISOString().split("T")[0];
-        const response = await fetch(`https://115.85.183.196:8081/mypage/${ownerId}/visited`, {
+        const response = await fetch(`https://115.85.183.196/mypage/${ownerId}/visited`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -216,7 +216,7 @@ async function registerVisited(ownerId, visitedContent) {
 
 async function deleteVisited(visitedId, currentPage, pageSize) {
     try {
-        const response = await fetch(`https://115.85.183.196:8081/mypage/${userId}/visited/${visitedId}`, {
+        const response = await fetch(`https://115.85.183.196/mypage/${userId}/visited/${visitedId}`, {
             method: "DELETE",
         });
 

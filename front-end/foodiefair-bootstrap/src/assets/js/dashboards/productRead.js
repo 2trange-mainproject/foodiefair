@@ -10,7 +10,7 @@ function getProductIdFromUrl() {
 
 function loadProductDetails(productId) {
     $.ajax({
-        url: `https://115.85.183.196:8081/dashboard/product-read/${productId}`,
+        url: `https://115.85.183.196/dashboard/product-read/${productId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

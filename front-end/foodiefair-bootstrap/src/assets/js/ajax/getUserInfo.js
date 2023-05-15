@@ -1,6 +1,6 @@
 async function getUserInfo() {
     try {
-        const response = await fetch('https://115.85.183.196:8081/get-user-info', {
+        const response = await fetch('https://115.85.183.196/get-user-info', {
             method: 'GET',
             mode: 'cors',
             credentials: 'include'

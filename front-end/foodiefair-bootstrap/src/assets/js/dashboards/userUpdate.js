@@ -14,7 +14,7 @@ function getUserIdFromUrl() {
 
 function loadUserDetails(userId) {
     $.ajax({
-        url: `https://115.85.183.196:8081/dashboard/user-read/${userId}`,
+        url: `https://115.85.183.196/dashboard/user-read/${userId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {
@@ -135,7 +135,7 @@ function updateUser(userId){
     var updatedUserReport = $("#user-report").val();
 
     $.ajax({
-        url: `https://115.85.183.196:8081/dashboard/user-update/${userId}`,
+        url: `https://115.85.183.196/dashboard/user-update/${userId}`,
         type: "PUT",
         dataType: "text",
         data: {

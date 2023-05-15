@@ -15,7 +15,7 @@ getUserInfo().then(data => {
 });
 
 
-fetch(`https://115.85.183.196:8081/user-read/${userId}`)
+fetch(`https://115.85.183.196/user-read/${userId}`)
     .then(response => response.json())
     .then(data => {
         document.getElementById('userImg').src = data.userRead.userImg;

@@ -15,7 +15,7 @@ $('#review-section').on('click', '.btn-comment-delete', commentDelete);
 
 async function productReviewCommentRead(e) {
     const loginUser = await getUserInfo();
-    const response = await fetch('https://115.85.183.196:8081/products/comment/'+e.id);
+    const response = await fetch('https://115.85.183.196/products/comment/'+e.id);
     const data = await response.json();
     let btnDelete;
     data.forEach(function (item, index) {
@@ -81,7 +81,7 @@ async function registerComment (e) {
         return;
     }
 
-    const response = await fetch('https://115.85.183.196:8081/products/comment/', {
+    const response = await fetch('https://115.85.183.196/products/comment/', {
         method:'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ async function commentDelete (e) {
 
     const event = e.target.closest('.collapse');
     const commentId = $(this).closest('.btn-comment-delete').attr('id');
-    const response = await fetch('https://115.85.183.196:8081/products/comment/'+commentId, {
+    const response = await fetch('https://115.85.183.196/products/comment/'+commentId, {
         method:'DELETE'
     });
     const data = await response.json();
