@@ -10,7 +10,7 @@ function getUserIdFromUrl() {
 
 function loadUserDetails(userId) {
     $.ajax({
-        url: `http://115.85.182.117:8081/dashboard/user-read/${userId}`,
+        url: `http://localhost:8081/dashboard/user-read/${userId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

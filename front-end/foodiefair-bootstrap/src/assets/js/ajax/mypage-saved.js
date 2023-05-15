@@ -106,12 +106,12 @@ async function toggleBookmark(event, productId, userId, loginUserId) {
 }
 
 async function fetchSavedList(userId, page = 1, size = 16) {
-    const response = await fetch(`http://115.85.182.117:8081/mypage/${userId}/saved-products?page=${page}&size=${size}`);
+    const response = await fetch(`http://localhost:8081/mypage/${userId}/saved-products?page=${page}&size=${size}`);
     return await response.json();
 }
 
 async function removeSavedProduct(productId, userId) {
-    const response = await fetch(`http://115.85.182.117:8081/products/${productId}/saved/mypage?userId=${userId}`, {
+    const response = await fetch(`http://localhost:8081/products/${productId}/saved/mypage?userId=${userId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ async function registerSavedProduct(productId, userId) {
         userId: userId,
     };
 
-    const response = await fetch(`http://115.85.182.117:8081/products/${productId}/saved/mypage`, {
+    const response = await fetch(`http://localhost:8081/products/${productId}/saved/mypage`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ async function displayProductNum(userId) {
 }
 
 async function fetchProductCount(userId) {
-    const response = await fetch(`http://115.85.182.117:8081/mypage/${userId}/saved-products/count`);
+    const response = await fetch(`http://localhost:8081/mypage/${userId}/saved-products/count`);
     return await response.text();
 }
 

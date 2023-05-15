@@ -10,7 +10,7 @@ function getQuestionIdFromUrl() {
 
 function loadQuestionDetails(questionId) {
     $.ajax({
-        url: `http://115.85.182.117:8081/dashboard/question-read/${questionId}`,
+        url: `http://localhost:8081/dashboard/question-read/${questionId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

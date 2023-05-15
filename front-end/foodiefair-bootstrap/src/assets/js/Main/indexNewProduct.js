@@ -43,7 +43,7 @@ async function loadProducts(storeCode) {
     }
 
     $.ajax({
-        url: `http://115.85.182.117:8081/api/event-list${queryString}`,
+        url: `http://localhost:8081/api/event-list${queryString}`,
         type: "GET",
         dataType: "json",
         success: function (response) {
