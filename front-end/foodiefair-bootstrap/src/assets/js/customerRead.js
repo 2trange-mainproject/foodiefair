@@ -23,14 +23,11 @@ function loadUserDetails(userId) {
             renderUserDetails(response.userRead, response.badgeRead);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }
 
 function renderUserDetails(user, badge) {
-    console.log('badge: ', badge)
-
     var $userContainer = $('#userContainer');
     $userContainer.empty();
     var userHtml = '';
@@ -191,7 +188,6 @@ $(document).on("click", "#update-button", async function (event) {
     }
 
     //formData.set("userName", document.getElementById("userName").value);
-    console.log('Final form data:', formData);
 
     try {
         const response = await fetch("http://localhost:8081/modify", {
@@ -211,11 +207,9 @@ $(document).on("click", "#update-button", async function (event) {
             }
         } else {
             const error = await response.json();
-            console.error(response.statusText);
             alert(error.message);
         }
     } catch (error) {
-        console.error(error);
         alert(error.message);
     }
 });

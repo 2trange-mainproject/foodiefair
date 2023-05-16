@@ -3,7 +3,6 @@ fetchUserTags(userId)
         displayUserTags(data.userTag); // Access the "userTag" key in the received JSON object
     })
     .catch(error => {
-        console.error('Error displaying user tags:', error);
     });
 
 async function fetchUserTags(userId) {
@@ -18,7 +17,6 @@ async function fetchUserTags(userId) {
 
         return responseJson;
     } catch (error) {
-        console.error('Error fetching user tags:', error);
         return [];
     }
 }

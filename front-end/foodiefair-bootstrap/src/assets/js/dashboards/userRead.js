@@ -20,7 +20,6 @@ function loadUserDetails(userId) {
             renderUserDetails(response.userRead);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }

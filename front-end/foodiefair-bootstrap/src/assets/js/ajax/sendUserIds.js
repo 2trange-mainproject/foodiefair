@@ -21,9 +21,6 @@ fetch(`http://localhost:8081/user-read/${userId}`)
         document.getElementById('userImg').src = data.userRead.userImg;
         document.getElementById('userName').innerHTML = data.userRead.userName;
         document.getElementById('userBadge').innerHTML = data.badgeRead.selectedBadge;
-    })
-    .catch(error => {
-        console.error(error);
     });
 
 const mypageSaved = document.getElementById('mypage-saved');

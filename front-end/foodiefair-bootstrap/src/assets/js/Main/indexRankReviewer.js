@@ -101,12 +101,10 @@ $(document).ready(function () {
         dataType: "json",
         success: function (response) {
             var data = response.dtoList;
-            console.log(data) //불러오는 건 1페이지의 10명의 유저를 다 불러옴
 
             renderUsers(data);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 });
@@ -126,11 +124,9 @@ function followUser(userId, loginUserId, followedId) {
         contentType: "application/json",
         data: JSON.stringify(followDTO),
         success: function() {
-            console.log('Follow success');
             updateFollowButton(followButton, true);
         },
         error: function() {
-            console.error('Failed to follow user');
         }
     });
 }
@@ -142,11 +138,9 @@ function unfollowUser(userId, loginUserId, followedId) {
         url: `http://localhost:8081/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`,
         type: "DELETE",
         success: function() {
-            console.log('Unfollow success');
             updateFollowButton(followButton, false);
         },
         error: function() {
-            console.error('Failed to unfollow user');
         }
     });
 }
@@ -170,7 +164,6 @@ function fetchFollowStatus(loginUserId, userId) {
 function updateFollowButton(button, isFollowed) {
     var followIcon = button.find('.bi');
     var followText = button.find('.follow-text');
-    console.log("loginUserId :", loginUserId);
 
 
     if (isFollowed) {

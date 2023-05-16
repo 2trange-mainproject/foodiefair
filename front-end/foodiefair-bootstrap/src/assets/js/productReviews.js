@@ -67,14 +67,12 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
 
     const response = await fetch('http://localhost:8081/products/review/reviewRead?'+$.param(queryString)); // 서버에 데이터 요청 후 응답 기다림. 반환 데이터는 Promise 객체
     const data = await response.json(); // 응답 Content-Type이 application/json인 경우 응답 body가 JSON형태의 데이터로 변환이 되면 성공 메세지가 담긴 Promise객체 return -> await 연산자와 함께 처리(fullfilled) 되면 최종적으로 JavaScript 객체로 변환 및 return
-    console.log(data);
     let likeReviewList = [];
     if (userInfo) {
         const likeReviewResponse = await fetch('http://localhost:8081/products/review/likeReview/'+userInfo.userId);
         likeReviewList = await likeReviewResponse.json();
     }
 
-    console.log(likeReviewList);
     $.each(data.dtoList, function(index, item) {
         let releaseDate = new Date(item.reviewDate).toISOString().split('T')[0];
         let reviewImage = item.reviewImg ? `<a href="${item.reviewImg}" data-lightbox="image-1"><img src="${item.reviewImg}" alt="" class="img-fluid"></a>` : '';
@@ -227,12 +225,10 @@ async function productReviewModify(e) {
 
     event = e;
     reviewId = $(this).closest('.review-modify').data('reviewid');
-    console.log((reviewId));
     const response = await fetch('http://localhost:8081/products/review/reviewReadOne/' + reviewId, {
         method: 'GET'
     });
     const data = await response.json();
-    console.log(data);
     $('#good-review').val(data.goodReviews); // 좋았던 점 뿌리기
     $('#bad-review').val(data.badReviews); // 아쉬운 점 뿌리기
     $('#OCR_file').prop('disabled', true); // 영수증 인증 막기
@@ -283,7 +279,6 @@ async function reviewUpDate (e) {
     formData.append('badReviews', $("#bad-review").val().trim());
     formData.append('reviewImg', foodImage);
 
-    console.log(formData);
     await fetch('http://localhost:8081/products/review/reviewModify', {
         method: 'PATCH',
         body: formData

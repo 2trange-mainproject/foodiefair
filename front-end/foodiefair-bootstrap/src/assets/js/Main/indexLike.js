@@ -24,7 +24,6 @@ async function loadLikes(page, sortOrder) {
             renderLikes(data);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }

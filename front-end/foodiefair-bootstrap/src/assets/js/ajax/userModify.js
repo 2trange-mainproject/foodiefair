@@ -43,7 +43,6 @@ $(document).ready(function() {
                 alert(result.message);
             },
             error: function (xhr, status, error) {
-                console.error(xhr.responseText);
                 alert(xhr.responseJSON.message);
             }
         });

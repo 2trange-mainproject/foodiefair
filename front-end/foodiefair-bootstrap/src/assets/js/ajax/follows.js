@@ -17,7 +17,6 @@ $(document).ready(async function () {
             await loadMoreFollowData('#followers-tab-pane .row-cols-1', userId, 'followers');
         }
     } catch (error) {
-        console.error('Error initializing the page:', error);
     }
 
     // Add event listeners for tab buttons
@@ -56,7 +55,6 @@ async function fetchFollowData(userId, type, lastFollowId, perPage, loginUserId)
         });
         return response;
     } catch (error) {
-        console.error(`Error fetching ${type} data:`, error);
     }
 }
 
@@ -71,7 +69,6 @@ async function fetchFollowCount(userId, type) {
         $(`#${type}-tab`).text(`${type === 'followers' ? '팔로워' : '팔로잉'} ${count}명`);
         return count;
     } catch (error) {
-        console.error(`Error fetching ${type} count:`, error);
     }
 }
 
@@ -119,17 +116,11 @@ async function loadMoreFollowData(containerSelector, userId, type) {
     let lastFollowId = lastItem.length ? lastItem.data('follow-id') : null;
 
     try {
-        console.log("userId : ", userId);
-        console.log("type : ", type);
-        console.log("lastFollowId : ", lastFollowId);
-        console.log("loginUserId : ", loginUserId);
         const data = await fetchFollowData(userId, type, lastFollowId, 10, loginUserId);
-        console.log("Fetched data:", data);
 
         const html = await Promise.all(
             data.map(async user => {
                 let selectedBadge = await fetchUserBadges(user.userId);
-                console.log('selectedBadge : ', selectedBadge);
                 return createProfileCard(user, selectedBadge);
             })
         ).then(cards => cards.join(''));
@@ -139,7 +130,6 @@ async function loadMoreFollowData(containerSelector, userId, type) {
             $(window).off('scroll');
         }
     } catch (error) {
-        console.error(`Error fetching ${type} data:`, error);
     }
 }
 
@@ -158,7 +148,6 @@ async function followUser(userId, loginUserId, followedId) {
     });
 
     if (response.ok) {
-        console.log('Follow success');
         let followButton = document.querySelector(`[data-user-id="${userId}"]`);
         followButton.innerHTML = "";
         followButton.classList.remove("btn-pink");
@@ -176,7 +165,6 @@ async function followUser(userId, loginUserId, followedId) {
         followButton.appendChild(unfollowIcon);
         followButton.appendChild(unfollowText);
     } else {
-        console.error('Failed to follow user');
     }
 }
 
@@ -186,7 +174,6 @@ async function unfollowUser(userId, loginUserId, followedId) {
     });
 
     if (response.ok) {
-        console.log('Unfollow success');
         let followButton = document.querySelector(`[data-user-id="${userId}"]`);
         followButton.innerHTML = "";
         followButton.classList.remove("btn-light");
@@ -204,7 +191,6 @@ async function unfollowUser(userId, loginUserId, followedId) {
         followButton.appendChild(followIcon);
         followButton.appendChild(followText);
     } else {
-        console.error('Failed to unfollow user');
     }
 }
 
@@ -256,7 +242,6 @@ async function fetchUserBadges(userId) {
         const selectedBadge = await response.text(); // Get the JSON object directly
         return selectedBadge;
     } catch (error) {
-        console.error('Error fetching user badges:', error);
         return "";
     }
 }

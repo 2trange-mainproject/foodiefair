@@ -81,7 +81,6 @@ function deleteQuestion(questionId) {
             loadQuestions(1);
         },
         error: function (error) {
-            console.log(error);
             alert("회원 삭제에 실패하였습니다.");
         },
     });
@@ -94,7 +93,6 @@ function truncateString(str, num) {
 
 function loadQuestions(page, sortOrder) {
     const searchKeyword = localStorage.getItem('searchKeyword');
-    console.log('검색 키워드:', searchKeyword);
 
     var queryString = `?page=${page}&size=12`;
 
@@ -122,7 +120,6 @@ function loadQuestions(page, sortOrder) {
             renderPagination(currentPage, total);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }

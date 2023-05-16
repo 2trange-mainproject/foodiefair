@@ -56,7 +56,6 @@ async function loadProducts(storeCode) {
         },
 
         error: function (error) {
-            console.log(error);
         }
         ,
     });

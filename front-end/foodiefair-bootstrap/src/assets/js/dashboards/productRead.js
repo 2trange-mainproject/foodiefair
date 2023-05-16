@@ -20,7 +20,6 @@ function loadProductDetails(productId) {
             renderProductDetails(response.productRead);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }

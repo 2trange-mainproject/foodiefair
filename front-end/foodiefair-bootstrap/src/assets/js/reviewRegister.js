@@ -19,7 +19,6 @@ function loadKeywords(productId) {
             renderKeywords(data);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }
@@ -203,7 +202,6 @@ async function clickHandler(e) {
         contentType: false, // 필수: FormData 사용 시 false로 설정
         data: formData,
         success: function(response) {
-            console.log(response);
             loadKeywords(productId);
 
             $("#product-review").text(`(리뷰 개수 ${response.reviewCount})`);
@@ -361,10 +359,8 @@ async function requestWithBase64(base64Data) {
         });
 
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
         handleSuccess(jsonResponse);
     } catch (error) {
-        console.log('Receipt authentication failed :', error);
         handleSuccess();
     }
 }

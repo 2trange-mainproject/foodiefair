@@ -167,8 +167,6 @@ async function loadProducts(page, sortOrder) {
 
     // food.html 페이지의 JavaScript 코드
     const searchKeyword = localStorage.getItem('searchKeyword');
-    console.log('정렬: ', sortOrder);
-    console.log('검색 키워드:', searchKeyword);
 
     var filters = getSelectedFilters();
 
@@ -208,7 +206,6 @@ async function loadProducts(page, sortOrder) {
             renderPagination(currentPage, total);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }
@@ -222,8 +219,6 @@ function renderProducts(data) {
     var filteredProductCount = 0;
 
     $.each(data, function(index, product) {
-        console.log('index: ',index,'product:',product);
-
         var festivalText, festivalColor;
 
         filteredProductCount++;

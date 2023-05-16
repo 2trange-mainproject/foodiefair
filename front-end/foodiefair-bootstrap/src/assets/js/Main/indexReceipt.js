@@ -24,7 +24,6 @@ async function loadReceipts(page, sortOrder) {
             renderReceipts(data);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }

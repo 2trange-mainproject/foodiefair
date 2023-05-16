@@ -96,7 +96,6 @@
                   }
                 },
                 error: function (xhr, status, error) {
-                  console.error(xhr.responseText);
                   //alert(xhr.responseJSON.message);
                   document.getElementById("nameError").innerHTML = "이미 존재하는 닉네임입니다.";
                   document.getElementById("name-check-button").disabled = true;
@@ -124,7 +123,6 @@
                   }
                 },
                 error: function (xhr, status, error) {
-                  console.error(xhr.responseText);
                   alert(xhr.responseJSON.message);
                   document.getElementById("certification").innerHTML="";
                   document.getElementById("check-code-button").disabled = true;
@@ -136,7 +134,6 @@
               // 인증번호 확인 처리
               valid = false;
               const certificationNum = $("#certificationNum").val()
-              console.log(certificationNum);
               if(code == certificationNum) {
                 alert("인증번호가 확인되었습니다.");
                 submitDisabled();

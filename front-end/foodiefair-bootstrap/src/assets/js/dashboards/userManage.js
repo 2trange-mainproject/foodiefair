@@ -83,7 +83,6 @@ function deleteUser(userId) {
             loadUsers(1);
         },
         error: function (error) {
-            console.log(error);
             alert("회원 삭제에 실패하였습니다.");
         },
     });
@@ -91,7 +90,6 @@ function deleteUser(userId) {
 
 function loadUsers(page, sortOrder) {
     const searchKeyword = localStorage.getItem('searchKeyword');
-    console.log('검색 키워드:', searchKeyword);
 
     var queryString = `?page=${page}&size=12`;
 
@@ -119,13 +117,6 @@ function loadUsers(page, sortOrder) {
             renderPagination(currentPage, total);
         },
         error: function (error) {
-            if(error.status === 403){
-                console.log("Access Denied");
-                //window.location.href = "http"
-            }
-            else{
-                console.log(error);
-            }
         },
     });
 }
@@ -148,8 +139,6 @@ function renderUsers(data) {
             }
             userTagString += "#" + match[1];
         }
-
-        console.log(user.userTag);
 
         userHtml += `
                       <tr>

@@ -20,7 +20,6 @@ function loadQuestionDetails(questionId) {
             renderQuestionDetails(response.questionRead);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }

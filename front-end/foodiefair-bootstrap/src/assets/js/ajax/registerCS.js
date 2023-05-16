@@ -29,7 +29,6 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(formData),
             success: function (response) {
-                console.log("Success:", response);
                 if (response === "ok") {
                     $(".register-content").val('');
                     Swal.fire({
@@ -52,7 +51,6 @@ $(document).ready(function () {
                 }
             },
             error: function (xhr, status, error) {
-                console.error("Error:", error);
             },
         });
     });

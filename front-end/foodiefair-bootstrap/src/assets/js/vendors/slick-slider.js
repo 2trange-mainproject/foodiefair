@@ -172,7 +172,7 @@ if ($('.category-slider').length) {
       arrows: true,
 
         speed: 1000,
-        arrows: true,
+        // arrows: true,
 
         loop: true,
         adaptiveHeight: true,
@@ -223,7 +223,7 @@ if ($('.category-slider').length) {
 
 
               speed: 1000,
-              arrows: true,
+              // arrows: true,
 
               loop: true,
               adaptiveHeight: true,

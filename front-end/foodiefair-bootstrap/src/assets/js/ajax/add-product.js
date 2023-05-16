@@ -22,10 +22,8 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function(response) {
-                console.log(response); // 서버에서 받은 값을 console 창에 출력
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log(textStatus, errorThrown);
             }
         });
     });

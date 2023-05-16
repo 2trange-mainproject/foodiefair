@@ -35,7 +35,6 @@ function loadRankPageOne() {
                 renderUsers(data);
             },
             error: function (error) {
-                console.log(error);
             },
         });
     }
@@ -175,11 +174,9 @@ function followUser(userId, loginUserId, followedId) {
         contentType: "application/json",
         data: JSON.stringify(followDTO),
         success: function() {
-            console.log('Follow success');
             updateFollowButton(followButton, true);
         },
         error: function() {
-            console.error('Failed to follow user');
         }
     });
 }
@@ -191,11 +188,9 @@ function unfollowUser(userId, loginUserId, followedId) {
         url: `http://localhost:8081/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`,
         type: "DELETE",
         success: function() {
-            console.log('Unfollow success');
             updateFollowButton(followButton, false);
         },
         error: function() {
-            console.error('Failed to unfollow user');
         }
     });
 }

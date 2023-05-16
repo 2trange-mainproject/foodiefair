@@ -253,7 +253,6 @@
   if ($(".file-input").length) {
     $('.file-input').change(function () {
       var curElement = $(this).parent().parent().find('.image');
-      console.log(curElement);
       var reader = new FileReader();
 
       reader.onload = function (e) {
