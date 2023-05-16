@@ -40,12 +40,12 @@ async function productReviewsRead(e) { // 상품 리뷰들 목록 가져오기
         sort:sort
     }
     const userInfo = await getUserInfo(); // 로그인 한 유저 정보 가져오기
-    const response = await fetch('https://www.foodiefair.shop/mypage/{userId}/reviews?'+$.param(queryString)); // 서버에 데이터 요청 후 응답 기다림. 반환 데이터는 Promise 객체
+    const response = await fetch('http://localhost:8081/mypage/{userId}/reviews?'+$.param(queryString)); // 서버에 데이터 요청 후 응답 기다림. 반환 데이터는 Promise 객체
 
     const data = await response.json(); // 응답 Content-Type이 application/json인 경우 응답 body가 JSON형태의 데이터로 변환이 되면 성공 메세지가 담긴 Promise객체 return -> await 연산자와 함께 처리(fullfilled) 되면 최종적으로 JavaScript 객체로 변환 및 return
     console.log(data);
 
-    const likeReviewResponse = await fetch('https://www.foodiefair.shop/products/review/likeReview/'+userInfo.userId);
+    const likeReviewResponse = await fetch('http://localhost:8081/products/review/likeReview/'+userInfo.userId);
     const likeReviewList = await likeReviewResponse.json();
     console.log(likeReviewList);
     let item = data.dtoList[0];
@@ -106,7 +106,7 @@ async function productReviewRemove (e) {
     e.stopPropagation();
 
     const reviewId = $(this).closest('.review-delete').data('reviewid');
-    const response = await fetch('https://www.foodiefair.shop/products/review/reviewDelete/'+reviewId, {
+    const response = await fetch('http://localhost:8081/products/review/reviewDelete/'+reviewId, {
         method:'DELETE'
     });
 
