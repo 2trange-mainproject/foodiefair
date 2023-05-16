@@ -10,7 +10,7 @@ function getReviewIdFromUrl() {
 
 function loadReviewDetails(reviewId) {
     $.ajax({
-        url: `https://www.foodiefair.shop/dashboard/review-read/${reviewId}`,
+        url: `http://localhost:8081/dashboard/review-read/${reviewId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

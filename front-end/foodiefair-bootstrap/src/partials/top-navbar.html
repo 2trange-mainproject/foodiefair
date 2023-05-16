@@ -63,7 +63,7 @@
 
 <script>
     function logout() {
-        fetch('https://www.foodiefair.shop/logout', {
+        fetch('http://localhost:8081/logout', {
             method: 'POST',
             mode: 'cors',
             credentials: 'include'
@@ -75,7 +75,7 @@
 
     async function getUserInfo() {
         try {
-            const response = await fetch('https://www.foodiefair.shop/get-user-info', {
+            const response = await fetch('http://localhost:8081/get-user-info', {
                 method: 'GET',
                 mode: 'cors',
                 credentials: 'include'
