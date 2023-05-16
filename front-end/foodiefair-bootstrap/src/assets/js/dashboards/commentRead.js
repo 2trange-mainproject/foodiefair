@@ -10,7 +10,7 @@ function getCommentIdFromUrl() {
 
 function loadCommentDetails(commentId) {
     $.ajax({
-        url: `http://localhost:8081/dashboard/comment-read/${commentId}`,
+        url: `https://www.foodiefair.shop/dashboard/comment-read/${commentId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

@@ -145,9 +145,10 @@ async function displayVisitedList(userId, page, pageSize) {
         row.appendChild(contentCell);
 
         // 날짜 열 생성
+        var releaseDate = new Date(visited.visitedDate).toISOString().split('T')[0];
         const dateCell = document.createElement("td");
         dateCell.className = "text-end";
-        dateCell.textContent = visited.visitedDate;
+        dateCell.textContent = releaseDate;
         row.appendChild(dateCell);
 
         // 삭제 버튼 dropdown 추가
@@ -187,14 +188,14 @@ async function displayVisitedList(userId, page, pageSize) {
 }
 
 async function fetchVisitedList(userId, page = 1, size = 5) {
-    const response = await fetch(`http://localhost:8081/mypage/${userId}/visited?page=${page}&size=${size}`);
+    const response = await fetch(`https://www.foodiefair.shop/mypage/${userId}/visited?page=${page}&size=${size}`);
     return await response.json();
 }
 
 async function registerVisited(ownerId, visitedContent) {
     try {
         const visitedDate = new Date().toISOString().split("T")[0];
-        const response = await fetch(`http://localhost:8081/mypage/${ownerId}/visited`, {
+        const response = await fetch(`https://www.foodiefair.shop/mypage/${ownerId}/visited`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -216,7 +217,7 @@ async function registerVisited(ownerId, visitedContent) {
 
 async function deleteVisited(visitedId, currentPage, pageSize) {
     try {
-        const response = await fetch(`http://localhost:8081/mypage/${userId}/visited/${visitedId}`, {
+        const response = await fetch(`https://www.foodiefair.shop/mypage/${userId}/visited/${visitedId}`, {
             method: "DELETE",
         });
 

@@ -15,31 +15,34 @@
     <select id="selectDashReviewList" resultType="com.multicampus.foodiefair.dto.ReviewDTO">
         SELECT *
         FROM (
-        SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
-            <choose>
-                <when test="sortOrder == 'reviewIdDESC'">
-                    tt.reviewId DESC
-                </when>
-                <when test="sortOrder == 'reviewIdASC'">
-                    tt.reviewId ASC
-                </when>
-                <when test="sortOrder == 'productIdDESC'">
-                    tt.productId DESC
-                </when>
-                <when test="sortOrder == 'productIdASC'">
-                    tt.productId ASC
-                </when>
-                <otherwise>
-                    tt.reviewId DESC
-                </otherwise>
-            </choose>
-        ) row_num
-        FROM Review tt
+        SELECT tt.*, (@rownum := @rownum + 1) AS row_num
+        FROM (
+        SELECT *
+        FROM Review
         <where>
             <if test="searchKeyword != null">
-                AND tt.productId LIKE CONCAT('%', #{searchKeyword}, '%')
+                AND productId LIKE CONCAT('%', #{searchKeyword}, '%')
             </if>
         </where>
+        <choose>
+            <when test="sortOrder == 'reviewIdDESC'">
+                ORDER BY reviewId DESC
+            </when>
+            <when test="sortOrder == 'reviewIdASC'">
+                ORDER BY reviewId ASC
+            </when>
+            <when test="sortOrder == 'productIdDESC'">
+                ORDER BY productId DESC
+            </when>
+            <when test="sortOrder == 'productIdASC'">
+                ORDER BY productId ASC
+            </when>
+            <otherwise>
+                ORDER BY reviewId DESC
+            </otherwise>
+        </choose>
+        LIMIT #{pageReviewerRequestDto.skip}, #{pageReviewerRequestDto.size}
+        ) tt, (SELECT @rownum := 0) r
         ) t
         WHERE row_num BETWEEN #{pageReviewerRequestDto.skip} + 1 AND #{pageReviewerRequestDto.page} * #{pageReviewerRequestDto.size}
     </select>

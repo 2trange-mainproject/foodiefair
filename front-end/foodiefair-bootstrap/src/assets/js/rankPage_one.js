@@ -26,7 +26,7 @@ function loadRankPageOne() {
         }
 
         $.ajax({
-            url: `http://localhost:8081/api/reviewer-rank${queryString}`,
+            url: `https://www.foodiefair.shop/api/reviewer-rank${queryString}`,
             type: "GET",
             dataType: "json",
             success: function (response) {
@@ -46,7 +46,6 @@ function loadRankPageOne() {
         var productHtml = '';
 
         $.each(data, function (index, user) {
-            console.log('selectedBadge', user.selectedBadge);
             var myTag = JSON.parse(user.userTag).tag1;
 
             var rankElement;
@@ -90,7 +89,7 @@ function loadRankPageOne() {
                              <h2 class="fs-2"><a href="mypage?userId=${user.userId}" class="text-inherit text-decoration-none" onclick="preventClick(event)">${user.userName}</a></h2>
                              <div>
 
-                                 <!-- 칭호 -->
+                                 <!-- 뱃지 -->
                                  <small class="text-warning star-icon"> <i class="bi bi-star-fill"></i></small>
                                  <span class="text-muted small tag-text">${user.selectedBadge}</span>
                              </div>
@@ -171,7 +170,7 @@ function followUser(userId, loginUserId, followedId) {
     let followButton = $(`[data-user-id="${userId}"]`);
 
     $.ajax({
-        url: `http://localhost:8081/mypage/${userId}/follow`,
+        url: `https://www.foodiefair.shop/mypage/${userId}/follow`,
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(followDTO),
@@ -189,7 +188,7 @@ function unfollowUser(userId, loginUserId, followedId) {
     let followButton = $(`[data-user-id="${userId}"]`);
 
     $.ajax({
-        url: `http://localhost:8081/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`,
+        url: `https://www.foodiefair.shop/mypage/${userId}/unfollow?loginUserId=${loginUserId}&followedId=${followedId}`,
         type: "DELETE",
         success: function() {
             console.log('Unfollow success');
@@ -205,7 +204,7 @@ function unfollowUser(userId, loginUserId, followedId) {
 function fetchFollowStatus(loginUserId, userId) {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: `http://localhost:8081/mypage/${userId}/following-check?loginUserId=${loginUserId}`,
+            url: `https://www.foodiefair.shop/mypage/${userId}/following-check?loginUserId=${loginUserId}`,
             type: "GET",
             success: function(response) {
                 resolve(response);

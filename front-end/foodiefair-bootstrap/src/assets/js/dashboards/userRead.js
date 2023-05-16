@@ -10,7 +10,7 @@ function getUserIdFromUrl() {
 
 function loadUserDetails(userId) {
     $.ajax({
-        url: `http://localhost:8081/dashboard/user-read/${userId}`,
+        url: `https://www.foodiefair.shop/dashboard/user-read/${userId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {

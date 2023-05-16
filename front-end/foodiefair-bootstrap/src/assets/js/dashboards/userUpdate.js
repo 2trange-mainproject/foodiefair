@@ -14,7 +14,7 @@ function getUserIdFromUrl() {
 
 function loadUserDetails(userId) {
     $.ajax({
-        url: `http://localhost:8081/dashboard/user-read/${userId}`,
+        url: `https://www.foodiefair.shop/dashboard/user-read/${userId}`,
         type: "GET",
         dataType: "json",
         xhrFields: {
@@ -135,7 +135,7 @@ function updateUser(userId){
     var updatedUserReport = $("#user-report").val();
 
     $.ajax({
-        url: `http://localhost:8081/dashboard/user-update/${userId}`,
+        url: `https://www.foodiefair.shop/dashboard/user-update/${userId}`,
         type: "PUT",
         dataType: "text",
         data: {

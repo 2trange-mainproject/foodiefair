@@ -19,16 +19,16 @@
         <result column="commentDate" property="commentDate"/>
     </resultMap>
     <select id="commentRead" resultMap="commentList">
-        SELECT user.userName, comment.commentContent, comment.commentDate, comment.commentId, comment.reviewId, comment.userId
-        FROM comment INNER JOIN user ON user.userId = comment.userId
+        SELECT User.userName, Comment.commentContent, Comment.commentDate, Comment.commentId, Comment.reviewId, Comment.userId
+        FROM Comment INNER JOIN User ON User.userId = Comment.userId
         WHERE reviewId=#{reviewId} order by commentId asc;
     </select>
 
     <select id="reviewCommentCount" resultType="int">
-        SELECT COUNT(*) reviewCommentCount FROM comment WHERE reviewId=#{reviewId};
+        SELECT COUNT(*) reviewCommentCount FROM Comment WHERE reviewId=#{reviewId};
     </select>
 
     <select id="findReviewId" resultType="int">
-        SELECT reviewId FROM comment WHERE commentId = #{commentId};
+        SELECT reviewId FROM Comment WHERE commentId = #{commentId};
     </select>
 </mapper>

@@ -20,37 +20,37 @@
     <select id="selectDashUserList" resultType="com.multicampus.foodiefair.dto.UserDTO">
         SELECT *
         FROM (
-        SELECT tt.*, ROW_NUMBER() OVER(ORDER BY
-            <choose>
-                <when test="sortOrder == 'userIdDESC'">
-                    tt.userId DESC
-                </when>
-                <when test="sortOrder == 'userIdASC'">
-                    tt.userId ASC
-                </when>
-                <when test="sortOrder == 'userReportDESC'">
-                    tt.userReport DESC
-                </when>
-                <when test="sortOrder == 'userReportASC'">
-                    tt.userReport ASC
-                </when>
-                <otherwise>
-                    tt.userReport DESC
-                </otherwise>
-            </choose>
-        ) row_num
-        FROM User tt
+        SELECT tt.*, @rownum := @rownum + 1 AS row_num
+        FROM User tt, (SELECT @rownum := 0) r
         <where>
             <if test="searchKeyword != null">
                 AND tt.userName LIKE CONCAT('%', #{searchKeyword}, '%')
             </if>
         </where>
+        ORDER BY
+        <choose>
+            <when test="sortOrder == 'userIdDESC'">
+                tt.userId DESC
+            </when>
+            <when test="sortOrder == 'userIdASC'">
+                tt.userId ASC
+            </when>
+            <when test="sortOrder == 'userReportDESC'">
+                tt.userReport DESC
+            </when>
+            <when test="sortOrder == 'userReportASC'">
+                tt.userReport ASC
+            </when>
+            <otherwise>
+                tt.userReport DESC
+            </otherwise>
+        </choose>
         ) t
         WHERE row_num BETWEEN #{pageReviewerRequestDto.skip} + 1 AND #{pageReviewerRequestDto.page} * #{pageReviewerRequestDto.size}
     </select>
 
     <select id="getDashUserCount" resultType="int">
-        SELECT count(*) FROM (
+        SELECT COUNT(*) FROM (
         SELECT userId FROM User
         <where>
             <if test="searchKeyword != null">

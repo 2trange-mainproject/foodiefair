@@ -3,17 +3,17 @@
 
 <mapper namespace="com.multicampus.foodiefair.dao.UserTagDAO">
     <select id="selectUserTagList" resultType="java.lang.String">
-        SELECT userTag FROM user
+        SELECT userTag FROM User
         WHERE userId = #{userId}
     </select>
 
     <select id="selectUserBadgeList" resultType="java.lang.String">
-        SELECT userBadge FROM reviewnum
+        SELECT userBadge FROM ReviewNum
         WHERE userId = #{userId}
     </select>
 
     <select id="selectUserSelectedBadge" resultType="java.lang.String">
-        SELECT selectedBadge FROM reviewnum
+        SELECT selectedBadge FROM ReviewNum
         WHERE userId = #{userId}
     </select>
 

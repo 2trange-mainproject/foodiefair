@@ -40,7 +40,7 @@
                     </div>
                 <ul class="list-unstyled px-2 py-3">
                     <li>
-                        <a class="dropdown-item" href="@@webRoot/foodiefair">
+                        <a class="dropdown-item" href="@@webRoot/">
                            푸디페어 돌아가기
                         </a>
                     </li>
@@ -63,19 +63,19 @@
 
 <script>
     function logout() {
-        fetch('http://localhost:8081/logout', {
+        fetch('https://www.foodiefair.shop/logout', {
             method: 'POST',
             mode: 'cors',
             credentials: 'include'
         }).then(response => {
             alert('로그아웃 되었습니다.');
-            location.href = '@@webRoot/foodiefair';
+            location.href = '@@webRoot/';
         });
     }
 
     async function getUserInfo() {
         try {
-            const response = await fetch('http://localhost:8081/get-user-info', {
+            const response = await fetch('https://www.foodiefair.shop/get-user-info', {
                 method: 'GET',
                 mode: 'cors',
                 credentials: 'include'
