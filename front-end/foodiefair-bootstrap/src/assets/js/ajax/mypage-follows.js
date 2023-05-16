@@ -14,7 +14,6 @@ $(document).ready(async function () {
         updateFollowButton(isFollowing, userId, loginUserId);
 
     } catch (error) {
-        console.error('Error initializing the page:', error);
     }
 
 
@@ -40,7 +39,6 @@ async function fetchFollowCount(userId, type) {
         $(`#${type}-tab`).text(`${type === 'followers' ? '팔로워' : '팔로잉'} ${count}명`);
         return count;
     } catch (error) {
-        console.error(`Error fetching ${type} count:`, error);
     }
 }
 
@@ -64,7 +62,6 @@ async function followUser(userId, loginUserId, followedId) {
     });
 
     if (response.ok) {
-        console.log('Follow success');
         let followButton = document.getElementById("userFollow");
         followButton.innerText = "";
         followButton.classList.remove("btn-pink");
@@ -81,7 +78,6 @@ async function followUser(userId, loginUserId, followedId) {
         followButton.appendChild(unfollowIcon);
         followButton.appendChild(unfollowText);
     } else {
-        console.error('Failed to follow user');
     }
 }
 
@@ -91,7 +87,6 @@ async function unfollowUser(userId, loginUserId, followedId) {
     });
 
     if (response.ok) {
-        console.log('Unfollow success');
         let followButton = document.getElementById("userFollow");
         followButton.innerText = "";
         followButton.classList.remove("btn-light");
@@ -108,7 +103,6 @@ async function unfollowUser(userId, loginUserId, followedId) {
         followButton.appendChild(followIcon);
         followButton.appendChild(followText);
     } else {
-        console.error('Failed to unfollow user');
     }
 }
 
@@ -121,7 +115,6 @@ async function unfollowUser(userId, loginUserId, followedId) {
             });
             return response;
         } catch (error) {
-            console.error('Error fetching follow status:', error);
         }
     }
 

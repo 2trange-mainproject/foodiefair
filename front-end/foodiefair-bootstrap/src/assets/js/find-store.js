@@ -171,7 +171,6 @@ function successLocation(position) {
                 '<div style="padding:5px;font-size:12px;">' + place.place_name + "</div>",
             );
             infowindow.open(map, marker);
-            console.log(place)
         });
         return marker;
     }
@@ -180,7 +179,6 @@ function successLocation(position) {
 // 위치 정보를 가져오는데 실패했을 때 호출되는 함수
 function errorLocation(err) {
     alert('위치 정보를 가져올 수 없습니다\n기본 위치로 설정됩니다\n위치 재권한을 원하시면 수동으로 설정해주세요.');
-    console.warn(`ERROR(${err.code}): ${err.message}`);
     const defaultLatitude = 37.5665;
     const defaultLongitude = 126.9780;
 

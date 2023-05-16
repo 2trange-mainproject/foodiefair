@@ -206,11 +206,9 @@ async function registerVisited(ownerId, visitedContent) {
         if (response.ok) {
             return true;
         } else {
-            console.error("Error registering visited:", response.statusText);
             return false;
         }
     } catch (error) {
-        console.error("Error registering visited:", error);
         return false;
     }
 }
@@ -221,8 +219,6 @@ async function deleteVisited(visitedId, currentPage, pageSize) {
             method: "DELETE",
         });
 
-        console.log("Backend response:", response);
-
         if (response.ok) {
             // Reload the visited list
             displayVisitedList(userId, currentPage, pageSize);
@@ -230,7 +226,6 @@ async function deleteVisited(visitedId, currentPage, pageSize) {
             alert("Error deleting visited");
         }
     } catch (error) {
-        console.error(error);
         alert("Error deleting visited");
     }
 }

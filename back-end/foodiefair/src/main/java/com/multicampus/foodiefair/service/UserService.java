@@ -5,6 +5,7 @@ import com.multicampus.foodiefair.dto.UserDTO;
 import com.multicampus.foodiefair.dao.IUserDAO;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class UserService implements IUserService {
     private final IUserDAO userDAO;
@@ -43,11 +45,11 @@ public class UserService implements IUserService {
 
     @Override
     public void updateUser(int userId, String userImg, String userName, String userTags, String userIntro) {
-        System.out.println("userId = " + userId);
-        System.out.println("userImg = " + userImg);
-        System.out.println("userName = " + userName);
-        System.out.println("userTags = " + userTags);
-        System.out.println("userIntro = " + userIntro);
+        log.info("userId = " + userId);
+        log.info("userImg = " + userImg);
+        log.info("userName = " + userName);
+        log.info("userTags = " + userTags);
+        log.info("userIntro = " + userIntro);
         userDAO.updateUser(userId, userImg, userName, userTags, userIntro);
     }
 
@@ -59,9 +61,9 @@ public class UserService implements IUserService {
 
     @Override
     public void updateUserPassword(String userEmail, String userPwd) {
-        System.out.println("UserServiceImpl.updateUserPassword");
-        System.out.println("userEmail = " + userEmail);
-        System.out.println("passwordEncoder.encode(userPwd) = " + passwordEncoder.encode(userPwd));
+        log.info("UserServiceImpl.updateUserPassword");
+        log.info("userEmail = " + userEmail);
+        log.info("passwordEncoder.encode(userPwd) = " + passwordEncoder.encode(userPwd));
         userDAO.updateUserPassword(userEmail, passwordEncoder.encode(userPwd));
     }
 
@@ -72,7 +74,7 @@ public class UserService implements IUserService {
 
     private void passwordEncode(UserDTO userDto) {
         String encodePwd = passwordEncoder.encode(userDto.getUserPwd());
-        System.out.println("encodePwd = " + encodePwd);
+        log.info("encodePwd = " + encodePwd);
         userDto.setUserPwd(encodePwd);
     }
 

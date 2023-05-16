@@ -81,7 +81,6 @@ function loadRankPageTwo() {
                 renderPagination(currentPage, total);
             },
             error: function (error) {
-                console.log(error);
             },
         });
     }

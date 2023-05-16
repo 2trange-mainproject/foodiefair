@@ -81,7 +81,6 @@ function deleteReview(reviewId) {
             loadReviews(1);
         },
         error: function (error) {
-            console.log(error);
             alert("리뷰 삭제에 실패하였습니다.");
         },
     });
@@ -89,7 +88,6 @@ function deleteReview(reviewId) {
 
 function loadReviews(page, sortOrder) {
     const searchKeyword = localStorage.getItem('searchKeyword');
-    console.log('검색 키워드:', searchKeyword);
 
     var queryString = `?page=${page}&size=12`;
 
@@ -117,7 +115,6 @@ function loadReviews(page, sortOrder) {
             renderPagination(currentPage, total);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }

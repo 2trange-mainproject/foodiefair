@@ -3,7 +3,6 @@ fetchUserBadges(userId)
         displayUserBadges(data); // Pass the entire JSON object
     })
     .catch(error => {
-        console.error('Error displaying user badges:', error);
     });
 
 async function fetchUserBadges(userId) {
@@ -18,7 +17,6 @@ async function fetchUserBadges(userId) {
 
         return responseJson;
     } catch (error) {
-        console.error('Error fetching user badges:', error);
         return {};
     }
 }

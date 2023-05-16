@@ -56,7 +56,6 @@ async function loadEventProducts(storeCode) {
             initEventSlider();
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }

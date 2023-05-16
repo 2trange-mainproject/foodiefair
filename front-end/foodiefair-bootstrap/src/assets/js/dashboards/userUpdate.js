@@ -24,7 +24,6 @@ function loadUserDetails(userId) {
             renderUserDetails(response.userRead);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }
@@ -150,7 +149,6 @@ function updateUser(userId){
             window.location.href = 'read-customer?userId=' + userId;
         },
         error: function (error) {
-            console.log(error);
             alert('상품 수정에 실패했습니다. 다시 시도해주세요.');
         },
     });

@@ -64,7 +64,6 @@ async function loadBestProducts(storeCode, sortOrder) {
             initBestSlider();
         },
         error: function (error) {
-            console.log(error.responseText);
         },
     });
 }

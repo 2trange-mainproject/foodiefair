@@ -38,7 +38,6 @@ function loadProductDetails(productId) {
             renderProductDetails(response.productRead);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }
@@ -166,7 +165,6 @@ function updateProduct(productId){
             window.location.href = 'read-product?productId=' + productId;
         },
         error: function (error) {
-            console.log(error);
             alert('상품 수정에 실패했습니다. 다시 시도해주세요.');
         },
     });

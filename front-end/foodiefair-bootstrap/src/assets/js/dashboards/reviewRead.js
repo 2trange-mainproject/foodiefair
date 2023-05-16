@@ -20,7 +20,6 @@ function loadReviewDetails(reviewId) {
             renderReviewDetails(response.reviewRead);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }

@@ -130,8 +130,6 @@
       formData.set(key, jsonData[key]);
     }
 
-    console.log('Final form data:', formData);
-
     $.ajax({
       type: "POST",
       url: "http://localhost:8081/signup",
@@ -147,7 +145,6 @@
         }
       },
       error: function (xhr, status, error) {
-        console.error(xhr.responseText);
         alert(xhr.responseJSON.message);
       }
     });

@@ -5,7 +5,6 @@ document.head.appendChild(script);
 async function confirmDelete() {
     const loginUser = await getUserInfo();
     if (!loginUser) {
-        console.error('로그인되지 않은 사용자입니다.');
         return;
     }
 
@@ -44,7 +43,6 @@ async function confirmDelete() {
                     });
                 },
                 error: function (error) {
-                    console.log(error);
                 },
             });
         }

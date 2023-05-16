@@ -83,7 +83,6 @@ async function loadProducts(page, sortOrder) {
             renderPagination(currentPage, total);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }

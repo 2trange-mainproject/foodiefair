@@ -105,12 +105,6 @@ async function removeSavedProduct(productId, userId) {
             'Content-Type': 'application/json',
         },
     });
-
-    if (response.ok) {
-        console.log('Delete success');
-    } else {
-        console.error('Failed to remove saved product');
-    }
 }
 
 async function registerSavedProduct(productId, userId) {
@@ -126,10 +120,4 @@ async function registerSavedProduct(productId, userId) {
         },
         body: JSON.stringify(savedDTO),
     });
-
-    if (response.ok) {
-        console.log('Save success');
-    } else {
-        console.error('Failed to add saved product');
-    }
 }

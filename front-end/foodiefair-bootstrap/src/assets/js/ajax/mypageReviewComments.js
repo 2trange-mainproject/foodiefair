@@ -80,7 +80,6 @@ async function commentDelete (e) {
         method:'DELETE'
     });
     const data = await response.json();
-    console.log("data" + data);
     await $(e.target).closest('.collapse').siblings('.d-flex').find($('.bg-pink-300')).text(data);
     await $(e.target).closest('.collapse').empty();
     productReviewCommentRead(event);

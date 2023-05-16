@@ -81,7 +81,6 @@ function deleteComment(commentId) {
             loadComments(1);
         },
         error: function (error) {
-            console.log(error);
             alert("댓글 삭제에 실패하였습니다.");
         },
     });
@@ -89,7 +88,6 @@ function deleteComment(commentId) {
 
 function loadComments(page, sortOrder) {
     const searchKeyword = localStorage.getItem('searchKeyword');
-    console.log('검색 키워드:', searchKeyword);
 
     var queryString = `?page=${page}&size=12`;
 
@@ -117,7 +115,6 @@ function loadComments(page, sortOrder) {
             renderPagination(currentPage, total);
         },
         error: function (error) {
-            console.log(error);
         },
     });
 }
