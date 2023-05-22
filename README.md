@@ -17,7 +17,7 @@
 🙌🏻 실시간 반영되는 좋아요와 리뷰개수에 따라 랭커가 되면 다양한 혜택을 받을 수 있어요!<br />
 
 
-<h2 align="center"><strong><a href="[https://join.slack.com/t/ng-colombia/shared_invite/enQtMjgwMjc3ODk1NjMyLTBjMmE4YmQzYTA0ZGNjNTVhMmNlMmQ1YWRjNGFlOWE4MDBjMWM3M2UwNmFjZWFhNmZkYzVmNDc3ZWQ5MmQwZmY](https://www.notion.so/2-e35d4fcfe5ce4ccea8effd4dd945935a)">👉 FoodieFair Notion 👈</a></strong></h2>
+<h2 align="center"><strong><a href="https://www.notion.so/2-e35d4fcfe5ce4ccea8effd4dd945935a">👉 FoodieFair Notion 👈</a></strong></h2>
 
 <br>
 
