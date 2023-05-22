@@ -23,14 +23,9 @@
 
 <h1 align="center"> ️💚️ Members 💚 </h1>
 
-
-| [<img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="100px;"/><br /><sub><b>soohyun</b></sub>](https://github.com/CSHhyeon)<br />
-| [<img src="front-end/src/assets/images/strangers/seunug-icon.png" width="100px;"/><br /><sub><b>soohyun</b></sub>](https://github.com/ryuttung)<br />
-| [<img src="front-end/src/assets/images/strangers/woo-icon.png" width="100px;"/><br /><sub><b>soohyun</b></sub>](https://github.com/kimchiramenclub)<br />
-| [<img src="front-end/src/assets/images/strangers/chang-icon.png" width="100px;"/><br /><sub><b>soohyun</b></sub>](https://github.com/changhwanchoe)<br />
-
-[![soohyun]<img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="100px;"/>](https://github.com/CSHhyeon) 
-[soohyun](https://github.com/iharsh234)
+| :--------: | :--------: | :------: | :-----: |
+|   ![js]    |   ![ts]    | ![react] | ![node] |
+|   soohyun  |  seungyeon |  junwoo  |changhwan|
 
 
 
