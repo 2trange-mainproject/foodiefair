@@ -12,3 +12,24 @@
 🏷️ 4군데 편의점(CU, GS25, 7ELEVEN, Emart24)의 인기상품, 신상품, 할인상품을 푸디페어에서 "다" 볼 수 있어요!
 🙌🏻 실시간 반영되는 좋아요와 리뷰개수에 따라 랭커가 되면 다양한 혜택을 받을 수 있어요!
 
+<p align="center">
+  <a href="https://www.foodiefair.store/">
+    <img width=100% src="front-end/src/assets/images/logo/FoodieFair Logo.png">
+  </a>
+</p>
+
+
+<h2 align="center"><strong><a href="[https://join.slack.com/t/ng-colombia/shared_invite/enQtMjgwMjc3ODk1NjMyLTBjMmE4YmQzYTA0ZGNjNTVhMmNlMmQ1YWRjNGFlOWE4MDBjMWM3M2UwNmFjZWFhNmZkYzVmNDc3ZWQ5MmQwZmY](https://www.notion.so/2-e35d4fcfe5ce4ccea8effd4dd945935a)">👉 FoodieFair Notion 👈</a></strong></h2>
+
+<br>
+
+<h1 align="center"> ️💚️ Members 💚 </h1>
+
+
+| [<img src="front-end/src/assets/images/strangers/soo-icon.png" width="100px;"/><br /><sub><b>soohyun</b></sub>](https://github.com/CSHhyeon)<br />
+| [<img src="front-end/src/assets/images/strangers/seunug-icon.png" width="100px;"/><br /><sub><b>soohyun</b></sub>](https://github.com/ryuttung)<br />        |
+| [<img src="front-end/src/assets/images/strangers/woo-icon.png" width="100px;"/><br /><sub><b>soohyun</b></sub>](https://github.com/kimchiramenclub)<br />        |
+| [<img src="front-end/src/assets/images/strangers/chang-icon.png" width="100px;"/><br /><sub><b>soohyun</b></sub>](https://github.com/changhwanchoe)<br />        |
+
+
+
