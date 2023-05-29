@@ -28,15 +28,13 @@
 |   soohyun  |  seungyeon |  junwoo  |changhwan|
 
 <div><h1>📚 STACKS</h1></div>
-<div>
-  <h2>[Back-End]</h2>
-  <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
+<h2>[Back-End]</h2>
+  <div>
+    <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
     <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> 
     <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> 
     <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
-</div>
-
-
+  </div>
 <h2>[Front-End]</h2>
   <div>
     <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
