@@ -26,10 +26,16 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="100px;" alt=""/><br /><sub><b>FE 팀장 : 최수현</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="100px;" alt=""/><br /><sub><b>FE 팀장 : 최수현</b></sub></a><br />
+      <ul dir="auto">
+         <li>"확인하는 중"</li> 
+         <li>::marker "확인하는 중"</li> 
+       </ul>
+      </td>
       <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/seung-icon.png" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 류승연</b></sub></a><br /></td>
       <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/woo-icon.png" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 임준우</b></sub></a><br /></td>
       <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/chang-icon.png" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 최창환</b></sub></a><br /></td>
+    </tr>
   </tbody>
 </table>
 
