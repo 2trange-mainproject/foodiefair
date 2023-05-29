@@ -21,13 +21,13 @@
 
 <br>
 
-<h2 align="center"> ️💚️ Members 💚 </h1>
+<h2 align="center"> ️💚️ Members 💚 </h2>
 
 | :--------: | :--------: | :------: | :-----: |
 |   ![js]    |   ![ts]    | ![react] | ![node] |
 |   soohyun  |  seungyeon |  junwoo  |changhwan|
 
-<div align=center><h2>📚 STACKS</h2></div>
+<div><h1>📚 STACKS 📚</h1></div>
 
 
 
