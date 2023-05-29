@@ -27,7 +27,7 @@
   <tbody>
     <tr>
       <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="100px;" alt=""/><br /><sub><b>FE 팀장 : 최수현</b></sub></a><br />
-      <ul dir="auto">
+      <ul>
          <li>회원가입 기능</li>
          <li>키워드 추출 기능</li>
          <li>음식/이벤트 페이지</li>
