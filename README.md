@@ -30,9 +30,6 @@
       <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/seung-icon.png" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 류승연</b></sub></a><br /></td>
       <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/woo-icon.png" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 임준우</b></sub></a><br /></td>
       <td align="center"><a href=""><imgsrc="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/chang-icon.png" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 최창환</b></sub></a><br /></td>
-
-      <tr/>
-    </tr>
   </tbody>
 </table>
 
