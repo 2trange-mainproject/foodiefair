@@ -27,7 +27,8 @@
 |   ![js]    |   ![ts]    | ![react] | ![node] |
 |   soohyun  |  seungyeon |  junwoo  |changhwan|
 
-
+<h2 align="center"> ️📚 Stacks</h1>
+<div align=center><h1>📚 STACKS</h1></div>
 
 
 
