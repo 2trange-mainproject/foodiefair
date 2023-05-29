@@ -21,7 +21,7 @@
 
 <br>
 
-<h2> ️💚️ Members 💚 </h2>
+<h1> ️💚️ Members</h1>
 
 <table>
   <tbody>
