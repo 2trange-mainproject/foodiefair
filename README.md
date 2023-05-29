@@ -26,7 +26,7 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/s/FoodieFair%20Logo.png" width="100px;" alt=""/><br /><sub><b>FE 팀장 : </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="100px;" alt=""/><br /><sub><b>FE 팀장 : </b></sub></a><br /></td>
       <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : </b></sub></a><br /></td>
       <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : </b></sub></a><br /></td>
       <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : </b></sub></a><br /></td>
