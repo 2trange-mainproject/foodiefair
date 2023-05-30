@@ -84,9 +84,9 @@
   </tbody>
 </table>
 
-<div style="text-align:center">
+<div>
     <h1>🌐 ARCHITECTURE</h1>
-    <img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/2a09e35f-e414-405a-884b-7122012d898e"/>
+    <img style="width:80%; margin: auto; display: block;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/2a09e35f-e414-405a-884b-7122012d898e"/>
 </div>
 
 <div style="text-align:center">
