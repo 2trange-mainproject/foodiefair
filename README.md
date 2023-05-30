@@ -55,7 +55,7 @@
 <img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/9d83a732-738a-4544-8ebb-bb144507fe43"/>
 
 <div><h1>USE CASE</h1></div>
-<img align="center" width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/5e022794-dd95-4b9e-8fbb-62844d1cda9b"/>
+<img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/5e022794-dd95-4b9e-8fbb-62844d1cda9b"/>
 
 <div><h1>📚 STACKS</h1></div>
 <h2>[Back-End]</h2>
