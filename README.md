@@ -21,7 +21,7 @@
 
 <h1> ️💚️ Members</h1>
 
-| [<img src="[최수현의_사진_URL](https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png)" width=100>](URL) | [<img src="류승연의_사진_URL" width=100>](URL) | [<img src="임준우의_사진_URL" width=100>](URL) | [<img src="최창환의_사진_URL" width=100>](URL) |
+| [<img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width=100>](URL) | [<img src="류승연의_사진_URL" width=100>](URL) | [<img src="임준우의_사진_URL" width=100>](URL) | [<img src="최창환의_사진_URL" width=100>](URL) |
 | :------------------------------------------: | :------------------------------------------: | :------------------------------------------: | :------------------------------------------: |
 |                   최수현                       |                   류승연                       |                   임준우                       |                   최창환                       |
 |              <ul>
