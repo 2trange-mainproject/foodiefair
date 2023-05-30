@@ -40,16 +40,16 @@
   </tbody>
 </table>
 
-<div><h2>구조도</h2></div>
+<div><h1>Architecture</h1></div>
 <img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/2a09e35f-e414-405a-884b-7122012d898e"/>
 
-<div><h2>FLOW CHART</h2></div>
+<div><h1>FLOW CHART</h1></div>
 <img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/e45e4661-1ed9-4a71-b8b4-d813f715b779"/>
 
 <div><h1>ERD</h1></div>
 <img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/a89a4c61-6bb9-4720-bc76-b20833cb0b01"/>
 
-<div><h1>화면설계</h1></div>
+<div><h1>DESIGN</h1></div>
 <img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/9d83a732-738a-4544-8ebb-bb144507fe43"/>
 
 <div><h1>USE CASE</h1></div>
