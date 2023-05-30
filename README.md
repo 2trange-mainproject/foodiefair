@@ -173,7 +173,7 @@
       <img src="https://img.shields.io/badge/fetch-0769AD?style=for-the-badge">
       <img src="https://img.shields.io/badge/gulp-CF4647?style=for-the-badge&logo=gulp&logoColor=white">
   </div>
-<h2 tabindex="-1" dir="auto">[협업 툴]</h2>
+<h2>[협업 툴]</h2>
   <div>
     <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
     <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
