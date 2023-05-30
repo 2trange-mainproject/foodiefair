@@ -40,10 +40,10 @@
   </tbody>
 </table>
 
-<div><h1>구조도</h1></div>
+<div><h2>구조도</h2></div>
 <img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/2a09e35f-e414-405a-884b-7122012d898e"/>
 
-<div><h1>FLOW CHART</h1></div>
+<div><h2>FLOW CHART</h2></div>
 <img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/e45e4661-1ed9-4a71-b8b4-d813f715b779"/>
 
 <div><h1>ERD</h1></div>
