@@ -46,8 +46,8 @@
     <tr>
       <td>
         <ul>
-          <li>로그인 기능(Spring Security)</li>
-          <li>키워드 추출 기능(Sentiment)</li>
+          <li>로그인(Spring Security)</li>
+          <li>키워드 추출(Sentiment)</li>
           <li>음식/이벤트 페이지</li>
           <li>리뷰어 랭킹 페이지</li>
           <li>관리자 페이지</li>
@@ -58,26 +58,26 @@
           <li>지도 기능(Kakao API)</li>
           <li>영수증 인증 기능(OCR)</li>
           <li>홈 페이지</li>
-          <li>리뷰어 랭킹 페이지</li>
-          <li>관리자 페이지</li>
+          <li>문의/고객센터 페이지</li>
+          <li>회사소개 페이지</li>
         </ul>
       </td>
       <td>
         <ul>
-          <li>회원가입 기능</li>
-          <li>키워드 추출 기능</li>
-          <li>음식/이벤트 페이지</li>
-          <li>리뷰어 랭킹 페이지</li>
-          <li>관리자 페이지</li>
+          <li>영수증 인증 기능(OCR)</li>
+          <li>무한 스크롤 기능</li>
+          <li>마이페이지</li>
+          <li>팔로우/팔로잉 기능</li>
+          <li>방명록 기능</li>
         </ul>
       </td>
       <td>
         <ul>
-          <li>회원가입 기능</li>
-          <li>키워드 추출 기능</li>
-          <li>음식/이벤트 페이지</li>
-          <li>리뷰어 랭킹 페이지</li>
-          <li>관리자 페이지</li>
+          <li>로그인(Spring Security)</li>
+          <li>키워드 추출(Sentiment)</li>
+          <li>무한 스크롤 기능</li>
+          <li>음식/리뷰 페이지</li>
+          <li>찜 기능</li>
         </ul>
       </td>
     </tr>
