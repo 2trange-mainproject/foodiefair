@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.foodiefair.store/">
-    <img width=100% src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/logo/FoodieFair%20Logo.png">
+    <img width=80% src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/logo/FoodieFair%20Logo.png">
   </a>
 </p>
 
