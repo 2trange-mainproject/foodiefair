@@ -1,9 +1,18 @@
-<h1 align="center">“푸디페어”를 소개합니다</h1>
+<h1>FoodieFair</h1>
 <p align="center">
   <a href="https://www.foodiefair.store/">
     <img width=70% src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/logo/FoodieFair%20Logo.png">
   </a>
 </p>
+<ul>
+  <li>멀티잇 백엔드 개발자 취업캠프 8회차 2조</li>
+  <li>프로젝트 기간 : 2023.04.05 ~ 2023.05.16</li>
+  <li><a href="https://www.foodiefair.store/">FoodieFair</a></li>
+  <li><a href="https://www.notion.so/2-e35d4fcfe5ce4ccea8effd4dd945935a">👉 FoodieFair Notion 👈</a></li>
+</ul>
+
+<h1 align="center">“푸디페어”를 소개합니다</h1>
+
 
 📢 Foodie “음식을 좋아하는 사람” + Fair “공정한, 정직한”의 의미로<br />
 음식을 좋아하는 사람들의 공정하고 진실된 리뷰를 지향하는 리뷰 커뮤니티입니다 🙂<br /><br />
@@ -13,9 +22,6 @@
 🗾 지도 기능을 통해 내 주변 편의점 위치를 확인해 볼 수 있어요!<br />  
 🏷️ 4군데 편의점(CU, GS25, 7ELEVEN, Emart24)의 인기상품, 신상품, 할인상품을 푸디페어에서 "다" 볼 수 있어요!<br />  
 🙌🏻 실시간 반영되는 좋아요와 리뷰개수에 따라 랭커가 되면 다양한 혜택을 받을 수 있어요!<br />  
-
-
-<h2 align="center"><strong><a href="https://www.notion.so/2-e35d4fcfe5ce4ccea8effd4dd945935a">👉 FoodieFair Notion 👈</a></strong></h2>
 
 <br>
 
