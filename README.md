@@ -21,10 +21,16 @@
 
 <h1> ️💚️ Members</h1>
 
-| [<img src="최수현의_사진_URL" width=100>](URL) | [<img src="류승연의_사진_URL" width=100>](URL) | [<img src="임준우의_사진_URL" width=100>](URL) | [<img src="최창환의_사진_URL" width=100>](URL) |
+| [<img src="[최수현의_사진_URL](https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png)" width=100>](URL) | [<img src="류승연의_사진_URL" width=100>](URL) | [<img src="임준우의_사진_URL" width=100>](URL) | [<img src="최창환의_사진_URL" width=100>](URL) |
 | :------------------------------------------: | :------------------------------------------: | :------------------------------------------: | :------------------------------------------: |
 |                   최수현                       |                   류승연                       |                   임준우                       |                   최창환                       |
-|              최수현의 역할                    |              류승연의 역할                    |              임준우의 역할                    |              최창환의 역할                    |
+|              <ul>
+         <li>회원가입 기능</li>
+         <li>키워드 추출 기능</li>
+         <li>음식/이벤트 페이지</li>
+         <li>리뷰어 랭킹 페이지</li>
+         <li>관리자 페이지</li>
+       </ul>                  |              류승연의 역할                    |              임준우의 역할                    |              최창환의 역할                    |
 
 
 <table>
