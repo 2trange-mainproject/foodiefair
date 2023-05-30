@@ -47,7 +47,7 @@
       <td>
         <ul>
           <li>로그인 기능(Spring Security)</li>
-          <li>키워드 추출 기능(CLOVA)</li>
+          <li>키워드 추출 기능(Sentiment)</li>
           <li>음식/이벤트 페이지</li>
           <li>리뷰어 랭킹 페이지</li>
           <li>관리자 페이지</li>
@@ -55,9 +55,9 @@
       </td>
       <td>
         <ul>
-          <li>홈페이지</li>
-          <li>키워드 추출 기능</li>
-          <li>음식/이벤트 페이지</li>
+          <li>지도 기능(Kakao API)</li>
+          <li>영수증 인증 기능(OCR)</li>
+          <li>홈 페이지</li>
           <li>리뷰어 랭킹 페이지</li>
           <li>관리자 페이지</li>
         </ul>
