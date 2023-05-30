@@ -25,16 +25,16 @@
   <tbody>
     <tr>
       <td align="center">
-        <img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="120px;" alt=""/></a>
+        <img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="150px;" alt=""/></a>
       </td>
       <td align="center">
-        <img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/seung-icon.png" width="100px;" alt=""/>
+        <img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/seung-icon.png" width="150px;" alt=""/>
       </td>
       <td align="center">
-        <img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/woo-icon.png" width="100px;" alt=""/>
+        <img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/woo-icon.png" width="150px;" alt=""/>
       </td>
       <td align="center">
-        <img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/chang-icon.png" width="100px;" alt=""/>
+        <img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/chang-icon.png" width="150px;" alt=""/>
       </td>
     </tr>
     <tr>
