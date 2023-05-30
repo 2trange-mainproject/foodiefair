@@ -21,7 +21,7 @@
 
 <h1> ️💚️ Members</h1>
 
-<table>
+<table align="center">
   <tbody>
     <tr>
       <td align="center">
