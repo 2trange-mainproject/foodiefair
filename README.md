@@ -21,26 +21,6 @@
 
 <h1> ️💚️ Members</h1>
 
-<style>
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table, th, td {
-  border: 1px solid #dddddd;
-}
-
-th, td {
-  text-align: center;
-  padding: 15px;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-</style>
-
 <table>
   <tbody>
     <tr>
