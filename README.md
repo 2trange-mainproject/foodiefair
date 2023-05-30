@@ -1,10 +1,9 @@
+<h1 align="center">“푸디페어”를 소개합니다</h1>
 <p align="center">
   <a href="https://www.foodiefair.store/">
     <img width=80% src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/logo/FoodieFair%20Logo.png">
   </a>
 </p>
-
-<h1 align="center">“푸디페어”를 소개합니다</h1>
 
 📢 Foodie “음식을 좋아하는 사람” + Fair “공정한, 정직한”의 의미로<br />
 음식을 좋아하는 사람들의 공정하고 진실된 리뷰를 지향하는 리뷰 커뮤니티입니다 🙂<br /><br />
