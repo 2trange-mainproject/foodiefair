@@ -39,9 +39,9 @@
     </tr>
     <tr>
       <td align="center"><a href="https://github.com/CSHhyeon">최수현</a></td>
-      <td>류승연</td>
-      <td>임준우</td>
-      <td>최창환</td>
+      <td align="center"><a href="https://github.com/ryuttung">류승연</a></td>
+      <td align="center"><a href="https://github.com/kimchiramenclub">임준우</a></td>
+      <td align="center"><a href="https://github.com/changhwanchoe">최창환</a></td>
     </tr>
     <tr>
       <td>
