@@ -47,25 +47,6 @@
 </table>
 
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="100px;" alt=""/><br /><sub><b>FE/BE 팀장 : 최수현</b></sub></a><br />
-      <ul>
-         <li>회원가입 기능</li>
-         <li>키워드 추출 기능</li>
-         <li>음식/이벤트 페이지</li>
-         <li>리뷰어 랭킹 페이지</li>
-         <li>관리자 페이지</li>
-       </ul>
-      </td>
-      <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/seung-icon.png" width="100px;" alt=""/><br /><sub><b>FE/BE 팀원 : 류승연</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/woo-icon.png" width="100px;" alt=""/><br /><sub><b>FE/BE 팀원 : 임준우</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/chang-icon.png" width="100px;" alt=""/><br /><sub><b>FE/BE 팀원 : 최창환</b></sub></a><br /></td>
-    </tr>
-  </tbody>
-</table>
-
 <div style="text-align:center">
     <h1>🌐 ARCHITECTURE</h1>
     <img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/2a09e35f-e414-405a-884b-7122012d898e"/>
