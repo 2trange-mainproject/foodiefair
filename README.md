@@ -38,7 +38,7 @@
       </td>
     </tr>
     <tr>
-      <td>최수현</td>
+      <td align="center"><a href="https://github.com/CSHhyeon">최수현</a></td>
       <td>류승연</td>
       <td>임준우</td>
       <td>최창환</td>
