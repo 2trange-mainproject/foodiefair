@@ -42,6 +42,21 @@
   </tbody>
 </table>
 
+<div><h1>기술스택아키텍처</h1></div>
+![01_기술스택아키텍처](https://github.com/2trange-mainproject/foodiefair/assets/98200722/2a09e35f-e414-405a-884b-7122012d898e)
+
+<div><h1>FLOW CHART</h1></div>
+![2_플로우차트](https://github.com/2trange-mainproject/foodiefair/assets/98200722/e45e4661-1ed9-4a71-b8b4-d813f715b779)
+
+<div><h1>ERD</h1></div>
+![3_ERD](https://github.com/2trange-mainproject/foodiefair/assets/98200722/062e1036-ea2d-49f1-b7ca-d9987bb3d0b2)
+
+<div><h1>화면설계</h1></div>
+![4_화면설계](https://github.com/2trange-mainproject/foodiefair/assets/98200722/9d83a732-738a-4544-8ebb-bb144507fe43)
+
+<div><h1>USE CASE</h1></div>
+![5_유스케이스](https://github.com/2trange-mainproject/foodiefair/assets/98200722/5e022794-dd95-4b9e-8fbb-62844d1cda9b)
+
 <div><h1>📚 STACKS</h1></div>
 <h2>[Back-End]</h2>
   <div>
