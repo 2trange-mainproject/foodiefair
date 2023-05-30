@@ -47,7 +47,7 @@
 <img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/e45e4661-1ed9-4a71-b8b4-d813f715b779"/>
 
 <div><h1>ERD</h1></div>
-<img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/062e1036-ea2d-49f1-b7ca-d9987bb3d0b2"/>
+<img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/a89a4c61-6bb9-4720-bc76-b20833cb0b01"/>
 
 <div><h1>화면설계</h1></div>
 <img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/9d83a732-738a-4544-8ebb-bb144507fe43"/>
