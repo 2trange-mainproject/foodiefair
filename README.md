@@ -21,6 +21,46 @@
 
 <h1> ️💚️ Members</h1>
 
+<style>
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #dddddd;
+}
+
+th, td {
+  text-align: center;
+  padding: 15px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+</style>
+
+<table>
+  <tbody>
+    <tr>
+      <td><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="100px;" alt=""/><br /><sub><b>FE/BE 팀장 : 최수현</b></sub></a><br />
+      <ul>
+         <li>회원가입 기능</li>
+         <li>키워드 추출 기능</li>
+         <li>음식/이벤트 페이지</li>
+         <li>리뷰어 랭킹 페이지</li>
+         <li>관리자 페이지</li>
+       </ul>
+      </td>
+      <td><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/seung-icon.png" width="100px;" alt=""/><br /><sub><b>FE/BE 팀원 : 류승연</b></sub></a><br /></td>
+      <td><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/woo-icon.png" width="100px;" alt=""/><br /><sub><b>FE/BE 팀원 : 임준우</b></sub></a><br /></td>
+      <td><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/chang-icon.png" width="100px;" alt=""/><br /><sub><b>FE/BE 팀원 : 최창환</b></sub></a><br /></td>
+    </tr>
+  </tbody>
+</table>
+
+
 <table>
   <tbody>
     <tr>
@@ -40,20 +80,30 @@
   </tbody>
 </table>
 
-<div><h1>🌐 ARCHITECTURE</h1></div>
-<img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/2a09e35f-e414-405a-884b-7122012d898e"/>
+<div style="text-align:center">
+    <h1>🌐 ARCHITECTURE</h1>
+    <img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/2a09e35f-e414-405a-884b-7122012d898e"/>
+</div>
 
-<div><h1>📊 FLOW CHART</h1></div>
-<img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/e45e4661-1ed9-4a71-b8b4-d813f715b779"/>
+<div style="text-align:center">
+    <h1>📊 FLOW CHART</h1>
+    <img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/e45e4661-1ed9-4a71-b8b4-d813f715b779"/>
+</div>
 
-<div><h1>📏 ERD</h1></div>
-<img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/a89a4c61-6bb9-4720-bc76-b20833cb0b01"/>
+<div style="text-align:center">
+    <h1>📏 ERD</h1>
+    <img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/a89a4c61-6bb9-4720-bc76-b20833cb0b01"/>
+</div>
 
-<div><h1>🎨 DESIGN</h1></div>
-<img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/9d83a732-738a-4544-8ebb-bb144507fe43"/>
+<div style="text-align:center">
+    <h1>🎨 DESIGN</h1>
+    <img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/9d83a732-738a-4544-8ebb-bb144507fe43"/>
+</div>
 
-<div><h1>👥 USE CASE</h1></div>
-<img width="80%" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/5e022794-dd95-4b9e-8fbb-62844d1cda9b"/>
+<div style="text-align:center">
+    <h1>👥 USE CASE</h1>
+    <img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/5e022794-dd95-4b9e-8fbb-62844d1cda9b"/>
+</div>
 
 <div><h1>📚 STACKS</h1></div>
 <h2>[Back-End]</h2>
