@@ -100,21 +100,6 @@
     <p align="center"><img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/e45e4661-1ed9-4a71-b8b4-d813f715b779"/></p>
 </div>
 
-<div>
-    <h1>📏 ERD</h1>
-    <p align="center"><img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/a89a4c61-6bb9-4720-bc76-b20833cb0b01"/></p>
-</div>
-
-<div>
-    <h1>🎨 DESIGN</h1>
-    <p align="center"><img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/9d83a732-738a-4544-8ebb-bb144507fe43"/></p>
-</div>
-
-<div>
-    <h1>👥 USE CASE</h1>
-    <p align="center"><img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/5e022794-dd95-4b9e-8fbb-62844d1cda9b"/></p>
-</div>
-
 <div><h1>📚 STACKS</h1></div>
 <h2>[Back-End]</h2>
   <div>
