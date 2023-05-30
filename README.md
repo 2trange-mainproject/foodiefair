@@ -30,7 +30,7 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="100px;" alt=""/><br /><b>최수현</b></a><br />
+      <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/soo-icon.png" width="100px;" alt=""/><br /></a>
      
       </td>
       <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/seung-icon.png" width="100px;" alt=""/><br /><b>류승연</b></a><br /><ul><li>류승연의 역할</li></ul></td>
