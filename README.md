@@ -43,6 +43,33 @@
       <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/woo-icon.png" width="100px;" alt=""/><br /><b>임준우</b></a><br /><ul><li>임준우의 역할</li></ul></td>
       <td align="center"><a href=""><img src="https://github.com/2trange-mainproject/foodiefair/blob/main/front-end/foodiefair-bootstrap/src/assets/images/strangers/chang-icon.png" width="100px;" alt=""/><br /><b>최창환</b></a><br /><ul><li>최창환의 역할</li></ul></td>
     </tr>
+    <tr>
+      <td>최수현</td>
+      <td>류승연</td>
+      <td>임준우</td>
+      <td>최창환</td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+         <li>회원가입 기능</li>
+         <li>키워드 추출 기능</li>
+         <li>음식/이벤트 페이지</li>
+         <li>리뷰어 랭킹 페이지</li>
+         <li>관리자 페이지</li>
+       </ul>
+      </td>
+      <td>
+      <ul>
+         <li>회원가입 기능</li>
+         <li>키워드 추출 기능</li>
+         <li>음식/이벤트 페이지</li>
+         <li>리뷰어 랭킹 페이지</li>
+         <li>관리자 페이지</li>
+       </ul></td>
+      <td></td>
+      <td></td>
+    </tr>
   </tbody>
 </table>
 
