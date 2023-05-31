@@ -123,7 +123,8 @@
   </div>
 
 <div><h1>📚 STACKS2</h1></div>
-## **[언어]**
+<strong style="font-size: 1.5em;">[Back-End]</strong>
+
   <div>
     <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
@@ -149,19 +150,6 @@
   <div>
     <img src="https://img.shields.io/badge/intellij idea-000000?style=for-the-badge&logo=spring&logoColor=white">
   </div>
-
-<div style="display: flex; align-items: center;">
-  <strong style="font-size: 20em; margin-right: 10px;">IDE</strong>
-  <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white">
-</div>
-
-<strong style="font-size: 2em;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align: middle; ">
-
-<strong style="font-size: 2em; vertical-align: -50%;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align: middle;">
-
-<strong style="font-size: 1.5em;">Your Heading Text Here</strong>
-
-<strong style="font-size: 2em;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align:-50%;">
 
 <h2>[API 및 라이브러리]</h2>
   <div>
