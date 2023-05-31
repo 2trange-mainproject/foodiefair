@@ -149,10 +149,14 @@
   <div>
     <img src="https://img.shields.io/badge/intellij idea-000000?style=for-the-badge&logo=spring&logoColor=white">
   </div>
-  
-IDE ![IntelliJ IDEA](https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white)
 
 <strong style="font-size: 1.5em;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white">
+
+<div style="display: flex; align-items: center;">
+  <strong style="font-size: 3em; margin-right: 10px;">IDE</strong>
+  <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white">
+</div>
+
 
 
 <h2>[API 및 라이브러리]</h2>
