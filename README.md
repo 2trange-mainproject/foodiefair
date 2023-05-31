@@ -124,7 +124,7 @@
 
 <div><h1>📚 STACKS2</h1></div>
 <strong style="font-size: 1.5em;">[Back-End]</strong>
-
+<h3>[Back-End]</h3>
   <div>
     <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
