@@ -159,6 +159,7 @@
 
 <strong style="font-size: 2em; vertical-align: -50%;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align: middle;">
 
+<strong style="font-size: 1.5em;">Your Heading Text Here</strong>
 
 <strong style="font-size: 2em;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align:-50%;">
 
