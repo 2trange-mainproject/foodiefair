@@ -155,7 +155,7 @@
   <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white">
 </div>
 
-<strong style="font-size: 2em;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align: middle; align-items: center;">
+<strong style="font-size: 2em;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align: middle; align: center;">
 
 
 
