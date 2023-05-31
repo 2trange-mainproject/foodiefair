@@ -160,6 +160,8 @@
 <strong style="font-size: 2em; vertical-align: -50%;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align: middle;">
 
 
+<strong style="font-size: 2em;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align:-50%;">
+
 <h2>[API 및 라이브러리]</h2>
   <div>
     <img src="https://img.shields.io/badge/NCP-03C75A?style=for-the-badge&logo=naver&logoColor=white">
