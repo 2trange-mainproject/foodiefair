@@ -150,14 +150,12 @@
     <img src="https://img.shields.io/badge/intellij idea-000000?style=for-the-badge&logo=spring&logoColor=white">
   </div>
 
-<strong style="font-size: 50em; display: flex; align-items: center;">[IDE]</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white">
-
 <div style="display: flex; align-items: center;">
   <strong style="font-size: 20em; margin-right: 10px;">IDE</strong>
   <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white">
 </div>
 
-<strong style="font-size: 2em;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align: middle;">
+<strong style="font-size: 2em;">IDE</strong> <img src="https://img.shields.io/badge/intellij%20idea-000000?style=for-the-badge&logo=spring&logoColor=white" style="vertical-align: middle; align-items: center;">
 
 
 
