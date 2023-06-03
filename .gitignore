@@ -1,4 +1,9 @@
 front-end/foodiefair-bootstrap/node_modules/
 front-end/foodiefair-bootstrap/dist/
 front-end/foodiefair-bootstrap/.temp/
+front-end/**/find-store.html
+back-end/**/application.properties
+back-end/**/OCRServiceImpl.java
+back-end/**/S3Client.java
+back-end/**/NaverCombineKorean.java
 

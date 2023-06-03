@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FoodieFair</title>
+    <link href="@@webRoot/node_modules/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
+    <link href="@@webRoot/node_modules/nouislider/dist/nouislider.min.css" rel="stylesheet">
+    <link href="@@webRoot/assets/css/find-store.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript"
+            src=""></script>
+    <script src="" async></script>
+
+    @@include("../partials/head.html")
+</head>
+
+<body>
+
+@@include("../partials/navbar.html")
+
+<form class="findStore">
+    <section class="mapSection">
+        <h3>내 주변 편의점 찾기</h3>
+        <div class="map-container">
+            <div class="locateSection">
+                <div id="map"></div>
+                </br>
+                <button id="locationButton" onclick="getCurrentLocation()">위치 다시 불러오기</button>
+            </div>
+            <div class="listSection">
+                <ul id="markerList"></ul>
+                <div id="pagination"></div>
+            </div>
+        </div>
+    </section>
+</form>
+
+<!-- Footer -->
+@@include("../partials/footer.html")
+<!-- Javascript-->
+<script src="@@webRoot/assets/js/find-store.js"></script>
+@@include("../partials/scripts.html")
+
+</body>
+</html>
