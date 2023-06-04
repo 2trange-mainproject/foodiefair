@@ -92,12 +92,12 @@
 
 <div>
     <h1>🌐 ARCHITECTURE</h1>
-    <p align="center"><img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/2a09e35f-e414-405a-884b-7122012d898e"/></p>
+    <p align="center"><img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/4d2d4381-9938-442c-880b-3a991cba5e1c"/></p>
 </div>
 
 <div>
     <h1>📊 FLOW CHART</h1>
-    <p align="center"><img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/e45e4661-1ed9-4a71-b8b4-d813f715b779"/></p>
+    <p align="center"><img style="width:80%;" src="https://github.com/2trange-mainproject/foodiefair/assets/98200722/cd6763ac-92df-4a14-8bc4-0d8c80cfb7d1"/></p>
 </div>
 
 <div><h1>📚 STACKS</h1></div>
